@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Om oss | Sveriges Vårdgivare</title>
+
+    <meta name="description" content="Sveriges Vårdgivare är ett privat initiativ vars syfte är att via analys av allmänna handlingar, information och data, granska företag och organisationer...">
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/vendor/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" media="screen" href="/css/theme.css">
+</head>
+
+<body>
+
+<main class="page-wrapper">
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg bg-light shadow-sm sticky-top">
+        <div class="container">
+            <a href="/i.html" class="navbar-brand fs-5 h1 m-0 me-3 text-info">
+                <img class="me-2" src="/img/logo.png" width="40" alt="Sveriges Vårdgivare">
+                Sveriges Vårdgivare
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav id="navbarCollapse" class="collapse navbar-collapse">
+                <hr class="d-lg-none mt-3 mb-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="/vardgivare.html" class="nav-link">Vårdgivare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/om-oss.html" class="nav-link">Om oss</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/kvalitet.html" class="nav-link">Kvalitet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nyheter.html" class="nav-link">Nyheter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/kontakt.html" class="nav-link">Kontakta oss</a>
+                    </li>
+                </ul>
+                <a href="/lista-foretag.html" class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-0">
+                    Lista ditt företag
+                    <i class="d-none d-xl-inline bx bx-right-arrow-alt fs-lg ms-1"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="position-relative dark-mode">
+        <div class="position-absolute w-100 h-100 bg-position-center bg-size-cover" style="background-image: url(/img/om-oss-hero.png); filter: brightness(75%);"></div>
+        <div class="position-absolute w-100 h-100 bg-primary  opacity-75"></div>
+        <!-- Breadcrumb -->
+        <nav class="position-relative container" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 pt-5">
+                <li class="breadcrumb-item">
+                    <a class="link-light" href="/i.html"><i class="bx bx-home-alt fs-lg me-1"></i>Hem</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page"></i>Kontakt</li>
+            </ol>
+        </nav>
+
+        <div class="position-relative container pb-5">
+            <div class="row mt-5 mb-5">
+                <div class="col-12 col-lg d-flex flex-column justify-content-center">
+                    <h1 class="display-1 mb-0 text-">Hör av dig!</h1>
+                    <span class="h2">Mån - Fre <br> 09:00 - 17:00</span>
+                </div>
+                <div class="col-md col-lg-auto mt-4 pt-2">
+                    <div class="bg-info rounded-circle shadow d-flex justify-content-center align-items-center mb-4 d-none d-md-flex" style="height: 80px; width: 80px;">
+                        <i class="bx bxs-phone text-white" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="bg-info rounded-circle shadow d-flex justify-content-center align-items-center mb-2 d-flex d-md-none" style="height: 40px; width: 40px;">
+                        <i class="bx bxs-phone text-white" style="font-size: 25px;"></i>
+                    </div>
+                    <h4 class="text-light mb-0">Telefon</h4>
+                    <span class="badge shadow bg-light text-dark fs-6 mt-2">+46 70 123 45 67</span>
+                </div>
+                <div class="col-md col-lg-auto mt-4 pt-2">
+                    <div class="bg-info rounded-circle shadow d-flex justify-content-center align-items-center mb-4 d-none d-md-flex" style="height: 80px; width: 80px;">
+                        <i class="bx bxs-envelope text-white" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="bg-info rounded-circle shadow d-flex justify-content-center align-items-center mb-2 d-flex d-md-none" style="height: 40px; width: 40px;">
+                        <i class="bx bxs-envelope text-white" style="font-size: 25px;"></i>
+                    </div>
+                    <h4 class="text-light mb-0">Mejl</h4>
+                    <span class="badge shadow bg-light text-dark fs-6 mt-2">info@sverigesvardgivare.se</span>
+                </div>
+                <div class="col-md col-lg-auto mt-4 pt-2">
+                    <div class="bg-info rounded-circle shadow d-flex justify-content-center align-items-center mb-4 d-none d-md-flex" style="height: 80px; width: 80px;">
+                        <i class="bx bxs-map text-white" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="bg-info rounded-circle shadow d-flex justify-content-center align-items-center mb-2 d-flex d-md-none" style="height: 40px; width: 40px;">
+                        <i class="bx bxs-map text-white" style="font-size: 25px;"></i>
+                    </div>
+                    <h4 class="text-light mb-0">Kontor</h4>
+                    <span class="badge shadow bg-light text-dark fs-6 mt-2">Adressvägen 110, 111 11 Stockholm</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branches -->
+    <section class="container py-2 py-lg-4 py-xl-5 mb-2 mb-md-3">
+        <div class="row py-5">
+            <!-- Contact links -->
+            <div class="col-xl-6 col-md-5">
+                <div class="h-100 w-100 bg-position-center bg-size-cover" style="background-image: url(/img/hero_background_img.jpg);"></div>
+            </div>
+
+            <!-- Contact form -->
+            <div class="col-xl-6 col-md-7">
+                <div class="card border-light shadow-md-md p-md-3">
+                    <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 rounded-3 d-none d-dark-mode-block"></div>
+                    <div class="card-body p-0 px-lg-4 position-relative zindex-2">
+                        <h2 class="display-6">Skriv till oss</h2>
+                        <p class="fs-5">Vänligen fyll i formuläret nedan med dina uppgifter och ditt meddelande så återkommer vi till dig så snart som möjligt!</p>
+                        <form class="row g-4 needs-validation" novalidate>
+                            <div class="col-12">
+                                <label for="fn" class="form-label fs-base">Namn *</label>
+                                <input type="text" class="form-control shadow-sm" id="fn" required>
+                                <div class="invalid-feedback">Please enter your full name!</div>
+                            </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label fs-base">E-post *</label>
+                                <input type="email" class="form-control shadow-sm" id="email" required>
+                                <div class="invalid-feedback">Please provid a valid email address!</div>
+                            </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label fs-base">Telefon *</label>
+                                <input type="email" class="form-control shadow-sm" id="email" required>
+                                <div class="invalid-feedback">Please provid a valid email address!</div>
+                            </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label fs-base">Meddelande *</label>
+                                <textarea class="form-control shadow-sm" name="" id="" rows="6" required></textarea>
+                                <div class="invalid-feedback">Please provid a valid email address!</div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto shadow-primary">Make an appointment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pt-4 pt-sm-5 bg-faded-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-lg-5 mb-3">
+                    <form>
+                        <div class="d-flex gap-3">
+                            <img src="/img/logo.png" style="max-width: 70px; height: 70px;" alt="">
+                            <h5 style="max-width: 280px;" class="h4">Branschnyheter och granskningar från SVG</h5>
+                        </div>
+                        <p class="mb-4" style="max-width: 500px;">Håll dig uppdaterad om vår verksamhet! Vårt digitala nyhetsbrev skickas ca en gång per månad.</p>
+                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                            <label for="newsletter1" class="visually-hidden">E-post</label>
+                            <input id="newsletter1" type="text" class="form-control shadow-sm" placeholder="Din e-post...">
+                            <button class="btn btn-primary shadow-sm" type="button">Prenumera</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-3 col-lg-2 offset-md-2 mb-3">
+                    <h5 class="h6 mt-3 mt-md-0">Navigera</h5>
+                    <ul class="h-100 fs-sm nav flex-md-column flex-sm-row flex-column gap-3 gap-md-2">
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Vårdgivare</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Om oss</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Kvalitet</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Nyheter</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Kontakt</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Lista ditt företag</a></li>
+                    </ul>
+                </div>
+                <div class="d-none d-lg-block col-sm-6 col-md-3 mb-3">
+                    <h5 class="h6">Sveriges Vårdgivare AB</h5>
+                    <ul class="h-100 nav flex-column">
+                        <li class="nav-item mb-2">Org.nr: 559202-1116</li>
+                        <li class="nav-item mb-2">Adressvägen 110, 111 11 Stockholm</li>
+                        <li class="nav-item mb-2">+46 (0) 10 123 45 67</li>
+                        <li class="nav-item mb-2">info@sverigesvardgivare.se</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between pt-4 mt-3 border-top">
+                <p class="mb-0 pb-4 pb-lg-2">
+                    &copy; 2023 Sveriges Vårdgivare •
+                    <a class="link-info" href="/logga-in.html">Admin</a>
+                </p>
+                <div class="d-flex text-dark gap-2 opacity-75 order-first order-md-last pb-4 pb-lg-2">
+                    <a class="link-dark" href="/anvandarvillkor.html">Användarvillkor</a>
+                    <span>•</span>
+                    <a class="link-dark" href="/integritetspolicy.html">Integritetspolicy</a>
+                    <span>•</span>
+                    <a class="link-dark" href="/cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+
+<script>
+
+</script>
+</body>
+</html>

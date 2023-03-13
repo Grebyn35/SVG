@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Nyheter - Admin - Sveriges Vårdgivare</title>
+
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="assets/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="assets/css/theme.css">
+    <link rel="stylesheet" media="screen" href="assets/css/custom.css">
+</head>
+
+<body>
+
+<!-- Remove Post Modal -->
+<div class="modal fade" id="removeNewsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ta bort nyhet</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-2">Är du säker på att du vill ta bort $nyhet?</p>
+                <p class="mb-0 fs-sm fw-bold">Du komma inte att kunna återställa nyheten efter att du har tagit bort den.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Avbryt</button>
+                <button type="button" class="btn btn-sm btn-danger">Ta bort nyhet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="page-wrapper">
+    <div class="d-flex h-100">
+        <!-- Sidenav -->
+        <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
+            <div>
+                <div class="px-5 mb-4">
+                    <a href="/i.html">
+                        <img width="100" src="/assets/img/logo.png" alt="Sveriges Vårdgivare">
+                    </a>
+                </div>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a href="/admin-start.html" class="nav-link">
+                            <i class="bx bxs-home fs-lg me-2"></i>
+                            Start
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-vardgivare.html" class="nav-link">
+                            <i class="bx bx-plus-medical fs-lg me-2"></i>
+                            Vårdgivare
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-nyheter.html" class="nav-link active">
+                            <i class="bx bxs-news fs-lg me-2"></i>
+                            Nyheter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-annonser.html" class="nav-link">
+                            <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+                            Annonser
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="border-top pt-4 mt-4">
+                <a href="/i.html" class="btn btn-outline-info shadow-sm w-100">
+                    <i class="bx bx-log-out fs-lg me-2"></i>
+                    Logga ut
+                </a>
+            </div>
+        </aside>
+
+        <div class="w-100 h-100 px-3 px-sm-4 px-xxl-5 py-5 py-sm-5">
+            <!-- Breadcrumbs -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin-start.html"><i class="bx bxs-home fs-lg me-1"></i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Nyheter</li>
+                </ol>
+            </nav>
+
+            <h1 class="h1 mb-5">Nyheter</h1>
+            <div class="card border-0 shadow-sm p-4 bg-faded-info">
+                <div class="d-flex justify-content-between align-items-center">
+              <span href="" class="fs-4 text-dark">
+                <strong class="text-info">126</strong>
+                publicerade nyheter
+              </span>
+                    <a href="/admin-ny-nyhet.html" class="btn btn-primary btn-sm">
+                        <i class="bx bx-plus fs-base me-1"></i>
+                        Ny nyhet
+                    </a>
+                </div>
+                <hr class="mt-4">
+                <form class="row mt-4">
+                    <div class="col-md mb-4 mb-md-0">
+                        <label class="form-label text-body fw-semibold" for="">Sök</label>
+                        <div class="position-relative d-flex justify-content-end align-items-center">
+                            <input type="text" type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök nyhet...">
+                            <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
+                        </div>
+                    </div>
+                    <div class="col-md mb-4 mb-md-0">
+                        <label class="form-label text-body fw-semibold" for="">Kategori</label>
+                        <select class="form-select shadow-sm" type="text">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="col-md mb-4 mb-md-0">
+                        <label class="form-label text-body fw-semibold" for="">Datum <strong class="text-muted">(från - till)</strong></label>
+                        <div class="input-group gap-1">
+                            <input class="form-control shadow-sm" type="date">
+                            <input class="form-control shadow-sm" type="date">
+                        </div>
+                    </div>
+                    <div class="col-md-auto d-md-flex align-items-md-end">
+                        <a href="/vardgivare.html" class="d-flex btn btn-primary shadow-primary p-0 w-100 w-md-auto" style="min-width: 44.4px !important; height: 44.4px;">
+                            <i class="fw-bold bx bx-search-alt fs-2 ms-1"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <table class="table my-4 fs-sm">
+                <thead>
+                <tr class="row">
+                    <th class="col-6 col-md-8">Nyhet</th>
+                    <th class="col">Kategori</th>
+                    <th class="col">Datum</th>
+                    <th class="col-auto" style="width: 32px;"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="row position-relative">
+                    <td class="col-6 col-md-8">
+                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col">Kategori</td>
+                    <td class="col">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a style="cursor: pointer" class="page-link shadow-sm border">
+                            <i class="bx bx-chevron-left mx-n1"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a style="cursor: pointer" class="page-link shadow-sm border">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a style="cursor: pointer" class="page-link shadow-sm border">2</a>
+                    </li>
+                    <li class="page-item active" aria-current="page">
+                <span class="page-link bg-info shadow-info">
+                  3
+                  <span class="visually-hidden">(current)</span>
+                </span>
+                    </li>
+                    <li class="page-item">
+                        <a style="cursor: pointer" class="page-link shadow-sm border">4</a>
+                    </li>
+                    <li class="page-item">
+                        <a style="cursor: pointer" class="page-link shadow-sm border">5</a>
+                    </li>
+                    <li class="page-item">
+                        <a style="cursor: pointer" class="page-link shadow-sm border">
+                            <i class="bx bx-chevron-right mx-n1"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</main>
+
+
+<!-- Vendor Scripts -->
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="assets/js/theme.min.js"></script>
+</body>
+</html>

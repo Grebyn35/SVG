@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Om oss | Sveriges Vårdgivare</title>
+
+    <meta name="description" content="Sveriges Vårdgivare är ett privat initiativ vars syfte är att via analys av allmänna handlingar, information och data, granska företag och organisationer...">
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/vendor/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" media="screen" href="/css/theme.css">
+</head>
+
+<body>
+
+<main class="page-wrapper">
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg bg-light shadow-sm sticky-top">
+        <div class="container">
+            <a href="/i.html" class="navbar-brand fs-5 h1 m-0 me-3 text-info">
+                <img class="me-2" src="/img/logo.png" width="40" alt="Sveriges Vårdgivare">
+                Sveriges Vårdgivare
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav id="navbarCollapse" class="collapse navbar-collapse">
+                <hr class="d-lg-none mt-3 mb-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="/vardgivare.html" class="nav-link">Vårdgivare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/om-oss.html" class="nav-link">Om oss</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/kvalitet.html" class="nav-link">Kvalitet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nyheter.html" class="nav-link">Nyheter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/kontakt.html" class="nav-link">Kontakta oss</a>
+                    </li>
+                </ul>
+                <a href="/lista-foretag.html" class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-0">
+                    Lista ditt företag
+                    <i class="d-none d-xl-inline bx bx-right-arrow-alt fs-lg ms-1"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page content -->
+    <section class="position-relative pb-5">
+
+        <!-- Breadcrumb -->
+        <nav class="container" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 pt-5">
+                <li class="breadcrumb-item">
+                    <a href="/i.html"><i class="bx bx-home-alt fs-lg me-1"></i>Hem</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page"></i>Om oss</li>
+            </ol>
+        </nav>
+
+        <!-- Hero -->
+        <div class="container d-flex flex-wrap h-100 mt-4">
+            <div class="w-lg-50 pe-lg-4 mb-lg-5">
+                <h1 class="display-4 text-info mb-4">Om oss</h1>
+                <p>
+                    Sveriges Vårdgivare är ett privat initiativ vars syfte är att via analys
+                    av allmänna handlingar, information och data, granska företag
+                    och organisationer verksamma inom vård och omsorgssektorn i
+                    syfte att kunna göra en bedömning av huruvida ett företag eller
+                    organisation med god sannolikhet, eller ej, följer de olika lagar,
+                    regler och förordningar som råder.
+                </p>
+                <p>
+                    Resultatet av granskningarna
+                    finns att tillgå på varje vårdgivares individuella profil.
+                </p>
+                <button class="btn btn-lg btn-primary mt-2">Boka konsultation</button>
+            </div>
+        </div>
+        <!-- Background -->
+        <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-lg-block" style="background-image: url(/img/om-oss-hero.png);"></div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="container py-5 mt-lg-5">
+        <h2 class="mb-5">Till vem/vilka riktar sig Sveriges Vårdgivare?</h2>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xxl mb-4">
+                <div class="card card-hover bg-info align-items-center justify-content-between text-center text-white pt-4 pb-3" style="min-height: 203px;">
+                    <div class="px-3">
+                        <i class="bx bx-donate-heart mb-3" style="font-size: 40px"></i>
+                        <h3 class="h6 text-white">Handläggare inom socialtjänsten</h3>
+                    </div>
+                    <div class="accordion w-100 bg-transparent" id="accordion1">
+                        <div class="accordion-item bg-transparent border-0">
+                            <i class="bx bxs-plus-circle text-white fs-1 w-100 stretched-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"></i>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body px-3 text-light">
+                                    Som handläggare kan du
+                                    snabbt ta reda på om ett
+                                    företag med större eller
+                                    mindre sannolikhet
+                                    sköter kvalitetsarbetet
+                                    på det sätt som lagar och
+                                    förordningar kräver. Det
+                                    gäller också redan
+                                    upphandlade
+                                    leverantörer.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xxl mb-4">
+                <div class="card card-hover bg-info align-items-center justify-content-between text-center text-white pt-4 pb-3" style="min-height: 203px;">
+                    <div class="px-3">
+                        <i class="bx bx-search-alt mb-3" style="font-size: 40px"></i>
+                        <h3 class="h6 text-white">Inspektionen för vård och Omsorg (IVO)</h3>
+                    </div>
+                    <div class="accordion w-100 bg-transparent" id="accordion1">
+                        <div class="accordion-item bg-transparent border-0">
+                            <i class="bx bxs-plus-circle text-white fs-1 w-100 stretched-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"></i>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body px-3 text-light">
+                                    IVO kan snabbt bilda sig
+                                    en bild över vilka
+                                    verksamheter som bör
+                                    följas upp och granskas
+                                    mer ingående.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xxl mb-4">
+                <div class="card card-hover bg-info align-items-center justify-content-between text-center text-white pt-4 pb-3" style="min-height: 203px;">
+                    <div class="px-3">
+                        <i class="bx bx-building-house mb-3" style="font-size: 40px"></i>
+                        <h3 class="h6 text-white">Vårdföretagarna Almega</h3>
+                    </div>
+                    <div class="accordion w-100 bg-transparent" id="accordion1">
+                        <div class="accordion-item bg-transparent border-0">
+                            <i class="bx bxs-plus-circle text-white fs-1 w-100 stretched-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"></i>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body px-3 text-light">
+                                    Vårdföretagarna Almega
+                                    kan snabbt hitta och
+                                    kontakta de företag som
+                                    av olika skäl inte tycks
+                                    uppfylla deras stadgar
+                                    om kvalitets- och
+                                    transparenskrav.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xxl mb-4">
+                <div class="card card-hover bg-info align-items-center justify-content-between text-center text-white pt-4 pb-3" style="min-height: 203px;">
+                    <div class="px-3">
+                        <i class="bx bx-plus-medical mb-3" style="font-size: 40px"></i>
+                        <h3 class="h6 text-white">Vårdverksamheter</h3>
+                    </div>
+                    <div class="accordion w-100 bg-transparent" id="accordion1">
+                        <div class="accordion-item bg-transparent border-0">
+                            <i class="bx bxs-plus-circle text-white fs-1 w-100 stretched-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"></i>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                <div class="accordion-body px-3 text-light">
+                                    Verksamheter som
+                                    bedriver vård och
+                                    omsorg som kan
+                                    uppmärksammas på
+                                    eventuella brister i deras
+                                    verksamheter så dessa
+                                    kan korrigeras.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xxl">
+                <div class="card card-hover bg-info align-items-center justify-content-between text-center text-white pt-4 pb-3" style="min-height: 203px;">
+                    <div class="px-3">
+                        <i class="bx bx-group mb-3" style="font-size: 40px"></i>
+                        <h3 class="h6 text-white">Anhöriga & legala företrädare</h3>
+                    </div>
+                    <div class="accordion w-100 bg-transparent" id="accordion1">
+                        <div class="accordion-item bg-transparent border-0">
+                            <i class="bx bxs-plus-circle text-white fs-1 w-100 stretched-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"></i>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                <div class="accordion-body px-3 text-light">
+                                    Föräldrar till barn och
+                                    unga som ska placeras
+                                    och vuxna klienter själva
+                                    kan ha intresse av
+                                    kvalitetsbedömningen, I
+                                    synnerhet som Lag
+                                    (2008:962) om
+                                    valfrihetssystem (LOV) i
+                                    viss börjat tillämpas inom
+                                    vård och omsorgsområdet.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 mt-lg-5 container">
+        <div class="row">
+            <div class="col-lg-6 mt-4 mt-lg-0 order-last order-lg-first">
+                <img src="/img/utvärdering-verksamheter.png" alt="">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="h1 mt-xl-5">Utvärdering av verksamheter</h2>
+                <p class="lead">
+                    Vård- och omsorgsbranschen är stor och består
+                    av väldigt många olika typer av verksamheter.
+                    Målsättningen är att Sveriges Vårdgivare ska
+                    kunna erbjuda information om samtliga
+                    verksamheter som bedriver vård och omsorg.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 my-md-5 container">
+        <div class="row">
+            <div class="col-md-6 pe-md-4">
+                <h2 class="h1 mt-md-5">Bedömningsprocessen</h2>
+                <div class="mb-4">
+                    <h5 class="mb-2">Fas 1 - Informationsinhämtning</h5>
+                    <p>
+                        I första fasen kontrollerar vi om verksamheten
+                        bedriver en tillståndspliktig verksamhet inom SoL
+                        eller LSS samt om den innehar tillstånd för detta
+                        samt de tjänster som verksamheten erbjuder. Vi
+                        kontrollerar även om viten eller återkallelse av
+                        tillstånd finns. Verksamheten uppmanas också att
+                        översända Sveriges Vårdgivare exemplar vad det
+                        som i 1 § 7 kap SOSFS 2011:91 § 7 kap.
+                        Dokumentationsskyldighet beskrivs som den
+                        sammanhållna ”kvalitetsberättelse” som företag
+                        eller organisationer är skyldiga att upprätta
+                    </p>
+                </div>
+                <div class="mb-4">
+                    <h5 class="mb-2">Fas 2 - Analys</h5>
+                    <p>
+                        De dokument som erhålls granskas sedan utifrån
+                        relevanta lagar, föreskrifter och förordning.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="mb-2">Fas 3 - Bedömning</h5>
+                    <p>
+                        Vid avslutad genomgång av material och analys
+                        erhåller verksamheten en bedömning som
+                        klassificeras enligt följande system med tre olika
+                        nivåer.
+                    </p>
+                </div>
+            </div>
+            <div class="col-xxl-5 offset-xxl-1 col-6 ps-md-4 d-none d-md-block">
+                <img style="max-height: 500px;" src="/img/bedömningsprocessen.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-5 mb-lg-5 container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow-sm border-0 bg-faded-success text-start">
+                    <div class="card-body">
+                        <div class="bg-success rounded-circle shadow-success d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
+                            <i class="bx bxs-like text-white" style="font-size: 60px;"></i>
+                        </div>
+                        <h4 class="card-title text-success h1">Nivå grön</h4>
+                        <p class="card-text text-dark">
+                            Verksamheten antas med <span class="text-success fst-italic fw-semibold pe-1">mycket stor sannolikhet </span>
+                            kunna efterfölja de lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar verksamheten.
+                            Verksamheten har även uppvisat transparens i sitt kvalitetsarbete genom att offentliggöra efterfrågade handlingar
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow-sm border-0 bg-faded-warning text-start">
+                    <div class="card-body">
+                        <div class="bg-warning rounded-circle shadow-warning d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
+                            <i class="bx bxs-error text-white" style="font-size: 60px;"></i>
+                        </div>
+                        <h4 class="card-title text-warning h1">Nivå orange</h4>
+                        <p class="text-dark mb-0">
+                            Verksamheten <span class="text-warning fst-italic fw-semibold pe-1">har ej kunnat bedömas</span>
+                            och kan därmed inte erhålla någon bedömning. En orange bedömning kan även sättas i de fall en verksamhet
+                            inväntar en bedömning. Det exakta skälet till en orange bedömning går att utläsa på verksamhetens individuella informationssida.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow-sm border-0 bg-faded-danger text-start">
+                    <div class="card-body">
+                        <div class="bg-danger rounded-circle shadow-danger d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
+                            <i class="bx bxs-error-alt text-white" style="font-size: 60px;"></i>
+                        </div>
+                        <h4 class="card-title text-danger h1">Nivå röd</h4>
+                        <p class="text-dark mb-0">
+                            Verksamheten antas med <span class="text-danger fst-italic fw-semibold pe-1">mycket stor sannolikhet inte</span> kunna efterfölja de
+                            lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar
+                            verksamheten. Verksamheten <span class="text-danger fst-italic fw-semibold pe-1">har valt </span> att inte medverka i
+                            utvärderingsprocessen och därmed inte heller lämnat ifrån sig begärda
+                            handlingar enligt SOSFS 2011:9 - Socialstyrelsens föreskrifter och allmänna råd
+                            om ledningssystem för systematiskt kvalitetsarbete. Då det av SOSFS 2011:9
+                            framgår att kvalitetsberättelsen bör hållas tillgänglig för den som önskar ta
+                            del av den leder ett nekande av detta per automatik till en röd bedömning.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pt-4 pt-sm-5 bg-faded-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-lg-5 mb-3">
+                    <form>
+                        <div class="d-flex gap-3">
+                            <img src="/img/logo.png" style="max-width: 70px; height: 70px;" alt="">
+                            <h5 style="max-width: 280px;" class="h4">Branschnyheter och granskningar från SVG</h5>
+                        </div>
+                        <p class="mb-4" style="max-width: 500px;">Håll dig uppdaterad om vår verksamhet! Vårt digitala nyhetsbrev skickas ca en gång per månad.</p>
+                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                            <label for="newsletter1" class="visually-hidden">E-post</label>
+                            <input id="newsletter1" type="text" class="form-control shadow-sm" placeholder="Din e-post...">
+                            <button class="btn btn-primary shadow-sm" type="button">Prenumera</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-3 col-lg-2 offset-md-2 mb-3">
+                    <h5 class="h6 mt-3 mt-md-0">Navigera</h5>
+                    <ul class="h-100 fs-sm nav flex-md-column flex-sm-row flex-column gap-3 gap-md-2">
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Vårdgivare</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Om oss</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Kvalitet</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Nyheter</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Kontakt</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Lista ditt företag</a></li>
+                    </ul>
+                </div>
+                <div class="d-none d-lg-block col-sm-6 col-md-3 mb-3">
+                    <h5 class="h6">Sveriges Vårdgivare AB</h5>
+                    <ul class="h-100 nav flex-column">
+                        <li class="nav-item mb-2">Org.nr: 559202-1116</li>
+                        <li class="nav-item mb-2">Adressvägen 110, 111 11 Stockholm</li>
+                        <li class="nav-item mb-2">+46 (0) 10 123 45 67</li>
+                        <li class="nav-item mb-2">info@sverigesvard.se</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between pt-4 mt-3 border-top">
+                <p class="mb-0 pb-4 pb-lg-2">
+                    &copy; 2023 Sveriges Vårdgivare •
+                    <a class="link-info" href="/logga-in.html">Admin</a>
+                </p>
+                <div class="d-flex text-dark gap-2 opacity-75 order-first order-md-last pb-4 pb-lg-2">
+                    <a class="link-dark" href="/anvandarvillkor.html">Användarvillkor</a>
+                    <span>•</span>
+                    <a class="link-dark" href="/integritetspolicy.html">Integritetspolicy</a>
+                    <span>•</span>
+                    <a class="link-dark" href="/cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+
+<script>
+
+</script>
+</body>
+</html>

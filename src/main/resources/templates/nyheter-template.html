@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Nyheter | Sveriges Vårdgivare</title>
+
+    <meta name="description" content="$">
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href=/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/vendor/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" media="screen" href="/css/theme.css">
+</head>
+
+<body>
+
+<main class="page-wrapper">
+
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg bg-light shadow-sm sticky-top">
+        <div class="container">
+            <a href="/i.html" class="navbar-brand fs-5 h1 m-0 me-3">
+                <img class="me-2" src="/img/logo.png" width="40" alt="Sveriges Vårdgivare">
+                Sveriges Vårdgivare
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav id="navbarCollapse" class="collapse navbar-collapse">
+                <hr class="d-lg-none mt-3 mb-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="/om-oss.html" class="nav-link">Om oss</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/kvalitet.html" class="nav-link">Kvalitet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nyheter.html" class="nav-link">Nyheter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/kontakt.html" class="nav-link">Kontakta oss</a>
+                    </li>
+                </ul>
+                <a href="/lista-foretag.html" class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-0">
+                    Lista ditt företag
+                    <i class="bx bx-right-arrow-alt fs-lg ms-1"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Post image (parallax) -->
+    <div class="jarallax" data-jarallax data-speed="0.35" style="height: 20vw; min-height: 250px;">
+        <div class="jarallax-img" style="background-image: url(/img/hero_background_img.jpg);"></div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="container" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 pt-5">
+            <li class="breadcrumb-item">
+                <a href="/i.html"><i class="bx bx-home-alt fs-lg me-1"></i>Hem</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="nyheter.html"><i class="bx bx-news fs-lg me-1"></i>Nyheter</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page"></i>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</li>
+        </ol>
+    </nav>
+
+
+    <!-- Post Content -->
+    <section class="container mb-5 pt-4 pb-2 py-mg-4">
+        <div class="row">
+
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <h1 class="pb-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
+                <div class="d-flex align-items-center flex-wrap text-muted mb-5">
+                    <div class="fs-xs border-end pe-3 me-3 mb-2">
+                        <a href="" class="badge fs-sm text-white fw-bold bg-info">Kategori</a>
+                    </div>
+                    <div class="fs-sm mb-2">
+                        2023-01-26 10:17
+                    </div>
+                </div>
+                <div>
+                    <h5 class="h5" for="">Consectetur adipisicing elit necessitatibus</h5>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aliquid corrupti ab sapiente, culpa esse repellendus quisquam illo dolorum, repudiandae ex harum soluta vitae magnam nihil adipisci ullam. Consequatur, error!
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nobis nemo et sed magni cupiditate ullam iure ex?
+                    </p>
+                    <p class="mb-5">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos vitae, impedit cum earum natus, eum error cupiditate culpa ratione molestiae expedita! Dolore iure architecto est voluptates voluptas deserunt consectetur, vel at, nesciunt ullam asperiores ea doloribus ducimus fuga officia.
+                    </p>
+                    <h5 class="h5" for="">Lorem ipsum dolor sit amet consectetur</h5>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aliquid corrupti ab sapiente, culpa esse repellendus quisquam illo dolorum, repudiandae ex harum soluta vitae magnam nihil adipisci ullam. Consequatur, error!
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique ipsam quos porro consectetur perspiciatis nesciunt expedita ipsum aperiam accusantium, veniam praesentium officiis harum!
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla qui provident soluta maxime quo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Ads -->
+            <aside class="offset-xl-1 col-xl-3 col-lg-4">
+                <div class="offcanvas-lg offcanvas-end" id="blog-sidebar" tabindex="-1">
+
+                    <!-- Header -->
+                    <div class="offcanvas-header border-bottom">
+                        <h3 class="offcanvas-title fs-lg">Sidebar</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#blog-sidebar"></button>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="offcanvas-body">
+                        <!-- Advertising -->
+                        <div class="card border-0 bg-faded-primary" style="min-height: 50rem;">
+                            <div class="card-body">
+                                <h5 class="h3 mb-4 pb-2 text-center">Annonser</h5>
+                            </div>
+                        </div>
+                        <p class="mt-3 text-muted text-center">Vill du synas här? <a class="fw-bold text-decoration-none" href="/logga-in.html">Kontakta oss</a></p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <hr class="container opacity-50 my-lg-4">
+
+    <!-- Related News -->
+    <section class="py-5 mb-5 container">
+        <div class="d-flex flex-sm-row flex-column align-items-center justify-content-between mb-4 pb-1 pb-md-3">
+            <h2 class="h1 mb-sm-0">Relaterade Nyheter</h2>
+            <a href="/nyheter.html" class="d-none d-lg-inline-flex btn btn-lg btn-primary ms-4">
+                Alla nyheter
+                <i class="bx bx-right-arrow-alt ms-1 me-n1 lh-1 lead"></i>
+            </a>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <article class="card card-hover h-100 border-0 shadow-sm p-0">
+                    <div class="position-relative">
+                        <img src="/img/hero_background_img.jpg" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
+                    </div>
+                    <div class="card-body pb-4">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <a href="" class="badge fs-sm fw-bold bg-info">Kategori</a>
+                            <span class="fs-sm text-muted">2023-01-25</span>
+                        </div>
+                        <h3 class="h5 mb-0">
+                            <a class="stretched-link" href="/nyheter-template.html">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a>
+                        </h3>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos exercitationem enim voluptate quibusdam culpa!</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <article class="card card-hover h-100 border-0 shadow-sm p-0">
+                    <div class="position-relative">
+                        <img src="/img/hero_background_img.jpg" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
+                    </div>
+                    <div class="card-body pb-4">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <a href="" class="badge fs-sm fw-bold bg-info">Kategori</a>
+                            <span class="fs-sm text-muted">2023-01-25</span>
+                        </div>
+                        <h3 class="h5 mb-0">
+                            <a class="stretched-link" href="/nyheter-template.html">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a>
+                        </h3>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos exercitationem enim voluptate quibusdam culpa!</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <article class="card card-hover h-100 border-0 shadow-sm p-0">
+                    <div class="position-relative">
+                        <img src="/img/hero_background_img.jpg" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
+                    </div>
+                    <div class="card-body pb-4">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <a href="" class="badge fs-sm fw-bold bg-info">Kategori</a>
+                            <span class="fs-sm text-muted">2023-01-25</span>
+                        </div>
+                        <h3 class="h5 mb-0">
+                            <a class="stretched-link" href="/nyheter-template.html">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a>
+                        </h3>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos exercitationem enim voluptate quibusdam culpa!</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="d-flex d-lg-none justify-content-center mt-0 mt-lg-5">
+            <button class="btn btn-lg shadow-primary btn-primary w-100 w-md-auto">
+                Visa mer
+                <i class="bx bx-right-arrow-alt ms-1 fs-lg"></i>
+            </button>
+        </div>
+    </section>
+
+    <footer class="pt-4 pt-sm-5 bg-faded-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-lg-5 mb-3">
+                    <form>
+                        <div class="d-flex gap-3">
+                            <img src="/img/logo.png" style="max-width: 70px; height: 70px;" alt="">
+                            <h5 style="max-width: 280px;" class="h4">Branschnyheter och granskningar från SVG</h5>
+                        </div>
+                        <p class="mb-4" style="max-width: 500px;">Håll dig uppdaterad om vår verksamhet! Vårt digitala nyhetsbrev skickas ca en gång per månad.</p>
+                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                            <label for="newsletter1" class="visually-hidden">E-post</label>
+                            <input id="newsletter1" type="text" class="form-control shadow-sm" placeholder="Din e-post...">
+                            <button class="btn btn-primary shadow-sm" type="button">Prenumera</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-3 col-lg-2 offset-md-2 mb-3">
+                    <h5 class="h6 mt-3 mt-md-0">Navigera</h5>
+                    <ul class="h-100 fs-sm nav flex-md-column flex-sm-row flex-column gap-3 gap-md-2">
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Vårdgivare</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Om oss</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Kvalitet</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Nyheter</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Kontakt</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Lista ditt företag</a></li>
+                    </ul>
+                </div>
+                <div class="d-none d-lg-block col-sm-6 col-md-3 mb-3">
+                    <h5 class="h6">Sveriges Vårdgivare AB</h5>
+                    <ul class="h-100 nav flex-column">
+                        <li class="nav-item mb-2">Org.nr: 559202-1116</li>
+                        <li class="nav-item mb-2">Adressvägen 110, 111 11 Stockholm</li>
+                        <li class="nav-item mb-2">+46 (0) 10 123 45 67</li>
+                        <li class="nav-item mb-2">info@sverigesvard.se</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between pt-4 mt-3 border-top">
+                <p class="mb-0 pb-4 pb-lg-2">
+                    &copy; 2023 Sveriges Vårdgivare •
+                    <a class="link-info fw-medium" href="/logga-in.html">Admin</a>
+                </p>
+                <div class="d-flex text-dark gap-2 opacity-75 order-first order-md-last pb-4 pb-lg-2">
+                    <a class="link-dark" href="/anvandarvillkor.html">Användarvillkor</a>
+                    <span>•</span>
+                    <a class="link-dark" href="/integritetspolicy.html">Integritetspolicy</a>
+                    <span>•</span>
+                    <a class="link-dark" href="/cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="/vendor/jarallax/dist/jarallax.min.js"></script>
+<script src="/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+</body>
+</html>

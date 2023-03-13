@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Logga in | Sveriges Vårdgivare</title>
+
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/vendor/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" media="screen" href="/css/theme.css">
+</head>
+
+<body>
+
+<main class="page-wrapper">
+
+    <section class="min-vh-100 d-flex justify-content-center align-items-center" style="margin-top: -79px;">
+        <div class="container d-flex flex-column pt-5" style="max-width: 400px;">
+            <img src="/img/logo.png" class="mx-auto mb-4" alt="" width="150">
+            <h1 class="h5 d-flex align-items-center gap-2 ms-5">
+                <i class="bx bx-shield-quarter text-primary display-3"></i>
+                Denna sida är lösenordsskyddad
+            </h1>
+            <div class="mb-3">
+                <input class="form-control form-control-lg shadow border-dark" type="password" id="input-field" placeholder="Lösenord">
+                <div class="invalid-feedback">Var god skriv in ditt lösenord.</div>
+            </div>
+            <a href="/i.html" class="btn btn-primary w-100 shadow-primary" style="display: none;" id="submit-button" type="submit">
+                Logga in
+                <i class="bx bx-log-in ms-1 fs-lg"></i>
+            </a>
+            <p class="mt-4 mb-2 text-center text-muted">© 2023 Sveriges Vårdgivare</p>
+        </div>
+    </section>
+</main>
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+
+<script>
+    const inputField = document.getElementById("input-field");
+    const submitButton = document.getElementById("submit-button");
+
+    inputField.addEventListener("input", function() {
+        if (inputField.value === "ensotech") {
+            submitButton.style.display = "block";
+        } else {
+            submitButton.style.display = "none";
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Start - Admin - Sveriges Vårdgivare</title>
+
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/css/theme.css">
+    <link rel="stylesheet" media="screen" href="/css/custom.css">
+</head>
+
+<body>
+<main class="page-wrapper">
+    <div class="d-flex h-100">
+
+        <!-- Sidenav -->
+        <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
+            <div>
+                <div class="px-5 mb-4">
+                    <a href="/i.html">
+                        <img width="100" src="/img/logo.png" alt="Sveriges Vårdgivare">
+                    </a>
+                </div>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a href="/admin-start.html" class="nav-link active">
+                            <i class="bx bxs-home fs-lg me-2"></i>
+                            Start
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-vardgivare.html" class="nav-link">
+                            <i class="bx bx-plus-medical fs-lg me-2"></i>
+                            Vårdgivare
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-nyheter.html" class="nav-link">
+                            <i class="bx bxs-news fs-lg me-2"></i>
+                            Nyheter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-annonser.html" class="nav-link">
+                            <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+                            Annonser
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="border-top pt-4 mt-4">
+                <a href="/i.html" class="btn btn-outline-info shadow-sm w-100">
+                    <i class="bx bx-log-out fs-lg me-2"></i>
+                    Logga ut
+                </a>
+            </div>
+        </aside>
+
+        <div class="w-100 h-100 px-3 px-sm-4 px-xl-5 py-5 py-sm-5">
+            <h1 class="h1 mb-5">Välkommen tillbaka, Erik</h1>
+            <div class="row">
+                <!-- Healthcare Providers -->
+                <div class="col-xl-6 col-xxl-4 mb-5 mb-xxl-0">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-faded-info w-100 mx-0 px-4 d-flex justify-content-between align-items-center">
+                            <a href="/admin-vardgivare.html" class="link-dark text-decoration-none fs-4">
+                                <strong class="text-info">126</strong>
+                                registrerade vårdgivare
+                            </a>
+                            <a href="/admin-ny-vardgivare.html" class="btn btn-primary btn-sm">
+                                <i class="bx bx-plus fs-base me-1"></i>
+                                Ny vårdgivare
+                            </a>
+                        </div>
+                        <div class="card-body pt-2" style="max-height: 250px; overflow-y: scroll;">
+                            <table class="table mb-0 fs-sm">
+                                <thead>
+                                <tr class="row">
+                                    <th class="col-5">Verksamhet</th>
+                                    <th class="col-2">Typ</th>
+                                    <th class="col-5">Kvalitetsberättelser</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="row position-relative" id="cmpItem">
+                                    <td class="col-5"><a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a></td>
+                                    <td class="col-2">LSS</td>
+                                    <td class="col-5">LVM, SoL 7.1.1, SoL 7.1.2, SoL 4.1</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- News -->
+                <div class="col-xl-6 mb-5 mb-xxl-0 col-xxl-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-faded-info w-100 mx-0 px-4 d-flex justify-content-between align-items-center">
+                            <a href="/admin-nyheter.html" class="link-dark text-decoration-none fs-4">
+                                <strong class="text-info">12</strong>
+                                publicerade nyheter
+                            </a>
+                            <a href="/admin-ny-nyhet.html" class="btn btn-primary btn-sm">
+                                <i class="bx bx-plus fs-base me-1"></i>
+                                Ny nyhet
+                            </a>
+                        </div>
+                        <div class="card-body pt-2" style="max-height: 250px; overflow-y: scroll;">
+                            <table class="table mb-0 fs-sm">
+                                <thead>
+                                <tr class="row">
+                                    <th class="col-6">Nyhet</th>
+                                    <th class="col-3">Kategori</th>
+                                    <th class="col-3">Datum</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="row position-relative" id="newsItem">
+                                    <td class="col-6">
+                                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                                    <td class="col-3">Kategori</td>
+                                    <td class="col-3">2023-01-26</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ads -->
+                <div class="col-xl-6 col-xxl-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-faded-info w-100 mx-0 px-4 d-flex justify-content-between align-items-center">
+                            <a href="/admin-nyheter.html" class="link-dark text-decoration-none fs-4">
+                                <strong class="text-info">12</strong>
+                                aktiva annonser
+                            </a>
+                            <a href="/admin-ny-nyhet.html" class="btn btn-primary btn-sm">
+                                <i class="bx bx-plus fs-base me-1"></i>
+                                Nya annonser
+                            </a>
+                        </div>
+                        <div class="card-body pt-2" style="max-height: 250px; overflow-y: scroll;">
+                            <table class="table mb-0 fs-sm">
+                                <thead>
+                                <tr class="row">
+                                    <th class="col-8">Annons</th>
+                                    <th class="col-4">Vårdgivare</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="row position-relative">
+                                    <td class="col-8">
+                                        <a class="link-dark stretched-link" href="/admin-redigera-annons.html">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
+                                    <td class="col-4">Brinaxi Care AB</td>
+                                </tr>
+                                <tr class="row position-relative">
+                                    <td class="col-8">
+                                        <a class="link-dark stretched-link" href="/admin-redigera-annons.html">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
+                                    <td class="col-4">Brinaxi Care AB</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+</body>
+</html>

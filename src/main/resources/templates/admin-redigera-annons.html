@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Redigera annons - Admin - Sveriges Vårdgivare</title>
+
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/css/theme.css">
+    <link rel="stylesheet" media="screen" href="/css/custom.css">
+</head>
+
+<body>
+
+<main class="page-wrapper">
+    <div class="d-flex h-100">
+
+        <!-- Sidenav -->
+        <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
+            <div>
+                <div class="px-5 mb-4">
+                    <a href="/i.html">
+                        <img width="100" src="/img/logo.png" alt="Sveriges Vårdgivare">
+                    </a>
+                </div>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a href="/admin-start.html" class="nav-link">
+                            <i class="bx bxs-home fs-lg me-2"></i>
+                            Start
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-vardgivare.html" class="nav-link active">
+                            <i class="bx bx-plus-medical fs-lg me-2"></i>
+                            Vårdgivare
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-nyheter.html" class="nav-link">
+                            <i class="bx bxs-news fs-lg me-2"></i>
+                            Nyheter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-annonser.html" class="nav-link">
+                            <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+                            Annonser
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="border-top pt-4 mt-4">
+                <a href="/i.html" class="btn btn-outline-info shadow-sm w-100">
+                    <i class="bx bx-log-out fs-lg me-2"></i>
+                    Logga ut
+                </a>
+            </div>
+        </aside>
+
+        <div class="w-100 h-100 px-3 px-sm-4 px-xxl-5 py-5 py-sm-5">
+            <!-- Breadcrumbs -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin-start.html"><i class="bx bxs-home fs-lg me-1"></i></a></li>
+                    <li class="breadcrumb-item"><a href="/admin-vardgivare.html">Annonser</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Redigera annons</li>
+                </ol>
+            </nav>
+
+            <h1 class="h1 mb-5">Redigera annons</h1>
+            <form class="row" action="" method="">
+                <div class="col-5 pe-4">
+                    <h2 class="h6 mb-4">Annonsinnehåll</h2>
+                    <!-- Edit background image -->
+                    <div class="mb-4 d-flex align-items-center">
+                        <div>
+                            <label class="form-label d-block" for="">Ändra omslagsbild</label>
+                            <input class="form-control shadow-sm" type="file" name="" id="">
+                        </div>
+                        <div class="bg-faded-primary rounded-3 ms-4 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2" style="width: 200px; height: 200px; background-image: url(/img/hero_background_img.jpg);">
+                            <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
+                        </div>
+                    </div>
+                    <!-- Ad link -->
+                    <div class="mb-4">
+                        <label class="form-label d-block" for="">Annonslänk</label>
+                        <input class="form-control shadow-sm" type="url" name="" id="" placeholder="https://www.sverigesvardgivare.se/">
+                    </div>
+                    <!-- Ad text -->
+                    <div class="mb-4">
+                        <label class="form-label d-block" for="">Annonstext</label>
+                        <input class="form-control shadow-sm" name="" id="" maxlength="50" placeholder="Text för inlägget (max 50 bokstäver)">
+                    </div>
+
+                    <hr class="mb-4">
+                    <!-- Advertisers -->
+                    <h2 class="h6">Annonsör</h2>
+                    <!-- name -->
+                    <div class="mb-4">
+                        <label class="form-label d-block" for="">Namn *</label>
+                        <input class="form-control shadow-sm" type="text" name="" id="" placeholder="Brinaxi Care" required>
+                    </div>
+                    <!-- Email -->
+                    <div class="mb-4">
+                        <label class="form-label d-block" for="">E-post</label>
+                        <input class="form-control shadow-sm" type="text" name="" id="" placeholder="vårdgivare@domän.se">
+                    </div>
+                </div>
+                <div class="col-4 ps-4">
+                    <h2 class="h6 mb-4">Status</h2>
+
+                    <!-- Status Radio -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Aktiv
+                        </label>
+                    </div>
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                            Inaktiv
+                        </label>
+                    </div>
+
+                    <hr class="mb-4">
+
+                    <button class="btn btn-lg btn-primary shadow-primary" type="submit">
+                        Spara ändringar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+</body>
+</html>

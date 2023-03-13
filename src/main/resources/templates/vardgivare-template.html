@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>$vardgivare - Sveriges Vårdgivare</title>
+
+    <meta name="description" content="$">
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/vendor/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" media="screen" href="/css/theme.css">
+</head>
+
+<body>
+
+<main class="page-wrapper">
+
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg bg-light shadow-sm sticky-top">
+        <div class="container">
+            <a href="/i.html" class="navbar-brand fs-5 h1 m-0 me-3 text-info">
+                <img class="me-2" src="/img/logo.png" width="40" alt="Sveriges Vårdgivare">
+                Sveriges Vårdgivare
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav id="navbarCollapse" class="collapse navbar-collapse">
+                <hr class="d-lg-none mt-3 mb-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="/vardgivare.html" class="nav-link">Vårdgivare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/om-oss.html" class="nav-link">Om oss</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/kvalitet.html" class="nav-link">Kvalitet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nyheter.html" class="nav-link">Nyheter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/kontakt.html" class="nav-link">Kontakta oss</a>
+                    </li>
+                </ul>
+                <a href="/lista-foretag.html" class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-0">
+                    Lista ditt företag
+                    <i class="d-none d-xl-inline bx bx-right-arrow-alt fs-lg ms-1"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="container" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 pt-5">
+            <li class="breadcrumb-item">
+                <a href="/i.html"><i class="bx bx-home-alt fs-lg me-1"></i>Hem</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/vardgivare.html">Vårdgivare</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Brinaxi Care AB</li>
+        </ol>
+    </nav>
+
+    <section class="py-5 container">
+        <div class="row">
+            <div class="col-lg-8 pe-xl-5">
+                <!-- Image Slider -->
+                <div class="swiper swiper-nav-onhover" data-swiper-options='{
+              "spaceBetween": 20,
+              "loop": true,
+              "pagination": {
+                "el": ".swiper-pagination",
+                "clickable": true
+              },
+              "navigation": {
+                "prevEl": ".btn-prev",
+                "nextEl": ".btn-next"
+              }
+            }'>
+                    <div class="swiper-wrapper rounded-3">
+
+                        <!-- Item -->
+                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
+                            <div class="ratio ratio-16x9 bg-secondary">
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
+                                    <img style="object-fit: cover; object-position: center;" src="/img/hero_background_img.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
+                            <div class="ratio ratio-16x9 bg-secondary">
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
+                                    <img style="object-fit: cover; object-position: center;" src="/img/hero_background_img.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
+                            <div class="ratio ratio-16x9 bg-secondary">
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
+                                    <img style="object-fit: cover; object-position: center;" src="/img/hero_background_img.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prev button -->
+                    <button type="button" class="btn btn-prev btn-icon btn-sm me-2">
+                        <i class="bx bx-chevron-left"></i>
+                    </button>
+
+                    <!-- Next button -->
+                    <button type="button" class="btn btn-next btn-icon btn-sm ms-2">
+                        <i class="bx bx-chevron-right"></i>
+                    </button>
+
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+
+                <!-- About -->
+                <div class="mt-4 card bg-faded-success p-4 shadow">
+                    <div class="d-flex flex-column flex-sm-row align-items-start gap-3">
+                        <div class="bg-success rounded-circle shadow-success d-flex justify-content-center align-items-center mb-4" style="min-height: 60px; min-width: 60px;">
+                            <i class="bx bxs-like text-white" style="font-size: 35px;"></i>
+                        </div>
+                        <p class="text-dark mb-0">
+                            Verksamheten antas med <span class="text-success fst-italic fw-semibold pe-1">mycket stor sannolikhet </span>
+                            kunna efterfölja de lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar verksamheten.
+                            Verksamheten har även uppvisat transparens i sitt kvalitetsarbete genom att offentliggöra efterfrågade handlingar
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4 card bg-faded-warning p-4 shadow">
+                    <div class="d-flex flex-column flex-sm-row align-items-start gap-3">
+                        <div class="bg-warning rounded-circle shadow-warning d-flex justify-content-center align-items-center mb-4" style="min-height: 60px; min-width: 60px;">
+                            <i class="bx bxs-error text-white" style="font-size: 35px;"></i>
+                        </div>
+                        <p class="text-dark mb-0">
+                            Verksamheten <span class="text-warning fst-italic fw-semibold pe-1">har ej kunnat bedömas</span>
+                            och kan därmed inte erhålla någon bedömning. En orange bedömning kan även sättas i de fall en verksamhet
+                            inväntar en bedömning. Det exakta skälet till en orange bedömning går att utläsa på verksamhetens individuella informationssida.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4 card bg-faded-danger p-4 shadow">
+                    <div class="d-flex flex-column flex-sm-row align-items-start gap-3">
+                        <div class="bg-danger rounded-circle shadow-danger d-flex justify-content-center align-items-center mb-4" style="min-height: 60px; min-width: 60px;">
+                            <i class="bx bxs-error-alt text-white" style="font-size: 35px;"></i>
+                        </div>
+                        <p class="text-dark mb-0">
+                            Verksamheten antas med <span class="text-danger fst-italic fw-semibold pe-1">mycket stor sannolikhet inte</span> kunna efterfölja de
+                            lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar
+                            verksamheten. Verksamheten <span class="text-danger fst-italic fw-semibold pe-1">har valt </span> att inte medverka i
+                            utvärderingsprocessen och därmed inte heller lämnat ifrån sig begärda
+                            handlingar enligt SOSFS 2011:9 - Socialstyrelsens föreskrifter och allmänna råd
+                            om ledningssystem för systematiskt kvalitetsarbete. Då det av SOSFS 2011:9
+                            framgår att kvalitetsberättelsen bör hållas tillgänglig för den som önskar ta
+                            del av den leder ett nekande av detta per automatik till en röd bedömning.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4 card p-4 shadow fs-sm">
+                    <h3 class="h4 mb-4">Sökkriterier</h3>
+                    <div>
+                        <h4 class="h6">Verksamhetsuppgifter</h4>
+                        <div class="">
+                  <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Ålder: 18-65
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Ålder: 18-65
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Antal platser (enligt tillstånd): 8
+                  </span>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div>
+                        <h4 class="h6">Inriktning</h4>
+                        <div>
+                  <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Hedersrelaterat
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Inlärningssvårigheter
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Missbruk - Kost & träning
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Neuropsykiatri
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Psykisk funktionsnedsättning
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Psykosocial problematik
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    PTSD
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Självdestruktivt beteende
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Skol-problematik
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Utvecklingsstörning
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Övergreppsproblematik (offer)
+                  </span>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div>
+                        <h4 class="h6">Insats/Lagrum</h4>
+                        <div>
+                  <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Hem heldygnsv. - SOL 7.1.3
+                  </span>
+                            <span class="badge bg-light border shadow-sm d-inline-flex align-items-center me-2 mb-2">
+                    <i class="bx bx-check fs-lg"></i>
+                    Skyddat boende
+                  </span>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div>
+                        <h4 class="h6">Metoder</h4>
+                        <div class="d-flex gap-3">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About (Free version) -->
+                <div class="mt-4 card p-4 shadow" style="height: 300px;">
+                    <p class="text-muted">Verksamhetsbeskrivning saknas...</p>
+                </div>
+                <div class="mt-4 card p-4 shadow" style="height: 300px;">
+                    <p class="text-muted">Verksamhetskriterier saknas...</p>
+                </div>
+            </div>
+            <div class="col-lg-4 order-first order-lg-last mb-4 mb-lg-0">
+                <div class="card overflow-hidden shadow mb-4">
+                    <div class="p-5 bg-faded-primary align-items-center">
+                        <img class=" img-fluid" src="/img/logo-placeholder.png" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h1 class="h6 mb-0">Brinaxi Care AB</h1>
+                        <span class="text-dark">Org.nr: xxx xxx xxx</span>
+                        <div class="d-flex gap-1 fs-sm mt-3">
+                            Tillståndspliktig verksamhet:
+                            <!-- Permit: Yes -->
+                            <div class="d-flex align-items-center">
+                                <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
+                                <span class="text-success fw-bold">JA</span>
+                            </div>
+                            <!-- Permit: No -->
+                            <div class="d-flex align-items-center">
+                                <i class="bx bxs-x-circle fs-lg text-danger me-1"></i>
+                                <span class="text-danger fw-bold">NEJ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden shadow my-4">
+                    <div class="card-body">
+                        <h1 class="h6">Placeringsfrågan</h1>
+                        <div class="d-flex align-items-center mb-4">
+                            <img class="rounded-circle border shadow-sm" style="object-fit: cover; width: 50px; height: 50px;" src="/img/placeholder_image.jpg" alt="">
+                            <div class="ms-3 d-flex flex-column">
+                                <span class="fw-bold">Namn Namnsson</span>
+                                <span class="fs-sm">Placeringskordinator</span>
+                            </div>
+                        </div>
+                        <p class="text-muted">Verksamhetsansvarig saknas</p>
+                        <a class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" href="">
+                            <i class="bx bx-phone fs-lg"></i>
+                            <span>070- 123 45 67</span>
+                        </a>
+                        <a class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" href="">
+                            <i class="bx bx-envelope fs-lg"></i>
+                            <span>namn@domän.se</span>
+                        </a>
+                        <hr class="mb-3">
+
+                        <a class="text-decoration-none fw-bold text-info d-flex align-items-center gap-1" href="">
+                            Alla kontaktuppgifter
+                            <i class="bx bx-right-arrow-alt fs-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Accordion -->
+                <div class="accordion shadow" id="accordionDefault">
+                    <!-- Item -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Tillståndsbevis<i class="bx bxs-error text-warning fs-4 ms-1"></i></button>
+                        </h3>
+                        <div class="accordion-collapse collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionDefault">
+                            <div class="accordion-body">
+                                <ul class="ps-0 mb-0" style="list-style: none;">
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-info d-flex align-items-center gap-1" href="">
+                                            <i class="bx bx-download fs-lg"></i>
+                                            <span>dokument.pdf</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="text-decoration-none text-info d-flex align-items-center gap-1" href="">
+                                            <i class="bx bx-download fs-lg"></i>
+                                            <span>dokument.pdf</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Tillsynsrapporter</button>
+                        </h3>
+                        <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionDefault">
+                            <div class="accordion-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo ea quam pariatur vero maiores. Aliquid doloremque aut doloribus nemo cumque, sequi est adipisci ducimus.</div>
+                        </div>
+                    </div>
+
+                    <!-- Item -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Kvalitetsberättelser</button>
+                        </h3>
+                        <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionDefault">
+                            <div class="accordion-body">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit adipisicing elit. Quasi, optio, error vero debitis quidem laudantium numquam cum nesciunt itaque nostrum magni dolorem, delectus voluptatum.</div>
+                        </div>
+                    </div>
+
+                    <!-- Item -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Dokument</button>
+                        </h3>
+                        <div class="accordion-collapse collapse" id="collapseFour" aria-labelledby="headingFour" data-bs-parent="#accordionDefault">
+                            <div class="accordion-body">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit adipisicing elit. Quasi, optio, error vero debitis quidem laudantium numquam cum nesciunt itaque nostrum magni dolorem, delectus voluptatum.</div>
+                        </div>
+                    </div>
+                </div>
+                <a class="link-info fw-bold text-decoration-none d-flex align-items-center gap-1 mt-4" target="_blank" href="https://brinaxi.se/">
+                    <i class="bx bx-globe fs-xl"></i>
+                    <span>Besök hemsida</span>
+                </a>
+                <a class="link-info fw-bold text-decoration-none d-flex align-items-center gap-1 mt-3" href="mailto:">
+                    <i class="bx bx-mail-send fs-xl"></i>
+                    <span>Kontakta verksamheten</span>
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="pt-4 pt-sm-5 bg-faded-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-lg-5 mb-3">
+                    <form>
+                        <div class="d-flex gap-3">
+                            <img src="/img/logo.png" style="max-width: 70px; height: 70px;" alt="">
+                            <h5 style="max-width: 280px;" class="h4">Branschnyheter och granskningar från SVG</h5>
+                        </div>
+                        <p class="mb-4" style="max-width: 500px;">Håll dig uppdaterad om vår verksamhet! Vårt digitala nyhetsbrev skickas ca en gång per månad.</p>
+                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                            <label for="newsletter1" class="visually-hidden">E-post</label>
+                            <input id="newsletter1" type="text" class="form-control shadow-sm" placeholder="Din e-post...">
+                            <button class="btn btn-primary shadow-sm" type="button">Prenumera</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-3 col-lg-2 offset-md-2 mb-3">
+                    <h5 class="h6 mt-3 mt-md-0">Navigera</h5>
+                    <ul class="h-100 fs-sm nav flex-md-column flex-sm-row flex-column gap-3 gap-md-2">
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Vårdgivare</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Om oss</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Kvalitet</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Nyheter</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Kontakt</a></li>
+                        <li class="nav-item"><a href="#" class="link-dark p-0">Lista ditt företag</a></li>
+                    </ul>
+                </div>
+                <div class="d-none d-lg-block col-sm-6 col-md-3 mb-3">
+                    <h5 class="h6">Sveriges Vårdgivare AB</h5>
+                    <ul class="h-100 nav flex-column">
+                        <li class="nav-item mb-2">Org.nr: 559202-1116</li>
+                        <li class="nav-item mb-2">Adressvägen 110, 111 11 Stockholm</li>
+                        <li class="nav-item mb-2">+46 (0) 10 123 45 67</li>
+                        <li class="nav-item mb-2">info@sverigesvard.se</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between pt-4 mt-3 border-top">
+                <p class="mb-0 pb-4 pb-lg-2">
+                    &copy; 2023 Sveriges Vårdgivare •
+                    <a class="link-info fw-medium" href="/logga-in.html">Admin</a>
+                </p>
+                <div class="d-flex text-dark gap-2 opacity-75 order-first order-md-last pb-4 pb-lg-2">
+                    <a class="link-dark" href="/anvandarvillkor.html">Användarvillkor</a>
+                    <span>•</span>
+                    <a class="link-dark" href="/integritetspolicy.html">Integritetspolicy</a>
+                    <span>•</span>
+                    <a class="link-dark" href="/cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+</body>
+</html>

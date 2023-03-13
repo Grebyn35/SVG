@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Vårdgivare - Admin - Sveriges Vårdgivare</title>
+
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/css/theme.css">
+    <link rel="stylesheet" media="screen" href="/css/custom.css">
+</head>
+
+<body>
+
+<main class="page-wrapper">
+    <div class="d-flex h-100">
+
+        <!-- Sidenav -->
+        <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
+            <div>
+                <div class="px-5 mb-4">
+                    <a href="/i.html">
+                        <img width="100" src="/img/logo.png" alt="Sveriges Vårdgivare">
+                    </a>
+                </div>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a href="/admin-start.html" class="nav-link">
+                            <i class="bx bxs-home fs-lg me-2"></i>
+                            Start
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-vardgivare.html" class="nav-link">
+                            <i class="bx bx-plus-medical fs-lg me-2"></i>
+                            Vårdgivare
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-nyheter.html" class="nav-link active">
+                            <i class="bx bxs-news fs-lg me-2"></i>
+                            Nyheter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin-annonser.html" class="nav-link">
+                            <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+                            Annonser
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="border-top pt-4 mt-4">
+                <a href="/i.html" class="btn btn-outline-info shadow-sm w-100">
+                    <i class="bx bx-log-out fs-lg me-2"></i>
+                    Logga ut
+                </a>
+            </div>
+        </aside>
+
+        <div class="w-100 h-100 px-3 px-sm-4 px-xxl-5 py-5 py-sm-5">
+            <!-- Breadcrumbs -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin-start.html"><i class="bx bxs-home fs-lg me-1"></i></a></li>
+                    <li class="breadcrumb-item"><a href="/admin-nyheter.html">Nyheter</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Redigera nyhet</li>
+                </ol>
+            </nav>
+
+            <h1 class="h1 mb-5">Redigera nyhet</h1>
+            <form action="" method="" style="max-width: 1200px;">
+                <!-- Front Image -->
+                <div class="mb-4">
+                    <div>
+                        <label class="form-label d-block" for="">Omslagsbild</label>
+                        <input class="form-control shadow-sm" type="file" name="" id="">
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded" style="background-image: url(/img/placeholder_image.jpg); height: 10vw; width: 48vw;"></div>
+                        <div class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" style="background-image: url(/img/placeholder_image.jpg); height: 10vw; width: 17vw;"></div>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+
+                <!-- Blog Title -->
+                <div class="mb-4">
+                    <label class="form-label d-block" for="">Titel *</label>
+                    <input class="form-control shadow-sm" type="text" name="" id="" placeholder="Lorem ipsum, dolor sit amet consectetur adipisicing elit" required>
+                </div>
+
+                <hr class="mb-4">
+
+                <!-- Category -->
+                <div class="mb-4">
+                    <label class="form-label d-block" for="">Kategori</label>
+                    <select class="form-select shadow-sm" type="text" name="" id="" placeholder="vårdgivare@domän.se">
+                        <option selected value="">Övrigt</option>
+                        <option value="">Apor</option>
+                        <option value="">Björnar</option>
+                        <option value="">Chinchillor</option>
+                    </select>
+                </div>
+
+                <hr class="mb-4">
+
+                <!-- Main Text -->
+                <div class="mb-4">
+                    <label class="form-label d-block" for="">Innehåll</label>
+                    <textarea class="form-control shadow-sm" type="text" name="" id="" rows="10" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt esse asperiores rerum quae harum dolorum accusantium unde minima eligendi excepturi! Doloribus harum ipsam deleniti incidunt tempore recusandae illo numquam!"></textarea>
+                </div>
+
+                <hr class="mb-4">
+
+                <button class="btn btn-lg btn-primary shadow-primary" type="submit">
+                    <i class="bx bx-plus me-1 fs-xl"></i>
+                    Publicera nyhet
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+</body>
+</html>
