@@ -54,31 +54,31 @@
         <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
             <div>
                 <div class="px-5 mb-4">
-                    <a href="/i.html">
+                    <a href="/">
                         <img width="100" src="/img/logo.png" alt="Sveriges Vårdgivare">
                     </a>
                 </div>
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
-                        <a href="/admin-start.html" class="nav-link">
+                        <a href="/admin/start" class="nav-link">
                             <i class="bx bxs-home fs-lg me-2"></i>
                             Start
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-vardgivare.html" class="nav-link active">
+                        <a href="/admin/vardgivare" class="nav-link active">
                             <i class="bx bx-plus-medical fs-lg me-2"></i>
                             Vårdgivare
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-nyheter.html" class="nav-link">
+                        <a href="/admin/nyheter" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-annonser.html" class="nav-link">
+                        <a href="/admin/annonser" class="nav-link">
                             <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
                             Annonser
                         </a>
@@ -86,7 +86,7 @@
                 </ul>
             </div>
             <div class="border-top pt-4 mt-4">
-                <a href="/i.html" class="btn btn-outline-info shadow-sm w-100">
+                <a href="/" class="btn btn-outline-info shadow-sm w-100">
                     <i class="bx bx-log-out fs-lg me-2"></i>
                     Logga ut
                 </a>
@@ -97,7 +97,7 @@
             <!-- Breadcrumbs -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/admin-start.html"><i class="bx bxs-home fs-lg me-1"></i></a></li>
+                    <li class="breadcrumb-item"><a href="/admin/start"><i class="bx bxs-home fs-lg me-1"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Vårdgivare</li>
                 </ol>
             </nav>
@@ -109,7 +109,7 @@
                 <strong class="text-info">126</strong>
                 registrerade vårdgivare
               </span>
-                    <a href="/admin-ny-vardgivare.html" class="btn btn-primary btn-sm">
+                    <a href="/admin/ny-vardgivare" class="btn btn-primary btn-sm">
                         <i class="bx bx-plus fs-base me-1"></i>
                         Ny vårdgivare
                     </a>
@@ -119,7 +119,7 @@
                     <div class="col-md mb-4 mb-md-0">
                         <label class="form-label text-body fw-semibold" for="">Sök</label>
                         <div class="position-relative d-flex justify-content-end align-items-center">
-                            <input type="text" type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök vårdgivare...">
+                            <input type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök vårdgivare...">
                             <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
                         </select>
                     </div>
                     <div class="col-md-auto d-md-flex align-items-md-end">
-                        <a href="/i.html" class="d-flex btn btn-primary shadow-primary p-0 w-100 w-md-auto" style="min-width: 44.4px !important; height: 44.4px;">
+                        <a href="/" class="d-flex btn btn-primary shadow-primary p-0 w-100 w-md-auto" style="min-width: 44.4px !important; height: 44.4px;">
                             <i class="fw-bold bx bx-search-alt fs-2 ms-1"></i>
                         </a>
                     </div>
@@ -192,7 +192,7 @@
                 <tbody>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS
@@ -222,7 +222,7 @@
                 </tr>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS
@@ -254,7 +254,7 @@
                 </tr>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS
@@ -285,7 +285,7 @@
                 </tr>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS
@@ -316,7 +316,7 @@
                 </tr>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS
@@ -348,7 +348,7 @@
                 </tr>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS
@@ -379,7 +379,7 @@
                 </tr>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS
@@ -410,7 +410,7 @@
                 </tr>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS
@@ -442,7 +442,7 @@
                 </tr>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS
@@ -473,7 +473,7 @@
                 </tr>
                 <tr class="row position-relative d-flex align-items-center border-bottom">
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        <a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a>
+                        <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a>
                     </td>
                     <td class="col col-xxl-1 border-bottom-0">
                         LSS

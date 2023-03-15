@@ -54,31 +54,31 @@
         <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
             <div>
                 <div class="px-5 mb-4">
-                    <a href="/i.html">
-                        <img src="/img/logo.png" width="100" alt="Sveriges Vårdgivare">
+                    <a href="/">
+                        <img width="100" src="/img/logo.png" alt="Sveriges Vårdgivare">
                     </a>
                 </div>
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
-                        <a href="/admin-start.html" class="nav-link">
+                        <a href="/admin/start" class="nav-link">
                             <i class="bx bxs-home fs-lg me-2"></i>
                             Start
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-vardgivare.html" class="nav-link">
+                        <a href="/admin/vardgivare" class="nav-link active">
                             <i class="bx bx-plus-medical fs-lg me-2"></i>
                             Vårdgivare
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-nyheter.html" class="nav-link">
+                        <a href="/admin/nyheter" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-annonser.html" class="nav-link active">
+                        <a href="/admin/annonser" class="nav-link">
                             <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
                             Annonser
                         </a>
@@ -86,7 +86,7 @@
                 </ul>
             </div>
             <div class="border-top pt-4 mt-4">
-                <a href="/i.html" class="btn btn-outline-info shadow-sm w-100">
+                <a href="/" class="btn btn-outline-info shadow-sm w-100">
                     <i class="bx bx-log-out fs-lg me-2"></i>
                     Logga ut
                 </a>
@@ -97,7 +97,7 @@
             <!-- Breadcrumbs -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/admin-start.html"><i class="bx bxs-home fs-lg me-1"></i></a></li>
+                    <li class="breadcrumb-item"><a href="/admin/start"><i class="bx bxs-home fs-lg me-1"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Annonser</li>
                 </ol>
             </nav>
@@ -109,7 +109,7 @@
                 <strong class="text-info">9</strong>
                 aktiva annonser
               </span>
-                    <a href="/admin-ny-annons.html" class="btn btn-primary btn-sm">
+                    <a href="/admin/ny-annons" class="btn btn-primary btn-sm">
                         <i class="bx bx-plus fs-base me-1"></i>
                         Ny annons
                     </a>
@@ -139,7 +139,7 @@
                 <tbody>
                 <tr class="row position-relative">
                     <td class="col">
-                        <a class="link-dark stretched-link" href="/admin-redigera-annons.html">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
                     <td class="col-3">Brinaxi Care AB</td>
                     <td class="col-2">2023-02-13</td>
                     <td class="col-2 ">
@@ -153,7 +153,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col">
-                        <a class="link-dark stretched-link" href="/admin-redigera-annons.html">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
                     <td class="col-3">Brinaxi Care AB</td>
                     <td class="col-2">2023-02-13</td>
                     <td class="col-2">

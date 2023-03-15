@@ -9,20 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#6366f1">
-    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Styles -->
-    <link rel="stylesheet" media="screen" href="assets/vendor/boxicons/css/boxicons.min.css"/>
-    <link rel="stylesheet" media="screen" href="assets/css/theme.css">
-    <link rel="stylesheet" media="screen" href="assets/css/custom.css">
+    <link rel="stylesheet" media="screen" href="/assets/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/assets/css/theme.css">
+    <link rel="stylesheet" media="screen" href="/assets/css/custom.css">
 </head>
 
 <body>
@@ -53,31 +53,31 @@
         <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
             <div>
                 <div class="px-5 mb-4">
-                    <a href="/i.html">
-                        <img width="100" src="/assets/img/logo.png" alt="Sveriges Vårdgivare">
+                    <a href="/">
+                        <img width="100" src="/img/logo.png" alt="Sveriges Vårdgivare">
                     </a>
                 </div>
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
-                        <a href="/admin-start.html" class="nav-link">
+                        <a href="/admin/start" class="nav-link">
                             <i class="bx bxs-home fs-lg me-2"></i>
                             Start
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-vardgivare.html" class="nav-link">
+                        <a href="/admin/vardgivare" class="nav-link active">
                             <i class="bx bx-plus-medical fs-lg me-2"></i>
                             Vårdgivare
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-nyheter.html" class="nav-link active">
+                        <a href="/admin/nyheter" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-annonser.html" class="nav-link">
+                        <a href="/admin/annonser" class="nav-link">
                             <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
                             Annonser
                         </a>
@@ -85,7 +85,7 @@
                 </ul>
             </div>
             <div class="border-top pt-4 mt-4">
-                <a href="/i.html" class="btn btn-outline-info shadow-sm w-100">
+                <a href="/" class="btn btn-outline-info shadow-sm w-100">
                     <i class="bx bx-log-out fs-lg me-2"></i>
                     Logga ut
                 </a>
@@ -96,7 +96,7 @@
             <!-- Breadcrumbs -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/admin-start.html"><i class="bx bxs-home fs-lg me-1"></i></a></li>
+                    <li class="breadcrumb-item"><a href="/admin/start"><i class="bx bxs-home fs-lg me-1"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Nyheter</li>
                 </ol>
             </nav>
@@ -108,7 +108,7 @@
                 <strong class="text-info">126</strong>
                 publicerade nyheter
               </span>
-                    <a href="/admin-ny-nyhet.html" class="btn btn-primary btn-sm">
+                    <a href="/admin/ny-nyhet" class="btn btn-primary btn-sm">
                         <i class="bx bx-plus fs-base me-1"></i>
                         Ny nyhet
                     </a>
@@ -118,7 +118,7 @@
                     <div class="col-md mb-4 mb-md-0">
                         <label class="form-label text-body fw-semibold" for="">Sök</label>
                         <div class="position-relative d-flex justify-content-end align-items-center">
-                            <input type="text" type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök nyhet...">
+                            <input type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök nyhet...">
                             <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                 <tbody>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">
@@ -168,7 +168,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">
@@ -179,7 +179,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">
@@ -190,7 +190,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">
@@ -201,7 +201,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">
@@ -212,7 +212,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">
@@ -223,7 +223,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">
@@ -234,7 +234,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">
@@ -245,7 +245,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">
@@ -256,7 +256,7 @@
                 </tr>
                 <tr class="row position-relative">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                     <td class="col">Kategori</td>
                     <td class="col">2023-01-26</td>
                     <td class="position-relative col-auto ps-0" style="z-index: 1;">

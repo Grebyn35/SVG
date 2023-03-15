@@ -33,31 +33,31 @@
         <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
             <div>
                 <div class="px-5 mb-4">
-                    <a href="/i.html">
+                    <a href="/">
                         <img width="100" src="/img/logo.png" alt="Sveriges Vårdgivare">
                     </a>
                 </div>
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
-                        <a href="/admin-start.html" class="nav-link active">
+                        <a href="/admin/start" class="nav-link">
                             <i class="bx bxs-home fs-lg me-2"></i>
                             Start
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-vardgivare.html" class="nav-link">
+                        <a href="/admin/vardgivare" class="nav-link active">
                             <i class="bx bx-plus-medical fs-lg me-2"></i>
                             Vårdgivare
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-nyheter.html" class="nav-link">
+                        <a href="/admin/nyheter" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin-annonser.html" class="nav-link">
+                        <a href="/admin/annonser" class="nav-link">
                             <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
                             Annonser
                         </a>
@@ -65,7 +65,7 @@
                 </ul>
             </div>
             <div class="border-top pt-4 mt-4">
-                <a href="/i.html" class="btn btn-outline-info shadow-sm w-100">
+                <a href="/" class="btn btn-outline-info shadow-sm w-100">
                     <i class="bx bx-log-out fs-lg me-2"></i>
                     Logga ut
                 </a>
@@ -79,11 +79,11 @@
                 <div class="col-xl-6 col-xxl-4 mb-5 mb-xxl-0">
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-faded-info w-100 mx-0 px-4 d-flex justify-content-between align-items-center">
-                            <a href="/admin-vardgivare.html" class="link-dark text-decoration-none fs-4">
+                            <a href="/admin/vardgivare" class="link-dark text-decoration-none fs-4">
                                 <strong class="text-info">126</strong>
                                 registrerade vårdgivare
                             </a>
-                            <a href="/admin-ny-vardgivare.html" class="btn btn-primary btn-sm">
+                            <a href="/admin/ny-vardgivare" class="btn btn-primary btn-sm">
                                 <i class="bx bx-plus fs-base me-1"></i>
                                 Ny vårdgivare
                             </a>
@@ -99,7 +99,7 @@
                                 </thead>
                                 <tbody>
                                 <tr class="row position-relative" id="cmpItem">
-                                    <td class="col-5"><a class="link-dark fs-6 stretched-link" href="/admin-redigera-vardgivare.html">Brinaxi Care AB</a></td>
+                                    <td class="col-5"><a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a></td>
                                     <td class="col-2">LSS</td>
                                     <td class="col-5">LVM, SoL 7.1.1, SoL 7.1.2, SoL 4.1</td>
                                 </tr>
@@ -112,11 +112,11 @@
                 <div class="col-xl-6 mb-5 mb-xxl-0 col-xxl-4">
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-faded-info w-100 mx-0 px-4 d-flex justify-content-between align-items-center">
-                            <a href="/admin-nyheter.html" class="link-dark text-decoration-none fs-4">
+                            <a href="/admin/nyheter" class="link-dark text-decoration-none fs-4">
                                 <strong class="text-info">12</strong>
                                 publicerade nyheter
                             </a>
-                            <a href="/admin-ny-nyhet.html" class="btn btn-primary btn-sm">
+                            <a href="/admin/ny-nyhet" class="btn btn-primary btn-sm">
                                 <i class="bx bx-plus fs-base me-1"></i>
                                 Ny nyhet
                             </a>
@@ -133,7 +133,7 @@
                                 <tbody>
                                 <tr class="row position-relative" id="newsItem">
                                     <td class="col-6">
-                                        <a class="link-dark stretched-link" href="/admin-redigera-nyhet.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
                                     <td class="col-3">Kategori</td>
                                     <td class="col-3">2023-01-26</td>
                                 </tr>
@@ -146,11 +146,11 @@
                 <div class="col-xl-6 col-xxl-4">
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-faded-info w-100 mx-0 px-4 d-flex justify-content-between align-items-center">
-                            <a href="/admin-nyheter.html" class="link-dark text-decoration-none fs-4">
+                            <a href="/admin/nyheter" class="link-dark text-decoration-none fs-4">
                                 <strong class="text-info">12</strong>
                                 aktiva annonser
                             </a>
-                            <a href="/admin-ny-nyhet.html" class="btn btn-primary btn-sm">
+                            <a href="/admin/ny-nyhet" class="btn btn-primary btn-sm">
                                 <i class="bx bx-plus fs-base me-1"></i>
                                 Nya annonser
                             </a>
@@ -166,12 +166,12 @@
                                 <tbody>
                                 <tr class="row position-relative">
                                     <td class="col-8">
-                                        <a class="link-dark stretched-link" href="/admin-redigera-annons.html">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
+                                        <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
                                     <td class="col-4">Brinaxi Care AB</td>
                                 </tr>
                                 <tr class="row position-relative">
                                     <td class="col-8">
-                                        <a class="link-dark stretched-link" href="/admin-redigera-annons.html">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
+                                        <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
                                     <td class="col-4">Brinaxi Care AB</td>
                                 </tr>
                                 </tbody>

@@ -33,7 +33,7 @@
   <!-- Header -->
   <header class="navbar navbar-expand-lg bg-light shadow-sm sticky-top">
     <div class="container">
-      <a href="/i.html" class="navbar-brand fs-5 h1 m-0 me-3 text-info">
+      <a href="/" class="navbar-brand fs-5 h1 m-0 me-3 text-info">
         <img class="me-2" src="/img/logo.png" width="40" alt="Sveriges Vårdgivare">
         Sveriges Vårdgivare
       </a>
@@ -44,22 +44,22 @@
         <hr class="d-lg-none mt-3 mb-2">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a href="/vardgivare.html" class="nav-link">Vårdgivare</a>
+            <a href="/vardgivare" class="nav-link">Vårdgivare</a>
           </li>
           <li class="nav-item">
-            <a href="/om-oss.html" class="nav-link">Om oss</a>
+            <a href="/om-oss" class="nav-link">Om oss</a>
           </li>
           <li class="nav-item">
-            <a href="/kvalitet.html" class="nav-link">Kvalitet</a>
+            <a href="/kvalitet" class="nav-link">Kvalitet</a>
           </li>
           <li class="nav-item">
-            <a href="/nyheter.html" class="nav-link">Nyheter</a>
+            <a href="/nyheter" class="nav-link">Nyheter</a>
           </li>
           <li class="nav-item">
-            <a href="/kontakt.html" class="nav-link">Kontakta oss</a>
+            <a href="/kontakt" class="nav-link">Kontakta oss</a>
           </li>
         </ul>
-        <a href="/lista-foretag.html" class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-0">
+        <a href="/lista-foretag" class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-0">
           Lista ditt företag
           <i class="d-none d-xl-inline bx bx-right-arrow-alt fs-lg ms-1"></i>
         </a>
@@ -71,7 +71,7 @@
   <nav class="container" aria-label="breadcrumb">
     <ol class="breadcrumb mb-0 pt-5">
       <li class="breadcrumb-item">
-        <a href="/i.html"><i class="bx bx-home-alt fs-lg me-1"></i>Hem</a>
+        <a href="/"><i class="bx bx-home-alt fs-lg me-1"></i>Hem</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">Vårdgivare</li>
     </ol>
@@ -86,7 +86,7 @@
           <div class="col-md mb-4 mb-md-0">
             <label class="form-label text-body fw-semibold" for="">Sök</label>
             <div class="position-relative d-flex justify-content-end align-items-center">
-              <input type="text" type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök vårdgivare...">
+              <input type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök vårdgivare...">
               <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
             </div>
           </div>
@@ -137,7 +137,7 @@
             </select>
           </div>
           <div class="col-md-auto d-md-flex align-items-md-end">
-            <a href="/vardgivare.html" class="d-flex btn btn-primary shadow-primary p-0 w-100 w-md-auto" style="min-width: 44.4px !important; height: 44.4px;">
+            <a href="/vardgivare" class="d-flex btn btn-primary shadow-primary p-0 w-100 w-md-auto" style="min-width: 44.4px !important; height: 44.4px;">
               <i class="fw-bold bx bx-search-alt fs-2 ms-1"></i>
             </a>
           </div>
@@ -167,7 +167,7 @@
               <div class="card-body py-4">
                 <div class="d-flex align-items-center justify-content-between">
                   <h4 class="h5">
-                    <a class="stretched-link" href="/vardgivare-template.html">Brinaxi Care AB</a>
+                    <a class="stretched-link" th:href="'/nyheter/' + ${1}">Brinaxi Care AB</a>
                   </h4>
                   <a href="" class="badge fs-sm text-dark fw-bold bg-primary shadow-primary text-decoration-none mb-3">Sponsrad</a>
                 </div>
@@ -213,7 +213,7 @@
               </div>
               <div class="card-body py-4">
                 <h4 class="h5">
-                  <a class="stretched-link" href="/vardgivare-template.html">Brinaxi Care AB</a>
+                  <a class="stretched-link" th:href="'/nyheter/' + ${1}">Brinaxi Care AB</a>
                 </h4>
                 <div class="row fs-sm">
                   <div class="col-6">
@@ -257,7 +257,7 @@
               </div> -->
               <div class="card-body py-4">
                 <h4 class="h5">
-                  <a class="stretched-link" href="/vardgivare-template.html">Brinaxi Care AB</a>
+                  <a class="stretched-link" th:href="'/nyheter/' + ${1}">Brinaxi Care AB</a>
                 </h4>
                 <div class="row fs-sm">
                   <div class="col-6">
@@ -343,7 +343,7 @@
                 <h5 class="h3 mb-4 pb-2 text-center">Annonser</h5>
               </div>
             </div>
-            <p class="mt-3 text-muted text-center">Vill du synas här? <a class="fw-bold text-decoration-none" href="/logga-in.html">Kontakta oss</a></p>
+            <p class="mt-3 text-muted text-center">Vill du synas här? <a class="fw-bold text-decoration-none" href="/login">Kontakta oss</a></p>
           </div>
         </div>
       </aside>
@@ -393,14 +393,14 @@
       <div class="d-flex flex-column flex-md-row justify-content-between pt-4 mt-3 border-top">
         <p class="mb-0 pb-4 pb-lg-2">
           &copy; 2023 Sveriges Vårdgivare •
-          <a class="link-info fw-medium" href="/logga-in.html">Admin</a>
+          <a class="link-info fw-medium" href="/login">Admin</a>
         </p>
         <div class="d-flex text-dark gap-2 opacity-75 order-first order-md-last pb-4 pb-lg-2">
-          <a class="link-dark" href="/anvandarvillkor.html">Användarvillkor</a>
+          <a class="link-dark" href="/anvandarvillkor">Användarvillkor</a>
           <span>•</span>
-          <a class="link-dark" href="/integritetspolicy.html">Integritetspolicy</a>
+          <a class="link-dark" href="/integritetspolicy">Integritetspolicy</a>
           <span>•</span>
-          <a class="link-dark" href="/cookies.html">Cookies</a>
+          <a class="link-dark" href="/cookies">Cookies</a>
         </div>
       </div>
     </div>

@@ -179,7 +179,7 @@ var scroll = new SmoothScroll('a[href*="#"]', {
 	// Selectors
 	ignore: '[data-scroll-ignore]', // Selector for links to ignore (must be a valid CSS selector)
 	header: null, // Selector for fixed headers (must be a valid CSS selector)
-	topOnEmptyHash: true, // Scroll to the top of the page for links withhref="/i.html"
+	topOnEmptyHash: true, // Scroll to the top of the page for links withhref="/hem.html"
 
 	// Speed & Duration
 	speed: 500, // Integer. Amount of time in milliseconds it should take to scroll 1000px
