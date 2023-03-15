@@ -24,10 +24,13 @@ public class AdminController {
         return "admin-ny-vardgivare";
     }
     @GetMapping("/admin/nyheter") public String adminNews(){
-        return "admin-ny-vardgivare";
+        return "admin-nyheter";
     }
     @GetMapping("/admin/start") public String adminStart(){
         return "admin-start";
+    }
+    @GetMapping("/admin/vardgivare") public String adminVardgivarePage(){
+        return "admin-vardgivare";
     }
 
     @GetMapping("/admin/redigera-annons/{id}") public String adminEditPost(@PathVariable long id){

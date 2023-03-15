@@ -2,7 +2,7 @@
 <html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
-    <title>Logga in | Sveriges Vårdgivare</title>
+    <title>Skapa konto | Sveriges Vårdgivare</title>
 
     <meta name="author" content="Ensotech AB">
 
@@ -71,26 +71,26 @@
             <img src="/img/logo.png" class="mx-auto mb-4" alt="" width="150">
             <h1 class="h2 d-flex align-items-center gap-2 mx-auto">
                 <i class="bx bx-cog display-6"></i>
-                Logga in
+                Skapa konto
             </h1>
-            <form class="needs-validation" th:action="@{/login}" method="post">
-                <div th:if="${param.error}" class="mb-2">Fel e-post eller lösenord</div>
+            <form class="needs-validation" novalidate th:action="@{/skapa-konto}" method="post" th:object="${userObject}">
+                <div th:if="${param.error}" class="mb-2">Det gick inte att skapa ett konto</div>
                 <div class="mb-3">
-                    <input class="form-control shadow-sm" type="email" id="email" name="username" placeholder="E-post" required>
+                    <input class="form-control shadow-sm" type="email" id="email" name="email" placeholder="E-post" required>
                     <div class="invalid-feedback">Var god skriv in din e-post.</div>
                 </div>
                 <div class="mb-3">
-                    <input required class="form-control shadow-sm" type="password" id="password" name="password" placeholder="Lösenord">
+                    <input class="form-control shadow-sm" type="password" id="password" name="password" placeholder="Lösenord">
                     <div class="invalid-feedback">Var god skriv in ditt lösenord.</div>
                 </div>
                 <div class="d-flex justify-content-end mb-4">
-                    <a class="fw-bold d-flex align-items-center text-decoration-none" href="/aterstall-losenord">
+                    <a class="fw-bold d-flex align-items-center text-decoration-none" href="/login">
                         <i class="bx bx-lock-open-alt fs-lg me-1"></i>
-                        Glömt lösenord?
+                        Logga in
                     </a>
                 </div>
                 <button class="btn btn-primary w-100 shadow-primary" type="submit">
-                    Logga in
+                    Skapa konto
                     <i class="bx bx-log-in ms-1 fs-lg"></i>
                 </button>
                 <p class="mt-4 mb-2 text-center text-muted">© 2023 Sveriges Vårdgivare</p>
