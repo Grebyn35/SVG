@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/vardgivare" class="nav-link active">
+                        <a href="/admin/vardgivare?page=0" class="nav-link active">
                             <i class="bx bx-plus-medical fs-lg me-2"></i>
                             Vårdgivare
                         </a>
@@ -83,14 +83,14 @@
             </nav>
 
             <h1 class="h1 mb-5">Ny vårdgivare</h1>
-            <form class="row" action="" method="">
+            <form class="row" th:action="@{'/admin/ny-vardgivare'}" th:object="${providerObject}" method="post" enctype="multipart/form-data">
                 <div class="col-5 pe-4">
                     <h2 class="h6 mb-4">Information & uppgifter</h2>
                     <!-- Edit Logo -->
                     <div class="mb-4 d-flex align-items-end">
                         <div>
-                            <label class="form-label d-block" for="">Ändra logotyp</label>
-                            <input class="form-control shadow-sm" type="file" name="" id="">
+                            <label class="form-label d-block" for="imgLogo">Ändra logotyp</label>
+                            <input class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
                         <div class="ms-4">
                             <img style="max-height: 50px;" src="/img/logo-placeholder.png" alt="">
@@ -98,13 +98,13 @@
                     </div>
                     <!-- Healthcare Provider -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="">Namn på vårdgivare *</label>
-                        <input class="form-control shadow-sm" type="text" name="" id="" placeholder="Brinaxi Care" required>
+                        <label class="form-label d-block" for="name">Namn på vårdgivare *</label>
+                        <input class="form-control shadow-sm" type="text" name="name" id="name" placeholder="Brinaxi Care" required>
                     </div>
                     <!-- County -->
                     <div class="mb-4">
-                        <label class="form-label text-body fw-semibold" for="">Län</label>
-                        <select class="form-select shadow-sm" type="text">
+                        <label class="form-label text-body fw-semibold" for="county">Län</label>
+                        <select id="county" name="county" class="form-select shadow-sm" type="text">
                             <option value="Stockholm">Stockholm</option>
                             <option value="Västerbotten">Västerbotten</option>
                             <option value="Norrbotten">Norrbotten</option>
@@ -130,25 +130,25 @@
                     </div>
                     <!-- Email -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="">E-post</label>
-                        <input class="form-control shadow-sm" type="text" name="" id="" placeholder="vårdgivare@domän.se">
+                        <label class="form-label d-block" for="email">E-post</label>
+                        <input class="form-control shadow-sm" type="text" name="email" id="email" placeholder="vårdgivare@domän.se">
                     </div>
                     <!-- Website -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="">Hemsida</label>
-                        <input class="form-control shadow-sm" type="text" name="" id="" placeholder="https://www.sverigesvardgivare.se/">
+                        <label class="form-label d-block" for="website">Hemsida</label>
+                        <input class="form-control shadow-sm" type="text" name="website" id="website" placeholder="https://www.sverigesvardgivare.se/">
                     </div>
                     <!-- Healthcare Provider Bio -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="">Om vårdgivare</label>
-                        <textarea class="form-control shadow-sm" type="text" name="" id="" rows="8" placeholder="Skriv en beskrivning om vårdgivaren för besökare att läsa..."></textarea>
+                        <label class="form-label d-block" for="about">Om vårdgivare</label>
+                        <textarea class="form-control shadow-sm" type="text" name="about" id="about" rows="8" placeholder="Skriv en beskrivning om vårdgivaren för besökare att läsa..."></textarea>
                     </div>
                 </div>
                 <div class="col-4 px-4">
                     <!-- Team Room -->
                     <h2 class="h6">Kvalitetsberättelser (endast pdf-filer)</h2>
                     <div class="mb-4">
-                        <input class="form-control shadow-sm" type="file" name="" id="">
+                        <input class="form-control shadow-sm" type="file" name="logoQualityTale" id="qualityTale">
                     </div>
 
                     <hr class="mb-4">
@@ -156,7 +156,7 @@
                     <!-- Brochures -->
                     <h2 class="h6">Broschyrer (endast pdf-filer)</h2>
                     <div class="mb-4">
-                        <input class="form-control shadow-sm" type="file" name="" id="">
+                        <input class="form-control shadow-sm" type="file" name="imgBrochure" id="imgBrochure">
                     </div>
 
                     <hr class="mb-4">
@@ -164,7 +164,7 @@
                     <!-- Other Info -->
                     <h2 class="h6">Övriga upplysningar</h2>
                     <div class="mb-4">
-                        <input class="form-control shadow-sm" type="file" name="" id="">
+                        <input class="form-control shadow-sm" type="file" name="imgExtraInfo" id="imgExtraInfo">
                     </div>
 
                     <hr class="mb-4">
@@ -174,7 +174,7 @@
                         <i class="bx bxs-error-circle text-warning fs-xl"></i>
                         Något att anmärka
                     </h2>
-                    <textarea class="form-control shadow-sm" name="" id="" cols="30" rows="6" placeholder="Lämna tom om det inte finns något att anmärka..."></textarea>
+                    <textarea class="form-control shadow-sm" name="remark" id="remark" cols="30" rows="6" placeholder="Lämna tom om det inte finns något att anmärka..."></textarea>
 
                 </div>
                 <div class="col-3 ps-4">
@@ -182,7 +182,7 @@
                     <!-- Paying Checkbox -->
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="lss-checkbox">
+                            <input class="form-check-input shadow-sm" name="operation1" type="checkbox" id="lss-checkbox">
                             <label class="form-label" for="lss-checkbox">LSS</label>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                     <!-- Permit Checkbox -->
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="sol-checkbox">
+                            <input class="form-check-input shadow-sm" name="operation2" type="checkbox" id="sol-checkbox">
                             <label class="form-label" for="sol-checkbox">SoL</label>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                     <!-- Permit Checkbox -->
                     <div class="mb-4">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="lorem-checkbox">
+                            <input class="form-check-input shadow-sm" name="operation3" type="checkbox" id="lorem-checkbox">
                             <label class="form-label" for="lorem-checkbox">Lorem</label>
                         </div>
                     </div>

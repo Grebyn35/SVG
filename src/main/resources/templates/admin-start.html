@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/vardgivare" class="nav-link active">
+                        <a href="/admin/vardgivare?page=0" class="nav-link active">
                             <i class="bx bx-plus-medical fs-lg me-2"></i>
                             Vårdgivare
                         </a>
@@ -80,7 +80,7 @@
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-faded-info w-100 mx-0 px-4 d-flex justify-content-between align-items-center">
                             <a href="/admin/vardgivare" class="link-dark text-decoration-none fs-4">
-                                <strong class="text-info">126</strong>
+                                <strong class="text-info" th:text="${providers.size}">126</strong>
                                 registrerade vårdgivare
                             </a>
                             <a href="/admin/ny-vardgivare" class="btn btn-primary btn-sm">
@@ -98,8 +98,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="row position-relative" id="cmpItem">
-                                    <td class="col-5"><a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${1}">Brinaxi Care AB</a></td>
+                                <tr class="row position-relative" id="providerItem" th:each="provider : ${providers}">
+                                    <td class="col-5"><a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${provider.id}" th:text="${provider.name}">Brinaxi Care AB</a></td>
                                     <td class="col-2">LSS</td>
                                     <td class="col-5">LVM, SoL 7.1.1, SoL 7.1.2, SoL 4.1</td>
                                 </tr>
