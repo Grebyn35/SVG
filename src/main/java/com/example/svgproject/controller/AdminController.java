@@ -46,6 +46,28 @@ public class AdminController {
         return "admin-ny-vardgivare";
     }
     @RequestMapping(value=("/admin/ny-vardgivare"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewUserPost(Model model, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo, @RequestParam("logoQualityTale") MultipartFile logoQualityTale, @RequestParam("imgBrochure") MultipartFile imgBrochure, @RequestParam("imgExtraInfo") MultipartFile imgExtraInfo, @Valid @ModelAttribute("providerObject") Provider provider) throws IOException {
+        ArrayList<String> typeList = new ArrayList<>();
+        ArrayList<String> otherSettingsList = new ArrayList<>();
+        String[] typeListValues = request.getParameterValues("typeList[]");
+        String[] otherSettingsValues = request.getParameterValues("otherSettings[]");
+        if(typeListValues != null){
+            for(int i = 0; i<typeListValues.length;i++){
+                typeList.add(typeListValues[i]);
+            }
+        }
+        else{
+            typeList.add("[]");
+        }
+        if(otherSettingsValues != null){
+            for(int i = 0; i<otherSettingsValues.length;i++){
+                otherSettingsList.add(otherSettingsValues[i]);
+            }
+        }
+        else{
+            otherSettingsList.add("[]");
+        }
+        provider.setTypeList(typeList.toString());
+        provider.setOtherSettings(otherSettingsList.toString());
         if(imgLogo.getSize()>10){
             String logoSrc = uploadFileToServer(imgLogo);
             provider.setLogoSrc(logoSrc);
@@ -92,8 +114,59 @@ public class AdminController {
     @GetMapping("/admin/redigera-nyhet/{id}") public String adminEditNews(@PathVariable long id){
         return "admin-redigera-nyhet";
     }
-    @GetMapping("admin/redigera-vardgivare/{id}") public String adminStart(@PathVariable long id){
+    @GetMapping("/admin/redigera-vardgivare/{id}") public String editProvider(@PathVariable long id, Model model){
+        Provider provider = providerRepository.findById(id);
+        model.addAttribute("provider", provider);
         return "admin-redigera-vardgivare";
+    }
+    @RequestMapping(value=("/admin/redigera-vardgivare/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editProviderPost(@PathVariable long id, Model model, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo, @RequestParam("logoQualityTale") MultipartFile logoQualityTale, @RequestParam("imgBrochure") MultipartFile imgBrochure, @RequestParam("imgExtraInfo") MultipartFile imgExtraInfo) throws IOException {
+        Provider provider = providerRepository.findById(id);
+        ArrayList<String> typeList = new ArrayList<>();
+        ArrayList<String> otherSettingsList = new ArrayList<>();
+        String[] typeListValues = request.getParameterValues("typeList[]");
+        String[] otherSettingsValues = request.getParameterValues("otherSettings[]");
+        if(typeListValues != null){
+            for(int i = 0; i<typeListValues.length;i++){
+                typeList.add(typeListValues[i]);
+            }
+        }
+        else{
+            typeList.add("[]");
+        }
+        if(otherSettingsValues != null){
+            for(int i = 0; i<otherSettingsValues.length;i++){
+                otherSettingsList.add(otherSettingsValues[i]);
+            }
+        }
+        else{
+            otherSettingsList.add("[]");
+        }
+        provider.setTypeList(typeList.toString());
+        provider.setOtherSettings(otherSettingsList.toString());
+        provider.setName(request.getParameter("name"));
+        provider.setCounty(request.getParameter("county"));
+        provider.setEmail(request.getParameter("email"));
+        provider.setWebsite(request.getParameter("website"));
+        provider.setAbout(request.getParameter("about"));
+        provider.setRemark(request.getParameter("remark"));
+        if(imgLogo.getSize()>10){
+            String logoSrc = uploadFileToServer(imgLogo);
+            provider.setLogoSrc(logoSrc);
+        }
+        if(logoQualityTale.getSize()>10){
+            String qualityTaleSrc = uploadFileToServer(logoQualityTale);
+            provider.setQualityTaleSrc(qualityTaleSrc);
+        }
+        if(imgBrochure.getSize()>10){
+            String brochureSrc = uploadFileToServer(imgBrochure);
+            provider.setBrochureSrc(brochureSrc);
+        }
+        if(imgExtraInfo.getSize()>10){
+            String extraInfoSrc = uploadFileToServer(imgExtraInfo);
+            provider.setExtraInfoSrc(extraInfoSrc);
+        }
+        providerRepository.save(provider);
+        return "redirect:/admin/vardgivare?page=0";
     }
     public String uploadFileToServer(MultipartFile uploadedFile) throws IOException {
         Client client = new Client("eca459e5791d32ddb0f4", "78c7be5af84b70995435");

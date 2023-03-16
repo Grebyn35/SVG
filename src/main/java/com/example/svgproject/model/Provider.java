@@ -29,7 +29,9 @@ public class Provider implements Serializable {
     @Column(length=200000000,columnDefinition="LONGTEXT")
     private String remark;
 
-    private boolean operation1;
-    private boolean operation2;
-    private boolean operation3;
+    @Column(length=200000000,columnDefinition="LONGTEXT")
+    private String typeList;
+
+    @Column(length=200000000,columnDefinition="LONGTEXT")
+    private String otherSettings;
 }

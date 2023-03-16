@@ -84,72 +84,72 @@
             </nav>
 
             <h1 class="h1 mb-5">Redigera vårdgivare</h1>
-            <form class="row" action="" method="">
+            <form class="row" th:action="@{'/admin/redigera-vardgivare/' + ${provider.id}}" method="post" enctype="multipart/form-data">
                 <div class="col-5 pe-4">
                     <h2 class="h6 mb-4">Information & uppgifter</h2>
                     <!-- Edit Logo -->
-                    <div class="mb-4 d-flex align-items-center">
+                    <div class="mb-4 d-flex align-items-end">
                         <div>
-                            <label class="form-label d-block" for="">Ändra logotyp</label>
-                            <input class="form-control shadow-sm" type="file" name="" id="">
+                            <label class="form-label d-block" for="imgLogo">Ändra logotyp</label>
+                            <input class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
-                        <div class="bg-faded-primary p-3 rounded-3 ms-4 shadow-sm">
-                            <img style="max-height: 70px;" src="/img/logo-placeholder.png" alt="">
+                        <div class="ms-4">
+                            <img style="max-height: 50px;" th:src="${provider.logoSrc}" alt="">
                         </div>
                     </div>
                     <!-- Healthcare Provider -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="">Namn på vårdgivare *</label>
-                        <input class="form-control shadow-sm" type="text" name="" id="" placeholder="Brinaxi Care" required>
+                        <label class="form-label d-block" for="name">Namn på vårdgivare *</label>
+                        <input class="form-control shadow-sm" th:value="${provider.name}" type="text" name="name" id="name" placeholder="Brinaxi Care" required>
                     </div>
                     <!-- County -->
                     <div class="mb-4">
-                        <label class="form-label text-body fw-semibold" for="">Län</label>
-                        <select class="form-select shadow-sm" type="text">
-                            <option value="Stockholm">Stockholm</option>
-                            <option value="Västerbotten">Västerbotten</option>
-                            <option value="Norrbotten">Norrbotten</option>
-                            <option value="Uppsala">Uppsala</option>
-                            <option value="Södermanland">Södermanland</option>
-                            <option value="Östergötland">Östergötland</option>
-                            <option value="Jönköping">Jönköping</option>
-                            <option value="Kronoberg">Kronoberg</option>
-                            <option value="Kalmar">Kalmar</option>
-                            <option value="Gotland">Gotland</option>
-                            <option value="Blekinge">Blekinge</option>
-                            <option value="Skåne">Skåne</option>
-                            <option value="Halland">Halland</option>
-                            <option value="Västra Götaland">Västra Götaland</option>
-                            <option value="Värmland">Värmland</option>
-                            <option value="Örebro">Örebro</option>
-                            <option value="Dalarna">Dalarna</option>
-                            <option value="Gävleborg">Gävleborg</option>
-                            <option value="Västmanland">Västmanland</option>
-                            <option value="Jämtland">Jämtland</option>
-                            <option value="Västernorrland">Västernorrland</option>
+                        <label class="form-label text-body fw-semibold" for="county">Län</label>
+                        <select id="county" name="county" class="form-select shadow-sm" type="text">
+                            <option th:selected="${provider.county == 'Stockholm'}" value="Stockholm">Stockholm</option>
+                            <option th:selected="${provider.county == 'Västerbotten'}" value="Västerbotten">Västerbotten</option>
+                            <option th:selected="${provider.county == 'Norrbotten'}" value="Norrbotten">Norrbotten</option>
+                            <option th:selected="${provider.county == 'Uppsala'}" value="Uppsala">Uppsala</option>
+                            <option th:selected="${provider.county == 'Södermanland'}" value="Södermanland">Södermanland</option>
+                            <option th:selected="${provider.county == 'Östergötland'}" value="Östergötland">Östergötland</option>
+                            <option th:selected="${provider.county == 'Jönköping'}" value="Jönköping">Jönköping</option>
+                            <option th:selected="${provider.county == 'Kronoberg'}" value="Kronoberg">Kronoberg</option>
+                            <option th:selected="${provider.county == 'Kalmar'}" value="Kalmar">Kalmar</option>
+                            <option th:selected="${provider.county == 'Gotland'}" value="Gotland">Gotland</option>
+                            <option th:selected="${provider.county == 'Blekinge'}" value="Blekinge">Blekinge</option>
+                            <option th:selected="${provider.county == 'Skåne'}" value="Skåne">Skåne</option>
+                            <option th:selected="${provider.county == 'Halland'}" value="Halland">Halland</option>
+                            <option th:selected="${provider.county == 'Västra Götaland'}" value="Västra Götaland">Västra Götaland</option>
+                            <option th:selected="${provider.county == 'Värmland'}" value="Värmland">Värmland</option>
+                            <option th:selected="${provider.county == 'Örebro'}" value="Örebro">Örebro</option>
+                            <option th:selected="${provider.county == 'Dalarna'}" value="Dalarna">Dalarna</option>
+                            <option th:selected="${provider.county == 'Gävleborg'}" value="Gävleborg">Gävleborg</option>
+                            <option th:selected="${provider.county == 'Västmanland'}" value="Västmanland">Västmanland</option>
+                            <option th:selected="${provider.county == 'Jämtland'}" value="Jämtland">Jämtland</option>
+                            <option th:selected="${provider.county == 'Västernorrland'}" value="Västernorrland">Västernorrland</option>
                         </select>
                     </div>
                     <!-- Email -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="">E-post</label>
-                        <input class="form-control shadow-sm" type="text" name="" id="" placeholder="vårdgivare@domän.se">
+                        <label class="form-label d-block" for="email">E-post</label>
+                        <input class="form-control shadow-sm" th:value="${provider.email}" type="text" name="email" id="email" placeholder="vårdgivare@domän.se">
                     </div>
                     <!-- Website -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="">Hemsida</label>
-                        <input class="form-control shadow-sm" type="text" name="" id="" placeholder="https://www.sverigesvardgivare.se/">
+                        <label class="form-label d-block" for="website">Hemsida</label>
+                        <input class="form-control shadow-sm" th:value="${provider.website}" type="text" name="website" id="website" placeholder="https://www.sverigesvardgivare.se/">
                     </div>
                     <!-- Healthcare Provider Bio -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="">Om vårdgivare</label>
-                        <textarea class="form-control shadow-sm" type="text" name="" id="" rows="8" placeholder="Skriv en beskrivning om vårdgivaren för besökare att läsa..."></textarea>
+                        <label class="form-label d-block" for="about">Om vårdgivare</label>
+                        <textarea class="form-control shadow-sm" th:text="${provider.about}" type="text" name="about" id="about" rows="8" placeholder="Skriv en beskrivning om vårdgivaren för besökare att läsa..."></textarea>
                     </div>
                 </div>
                 <div class="col-4 px-4">
                     <!-- Team Room -->
                     <h2 class="h6">Kvalitetsberättelser (endast pdf-filer)</h2>
                     <div class="mb-4">
-                        <input class="form-control shadow-sm" type="file" name="" id="">
+                        <input class="form-control shadow-sm" type="file" name="logoQualityTale" id="qualityTale">
                     </div>
 
                     <hr class="mb-4">
@@ -157,7 +157,7 @@
                     <!-- Brochures -->
                     <h2 class="h6">Broschyrer (endast pdf-filer)</h2>
                     <div class="mb-4">
-                        <input class="form-control shadow-sm" type="file" name="" id="">
+                        <input class="form-control shadow-sm" type="file" name="imgBrochure" id="imgBrochure">
                     </div>
 
                     <hr class="mb-4">
@@ -165,17 +165,17 @@
                     <!-- Other Info -->
                     <h2 class="h6">Övriga upplysningar</h2>
                     <div class="mb-4">
-                        <input class="form-control shadow-sm" type="file" name="" id="">
+                        <input class="form-control shadow-sm" type="file" name="imgExtraInfo" id="imgExtraInfo">
                     </div>
 
                     <hr class="mb-4">
 
                     <!-- Remarks -->
                     <h2 class="h6 d-flex align-items-center gap-1">
-                        <i class="bx bxs-error text-warning fs-xl"></i>
+                        <i class="bx bxs-error-circle text-warning fs-xl"></i>
                         Något att anmärka
                     </h2>
-                    <textarea class="form-control shadow-sm" name="" id="" cols="30" rows="6" placeholder="Lämna tom om det inte finns något att anmärka..."></textarea>
+                    <textarea class="form-control shadow-sm" th:text="${provider.remark}" name="remark" id="remark" cols="30" rows="6" placeholder="Lämna tom om det inte finns något att anmärka..."></textarea>
 
                 </div>
                 <div class="col-3 ps-4">
@@ -183,24 +183,44 @@
                     <!-- Paying Checkbox -->
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="lss-checkbox">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'LSS')} ? 'checked'" value="LSS" name="typeList[]" type="checkbox" id="lss-checkbox">
                             <label class="form-label" for="lss-checkbox">LSS</label>
                         </div>
                     </div>
-
-                    <!-- Permit Checkbox -->
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="sol-checkbox">
-                            <label class="form-label" for="sol-checkbox">SoL</label>
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'HVB-hem')} ? 'checked'" value="HVB-hem" name="typeList[]" type="checkbox" id="hvb-checkbox">
+                            <label class="form-label" for="hvb-checkbox">HVB-hem</label>
                         </div>
                     </div>
-
-                    <!-- Permit Checkbox -->
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="lorem-checkbox">
-                            <label class="form-label" for="lorem-checkbox">Lorem</label>
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Stödboende')} ? 'checked'" value="Stödboende" name="typeList[]" type="checkbox" id="stodboende-checkbox">
+                            <label class="form-label" for="stodboende-checkbox">Stödboende</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Skyddat boende')} ? 'checked'" value="Skyddat boende" name="typeList[]" type="checkbox" id="skyddat-checkbox">
+                            <label class="form-label" for="skyddat-checkbox">Skyddat boende</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Konsulentstödd familjehemsvård')} ? 'checked'" value="Konsulentstödd familjehemsvård" name="typeList[]" type="checkbox" id="konsulentstodd-checkbox">
+                            <label class="form-label" for="konsulentstodd-checkbox">Konsulentstödd familjehemsvård</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Daglig verksamhet')} ? 'checked'" value="Daglig verksamhet" name="typeList[]" type="checkbox" id="daglig-checkbox">
+                            <label class="form-label" for="daglig-checkbox">Daglig verksamhet</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Öppenvård')} ? 'checked'" value="Öppenvård" name="typeList[]" type="checkbox" id="oppenvard-checkbox">
+                            <label class="form-label" for="oppenvard-checkbox">Öppenvård</label>
                         </div>
                     </div>
 
@@ -210,7 +230,7 @@
                     <!-- Paying Checkbox -->
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="paying-checkbox">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.otherSettings, 'Betalande profil')} ? 'checked'" name="otherSettings[]" value="Betalande profil" type="checkbox" id="paying-checkbox">
                             <label class="form-label" for="paying-checkbox">Betalande profil</label>
                         </div>
                     </div>
@@ -218,7 +238,7 @@
                     <!-- Permit Checkbox -->
                     <div class="mb-4">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="permit-checkbox">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.otherSettings, 'Tillstånd')} ? 'checked'" name="otherSettings[]" value="Tillstånd" type="checkbox" id="permit-checkbox">
                             <label class="form-label" for="permit-checkbox">Tillstånd</label>
                         </div>
                     </div>
@@ -226,8 +246,8 @@
                     <hr class="mb-4">
 
                     <button class="btn btn-lg btn-primary shadow-primary" type="submit">
-                        <i class="bx bxs-save me-1 fs-xl"></i>
-                        Spara ändringar
+                        <i class="bx bx-plus me-1 fs-xl"></i>
+                        Redigera vårdgivare
                     </button>
                 </div>
             </form>

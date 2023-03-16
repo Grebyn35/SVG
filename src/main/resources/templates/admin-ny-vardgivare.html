@@ -182,24 +182,44 @@
                     <!-- Paying Checkbox -->
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" name="operation1" type="checkbox" id="lss-checkbox">
+                            <input class="form-check-input shadow-sm" value="LSS" name="typeList[]" type="checkbox" id="lss-checkbox">
                             <label class="form-label" for="lss-checkbox">LSS</label>
                         </div>
                     </div>
-
-                    <!-- Permit Checkbox -->
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" name="operation2" type="checkbox" id="sol-checkbox">
-                            <label class="form-label" for="sol-checkbox">SoL</label>
+                            <input class="form-check-input shadow-sm" value="HVB-hem" name="typeList[]" type="checkbox" id="hvb-checkbox">
+                            <label class="form-label" for="hvb-checkbox">HVB-hem</label>
                         </div>
                     </div>
-
-                    <!-- Permit Checkbox -->
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" name="operation3" type="checkbox" id="lorem-checkbox">
-                            <label class="form-label" for="lorem-checkbox">Lorem</label>
+                            <input class="form-check-input shadow-sm" value="Stödboende" name="typeList[]" type="checkbox" id="stodboende-checkbox">
+                            <label class="form-label" for="stodboende-checkbox">Stödboende</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" value="Skyddat boende" name="typeList[]" type="checkbox" id="skyddat-checkbox">
+                            <label class="form-label" for="skyddat-checkbox">Skyddat boende</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" value="Konsulentstödd familjehemsvård" name="typeList[]" type="checkbox" id="konsulentstodd-checkbox">
+                            <label class="form-label" for="konsulentstodd-checkbox">Konsulentstödd familjehemsvård</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" value="Daglig verksamhet" name="typeList[]" type="checkbox" id="daglig-checkbox">
+                            <label class="form-label" for="daglig-checkbox">Daglig verksamhet</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" value="Öppenvård" name="typeList[]" type="checkbox" id="oppenvard-checkbox">
+                            <label class="form-label" for="oppenvard-checkbox">Öppenvård</label>
                         </div>
                     </div>
 
@@ -209,7 +229,7 @@
                     <!-- Paying Checkbox -->
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="paying-checkbox">
+                            <input class="form-check-input shadow-sm" name="otherSettings[]" value="Betalande profil" type="checkbox" id="paying-checkbox">
                             <label class="form-label" for="paying-checkbox">Betalande profil</label>
                         </div>
                     </div>
@@ -217,7 +237,7 @@
                     <!-- Permit Checkbox -->
                     <div class="mb-4">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" type="checkbox" id="permit-checkbox">
+                            <input class="form-check-input shadow-sm" name="otherSettings[]" value="Tillstånd" type="checkbox" id="permit-checkbox">
                             <label class="form-label" for="permit-checkbox">Tillstånd</label>
                         </div>
                     </div>
