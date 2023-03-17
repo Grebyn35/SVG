@@ -48,8 +48,10 @@ public class AdminController {
     @RequestMapping(value=("/admin/ny-vardgivare"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewUserPost(Model model, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo, @RequestParam("logoQualityTale") MultipartFile logoQualityTale, @RequestParam("imgBrochure") MultipartFile imgBrochure, @RequestParam("imgExtraInfo") MultipartFile imgExtraInfo, @Valid @ModelAttribute("providerObject") Provider provider) throws IOException {
         ArrayList<String> typeList = new ArrayList<>();
         ArrayList<String> otherSettingsList = new ArrayList<>();
+        ArrayList<String> gradeList = new ArrayList<>();
         String[] typeListValues = request.getParameterValues("typeList[]");
         String[] otherSettingsValues = request.getParameterValues("otherSettings[]");
+        String[] gradeValues = request.getParameterValues("grade[]");
         if(typeListValues != null){
             for(int i = 0; i<typeListValues.length;i++){
                 typeList.add(typeListValues[i]);
@@ -65,6 +67,14 @@ public class AdminController {
         }
         else{
             otherSettingsList.add("[]");
+        }
+        if(gradeValues != null){
+            for(int i = 0; i<gradeValues.length;i++){
+                gradeList.add(gradeValues[i]);
+            }
+        }
+        else{
+            gradeList.add("[]");
         }
         provider.setTypeList(typeList.toString());
         provider.setOtherSettings(otherSettingsList.toString());
@@ -123,8 +133,10 @@ public class AdminController {
         Provider provider = providerRepository.findById(id);
         ArrayList<String> typeList = new ArrayList<>();
         ArrayList<String> otherSettingsList = new ArrayList<>();
+        ArrayList<String> gradeList = new ArrayList<>();
         String[] typeListValues = request.getParameterValues("typeList[]");
         String[] otherSettingsValues = request.getParameterValues("otherSettings[]");
+        String[] gradeValues = request.getParameterValues("grade[]");
         if(typeListValues != null){
             for(int i = 0; i<typeListValues.length;i++){
                 typeList.add(typeListValues[i]);
@@ -141,6 +153,15 @@ public class AdminController {
         else{
             otherSettingsList.add("[]");
         }
+        if(gradeValues != null){
+            for(int i = 0; i<gradeValues.length;i++){
+                gradeList.add(gradeValues[i]);
+            }
+        }
+        else{
+            gradeList.add("[]");
+        }
+        provider.setGrade(gradeList.toString());
         provider.setTypeList(typeList.toString());
         provider.setOtherSettings(otherSettingsList.toString());
         provider.setName(request.getParameter("name"));
@@ -166,6 +187,22 @@ public class AdminController {
             provider.setExtraInfoSrc(extraInfoSrc);
         }
         providerRepository.save(provider);
+        return "redirect:/admin/vardgivare?page=0";
+    }
+    @GetMapping("/admin/search_vardgivare")
+    public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<Provider> providers = providerRepository.findAllByNameContainingAndTypeListContainingAndCountyContainingAndGradeContaining(searchInput, branchType, county, grade, pageable);
+        model.addAttribute("providers", providers.getContent());
+        model.addAttribute("totalHits", providers.getTotalPages());
+        model.addAttribute("page", page);
+        return "admin-vardgivare :: .tableSearch";
+    }
+    @PostMapping("/admin/delete-provider")
+    public String deleteProvider(Model model, HttpServletRequest request){
+        long id = Long.parseLong(request.getParameter("id"));
+        Provider provider = providerRepository.findById(id);
+        providerRepository.delete(provider);
         return "redirect:/admin/vardgivare?page=0";
     }
     public String uploadFileToServer(MultipartFile uploadedFile) throws IOException {

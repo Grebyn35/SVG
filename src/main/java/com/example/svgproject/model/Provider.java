@@ -17,6 +17,7 @@ public class Provider implements Serializable {
     private String county;
     private String email;
     private String website;
+    private String grade;
 
     @Column(length=200000000,columnDefinition="LONGTEXT")
     private String about;

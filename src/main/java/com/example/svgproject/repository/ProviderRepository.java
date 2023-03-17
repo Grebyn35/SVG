@@ -14,4 +14,5 @@ public interface ProviderRepository extends CrudRepository<Provider,Long> {
 
     Provider findById(long id);
     Page<Provider> findAll(Pageable pageable);
+    Page<Provider> findAllByNameContainingAndTypeListContainingAndCountyContainingAndGradeContaining(String searchInput, String branchType, String county, String grade, Pageable pageable);
 }

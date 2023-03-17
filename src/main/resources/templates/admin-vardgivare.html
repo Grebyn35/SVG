@@ -30,20 +30,23 @@
 <!-- Remove Healthcare Provider Modal -->
 <div class="modal fade" id="removeHealthcareProviderModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Ta bort vårdgivare</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <form th:action="'/admin/delete-provider'" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ta bort vårdgivare</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="text" style="display: none" name="id" id="providerId">
+                <div class="modal-body">
+                    <p class="mb-2" id="providerName">Är du säker på att du vill ta bort $vårdgivare?</p>
+                    <p class="mb-0 fs-sm fw-bold">Du komma inte att kunna återställa vårdgivaren efter att du har tagit bort den.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-light border" data-bs-dismiss="modal">Avbryt</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Ta bort vårdgivare</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <p class="mb-2">Är du säker på att du vill ta bort $vårdgivare?</p>
-                <p class="mb-0 fs-sm fw-bold">Du komma inte att kunna återställa vårdgivaren efter att du har tagit bort den.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-light border" data-bs-dismiss="modal">Avbryt</button>
-                <button type="button" class="btn btn-sm btn-danger">Ta bort vårdgivare</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -117,15 +120,16 @@
                 <hr class="mt-4">
                 <form class="row mt-4">
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Sök</label>
+                        <label class="form-label text-body fw-semibold" for="search_input">Sök</label>
                         <div class="position-relative d-flex justify-content-end align-items-center">
-                            <input type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök vårdgivare...">
+                            <input type="text" name="" id="search_input" class="form-control shadow-sm position-relative pe-5" oninput="searchResults(0)" placeholder="Sök vårdgivare...">
                             <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
                         </div>
                     </div>
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Verksamhetstyp</label>
-                        <select class="form-select shadow-sm">
+                        <label class="form-label text-body fw-semibold" for="branch_type">Verksamhetstyp</label>
+                        <select id="branch_type" onchange="searchResults(0)" class="form-select shadow-sm">
+                            <option value="">Alla</option>
                             <option value="LSS">LSS</option>
                             <option value="HVB-hem">HVB-hem</option>
                             <option value="Stödboende">Stödboende</option>
@@ -136,16 +140,18 @@
                         </select>
                     </div>
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Bedömning</label>
-                        <select class="form-select shadow-sm">
-                            <option value="LSS">Godkända verksamheter</option>
-                            <option value="HVB-hem">Ej godkända verksamheter</option>
-                            <option value="Stödboende">Ej bedömda verksamheter</option>
+                        <label class="form-label text-body fw-semibold" for="grade">Bedömning</label>
+                        <select id="grade" onchange="searchResults(0)" class="form-select shadow-sm">
+                            <option value="">Alla</option>
+                            <option value="Godkänd verksamhet">Godkända verksamheter</option>
+                            <option value="Ej godkänd verksamhet">Ej godkända verksamheter</option>
+                            <option value="Ej bedömd verksamhet">Ej bedömda verksamheter</option>
                         </select>
                     </div>
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Län</label>
-                        <select class="form-select shadow-sm" type="text">
+                        <label class="form-label text-body fw-semibold" for="county">Län</label>
+                        <select id="county" onchange="searchResults(0)" class="form-select shadow-sm" type="text">
+                            <option value="">Alla</option>
                             <option value="Stockholm">Stockholm</option>
                             <option value="Västerbotten">Västerbotten</option>
                             <option value="Norrbotten">Norrbotten</option>
@@ -177,7 +183,7 @@
                 </form>
             </div>
 
-            <table class="table mt-4 mb-4 fs-sm">
+            <table class="table mt-4 mb-4 fs-sm tableSearch">
                 <thead>
                 <tr class="row">
                     <th class="col-5 col-sm-4 col-md-3 col-xxl">Verksamhet</th>
@@ -215,7 +221,7 @@
                         <img th:src="${provider.logoSrc}" style="max-height: 25px;" alt="">
                     </td>
                     <td class="position-relative col-auto ps-0 border-bottom-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeHealthcareProviderModal">
+                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" th:data-providerid="${provider.id}" th:data-providername="${provider.name}" data-bs-target="#removeHealthcareProviderModal">
                             <i class="bx bx-trash"></i>
                         </button>
                     </td>
@@ -266,5 +272,26 @@
 
 <!-- Main Theme Script -->
 <script src="/js/theme.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+    $('#removeHealthcareProviderModal').on('show.bs.modal', function(e) {
+        let id = $(e.relatedTarget).data('providerid');
+        let name = $(e.relatedTarget).data('providername');
+        document.getElementById("providerName").textContent = "Är du säker på att du vill ta bort " + name + "?"
+        document.getElementById("providerId").value = id
+
+    });
+    function searchResults(page){
+        let search_input = document.getElementById("search_input").value
+        let branch_type = document.getElementById("branch_type").value
+        let grade = document.getElementById("grade").value
+        let county = document.getElementById("county").value
+        $.get("/admin/search_vardgivare",
+            {"search_input": search_input, "branch_type": branch_type, "grade": grade, "page": page, "county": county}).done(function (fragment) {
+            $(".tableSearch").replaceWith(fragment); // update snippet of page
+        })
+    }
+</script>
 </body>
 </html>
