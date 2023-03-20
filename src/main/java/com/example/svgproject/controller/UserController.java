@@ -98,7 +98,6 @@ public class UserController {
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
-        System.out.println(providers);
         return "vardgivare :: .tableSearch";
     }
     @GetMapping("/vardgivare/{id}") public String userPageNew(@PathVariable long id){
