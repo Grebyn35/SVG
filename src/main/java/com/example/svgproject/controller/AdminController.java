@@ -70,12 +70,15 @@ public class AdminController {
         }
         if(gradeValues != null){
             for(int i = 0; i<gradeValues.length;i++){
+                System.out.println("ADDING " + gradeValues[i]);
                 gradeList.add(gradeValues[i]);
             }
         }
         else{
+            System.out.println("ADDING " + "[]");
             gradeList.add("[]");
         }
+        provider.setGrade(gradeList.toString());
         provider.setTypeList(typeList.toString());
         provider.setOtherSettings(otherSettingsList.toString());
         if(imgLogo.getSize()>10){
@@ -107,7 +110,7 @@ public class AdminController {
     public void addAdminStartAttributes(Model model){
         Pageable pageable = PageRequest.of(0, 10);
         Page<Provider> providers = providerRepository.findAll(pageable);
-        model.addAttribute("providers", providers);
+        model.addAttribute("providers", providers.getContent());
     }
     @GetMapping("/admin/vardgivare") public String adminVardgivarePage(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 10);
