@@ -102,6 +102,11 @@
                         <label class="form-label d-block" for="name">Namn på vårdgivare *</label>
                         <input class="form-control shadow-sm" th:value="${provider.name}" type="text" name="name" id="name" placeholder="Brinaxi Care" required>
                     </div>
+                    <!-- Organisation Number -->
+                    <div class="mb-4">
+                        <label class="form-label d-block" for="name">Org.nummer *</label>
+                        <input class="form-control shadow-sm" th:value="${provider.orgNumber}" type="text" name="name" id="name" placeholder="" required>
+                    </div>
                     <!-- County -->
                     <div class="mb-4">
                         <label class="form-label text-body fw-semibold" for="county">Län</label>
@@ -134,6 +139,11 @@
                         <label class="form-label d-block" for="email">E-post</label>
                         <input class="form-control shadow-sm" th:value="${provider.email}" type="text" name="email" id="email" placeholder="vårdgivare@domän.se">
                     </div>
+                    <!-- Phone -->
+                    <div class="mb-4">
+                        <label class="form-label d-block" for="phone">Telefon</label>
+                        <input class="form-control shadow-sm" th:value="${provider.phone}" type="tel" name="phone" id="phone" placeholder="">
+                    </div>
                     <!-- Website -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="website">Hemsida</label>
@@ -143,6 +153,22 @@
                     <div class="mb-4">
                         <label class="form-label d-block" for="about">Om vårdgivare</label>
                         <textarea class="form-control shadow-sm" th:text="${provider.about}" type="text" name="about" id="about" rows="8" placeholder="Skriv en beskrivning om vårdgivaren för besökare att läsa..."></textarea>
+                    </div>
+                    <h2 class="h6 mb-4">Placeringskordinator</h2>
+                    <!-- Edit Logo -->
+                    <div class="mb-4 d-flex align-items-end">
+                        <div>
+                            <label class="form-label d-block" for="imgLogo">Ändra bild</label>
+                            <input class="form-control shadow-sm" type="file" name="coordinatorImage" id="coordinatorImage">
+                        </div>
+                        <div class="ms-4">
+                            <img style="max-height: 50px;" th:src="${provider.coordinatorImage}" alt="">
+                        </div>
+                    </div>
+                    <!-- Coordinator Name -->
+                    <div>
+                        <label class="form-label d-block" for="name">Namn på placeringskordinator *</label>
+                        <input class="form-control shadow-sm" th:value="${provider.coordinatorName}" type="text" name="name" id="name" placeholder="" required>
                     </div>
                 </div>
                 <div class="col-4 px-4">
@@ -176,6 +202,36 @@
                         Något att anmärka
                     </h2>
                     <textarea class="form-control shadow-sm" th:text="${provider.remark}" name="remark" id="remark" cols="30" rows="6" placeholder="Lämna tom om det inte finns något att anmärka..."></textarea>
+
+                    <hr class="mb-4">
+
+                    <!-- Operation info -->
+                    <h2 class="h6">
+                        Verksamhetsuppgifter
+                    </h2>
+                    <textarea class="form-control shadow-sm" th:text="${provider.information}" name="information" id="information" cols="30" rows="6" placeholder=""></textarea>
+
+                    <hr class="mb-4">
+
+                    <!-- Orientation -->
+                    <h2 class="h6">
+                        Inriktning
+                    </h2>
+                    <textarea class="form-control shadow-sm" th:text="${provider.orientation}" name="orientation" id="orientation" cols="30" rows="6" placeholder=""></textarea>
+
+                    <hr class="mb-4">
+
+                    <!-- Contribution -->
+                    <h2 class="h6">
+                        Insats/Lagrum
+                    </h2>
+                    <textarea class="form-control shadow-sm" th:text="${provider.contribution}" name="contribution" id="contribution" cols="30" rows="6" placeholder=""></textarea>
+
+                     <!-- Methods -->
+                     <h2 class="h6">
+                        Metoder
+                    </h2>
+                    <textarea class="form-control shadow-sm" th:text="${provider.methods}" name="methods" id="methods" cols="30" rows="6" placeholder=""></textarea>
 
                 </div>
                 <div class="col-3 ps-4">
@@ -268,8 +324,8 @@
                     <hr class="mb-4">
 
                     <button class="btn btn-lg btn-primary shadow-primary" type="submit">
-                        <i class="bx bx-plus me-1 fs-xl"></i>
-                        Redigera vårdgivare
+                        <i class="bx bx-save me-1 fs-xl"></i>
+                        Spara ändringar
                     </button>
                 </div>
             </form>
