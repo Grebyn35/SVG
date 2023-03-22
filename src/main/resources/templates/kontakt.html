@@ -66,48 +66,40 @@
         </div>
     </header>
 
-    <!-- Branches -->
-    <section class="container py-2 py-lg-4 py-xl-5 mb-2 mb-md-3">
-        <div class="row py-5">
-            <!-- Contact links -->
-            <div class="col-xl-6 col-md-5">
-                <div class="h-100 w-100 bg-position-center bg-size-cover" style="background-image: url(/img/hero_background_img.jpg);"></div>
-            </div>
+    <section class="position-relative pt-4 pb-4" style="min-height: 93vh">
+        <!-- Background -->
+        <div class="position-absolute top-0 start-0 h-100 w-50 bg-position-center bg-size-cover d-none d-xl-block" style="background-image: url(/img/hero_background_img.jpg);"></div>
 
-            <!-- Contact form -->
-            <div class="col-xl-6 col-md-7">
-                <div class="card border-light shadow-md-md p-md-3">
-                    <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 rounded-3 d-none d-dark-mode-block"></div>
-                    <div class="card-body p-0 px-lg-4 position-relative zindex-2">
-                        <h2 class="display-6">Skriv till oss</h2>
-                        <p class="fs-5">Vänligen fyll i formuläret nedan med dina uppgifter och ditt meddelande så återkommer vi till dig så snart som möjligt!</p>
-                        <form class="row g-4 needs-validation" novalidate>
-                            <div class="col-12">
-                                <label for="fn" class="form-label fs-base">Namn *</label>
-                                <input type="text" class="form-control shadow-sm" id="fn" required>
-                                <div class="invalid-feedback">Please enter your full name!</div>
-                            </div>
-                            <div class="col-12">
-                                <label for="email" class="form-label fs-base">E-post *</label>
-                                <input type="email" class="form-control shadow-sm" id="email" required>
-                                <div class="invalid-feedback">Please provid a valid email address!</div>
-                            </div>
-                            <div class="col-12">
-                                <label for="email" class="form-label fs-base">Telefon *</label>
-                                <input type="email" class="form-control shadow-sm" id="email" required>
-                                <div class="invalid-feedback">Please provid a valid email address!</div>
-                            </div>
-                            <div class="col-12">
-                                <label for="email" class="form-label fs-base">Meddelande *</label>
-                                <textarea class="form-control shadow-sm" name="" id="" rows="6" required></textarea>
-                                <div class="invalid-feedback">Please provid a valid email address!</div>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto shadow-primary">Make an appointment</button>
-                            </div>
-                        </form>
+        <!-- Sign in form -->
+        <div class="container d-flex flex-wrap justify-content-center justify-content-xl-end pb-4">
+            <div class="w-100 align-self-end pt-1 pt-md-4 pb-lg-4 mt-4" style="max-width: 526px;">
+                <h2 class="display-6">Skriv till oss</h2>
+                <p class="fs-5">Vänligen fyll i formuläret nedan med dina uppgifter och ditt meddelande så återkommer vi till dig så snart som möjligt!</p>
+                <form class="row g-4 needs-validation" novalidate>
+                    <div class="col-12">
+                        <label for="fn" class="form-label fs-base">Namn *</label>
+                        <input type="text" class="form-control shadow-sm" id="fn" required>
+                        <div class="invalid-feedback">Var god skriv in ditt namn.</div>
                     </div>
-                </div>
+                    <div class="col-12">
+                        <label for="email" class="form-label fs-base">E-post *</label>
+                        <input type="email" class="form-control shadow-sm" id="email" required>
+                        <div class="invalid-feedback">Var god skriv in en giltig e-postadress.</div>
+                    </div>
+                    <div class="col-12">
+                        <label for="email" class="form-label fs-base">Telefon *</label>
+                        <input type="email" class="form-control shadow-sm" id="email" required>
+                        <div class="invalid-feedback">Var god skriv ditt telefonnummer.</div>
+                    </div>
+                    <div class="col-12">
+                        <label for="email" class="form-label fs-base">Meddelande *</label>
+                        <textarea class="form-control shadow-sm" name="" id="" rows="6" required></textarea>
+                        <div class="invalid-feedback">Var god skriv ditt meddelande till oss.</div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto shadow-primary">Skicka meddelande</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
