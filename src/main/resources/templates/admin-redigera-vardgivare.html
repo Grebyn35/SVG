@@ -226,9 +226,11 @@
                         Insats/Lagrum
                     </h2>
                     <textarea class="form-control shadow-sm" th:text="${provider.contribution}" name="contribution" id="contribution" cols="30" rows="6" placeholder=""></textarea>
+                    
+                    <hr class="mb-4">
 
-                     <!-- Methods -->
-                     <h2 class="h6">
+                    <!-- Methods -->
+                    <h2 class="h6">
                         Metoder
                     </h2>
                     <textarea class="form-control shadow-sm" th:text="${provider.methods}" name="methods" id="methods" cols="30" rows="6" placeholder=""></textarea>
@@ -302,21 +304,21 @@
                     <h2 class="h6 mb-4">Bedömning</h2>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.grade, 'Godkänd verksamhet')} ? 'checked'" name="grade[]" value="Godkänd verksamhet" type="checkbox" id="approved-checkbox">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.grade, 'Godkänd verksamhet')} ? 'checked'" name="grade[]" value="Godkänd verksamhet" type="radio" id="approved-checkbox">
                             <label class="form-label" for="approved-checkbox">Godkänd verksamhet</label>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.grade, 'Ej godkänd verksamhet')} ? 'checked'" name="grade[]" value="Ej godkänd verksamhet" type="checkbox" id="not-approved-checkbox">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.grade, 'Ej godkänd verksamhet')} ? 'checked'" name="grade[]" value="Ej godkänd verksamhet" type="radio" id="not-approved-checkbox">
                             <label class="form-label" for="not-approved-checkbox">Ej godkänd verksamhet</label>
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.grade, 'Ej bedömd verksamhet')} ? 'checked'" name="grade[]" value="Ej bedömd verksamhet" type="checkbox" id="not-determined-checkbox">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.grade, 'Ej bedömd verksamhet')} ? 'checked'" name="grade[]" value="Ej bedömd verksamhet" type="radio" id="not-determined-checkbox">
                             <label class="form-label" for="not-determined-checkbox">Ej bedömd verksamhet</label>
                         </div>
                     </div>
