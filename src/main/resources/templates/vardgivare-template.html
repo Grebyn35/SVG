@@ -141,7 +141,7 @@
                 </div>
 
                 <!-- About -->
-                <div class="mt-4 card bg-faded-success p-4 shadow">
+                <div th:if="${provider.grade == 'Godkänd verksamhet'}" class="mt-4 card bg-faded-success p-4 shadow">
                     <div class="d-flex flex-column flex-sm-row align-items-start gap-3">
                         <div class="bg-success rounded-circle shadow-success d-flex justify-content-center align-items-center mb-4" style="min-height: 60px; min-width: 60px;">
                             <i class="bx bxs-like text-white" style="font-size: 35px;"></i>
@@ -153,7 +153,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-4 card bg-faded-warning p-4 shadow">
+                <div th:if="${provider.grade == 'Ej godkänd verksamhet'}" class="mt-4 card bg-faded-warning p-4 shadow">
                     <div class="d-flex flex-column flex-sm-row align-items-start gap-3">
                         <div class="bg-warning rounded-circle shadow-warning d-flex justify-content-center align-items-center mb-4" style="min-height: 60px; min-width: 60px;">
                             <i class="bx bxs-error text-white" style="font-size: 35px;"></i>
@@ -165,7 +165,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-4 card bg-faded-danger p-4 shadow">
+                <div th:if="${provider.grade == 'Ej bedömd verksamhet'}" class="mt-4 card bg-faded-danger p-4 shadow">
                     <div class="d-flex flex-column flex-sm-row align-items-start gap-3">
                         <div class="bg-danger rounded-circle shadow-danger d-flex justify-content-center align-items-center mb-4" style="min-height: 60px; min-width: 60px;">
                             <i class="bx bxs-error-alt text-white" style="font-size: 35px;"></i>
@@ -186,21 +186,21 @@
                     <h3 class="h4 mb-4">Sökkriterier</h3>
                     <div>
                         <h4 class="h6">Verksamhetsuppgifter</h4>
-                        <div>
+                        <div th:text="${provider.information}">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!
                         </div>
                     </div>
                     <hr class="my-4">
                     <div>
                         <h4 class="h6">Inriktning</h4>
-                        <div>
+                        <div th:text="${provider.orientation}">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!
                         </div>
                     </div>
                     <hr class="my-4">
                     <div>
                         <h4 class="h6">Insats/Lagrum</h4>
-                        <div>
+                        <div th:text="${provider.contribution}">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!
                         </div>
                     </div>
@@ -208,36 +208,33 @@
                     <div>
                         <h4 class="h6">Metoder</h4>
                         <div class="d-flex gap-3">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!</p>
+                            <p th:text="${provider.methods}">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- About (Free version) -->
                 <div class="mt-4 card p-4 shadow" style="height: 300px;">
-                    <p class="text-muted">Verksamhetsbeskrivning saknas...</p>
-                </div>
-                <div class="mt-4 card p-4 shadow" style="height: 300px;">
-                    <p class="text-muted">Verksamhetskriterier saknas...</p>
+                    <p class="text-muted" th:text="${provider.information}">Verksamhetsbeskrivning saknas...</p>
                 </div>
             </div>
             <div class="col-lg-4 order-first order-lg-last mb-4 mb-lg-0">
                 <div class="card overflow-hidden shadow mb-4">
                     <div class="p-5 bg-faded-primary align-items-center">
-                        <img class=" img-fluid" src="/img/logo-placeholder.png" alt="">
+                        <img class=" img-fluid" th:src="${provider.logoSrc}" alt="">
                     </div>
                     <div class="card-body">
-                        <h1 class="h6 mb-0">Brinaxi Care AB</h1>
-                        <span class="text-dark">Org.nr: xxx xxx xxx</span>
+                        <h1 th:text="${provider.name}" class="h6 mb-0">Brinaxi Care AB</h1>
+                        <span class="text-dark" th:text="'Org.nr: ' + ${provider.orgNr}">Org.nr: xxx xxx xxx</span>
                         <div class="d-flex gap-1 fs-sm mt-3">
                             Tillståndspliktig verksamhet:
                             <!-- Permit: Yes -->
-                            <div class="d-flex align-items-center">
+                            <div th:if="${provider.grade == '[Godkänd verksamhet]'}" class="d-flex align-items-center">
                                 <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
                                 <span class="text-success fw-bold">JA</span>
                             </div>
                             <!-- Permit: No -->
-                            <div class="d-flex align-items-center">
+                            <div th:if="${provider.grade != '[Godkänd verksamhet]'}" class="d-flex align-items-center">
                                 <i class="bx bxs-x-circle fs-lg text-danger me-1"></i>
                                 <span class="text-danger fw-bold">NEJ</span>
                             </div>
@@ -249,25 +246,24 @@
                     <div class="card-body">
                         <h1 class="h6">Placeringsfrågan</h1>
                         <div class="d-flex align-items-center mb-4">
-                            <img class="rounded-circle border shadow-sm" style="object-fit: cover; width: 50px; height: 50px;" src="/img/placeholder_image.jpg" alt="">
+                            <img class="rounded-circle border shadow-sm" style="object-fit: cover; width: 50px; height: 50px;" th:src="${provider.coordinatorImage}" alt="">
                             <div class="ms-3 d-flex flex-column">
-                                <span class="fw-bold">Namn Namnsson</span>
+                                <span th:text="${provider.coordinatorName}" class="fw-bold">Namn Namnsson</span>
                                 <span class="fs-sm">Placeringskordinator</span>
                             </div>
                         </div>
-                        <p class="text-muted">Verksamhetsansvarig saknas</p>
                         <a class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" href="">
                             <i class="bx bx-phone fs-lg"></i>
-                            <span>070- 123 45 67</span>
+                            <span th:text="${provider.tel}">070- 123 45 67</span>
                         </a>
                         <a class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" href="">
                             <i class="bx bx-envelope fs-lg"></i>
-                            <span>namn@domän.se</span>
+                            <span th:text="${provider.email}">namn@domän.se</span>
                         </a>
                         <hr class="mb-3">
 
-                        <a class="text-decoration-none fw-bold text-info d-flex align-items-center gap-1" href="">
-                            Alla kontaktuppgifter
+                        <a class="text-decoration-none fw-bold text-info d-flex align-items-center gap-1" th:target="_blank" th:href="${provider.website}">
+                            Besök hemsida
                             <i class="bx bx-right-arrow-alt fs-lg"></i>
                         </a>
                     </div>
@@ -330,14 +326,6 @@
                         </div>
                     </div>
                 </div>
-                <a class="link-info fw-bold text-decoration-none d-flex align-items-center gap-1 mt-4" target="_blank" href="https://brinaxi.se/">
-                    <i class="bx bx-globe fs-xl"></i>
-                    <span>Besök hemsida</span>
-                </a>
-                <a class="link-info fw-bold text-decoration-none d-flex align-items-center gap-1 mt-3" href="mailto:">
-                    <i class="bx bx-mail-send fs-xl"></i>
-                    <span>Kontakta verksamheten</span>
-                </a>
             </div>
         </div>
 

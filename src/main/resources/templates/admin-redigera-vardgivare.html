@@ -104,8 +104,8 @@
                     </div>
                     <!-- Organisation Number -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="name">Org.nummer *</label>
-                        <input class="form-control shadow-sm" th:value="${provider.orgNumber}" type="text" name="name" id="name" placeholder="" required>
+                        <label class="form-label d-block" for="orgNr">Org.nummer *</label>
+                        <input class="form-control shadow-sm" th:value="${provider.orgNr}" type="text" name="orgNr" id="orgNr" placeholder="" required>
                     </div>
                     <!-- County -->
                     <div class="mb-4">
@@ -142,7 +142,7 @@
                     <!-- Phone -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="phone">Telefon</label>
-                        <input class="form-control shadow-sm" th:value="${provider.phone}" type="tel" name="phone" id="phone" placeholder="">
+                        <input class="form-control shadow-sm" th:value="${provider.tel}" type="tel" name="tel" id="phone" placeholder="">
                     </div>
                     <!-- Website -->
                     <div class="mb-4">
@@ -158,7 +158,7 @@
                     <!-- Edit Logo -->
                     <div class="mb-4 d-flex align-items-end">
                         <div>
-                            <label class="form-label d-block" for="imgLogo">Ändra bild</label>
+                            <label class="form-label d-block" for="coordinatorImage">Ändra bild</label>
                             <input class="form-control shadow-sm" type="file" name="coordinatorImage" id="coordinatorImage">
                         </div>
                         <div class="ms-4">
@@ -167,8 +167,8 @@
                     </div>
                     <!-- Coordinator Name -->
                     <div>
-                        <label class="form-label d-block" for="name">Namn på placeringskordinator *</label>
-                        <input class="form-control shadow-sm" th:value="${provider.coordinatorName}" type="text" name="name" id="name" placeholder="" required>
+                        <label class="form-label d-block" for="coordinatorName">Namn på placeringskordinator *</label>
+                        <input class="form-control shadow-sm" th:value="${provider.coordinatorName}" type="text" name="coordinatorName" id="coordinatorName" placeholder="" required>
                     </div>
                 </div>
                 <div class="col-4 px-4">

@@ -15,6 +15,14 @@ public class Provider implements Serializable {
 
     private String name;
     private String county;
+    private String orgNr;
+    private String tel;
+    private String coordinatorImage;
+    private String coordinatorName;
+    private String information;
+    private String orientation;
+    private String contribution;
+    private String methods;
     private String email;
     private String website;
     private String grade;

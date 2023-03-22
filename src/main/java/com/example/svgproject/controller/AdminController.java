@@ -45,7 +45,8 @@ public class AdminController {
         model.addAttribute("providerObject", new Provider());
         return "admin-ny-vardgivare";
     }
-    @RequestMapping(value=("/admin/ny-vardgivare"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewUserPost(Model model, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo, @RequestParam("logoQualityTale") MultipartFile logoQualityTale, @RequestParam("imgBrochure") MultipartFile imgBrochure, @RequestParam("imgExtraInfo") MultipartFile imgExtraInfo, @Valid @ModelAttribute("providerObject") Provider provider) throws IOException {
+    @RequestMapping(value=("/admin/ny-vardgivare"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewUserPost(Model model, HttpServletRequest request, @RequestParam("coordinatorImage") MultipartFile coordinatorImage, @RequestParam("imgLogo") MultipartFile imgLogo, @RequestParam("logoQualityTale") MultipartFile logoQualityTale, @RequestParam("imgBrochure") MultipartFile imgBrochure, @RequestParam("imgExtraInfo") MultipartFile imgExtraInfo) throws IOException {
+        Provider provider = new Provider();
         ArrayList<String> typeList = new ArrayList<>();
         ArrayList<String> otherSettingsList = new ArrayList<>();
         ArrayList<String> gradeList = new ArrayList<>();
@@ -70,20 +71,40 @@ public class AdminController {
         }
         if(gradeValues != null){
             for(int i = 0; i<gradeValues.length;i++){
-                System.out.println("ADDING " + gradeValues[i]);
                 gradeList.add(gradeValues[i]);
             }
         }
         else{
-            System.out.println("ADDING " + "[]");
             gradeList.add("[]");
         }
         provider.setGrade(gradeList.toString());
         provider.setTypeList(typeList.toString());
         provider.setOtherSettings(otherSettingsList.toString());
+        provider.setName(request.getParameter("name"));
+
+        provider.setName(request.getParameter("name"));
+        provider.setOrgNr(request.getParameter("orgNr"));
+        provider.setCounty(request.getParameter("county"));
+        provider.setEmail(request.getParameter("email"));
+        provider.setTel(request.getParameter("tel"));
+        provider.setWebsite(request.getParameter("website"));
+
+        provider.setAbout(request.getParameter("about"));
+        provider.setCoordinatorName(request.getParameter("coordinatorName"));
+        provider.setRemark(request.getParameter("remark"));
+        provider.setInformation(request.getParameter("information"));
+        provider.setOrientation(request.getParameter("orientation"));
+
+        provider.setContribution(request.getParameter("contribution"));
+        provider.setMethods(request.getParameter("methods"));
+        provider.setOrientation(request.getParameter("orientation"));
         if(imgLogo.getSize()>10){
             String logoSrc = uploadFileToServer(imgLogo);
             provider.setLogoSrc(logoSrc);
+        }
+        if(coordinatorImage.getSize()>10){
+            String coordinatorImageSrc = uploadFileToServer(coordinatorImage);
+            provider.setCoordinatorImage(coordinatorImageSrc);
         }
         if(logoQualityTale.getSize()>10){
             String qualityTaleSrc = uploadFileToServer(logoQualityTale);
@@ -132,7 +153,7 @@ public class AdminController {
         model.addAttribute("provider", provider);
         return "admin-redigera-vardgivare";
     }
-    @RequestMapping(value=("/admin/redigera-vardgivare/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editProviderPost(@PathVariable long id, Model model, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo, @RequestParam("logoQualityTale") MultipartFile logoQualityTale, @RequestParam("imgBrochure") MultipartFile imgBrochure, @RequestParam("imgExtraInfo") MultipartFile imgExtraInfo) throws IOException {
+    @RequestMapping(value=("/admin/redigera-vardgivare/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editProviderPost(@PathVariable long id, Model model, @RequestParam("coordinatorImage") MultipartFile coordinatorImage, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo, @RequestParam("logoQualityTale") MultipartFile logoQualityTale, @RequestParam("imgBrochure") MultipartFile imgBrochure, @RequestParam("imgExtraInfo") MultipartFile imgExtraInfo) throws IOException {
         Provider provider = providerRepository.findById(id);
         ArrayList<String> typeList = new ArrayList<>();
         ArrayList<String> otherSettingsList = new ArrayList<>();
@@ -168,14 +189,30 @@ public class AdminController {
         provider.setTypeList(typeList.toString());
         provider.setOtherSettings(otherSettingsList.toString());
         provider.setName(request.getParameter("name"));
+
+        provider.setName(request.getParameter("name"));
+        provider.setOrgNr(request.getParameter("orgNr"));
         provider.setCounty(request.getParameter("county"));
         provider.setEmail(request.getParameter("email"));
+        provider.setTel(request.getParameter("tel"));
         provider.setWebsite(request.getParameter("website"));
+
         provider.setAbout(request.getParameter("about"));
+        provider.setCoordinatorName(request.getParameter("coordinatorName"));
         provider.setRemark(request.getParameter("remark"));
+        provider.setInformation(request.getParameter("information"));
+        provider.setOrientation(request.getParameter("orientation"));
+
+        provider.setContribution(request.getParameter("contribution"));
+        provider.setMethods(request.getParameter("methods"));
+        provider.setOrientation(request.getParameter("orientation"));
         if(imgLogo.getSize()>10){
             String logoSrc = uploadFileToServer(imgLogo);
             provider.setLogoSrc(logoSrc);
+        }
+        if(coordinatorImage.getSize()>10){
+            String coordinatorImageSrc = uploadFileToServer(coordinatorImage);
+            provider.setCoordinatorImage(coordinatorImageSrc);
         }
         if(logoQualityTale.getSize()>10){
             String qualityTaleSrc = uploadFileToServer(logoQualityTale);

@@ -101,7 +101,9 @@ public class UserController {
         model.addAttribute("page", page);
         return "vardgivare :: .tableSearch";
     }
-    @GetMapping("/vardgivare/{id}") public String userPageNew(@PathVariable long id){
+    @GetMapping("/vardgivare/{id}") public String userPageNew(@PathVariable long id, Model model){
+        Provider provider = providerRepository.findById(id);
+        model.addAttribute("provider", provider);
         return "vardgivare-template";
     }
 

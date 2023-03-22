@@ -83,7 +83,7 @@
             </nav>
 
             <h1 class="h1 mb-5">Ny vårdgivare</h1>
-            <form class="row" th:action="@{'/admin/ny-vardgivare'}" th:object="${providerObject}" method="post" enctype="multipart/form-data">
+            <form class="row" th:action="@{'/admin/ny-vardgivare'}" method="post" enctype="multipart/form-data">
                 <div class="col-5 pe-4">
                     <h2 class="h6 mb-4">Information & uppgifter</h2>
                     <!-- Edit Logo -->
@@ -103,8 +103,8 @@
                     </div>
                     <!-- Organisation Number -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="name">Org.nummer *</label>
-                        <input class="form-control shadow-sm" type="text" name="name" id="name" placeholder="" required>
+                        <label class="form-label d-block" for="orgNr">Org.nummer *</label>
+                        <input class="form-control shadow-sm" type="text" name="orgNr" id="orgNr" placeholder="" required>
                     </div>
                     <!-- County -->
                     <div class="mb-4">
@@ -140,8 +140,8 @@
                     </div>
                     <!-- Phone -->
                     <div class="mb-4">
-                        <label class="form-label d-block" for="phone">Telefon</label>
-                        <input class="form-control shadow-sm" type="tel" name="phone" id="phone" placeholder="">
+                        <label class="form-label d-block" for="tel">Telefon</label>
+                        <input class="form-control shadow-sm" type="text" name="tel" id="tel" placeholder="">
                     </div>
                     <!-- Website -->
                     <div class="mb-4">
@@ -157,7 +157,7 @@
                     <!-- Edit Logo -->
                     <div class="mb-4 d-flex align-items-end">
                         <div>
-                            <label class="form-label d-block" for="imgLogo">Ändra bild</label>
+                            <label class="form-label d-block" for="coordinatorImage">Ändra bild</label>
                             <input class="form-control shadow-sm" type="file" name="coordinatorImage" id="coordinatorImage">
                         </div>
                         <div class="ms-4">
@@ -166,8 +166,8 @@
                     </div>
                     <!-- Coordinator Name -->
                     <div>
-                        <label class="form-label d-block" for="name">Namn på placeringskordinator *</label>
-                        <input class="form-control shadow-sm" type="text" name="name" id="name" placeholder="" required>
+                        <label class="form-label d-block" for="coordinatorName">Namn på placeringskordinator *</label>
+                        <input class="form-control shadow-sm" type="text" name="coordinatorName" id="coordinatorName" placeholder="" required>
                     </div>
                 </div>
                 <div class="col-4 px-4">
