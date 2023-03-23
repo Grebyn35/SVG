@@ -53,6 +53,8 @@ public class UserController {
     @Autowired
     private JavaMailSender mailSender;
 
+    static String recipentEmail = "elliot@ensotech.io";
+
     @GetMapping("/") public String home(Model model){
         Pageable pageable = PageRequest.of(0, 10);
         Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContaining("", pageable);
@@ -69,7 +71,7 @@ public class UserController {
         String email = request.getParameter("email");
         String tel = request.getParameter("tel");
         String content = request.getParameter("content");
-        sendEmail(content, email, name, tel);
+        sendContactFormEmail(content, email, name, tel);
         sendConfirmationEmail(email, name);
         redirectAttributes.addFlashAttribute("notificationMsg", "contact");
         return "redirect:/";
@@ -80,6 +82,7 @@ public class UserController {
         newsLetter.setEmail(email);
         newsLetter.setRegistered(returnDateWithTime());
         newsLetterRepository.save(newsLetter);
+        sendNewsLetterEmail(email);
         redirectAttributes.addFlashAttribute("notificationMsg", "newsLetter");
         return "redirect:/";
     }
@@ -110,7 +113,7 @@ public class UserController {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
             helper.setFrom(listEmail, listContactName);
-            helper.setTo("elliot@ensotech.io");
+            helper.setTo(recipentEmail);
             helper.setSubject("Ett företag har skickat in en ny anmälan");
             helper.setText("Ett företag har fyllt i formuläret för att lista sig hos er. Nedan finner ni samtlig information från deras anmälan"
                     +"<br>företagsnamn: " + cmpName
@@ -135,14 +138,27 @@ public class UserController {
             e.printStackTrace();
         }
     }
-    public void sendEmail(String text, String from, String name, String tel){
+    public void sendContactFormEmail(String text, String from, String name, String tel){
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
             helper.setFrom(from, name);
-            helper.setTo("elliot@ensotech.io");
+            helper.setTo(recipentEmail);
             helper.setSubject("Nytt kontaktformulär inskickat");
             helper.setText(text + "<br>kundens telefonummer: " + tel, true);
+            mailSender.send(message);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void sendNewsLetterEmail(String from){
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            helper.setFrom("noreply@sverigesvard.se", "Sveriges Vårdgivare");
+            helper.setTo(from);
+            helper.setSubject("Nytt kontaktformulär inskickat");
+            helper.setText("Tack för att du har prenumererat på våra nyhetsbrev!", true);
             mailSender.send(message);
         }catch (Exception e){
             e.printStackTrace();
