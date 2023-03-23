@@ -72,7 +72,7 @@ public class UserController {
         String tel = request.getParameter("tel");
         String content = request.getParameter("content");
         sendContactFormEmail(content, email, name, tel);
-        sendConfirmationEmail(email, name);
+        sendContactFormConfirmationEmail(email, name);
         redirectAttributes.addFlashAttribute("notificationMsg", "contact");
         return "redirect:/";
     }
@@ -83,6 +83,7 @@ public class UserController {
         newsLetter.setRegistered(returnDateWithTime());
         newsLetterRepository.save(newsLetter);
         sendNewsLetterEmail(email);
+        sendNewsLetterEmailToAdmin(email);
         redirectAttributes.addFlashAttribute("notificationMsg", "newsLetter");
         return "redirect:/";
     }
@@ -164,7 +165,20 @@ public class UserController {
             e.printStackTrace();
         }
     }
-    public void sendConfirmationEmail(String from, String name){
+    public void sendNewsLetterEmailToAdmin(String from){
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            helper.setFrom(from, from);
+            helper.setTo(recipentEmail);
+            helper.setSubject("En person har prenumererat på erat nyhetsbrev");
+            helper.setText(from + " har precis prenumererat på erat nyhetsbrev!", true);
+            mailSender.send(message);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void sendContactFormConfirmationEmail(String from, String name){
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
