@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends CrudRepository<Post,Long> {
 
-    Provider findById(long id);
-    Page<Provider> findAll(Pageable pageable);
+    Post findById(long id);
+    Page<Post> findAll(Pageable pageable);
 }

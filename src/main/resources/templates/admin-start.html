@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/annonser" class="nav-link">
+                        <a href="/admin/annonser?page=0" class="nav-link">
                             <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
                             Annonser
                         </a>
@@ -146,13 +146,13 @@
                 <div class="col-xl-6 col-xxl-4">
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-faded-info w-100 mx-0 px-4 d-flex justify-content-between align-items-center">
-                            <a href="/admin/annonser" class="link-dark text-decoration-none fs-4">
-                                <strong class="text-info">12</strong>
+                            <a href="/admin/annonser?page=0" class="link-dark text-decoration-none fs-4">
+                                <strong class="text-info" th:text="${posts.size}">12</strong>
                                 aktiva annonser
                             </a>
                             <a href="/admin/ny-annons" class="btn btn-primary btn-sm">
                                 <i class="bx bx-plus fs-base me-1"></i>
-                                Nya annonser
+                                Ny annons
                             </a>
                         </div>
                         <div class="card-body pt-2" style="max-height: 250px; overflow-y: scroll;">
@@ -164,15 +164,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="row position-relative">
+                                <tr class="row position-relative" th:each="post : ${posts}">
                                     <td class="col-8">
-                                        <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
-                                    <td class="col-4">Brinaxi Care AB</td>
-                                </tr>
-                                <tr class="row position-relative">
-                                    <td class="col-8">
-                                        <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
-                                    <td class="col-4">Brinaxi Care AB</td>
+                                        <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${post.id}" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
+                                    <td class="col-4" th:text="${post.name}">Brinaxi Care AB</td>
                                 </tr>
                                 </tbody>
                             </table>

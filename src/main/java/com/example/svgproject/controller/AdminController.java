@@ -5,6 +5,7 @@ import com.example.svgproject.model.Post;
 import com.example.svgproject.model.Provider;
 import com.example.svgproject.model.User;
 import com.example.svgproject.repository.NyhetRepository;
+import com.example.svgproject.repository.PostRepository;
 import com.example.svgproject.repository.ProviderRepository;
 import com.example.svgproject.repository.UserRepository;
 import com.example.svgproject.security.CustomUserDetails;
@@ -45,7 +46,15 @@ public class AdminController {
     @Autowired
     NyhetRepository nyhetRepository;
 
-    @GetMapping("/admin/annonser") public String adminPosts(){
+    @Autowired
+    PostRepository postRepository;
+
+    @GetMapping("/admin/annonser") public String adminPosts(Model model, @RequestParam("page") int page){
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<Post> posts = postRepository.findAll(pageable);
+        model.addAttribute("posts", posts.getContent());
+        model.addAttribute("totalHits", posts.getTotalPages());
+        model.addAttribute("page", page);
         return "admin-annonser";
     }
     @GetMapping("/admin/ny-annons") public String adminNewPost(){
@@ -152,7 +161,6 @@ public class AdminController {
         String[] status = request.getParameterValues("status[]");
         post.setLink(request.getParameter("link"));
         post.setContent(request.getParameter("content"));
-        post.setContent(request.getParameter("content"));
         post.setPublished(returnDateWithTime());
         post.setName(request.getParameter("name"));
         post.setEmail(request.getParameter("email"));
@@ -161,9 +169,23 @@ public class AdminController {
             String coverImgSrc = uploadFileToServer(imgLogo);
             post.setCoverImgSrc(coverImgSrc);
         }
-        System.out.println(post);
-        //nyhetRepository.save(nyhet);
+        postRepository.save(post);
         return "redirect:/admin/start";
+    }
+    @RequestMapping(value=("/admin/redigera-annons/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminEditPost(Model model, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo, @PathVariable long id) throws IOException {
+        Post post = postRepository.findById(id);
+        String[] status = request.getParameterValues("status[]");
+        post.setLink(request.getParameter("link"));
+        post.setContent(request.getParameter("content"));
+        post.setName(request.getParameter("name"));
+        post.setEmail(request.getParameter("email"));
+        post.setStatus(Boolean.parseBoolean(status[0]));
+        if(imgLogo.getSize()>10){
+            String coverImgSrc = uploadFileToServer(imgLogo);
+            post.setCoverImgSrc(coverImgSrc);
+        }
+        postRepository.save(post);
+        return "redirect:/admin/annonser?page=0";
     }
     @RequestMapping(value=("/admin/redigera-nyhet/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewNews(Model model, HttpServletRequest request, @RequestParam("coverImg") MultipartFile coverImg, @PathVariable long id) throws IOException {
         Nyhet nyhet = nyhetRepository.findById(id);
@@ -199,8 +221,10 @@ public class AdminController {
         Pageable pageable = PageRequest.of(0, 10);
         Page<Provider> providers = providerRepository.findAll(pageable);
         Page<Nyhet> nyheter = nyhetRepository.findAll(pageable);
+        Page<Post> posts = postRepository.findAll(pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("posts", posts.getContent());
         model.addAttribute("user", returnCurrentUser());
     }
     public User returnCurrentUser(){
@@ -218,7 +242,9 @@ public class AdminController {
         return "admin-vardgivare";
     }
 
-    @GetMapping("/admin/redigera-annons/{id}") public String adminEditPost(@PathVariable long id){
+    @GetMapping("/admin/redigera-annons/{id}") public String adminEditPost(@PathVariable long id, Model model){
+        Post post = postRepository.findById(id);
+        model.addAttribute("post", post);
         return "admin-redigera-annons";
     }
     @GetMapping("/admin/redigera-nyhet/{id}") public String adminEditNews(@PathVariable long id, Model model){
@@ -338,6 +364,13 @@ public class AdminController {
         Nyhet nyhet = nyhetRepository.findById(id);
         nyhetRepository.delete(nyhet);
         return "redirect:/admin/nyheter?page=0";
+    }
+    @PostMapping("/admin/delete-post")
+    public String deletePost(Model model, HttpServletRequest request){
+        long id = Long.parseLong(request.getParameter("id"));
+        Post post = postRepository.findById(id);
+        postRepository.delete(post);
+        return "redirect:/admin/annonser?page=0";
     }
     public String uploadFileToServer(MultipartFile uploadedFile) throws IOException {
         Client client = new Client("eca459e5791d32ddb0f4", "78c7be5af84b70995435");
