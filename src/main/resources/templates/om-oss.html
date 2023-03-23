@@ -353,7 +353,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7 col-lg-5 mb-3">
-                    <form>
+                    <form th:action="@{/nyhetsbrev}" method="post">
                         <div class="d-flex gap-3">
                             <img src="/img/logo.png" style="max-width: 70px; height: 70px;" alt="">
                             <h5 style="max-width: 280px;" class="h4">Branschnyheter och granskningar från SVG</h5>
@@ -361,8 +361,8 @@
                         <p class="mb-4" style="max-width: 500px;">Håll dig uppdaterad om vår verksamhet! Vårt digitala nyhetsbrev skickas ca en gång per månad.</p>
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                             <label for="newsletter1" class="visually-hidden">E-post</label>
-                            <input id="newsletter1" type="text" class="form-control shadow-sm" placeholder="Din e-post...">
-                            <button class="btn btn-primary shadow-sm" type="button">Prenumera</button>
+                            <input id="newsletter1" type="text" name="email" class="form-control shadow-sm" placeholder="Din e-post...">
+                            <button class="btn btn-primary shadow-sm" type="submit">Prenumera</button>
                         </div>
                     </form>
                 </div>

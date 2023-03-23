@@ -115,19 +115,20 @@
     <!-- Search Healthcare Provider -->
     <div class="container pb-5  mb-lg-4">
         <div class="card border-0 p-4 shadow-sm" style="margin-top: -50px; background-color: #eaf6f6;">
-            <form class="my-2" action="">
+            <form class="my-2" th:action="@{/vardgivare_search}" method="post">
                 <h2 class="h3 mb-4 ">Sök vårdgivare</h2>
                 <div class="row">
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Sök</label>
+                        <label class="form-label text-body fw-semibold" for="search_input">Sök</label>
                         <div class="position-relative d-flex justify-content-end align-items-center">
-                            <input type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök vårdgivare...">
+                            <input type="text" name="search_input" id="search_input" class="form-control shadow-sm position-relative pe-5" placeholder="Sök vårdgivare...">
                             <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
                         </div>
                     </div>
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Verksamhetstyp</label>
-                        <select class="form-select shadow-sm">
+                        <label class="form-label text-body fw-semibold" for="branchType">Verksamhetstyp</label>
+                        <select class="form-select shadow-sm" id="branchType" name="branchType">
+                            <option value="">Alla</option>
                             <option value="LSS">LSS</option>
                             <option value="HVB-hem">HVB-hem</option>
                             <option value="Stödboende">Stödboende</option>
@@ -138,16 +139,18 @@
                         </select>
                     </div>
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Bedömning</label>
-                        <select class="form-select shadow-sm">
-                            <option value="LSS">Godkända verksamheter</option>
-                            <option value="HVB-hem">Ej godkända verksamheter</option>
-                            <option value="Stödboende">Ej bedömda verksamheter</option>
+                        <label class="form-label text-body fw-semibold" for="grade">Bedömning</label>
+                        <select class="form-select shadow-sm" id="grade" name="grade">
+                            <option value="">Alla</option>
+                            <option value="Godkänd verksamhet">Godkänd verksamhet</option>
+                            <option value="Ej godkänd verksamhet">Ej godkända verksamheter</option>
+                            <option value="Ej bedömd verksamhet">Ej bedömda verksamheter</option>
                         </select>
                     </div>
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Län</label>
-                        <select class="form-select shadow-sm" type="text">
+                        <label class="form-label text-body fw-semibold" for="county">Län</label>
+                        <select class="form-select shadow-sm" type="text" id="county" name="county">
+                            <option value="">Alla</option>
                             <option value="Stockholm">Stockholm</option>
                             <option value="Västerbotten">Västerbotten</option>
                             <option value="Norrbotten">Norrbotten</option>
@@ -172,9 +175,9 @@
                         </select>
                     </div>
                     <div class="col-md-auto d-md-flex align-items-md-end">
-                        <a href="/vardgivare?page=0" class="d-flex btn btn-primary shadow-primary p-0 w-100 w-md-auto" style="min-width: 44.4px !important; height: 44.4px;">
+                        <button type="submit" class="d-flex btn btn-primary shadow-primary p-0 w-100 w-md-auto" style="min-width: 44.4px !important; height: 44.4px;">
                             <i class="fw-bold bx bx-search-alt fs-2 ms-1"></i>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -344,7 +347,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7 col-lg-5 mb-3">
-                    <form>
+                    <form th:action="@{/nyhetsbrev}" method="post">
                         <div class="d-flex gap-3">
                             <img src="/img/logo.png" style="max-width: 70px; height: 70px;" alt="">
                             <h5 style="max-width: 280px;" class="h4">Branschnyheter och granskningar från SVG</h5>
@@ -352,8 +355,8 @@
                         <p class="mb-4" style="max-width: 500px;">Håll dig uppdaterad om vår verksamhet! Vårt digitala nyhetsbrev skickas ca en gång per månad.</p>
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                             <label for="newsletter1" class="visually-hidden">E-post</label>
-                            <input id="newsletter1" type="text" class="form-control shadow-sm" placeholder="Din e-post...">
-                            <button class="btn btn-primary shadow-sm" type="button">Prenumera</button>
+                            <input id="newsletter1" type="text" name="email" class="form-control shadow-sm" placeholder="Din e-post...">
+                            <button class="btn btn-primary shadow-sm" type="submit">Prenumera</button>
                         </div>
                     </form>
                 </div>
@@ -401,6 +404,18 @@
 <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
 <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+<script th:if="${notificationMsg=='contact'}">
+    alert("Formulär skickat!")
+</script>
+<script th:if="${notificationMsg=='listing'}">
+    alert("List begäran skickad!")
+</script>
+<script th:if="${notificationMsg=='newsLetter'}">
+    alert("Tack för att du har prenumererat på vårt nyhetsbrev!")
+</script>
+<script th:if="${notificationMsg=='newsLetterRemoved'}">
+    alert("Du har nu blivit borttagen från vårt nyhetsbrev.")
+</script>
 
 <!-- Main Theme Script -->
 <script src="/js/theme.min.js"></script>

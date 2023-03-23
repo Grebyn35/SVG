@@ -86,57 +86,57 @@
           <div class="col-md mb-4 mb-md-0">
             <label class="form-label text-body fw-semibold" for="search_input">Sök</label>
             <div class="position-relative d-flex justify-content-end align-items-center">
-              <input type="text" name="" oninput="searchResults(0)" id="search_input" class="form-control shadow-sm position-relative pe-5" placeholder="Sök vårdgivare...">
+              <input type="text" name="" th:value="${searchInput}" oninput="searchResults(0)" id="search_input" class="form-control shadow-sm position-relative pe-5" placeholder="Sök vårdgivare...">
               <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
             </div>
           </div>
           <div class="col-md mb-4 mb-md-0">
             <label class="form-label text-body fw-semibold" for="branch_type">Verksamhetstyp</label>
             <select id="branch_type" onchange="searchResults(0)" class="form-select shadow-sm">
-              <option value="">Alla</option>
-              <option value="LSS">LSS</option>
-              <option value="HVB-hem">HVB-hem</option>
-              <option value="Stödboende">Stödboende</option>
-              <option value="Skyddat boende">Skyddat boende</option>
-              <option value="Konsulentstödd familjehemsvård">Konsulentstödd familjehemsvård</option>
-              <option value="Daglig verksamhet">Daglig verksamhet</option>
-              <option value="Öppenvård">Öppenvård</option>
+              <option th:selected="${branchType == ''}" value="">Alla</option>
+              <option th:selected="${branchType == 'LSS'}" value="LSS">LSS</option>
+              <option th:selected="${branchType == 'HVB-hem'}" value="HVB-hem">HVB-hem</option>
+              <option th:selected="${branchType == 'Stödboende'}" value="Stödboende">Stödboende</option>
+              <option th:selected="${branchType == 'Skyddat boende'}" value="Skyddat boende">Skyddat boende</option>
+              <option th:selected="${branchType == 'Konsulentstödd familjehemsvård'}" value="Konsulentstödd familjehemsvård">Konsulentstödd familjehemsvård</option>
+              <option th:selected="${branchType == 'Daglig verksamhet'}" value="Daglig verksamhet">Daglig verksamhet</option>
+              <option th:selected="${branchType == 'Öppenvård'}" value="Öppenvård">Öppenvård</option>
             </select>
           </div>
           <div class="col-md mb-4 mb-md-0">
             <label class="form-label text-body fw-semibold" for="grade">Bedömning</label>
             <select id="grade" onchange="searchResults(0)" class="form-select shadow-sm">
-              <option value="">Alla</option>
-              <option value="Godkänd verksamhet">Godkända verksamheter</option>
-              <option value="Ej godkänd verksamhet">Ej godkända verksamheter</option>
-              <option value="Ej bedömd verksamhet">Ej bedömda verksamheter</option>
+              <option th:selected="${grade == ''}" value="">Alla</option>
+              <option th:selected="${grade == 'Godkänd verksamhet'}" value="Godkänd verksamhet">Godkända verksamheter</option>
+              <option th:selected="${grade == 'Ej godkänd verksamhet'}" value="Ej godkänd verksamhet">Ej godkända verksamheter</option>
+              <option th:selected="${grade == 'Ej bedömd verksamhet'}" value="Ej bedömd verksamhet">Ej bedömda verksamheter</option>
             </select>
           </div>
           <div class="col-md mb-4 mb-md-0">
             <label class="form-label text-body fw-semibold" for="county">Län</label>
             <select id="county" onchange="searchResults(0)" class="form-select shadow-sm" type="text">
-              <option value="">Alla</option>
-              <option value="Stockholm">Stockholm</option>
-              <option value="Västerbotten">Västerbotten</option>
-              <option value="Norrbotten">Norrbotten</option>
-              <option value="Uppsala">Uppsala</option>
-              <option value="Södermanland">Södermanland</option>
-              <option value="Östergötland">Östergötland</option>
-              <option value="Jönköping">Jönköping</option>
-              <option value="Kronoberg">Kronoberg</option>
-              <option value="Kalmar">Kalmar</option>
-              <option value="Gotland">Gotland</option>
-              <option value="Blekinge">Blekinge</option>
-              <option value="Skåne">Skåne</option>
-              <option value="Halland">Halland</option>
-              <option value="Västra Götaland">Västra Götaland</option>
-              <option value="Värmland">Värmland</option>
-              <option value="Örebro">Örebro</option>
-              <option value="Dalarna">Dalarna</option>
-              <option value="Gävleborg">Gävleborg</option>
-              <option value="Västmanland">Västmanland</option>
-              <option value="Jämtland">Jämtland</option>
-              <option value="Västernorrland">Västernorrland</option>
+              <option th:selected="${county == ''}" value="">Alla</option>
+              <option th:selected="${county == 'Stockholm'}" value="Stockholm">Stockholm</option>
+              <option th:selected="${county == 'Västerbotten'}" value="Västerbotten">Västerbotten</option>
+              <option th:selected="${county == 'Norrbotten'}" value="Norrbotten">Norrbotten</option>
+              <option th:selected="${county == 'Uppsala'}" value="Uppsala">Uppsala</option>
+              <option th:selected="${county == 'Södermanland'}" value="Södermanland">Södermanland</option>
+              <option th:selected="${county == 'Östergötland'}" value="Östergötland">Östergötland</option>
+              <option th:selected="${county == 'Jönköping'}" value="Jönköping">Jönköping</option>
+              <option th:selected="${county == 'Kronoberg'}" value="Kronoberg">Kronoberg</option>
+              <option th:selected="${county == 'Kalmar'}" value="Kalmar">Kalmar</option>
+              <option th:selected="${county == 'Gotland'}" value="Gotland">Gotland</option>
+              <option th:selected="${county == 'Blekinge'}" value="Blekinge">Blekinge</option>
+              <option th:selected="${county == 'Skåne'}" value="Skåne">Skåne</option>
+              <option th:selected="${county == 'Halland'}" value="Halland">Halland</option>
+              <option th:selected="${county == 'Västra Götaland'}" value="Västra Götaland">Västra Götaland</option>
+              <option th:selected="${county == 'Värmland'}" value="Värmland">Värmland</option>
+              <option th:selected="${county == 'Örebro'}" value="Örebro">Örebro</option>
+              <option th:selected="${county == 'Dalarna'}" value="Dalarna">Dalarna</option>
+              <option th:selected="${county == 'Gävleborg'}" value="Gävleborg">Gävleborg</option>
+              <option th:selected="${county == 'Västmanland'}" value="Västmanland">Västmanland</option>
+              <option th:selected="${county == 'Jämtland'}" value="Jämtland">Jämtland</option>
+              <option th:selected="${county == 'Västernorrland'}" value="Västernorrland">Västernorrland</option>
             </select>
           </div>
           <div class="col-md-auto d-md-flex align-items-md-end">
@@ -317,7 +317,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-7 col-lg-5 mb-3">
-          <form>
+          <form th:action="@{/nyhetsbrev}" method="post">
             <div class="d-flex gap-3">
               <img src="/img/logo.png" style="max-width: 70px; height: 70px;" alt="">
               <h5 style="max-width: 280px;" class="h4">Branschnyheter och granskningar från SVG</h5>
@@ -325,8 +325,8 @@
             <p class="mb-4" style="max-width: 500px;">Håll dig uppdaterad om vår verksamhet! Vårt digitala nyhetsbrev skickas ca en gång per månad.</p>
             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
               <label for="newsletter1" class="visually-hidden">E-post</label>
-              <input id="newsletter1" type="text" class="form-control shadow-sm" placeholder="Din e-post...">
-              <button class="btn btn-primary shadow-sm" type="button">Prenumera</button>
+              <input id="newsletter1" type="text" name="email" class="form-control shadow-sm" placeholder="Din e-post...">
+              <button class="btn btn-primary shadow-sm" type="submit">Prenumera</button>
             </div>
           </form>
         </div>

@@ -70,30 +70,29 @@
         <!-- Background -->
         <div class="position-absolute top-0 start-0 h-100 w-50 bg-position-center bg-size-cover d-none d-xl-block" style="background-image: url(/img/hero_background_img.jpg);"></div>
 
-        <!-- Sign in form -->
         <div class="container d-flex flex-wrap justify-content-center justify-content-xl-end pb-4">
             <div class="w-100 align-self-end pt-1 pt-md-4 pb-lg-4 mt-4" style="max-width: 526px;">
                 <h2 class="display-6">Skriv till oss</h2>
                 <p class="fs-5">Vänligen fyll i formuläret nedan med dina uppgifter och ditt meddelande så återkommer vi till dig så snart som möjligt!</p>
-                <form class="row g-4 needs-validation" novalidate>
+                <form class="row g-4" th:action="@{/kontakt}" method="post">
                     <div class="col-12">
                         <label for="fn" class="form-label fs-base">Namn *</label>
-                        <input type="text" class="form-control shadow-sm" id="fn" required>
+                        <input type="text" name="name" class="form-control shadow-sm" id="fn" required>
                         <div class="invalid-feedback">Var god skriv in ditt namn.</div>
                     </div>
                     <div class="col-12">
                         <label for="email" class="form-label fs-base">E-post *</label>
-                        <input type="email" class="form-control shadow-sm" id="email" required>
+                        <input type="email" name="email" class="form-control shadow-sm" id="email" required>
                         <div class="invalid-feedback">Var god skriv in en giltig e-postadress.</div>
                     </div>
                     <div class="col-12">
-                        <label for="email" class="form-label fs-base">Telefon *</label>
-                        <input type="email" class="form-control shadow-sm" id="email" required>
+                        <label for="tel" class="form-label fs-base">Telefon *</label>
+                        <input type="text" name="tel" class="form-control shadow-sm" id="tel" required>
                         <div class="invalid-feedback">Var god skriv ditt telefonnummer.</div>
                     </div>
                     <div class="col-12">
-                        <label for="email" class="form-label fs-base">Meddelande *</label>
-                        <textarea class="form-control shadow-sm" name="" id="" rows="6" required></textarea>
+                        <label for="content" class="form-label fs-base">Meddelande *</label>
+                        <textarea class="form-control shadow-sm" name="content" id="content" rows="6" required></textarea>
                         <div class="invalid-feedback">Var god skriv ditt meddelande till oss.</div>
                     </div>
                     <div class="col-12">
@@ -108,7 +107,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7 col-lg-5 mb-3">
-                    <form>
+                    <form th:action="@{/nyhetsbrev}" method="post">
                         <div class="d-flex gap-3">
                             <img src="/img/logo.png" style="max-width: 70px; height: 70px;" alt="">
                             <h5 style="max-width: 280px;" class="h4">Branschnyheter och granskningar från SVG</h5>
@@ -116,8 +115,8 @@
                         <p class="mb-4" style="max-width: 500px;">Håll dig uppdaterad om vår verksamhet! Vårt digitala nyhetsbrev skickas ca en gång per månad.</p>
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                             <label for="newsletter1" class="visually-hidden">E-post</label>
-                            <input id="newsletter1" type="text" class="form-control shadow-sm" placeholder="Din e-post...">
-                            <button class="btn btn-primary shadow-sm" type="button">Prenumera</button>
+                            <input id="newsletter1" type="text" name="email" class="form-control shadow-sm" placeholder="Din e-post...">
+                            <button class="btn btn-primary shadow-sm" type="submit">Prenumera</button>
                         </div>
                     </form>
                 </div>
