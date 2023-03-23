@@ -52,7 +52,7 @@
                         <a href="/kvalitet" class="nav-link">Kvalitet</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/nyheter" class="nav-link">Nyheter</a>
+                        <a href="/nyheter?page=0&category=all" class="nav-link">Nyheter</a>
                     </li>
                     <li class="nav-item">
                         <a href="/kontakt" class="nav-link">Kontakta oss</a>
@@ -80,7 +80,7 @@
             <li class="breadcrumb-item">
                 <a href="nyheter.html"><i class="bx bx-news fs-lg me-1"></i>Nyheter</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page"></i>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="${nyhet.title}">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</li>
         </ol>
     </nav>
 
@@ -91,35 +91,18 @@
 
             <!-- Main Content -->
             <div class="col-lg-8">
-                <h1 class="pb-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
+                <h1 class="pb-3" th:text="${nyhet.title}">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
                 <div class="d-flex align-items-center flex-wrap text-muted mb-5">
                     <div class="fs-xs border-end pe-3 me-3 mb-2">
-                        <a href="" class="badge fs-sm text-white fw-bold bg-info">Kategori</a>
+                        <a th:text="${nyhet.category}" href="/nyheter?page=0&category=all" class="badge fs-sm text-white fw-bold bg-info">Kategori</a>
                     </div>
-                    <div class="fs-sm mb-2">
+                    <div class="fs-sm mb-2" th:text="${nyhet.published}">
                         2023-01-26 10:17
                     </div>
                 </div>
                 <div>
-                    <h5 class="h5" for="">Consectetur adipisicing elit necessitatibus</h5>
-                    <p>
+                    <p th:text="${nyhet.content}">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aliquid corrupti ab sapiente, culpa esse repellendus quisquam illo dolorum, repudiandae ex harum soluta vitae magnam nihil adipisci ullam. Consequatur, error!
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nobis nemo et sed magni cupiditate ullam iure ex?
-                    </p>
-                    <p class="mb-5">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos vitae, impedit cum earum natus, eum error cupiditate culpa ratione molestiae expedita! Dolore iure architecto est voluptates voluptas deserunt consectetur, vel at, nesciunt ullam asperiores ea doloribus ducimus fuga officia.
-                    </p>
-                    <h5 class="h5" for="">Lorem ipsum dolor sit amet consectetur</h5>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aliquid corrupti ab sapiente, culpa esse repellendus quisquam illo dolorum, repudiandae ex harum soluta vitae magnam nihil adipisci ullam. Consequatur, error!
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique ipsam quos porro consectetur perspiciatis nesciunt expedita ipsum aperiam accusantium, veniam praesentium officiis harum!
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla qui provident soluta maxime quo.
                     </p>
                 </div>
             </div>
@@ -152,63 +135,29 @@
     <hr class="container opacity-50 my-lg-4">
 
     <!-- Related News -->
-    <section class="py-5 mb-5 container">
+    <section class="py-5 mb-5 container" th:if="${nyheter.size>0}">
         <div class="d-flex flex-sm-row flex-column align-items-center justify-content-between mb-4 pb-1 pb-md-3">
             <h2 class="h1 mb-sm-0">Relaterade Nyheter</h2>
-            <a href="/nyheter" class="d-none d-lg-inline-flex btn btn-lg btn-primary ms-4">
+            <a href="/nyheter?page=0&category=all" class="d-none d-lg-inline-flex btn btn-lg btn-primary ms-4">
                 Alla nyheter
                 <i class="bx bx-right-arrow-alt ms-1 me-n1 lh-1 lead"></i>
             </a>
         </div>
         <div class="row">
-            <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="col-lg-4 mb-5 mb-lg-0" th:each="nyhetRelated : ${nyheter}">
                 <article class="card card-hover h-100 border-0 shadow-sm p-0">
                     <div class="position-relative">
-                        <img src="/img/hero_background_img.jpg" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
+                        <img th:src="${nyhetRelated.coverImgSrc}" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
                     </div>
                     <div class="card-body pb-4">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <a href="" class="badge fs-sm fw-bold bg-info">Kategori</a>
-                            <span class="fs-sm text-muted">2023-01-25</span>
+                            <a th:text="${nyhetRelated.category}" th:href="'/nyheter/' + ${nyhetRelated.id}" class="badge fs-sm fw-bold bg-info">Kategori</a>
+                            <span th:text="${nyhetRelated.published}" class="fs-sm text-muted">2023-01-25</span>
                         </div>
                         <h3 class="h5 mb-0">
-                            <a class="stretched-link" th:href="'/nyheter/' + ${1}">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a>
+                            <a class="stretched-link" th:href="'/nyheter/' + ${nyhetRelated.id}" th:text="${nyhetRelated.title}">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a>
                         </h3>
-                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos exercitationem enim voluptate quibusdam culpa!</p>
-                    </div>
-                </article>
-            </div>
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <article class="card card-hover h-100 border-0 shadow-sm p-0">
-                    <div class="position-relative">
-                        <img src="/img/hero_background_img.jpg" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
-                    </div>
-                    <div class="card-body pb-4">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <a href="" class="badge fs-sm fw-bold bg-info">Kategori</a>
-                            <span class="fs-sm text-muted">2023-01-25</span>
-                        </div>
-                        <h3 class="h5 mb-0">
-                            <a class="stretched-link" th:href="'/nyheter/' + ${1}">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a>
-                        </h3>
-                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos exercitationem enim voluptate quibusdam culpa!</p>
-                    </div>
-                </article>
-            </div>
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <article class="card card-hover h-100 border-0 shadow-sm p-0">
-                    <div class="position-relative">
-                        <img src="/img/hero_background_img.jpg" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
-                    </div>
-                    <div class="card-body pb-4">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <a href="" class="badge fs-sm fw-bold bg-info">Kategori</a>
-                            <span class="fs-sm text-muted">2023-01-25</span>
-                        </div>
-                        <h3 class="h5 mb-0">
-                            <a class="stretched-link" th:href="'/nyheter/' + ${1}">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a>
-                        </h3>
-                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos exercitationem enim voluptate quibusdam culpa!</p>
+                        <p class="mt-2" th:text="${nyhetRelated.content}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos exercitationem enim voluptate quibusdam culpa!</p>
                     </div>
                 </article>
             </div>
@@ -264,7 +213,7 @@
             <div class="d-flex flex-column flex-md-row justify-content-between pt-4 mt-3 border-top">
                 <p class="mb-0 pb-4 pb-lg-2">
                     &copy; 2023 Sveriges Vårdgivare •
-                    <a class="link-info fw-medium" href="/login">Admin</a>
+                    <a class="link-info fw-medium" href="/admin/start">Admin</a>
                 </p>
                 <div class="d-flex text-dark gap-2 opacity-75 order-first order-md-last pb-4 pb-lg-2">
                     <a class="link-dark" href="/anvandarvillkor">Användarvillkor</a>

@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/nyheter" class="nav-link">
+                        <a href="/admin/nyheter?page=0" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
@@ -91,10 +91,10 @@
                     <div class="mb-4 d-flex align-items-end">
                         <div>
                             <label class="form-label d-block" for="imgLogo">Ändra logotyp</label>
-                            <input class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
+                            <input onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
                         <div class="ms-4">
-                            <img style="max-height: 50px;" th:src="${provider.logoSrc}" alt="">
+                            <img style="max-height: 50px;" id="coverImg" th:src="${provider.logoSrc}" alt="">
                         </div>
                     </div>
                     <!-- Healthcare Provider -->
@@ -152,7 +152,7 @@
                     <!-- Healthcare Provider Bio -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="about">Om vårdgivare</label>
-                        <textarea class="form-control shadow-sm" th:text="${provider.about}" type="text" name="about" id="about" rows="8" placeholder="Skriv en beskrivning om vårdgivaren för besökare att läsa..."></textarea>
+                        <textarea class="form-control shadow-sm" th:utext="${provider.about}" type="text" name="about" id="about" rows="8" placeholder="Skriv en beskrivning om vårdgivaren för besökare att läsa..."></textarea>
                     </div>
                     <h2 class="h6 mb-4">Placeringskordinator</h2>
                     <!-- Edit Logo -->
@@ -201,7 +201,7 @@
                         <i class="bx bxs-error-circle text-warning fs-xl"></i>
                         Något att anmärka
                     </h2>
-                    <textarea class="form-control shadow-sm" th:text="${provider.remark}" name="remark" id="remark" cols="30" rows="6" placeholder="Lämna tom om det inte finns något att anmärka..."></textarea>
+                    <textarea class="form-control shadow-sm" th:utext="${provider.remark}" name="remark" id="remark" cols="30" rows="6" placeholder="Lämna tom om det inte finns något att anmärka..."></textarea>
 
                     <hr class="mb-4">
 
@@ -209,7 +209,7 @@
                     <h2 class="h6">
                         Verksamhetsuppgifter
                     </h2>
-                    <textarea class="form-control shadow-sm" th:text="${provider.information}" name="information" id="information" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control shadow-sm" th:utext="${provider.information}" name="information" id="information" cols="30" rows="6" placeholder=""></textarea>
 
                     <hr class="mb-4">
 
@@ -217,7 +217,7 @@
                     <h2 class="h6">
                         Inriktning
                     </h2>
-                    <textarea class="form-control shadow-sm" th:text="${provider.orientation}" name="orientation" id="orientation" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control shadow-sm" th:utext="${provider.orientation}" name="orientation" id="orientation" cols="30" rows="6" placeholder=""></textarea>
 
                     <hr class="mb-4">
 
@@ -225,7 +225,7 @@
                     <h2 class="h6">
                         Insats/Lagrum
                     </h2>
-                    <textarea class="form-control shadow-sm" th:text="${provider.contribution}" name="contribution" id="contribution" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control shadow-sm" th:utext="${provider.contribution}" name="contribution" id="contribution" cols="30" rows="6" placeholder=""></textarea>
                     
                     <hr class="mb-4">
 
@@ -233,7 +233,7 @@
                     <h2 class="h6">
                         Metoder
                     </h2>
-                    <textarea class="form-control shadow-sm" th:text="${provider.methods}" name="methods" id="methods" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control shadow-sm" th:utext="${provider.methods}" name="methods" id="methods" cols="30" rows="6" placeholder=""></textarea>
 
                 </div>
                 <div class="col-3 ps-4">

@@ -53,7 +53,7 @@
             <a href="/kvalitet" class="nav-link">Kvalitet</a>
           </li>
           <li class="nav-item">
-            <a href="/nyheter" class="nav-link">Nyheter</a>
+            <a href="/nyheter?page=0&category=all" class="nav-link">Nyheter</a>
           </li>
           <li class="nav-item">
             <a href="/kontakt" class="nav-link">Kontakta oss</a>
@@ -252,15 +252,15 @@
         <nav aria-label="Page navigation example" th:if="${providers.size>9}">
           <ul class="pagination">
             <li class="page-item">
-              <a th:if="${page>0}" style="cursor: pointer" class="page-link shadow-sm border">
+              <a th:if="${page>0}" style="cursor: pointer" th:onclick="searchResults([[${page-1}]])" class="page-link shadow-sm border">
                 <i class="bx bx-chevron-left mx-n1"></i>
               </a>
             </li>
             <li class="page-item">
-              <a style="cursor: pointer" th:if="${page>2}" th:text="${page-2}" class="page-link shadow-sm border">1</a>
+              <a style="cursor: pointer" th:if="${page>2}" th:onclick="searchResults([[${page-2}]])" th:text="${page-2}" class="page-link shadow-sm border">1</a>
             </li>
             <li class="page-item">
-              <a style="cursor: pointer" th:if="${page>1}" th:text="${page-1}" class="page-link shadow-sm border">2</a>
+              <a style="cursor: pointer" th:if="${page>1}" th:onclick="searchResults([[${page-1}]])" th:text="${page-1}" class="page-link shadow-sm border">2</a>
             </li>
             <li class="page-item active" aria-current="page">
                 <span class="page-link bg-info shadow-info" th:text="${page+1}">
@@ -269,13 +269,13 @@
                 </span>
             </li>
             <li class="page-item">
-              <a th:if="${page+1<totalHits}" th:text="${page+2}" style="cursor: pointer" class="page-link shadow-sm border">4</a>
+              <a th:if="${page+1<totalHits}" th:onclick="searchResults([[${page+1}]])" th:text="${page+2}" style="cursor: pointer" class="page-link shadow-sm border">4</a>
             </li>
             <li class="page-item">
-              <a th:if="${page+2<totalHits-1}" th:text="${page+3}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
+              <a th:if="${page+2<totalHits-1}" th:onclick="searchResults([[${page+2}]])" th:text="${page+3}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
             </li>
             <li class="page-item">
-              <a th:if="${page+1<totalHits}" style="cursor: pointer" class="page-link shadow-sm border">
+              <a th:if="${page+1<totalHits}" th:onclick="searchResults([[${page+1}]])" style="cursor: pointer" class="page-link shadow-sm border">
                 <i class="bx bx-chevron-right mx-n1"></i>
               </a>
             </li>
@@ -284,7 +284,7 @@
       </div>
 
 
-      <!-- Ads -->
+      <!-- Sidebar (Offcanvas below lg breakpoint) -->
       <aside class="col-xl-3 col-lg-4">
         <div class="offcanvas-lg offcanvas-end" id="blog-sidebar" tabindex="-1">
 
@@ -296,13 +296,17 @@
 
           <!-- Body -->
           <div class="offcanvas-body">
+
             <!-- Advertising -->
-            <div class="card border-0 bg-faded-primary" style="min-height: 50rem;">
-              <div class="card-body">
-                <h5 class="h3 mb-4 pb-2 text-center">Annonser</h5>
+            <div class="offcanvas-body">
+              <!-- Advertising -->
+              <div class="card border-0 bg-faded-primary" style="min-height: 40rem;">
+                <div class="card-body">
+                  <h5 class="h3 mb-4 pb-2 text-center">Annonser</h5>
+                </div>
               </div>
+              <p class="mt-3 text-muted text-center">Vill du synas här? <a class="fw-bold text-decoration-none" href="/kontakt">Kontakta oss</a></p>
             </div>
-            <p class="mt-3 text-muted text-center">Vill du synas här? <a class="fw-bold text-decoration-none" href="/login">Kontakta oss</a></p>
           </div>
         </div>
       </aside>
@@ -352,7 +356,7 @@
       <div class="d-flex flex-column flex-md-row justify-content-between pt-4 mt-3 border-top">
         <p class="mb-0 pb-4 pb-lg-2">
           &copy; 2023 Sveriges Vårdgivare •
-          <a class="link-info fw-medium" href="/login">Admin</a>
+          <a class="link-info fw-medium" href="/admin/start">Admin</a>
         </p>
         <div class="d-flex text-dark gap-2 opacity-75 order-first order-md-last pb-4 pb-lg-2">
           <a class="link-dark" href="/anvandarvillkor">Användarvillkor</a>

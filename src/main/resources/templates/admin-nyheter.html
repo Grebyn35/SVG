@@ -17,7 +17,7 @@
     <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
     <link rel="shortcut icon" href="/favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#080032">
-    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Styles -->
@@ -31,20 +31,23 @@
 <!-- Remove Post Modal -->
 <div class="modal fade" id="removeNewsModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Ta bort nyhet</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <form th:action="'/admin/delete-news'" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ta bort nyhet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="text" style="display: none" name="id" id="newsId">
+                <div class="modal-body">
+                    <p class="mb-2" id="newsTitle">Är du säker på att du vill ta bort $nyhet?</p>
+                    <p class="mb-0 fs-sm fw-bold">Du komma inte att kunna återställa nyheten efter att du har tagit bort den.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Avbryt</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Ta bort nyhet</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <p class="mb-2">Är du säker på att du vill ta bort $nyhet?</p>
-                <p class="mb-0 fs-sm fw-bold">Du komma inte att kunna återställa nyheten efter att du har tagit bort den.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Avbryt</button>
-                <button type="button" class="btn btn-sm btn-danger">Ta bort nyhet</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -72,7 +75,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/nyheter" class="nav-link">
+                        <a href="/admin/nyheter?page=0" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
@@ -106,7 +109,7 @@
             <div class="card border-0 shadow-sm p-4 bg-faded-info">
                 <div class="d-flex justify-content-between align-items-center">
               <span href="" class="fs-4 text-dark">
-                <strong class="text-info">126</strong>
+                <strong class="text-info" th:text="${nyheter.size}">126</strong>
                 publicerade nyheter
               </span>
                     <a href="/admin/ny-nyhet" class="btn btn-primary btn-sm">
@@ -117,186 +120,81 @@
                 <hr class="mt-4">
                 <form class="row mt-4">
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Sök</label>
+                        <label class="form-label text-body fw-semibold" for="search_input">Sök</label>
                         <div class="position-relative d-flex justify-content-end align-items-center">
-                            <input type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök nyhet...">
+                            <input oninput="searchResults(0)" type="text" name="search_input" id="search_input" class="form-control shadow-sm position-relative pe-5" placeholder="Sök nyhet...">
                             <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
                         </div>
                     </div>
                     <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Kategori</label>
-                        <select class="form-select shadow-sm" type="text">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                        <label class="form-label text-body fw-semibold" for="category">Kategori</label>
+                        <select onchange="searchResults(0)" class="form-select shadow-sm" type="text" name="category" id="category">
+                            <option selected value="">Alla</option>
+                            <option value="Apor">Apor</option>
+                            <option value="Björnar">Björnar</option>
+                            <option value="Chinchillor">Chinchillor</option>
+                            <option value="Daggmaskar">Daggmaskar</option>
+                            <option value="Elefanter">Elefanter</option>
+                            <option value="Fladdermöss">Fladdermöss</option>
+                            <option value="Övrigt">Övrigt</option>
                         </select>
-                    </div>
-                    <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="">Datum <strong class="text-muted">(från - till)</strong></label>
-                        <div class="input-group gap-1">
-                            <input class="form-control shadow-sm" type="date">
-                            <input class="form-control shadow-sm" type="date">
-                        </div>
-                    </div>
-                    <div class="col-md-auto d-md-flex align-items-md-end">
-                        <a href="/vardgivare.html" class="d-flex btn btn-primary shadow-primary p-0 w-100 w-md-auto" style="min-width: 44.4px !important; height: 44.4px;">
-                            <i class="fw-bold bx bx-search-alt fs-2 ms-1"></i>
-                        </a>
                     </div>
                 </form>
             </div>
 
-            <table class="table my-4 fs-sm">
+            <table class="table my-4 fs-sm tableSearch">
                 <thead>
                 <tr class="row">
                     <th class="col-6 col-md-8">Nyhet</th>
                     <th class="col">Kategori</th>
-                    <th class="col">Datum</th>
+                    <th class="col">Publicerad</th>
                     <th class="col-auto" style="width: 32px;"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="row position-relative">
+                <tr class="row position-relative" th:each="nyhet : ${nyheter}">
                     <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
+                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${nyhet.id}" th:text="${nyhet.title}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                    <td class="col" th:text="${nyhet.category}">Kategori</td>
+                    <td class="col" th:text="${nyhet.published}">2023-01-26</td>
+                    <td class="position-relative col-auto ps-0 border-bottom-0" style="z-index: 1;">
+                        <button class="btn btn-link p-0 fs-lg text-danger" th:data-newsid="${nyhet.id}" th:data-newstitle="${nyhet.title}" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
                             <i class="bx bx-trash"></i>
                         </button>
                     </td>
-                </tr>
-                <tr class="row position-relative">
-                    <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="row position-relative">
-                    <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="row position-relative">
-                    <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="row position-relative">
-                    <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="row position-relative">
-                    <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="row position-relative">
-                    <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="row position-relative">
-                    <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="row position-relative">
-                    <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="row position-relative">
-                    <td class="col-6 col-md-8">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col">Kategori</td>
-                    <td class="col">2023-01-26</td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" data-bs-target="#removeNewsModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
+
                 </tr>
                 </tbody>
             </table>
 
             <!-- Pagination -->
-            <nav aria-label="Page navigation example">
+            <nav aria-label="Page navigation example" th:if="${nyheter.size>9}">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a style="cursor: pointer" class="page-link shadow-sm border">
+                        <a th:if="${page>0}" style="cursor: pointer" th:onclick="searchResults([[${page-1}]])" class="page-link shadow-sm border">
                             <i class="bx bx-chevron-left mx-n1"></i>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a style="cursor: pointer" class="page-link shadow-sm border">1</a>
+                        <a style="cursor: pointer" th:if="${page>2}" th:onclick="searchResults([[${page-2}]])" th:text="${page-2}" class="page-link shadow-sm border">1</a>
                     </li>
                     <li class="page-item">
-                        <a style="cursor: pointer" class="page-link shadow-sm border">2</a>
+                        <a style="cursor: pointer" th:if="${page>1}" th:onclick="searchResults([[${page-1}]])" th:text="${page-1}" class="page-link shadow-sm border">2</a>
                     </li>
                     <li class="page-item active" aria-current="page">
-                <span class="page-link bg-info shadow-info">
+                <span class="page-link bg-info shadow-info" th:text="${page+1}">
                   3
                   <span class="visually-hidden">(current)</span>
                 </span>
                     </li>
                     <li class="page-item">
-                        <a style="cursor: pointer" class="page-link shadow-sm border">4</a>
+                        <a th:if="${page+1<totalHits}" th:onclick="searchResults([[${page+1}]])" th:text="${page+2}" style="cursor: pointer" class="page-link shadow-sm border">4</a>
                     </li>
                     <li class="page-item">
-                        <a style="cursor: pointer" class="page-link shadow-sm border">5</a>
+                        <a th:if="${page+2<totalHits-1}" th:onclick="searchResults([[${page+2}]])" th:text="${page+3}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
                     </li>
                     <li class="page-item">
-                        <a style="cursor: pointer" class="page-link shadow-sm border">
+                        <a th:if="${page+1<totalHits}" th:onclick="searchResults([[${page+1}]])" style="cursor: pointer" class="page-link shadow-sm border">
                             <i class="bx bx-chevron-right mx-n1"></i>
                         </a>
                     </li>
@@ -308,9 +206,28 @@
 
 
 <!-- Vendor Scripts -->
-<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Main Theme Script -->
-<script src="assets/js/theme.min.js"></script>
+<script src="/js/theme.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+    $('#removeNewsModal').on('show.bs.modal', function(e) {
+        let id = $(e.relatedTarget).data('newsid');
+        let title = $(e.relatedTarget).data('newstitle');
+        document.getElementById("newsTitle").textContent = "Är du säker på att du vill ta bort '" + title + "'?"
+        document.getElementById("newsId").value = id;
+
+    });
+    function searchResults(page){
+        let search_input = document.getElementById("search_input").value
+        let category = document.getElementById("category").value
+        $.get("/admin/search_news",
+            {"search_input": search_input, "category": category, "page": page}).done(function (fragment) {
+            $(".tableSearch").replaceWith(fragment); // update snippet of page
+        })
+    }
+</script>
 </body>
 </html>

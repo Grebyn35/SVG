@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/nyheter" class="nav-link">
+                        <a href="/admin/nyheter?page=0" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
@@ -78,22 +78,22 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin/start"><i class="bx bxs-home fs-lg me-1"></i></a></li>
-                    <li class="breadcrumb-item"><a href="/admin/nyheter">Nyheter</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/nyheter?page=0">Nyheter</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Ny nyhet</li>
                 </ol>
             </nav>
 
             <h1 class="h1 mb-5">Ny nyhet</h1>
-            <form action="" method="" style="max-width: 1200px;">
+            <form th:action="@{'/admin/ny-nyhet'}" method="post" enctype="multipart/form-data" style="max-width: 1200px;">
                 <!-- Front Image -->
                 <div class="mb-4">
                     <div>
-                        <label class="form-label d-block" for="">Omslagsbild</label>
-                        <input class="form-control shadow-sm" type="file" name="" id="">
+                        <label class="form-label d-block" for="coverImg">Omslagsbild</label>
+                        <input  class="form-control shadow-sm" type="file" onchange="document.getElementById('bigCover').src = window.URL.createObjectURL(this.files[0]); document.getElementById('smallCover').src = window.URL.createObjectURL(this.files[0]);" name="coverImg" id="coverImg">
                     </div>
                     <div class="d-flex align-items-center">
-                        <div class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded" style="background-image: url(/img/placeholder_image.jpg); height: 10vw; width: 48vw;"></div>
-                        <div class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" style="background-image: url(/img/placeholder_image.jpg); height: 10vw; width: 17vw;"></div>
+                        <div class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded" id="bigCover" style="background-image: url(/img/placeholder_image.jpg); height: 10vw; width: 48vw;"></div>
+                        <div class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" id="smallCover" style="background-image: url(/img/placeholder_image.jpg); height: 10vw; width: 17vw;"></div>
                     </div>
                 </div>
 
@@ -101,20 +101,23 @@
 
                 <!-- Blog Title -->
                 <div class="mb-4">
-                    <label class="form-label d-block" for="">Titel *</label>
-                    <input class="form-control shadow-sm" type="text" name="" id="" placeholder="Lorem ipsum, dolor sit amet consectetur adipisicing elit" required>
+                    <label class="form-label d-block" for="title">Titel *</label>
+                    <input class="form-control shadow-sm" type="text" name="title" id="title" placeholder="Lorem ipsum, dolor sit amet consectetur adipisicing elit" required>
                 </div>
 
                 <hr class="mb-4">
 
                 <!-- Category -->
                 <div class="mb-4">
-                    <label class="form-label d-block" for="">Kategori</label>
-                    <select class="form-select shadow-sm" type="text" name="" id="" placeholder="vårdgivare@domän.se">
-                        <option selected value="">Övrigt</option>
-                        <option value="">Apor</option>
-                        <option value="">Björnar</option>
-                        <option value="">Chinchillor</option>
+                    <label class="form-label d-block" for="category">Kategori</label>
+                    <select class="form-select shadow-sm" type="text" name="category" id="category" placeholder="vårdgivare@domän.se">
+                        <option selected value="Övrigt">Övrigt</option>
+                        <option value="Apor">Apor</option>
+                        <option value="Björnar">Björnar</option>
+                        <option value="Chinchillor">Chinchillor</option>
+                        <option value="Daggmaskar">Daggmaskar</option>
+                        <option value="Elefanter">Elefanter</option>
+                        <option value="Fladdermöss">Fladdermöss</option>
                     </select>
                 </div>
 
@@ -122,8 +125,8 @@
 
                 <!-- Main Text -->
                 <div class="mb-4">
-                    <label class="form-label d-block" for="">Innehåll</label>
-                    <textarea class="form-control shadow-sm" type="text" name="" id="" rows="10" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt esse asperiores rerum quae harum dolorum accusantium unde minima eligendi excepturi! Doloribus harum ipsam deleniti incidunt tempore recusandae illo numquam!"></textarea>
+                    <label class="form-label d-block" for="content">Innehåll</label>
+                    <textarea class="form-control shadow-sm" type="text" name="content" id="content" rows="10" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt esse asperiores rerum quae harum dolorum accusantium unde minima eligendi excepturi! Doloribus harum ipsam deleniti incidunt tempore recusandae illo numquam!"></textarea>
                 </div>
 
                 <hr class="mb-4">

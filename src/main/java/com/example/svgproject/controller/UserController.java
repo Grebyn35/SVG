@@ -1,7 +1,9 @@
 package com.example.svgproject.controller;
 
+import com.example.svgproject.model.Nyhet;
 import com.example.svgproject.model.Provider;
 import com.example.svgproject.model.User;
+import com.example.svgproject.repository.NyhetRepository;
 import com.example.svgproject.repository.ProviderRepository;
 import com.example.svgproject.repository.UserRepository;
 import com.example.svgproject.service.UserService;
@@ -33,7 +35,15 @@ public class UserController {
     @Autowired
     private UserService servDao;
 
-    @GetMapping("/") public String home(){
+    @Autowired
+    NyhetRepository nyhetRepository;
+
+    @GetMapping("/") public String home(Model model){
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContaining("", pageable);
+        model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("totalHits", nyheter.getTotalPages());
+        model.addAttribute("page", 0);
         return "hem";
     }
     @GetMapping("/kontakt") public String contact(){
@@ -64,11 +74,37 @@ public class UserController {
         return "redirect:/login";
     }
     //Denna funkar inte?
-    @GetMapping("/nyheter/{id}") public String newsTemplatePage(@PathVariable long id){
+    @GetMapping("/nyheter/{id}") public String newsTemplatePage(@PathVariable long id, Model model){
+        Nyhet nyhet = nyhetRepository.findById(id);
+        Pageable pageable = PageRequest.of(0, 3);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingAndIdNot(nyhet.getCategory(), id, pageable);
+        model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("nyhet", nyhet);
         return "nyheter-template";
     }
-    @GetMapping("/nyheter") public String newsPage(){
+    @GetMapping("/nyheter") public String newsPage(@RequestParam("page") int page, @RequestParam("category") String category, Model model){
+        Pageable pageable = PageRequest.of(page, 10);
+        if(category.contentEquals("all")){
+            category = "";
+        }
+        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContaining(category, pageable);
+        model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("totalHits", nyheter.getTotalPages());
+        model.addAttribute("page", page);
+        model.addAttribute("category", category);
         return "nyheter";
+    }
+    @GetMapping("/search_news")
+    public String updateArticlesNews(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page, @RequestParam("category") String category){
+        Pageable pageable = PageRequest.of(page, 10);
+        if(category.contentEquals("all")){
+            category = "";
+        }
+        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContaining(searchInput, category, pageable);
+        model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("totalHits", nyheter.getTotalPages());
+        model.addAttribute("page", page);
+        return "nyheter :: .tableSearch";
     }
     @GetMapping("/om-oss") public String aboutUsPage(){
         return "om-oss";

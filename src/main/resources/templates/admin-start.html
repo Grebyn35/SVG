@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/nyheter" class="nav-link">
+                        <a href="/admin/nyheter?page=0" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
@@ -73,7 +73,7 @@
         </aside>
 
         <div class="w-100 h-100 px-3 px-sm-4 px-xl-5 py-5 py-sm-5">
-            <h1 class="h1 mb-5">Välkommen tillbaka, Erik</h1>
+            <h1 class="h1 mb-5" th:text="'Välkommen tillbaka, ' + ${user.email}"></h1>
             <div class="row">
                 <!-- Healthcare Providers -->
                 <div class="col-xl-6 col-xxl-4 mb-5 mb-xxl-0">
@@ -112,8 +112,8 @@
                 <div class="col-xl-6 mb-5 mb-xxl-0 col-xxl-4">
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-faded-info w-100 mx-0 px-4 d-flex justify-content-between align-items-center">
-                            <a href="/admin/nyheter" class="link-dark text-decoration-none fs-4">
-                                <strong class="text-info">12</strong>
+                            <a href="/admin/nyheter?page=0" class="link-dark text-decoration-none fs-4">
+                                <strong class="text-info" th:text="${nyheter.size}">12</strong>
                                 publicerade nyheter
                             </a>
                             <a href="/admin/ny-nyhet" class="btn btn-primary btn-sm">
@@ -127,15 +127,15 @@
                                 <tr class="row">
                                     <th class="col-6">Nyhet</th>
                                     <th class="col-3">Kategori</th>
-                                    <th class="col-3">Datum</th>
+                                    <th class="col-3">Publiserad</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="row position-relative" id="newsItem">
+                                <tr class="row position-relative" id="newsItem" th:each="nyhet : ${nyheter}">
                                     <td class="col-6">
-                                        <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${1}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                                    <td class="col-3">Kategori</td>
-                                    <td class="col-3">2023-01-26</td>
+                                        <a class="link-dark stretched-link" th:text="${nyhet.title}" th:href="'/admin/redigera-nyhet/' + ${nyhet.id}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
+                                    <td class="col-3" th:text="${nyhet.category}">Kategori</td>
+                                    <td class="col-3" th:text="${nyhet.published}">2023-01-26</td>
                                 </tr>
                                 </tbody>
                             </table>

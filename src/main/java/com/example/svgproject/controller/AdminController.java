@@ -1,9 +1,13 @@
 package com.example.svgproject.controller;
 
+import com.example.svgproject.model.Nyhet;
+import com.example.svgproject.model.Post;
 import com.example.svgproject.model.Provider;
 import com.example.svgproject.model.User;
+import com.example.svgproject.repository.NyhetRepository;
 import com.example.svgproject.repository.ProviderRepository;
 import com.example.svgproject.repository.UserRepository;
+import com.example.svgproject.security.CustomUserDetails;
 import com.uploadcare.api.Client;
 import com.uploadcare.api.File;
 import com.uploadcare.upload.FileUploader;
@@ -13,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +28,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 @Controller
 public class AdminController {
@@ -31,6 +41,9 @@ public class AdminController {
 
     @Autowired
     ProviderRepository providerRepository;
+
+    @Autowired
+    NyhetRepository nyhetRepository;
 
     @GetMapping("/admin/annonser") public String adminPosts(){
         return "admin-annonser";
@@ -121,7 +134,61 @@ public class AdminController {
         providerRepository.save(provider);
         return "redirect:/admin/start";
     }
-    @GetMapping("/admin/nyheter") public String adminNews(){
+    @RequestMapping(value=("/admin/ny-nyhet"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewNews(Model model, HttpServletRequest request, @RequestParam("coverImg") MultipartFile coverImg) throws IOException {
+        Nyhet nyhet = new Nyhet();
+        nyhet.setTitle(request.getParameter("title"));
+        nyhet.setCategory(request.getParameter("category"));
+        nyhet.setContent(request.getParameter("content"));
+        nyhet.setPublished(returnDateWithTime());
+        if(coverImg.getSize()>10){
+            String coverImgSrc = uploadFileToServer(coverImg);
+            nyhet.setCoverImgSrc(coverImgSrc);
+        }
+        nyhetRepository.save(nyhet);
+        return "redirect:/admin/start";
+    }
+    @RequestMapping(value=("/admin/ny-annons"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewPost(Model model, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo) throws IOException {
+        Post post = new Post();
+        String[] status = request.getParameterValues("status[]");
+        post.setLink(request.getParameter("link"));
+        post.setContent(request.getParameter("content"));
+        post.setContent(request.getParameter("content"));
+        post.setPublished(returnDateWithTime());
+        post.setName(request.getParameter("name"));
+        post.setEmail(request.getParameter("email"));
+        post.setStatus(Boolean.parseBoolean(status[0]));
+        if(imgLogo.getSize()>10){
+            String coverImgSrc = uploadFileToServer(imgLogo);
+            post.setCoverImgSrc(coverImgSrc);
+        }
+        System.out.println(post);
+        //nyhetRepository.save(nyhet);
+        return "redirect:/admin/start";
+    }
+    @RequestMapping(value=("/admin/redigera-nyhet/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewNews(Model model, HttpServletRequest request, @RequestParam("coverImg") MultipartFile coverImg, @PathVariable long id) throws IOException {
+        Nyhet nyhet = nyhetRepository.findById(id);
+        nyhet.setTitle(request.getParameter("title"));
+        nyhet.setCategory(request.getParameter("category"));
+        nyhet.setContent(request.getParameter("content"));
+        if(coverImg.getSize()>10){
+            String coverImgSrc = uploadFileToServer(coverImg);
+            nyhet.setCoverImgSrc(coverImgSrc);
+        }
+        nyhetRepository.save(nyhet);
+        return "redirect:/admin/nyheter?page=0";
+    }
+    public String returnDateWithTime(){
+        Date date = new Date();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        df.setTimeZone(TimeZone.getTimeZone("Europe/Stockholm"));
+        return df.format(date);
+    }
+    @GetMapping("/admin/nyheter") public String adminNews(@RequestParam("page") int page, Model model){
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<Nyhet> nyheter = nyhetRepository.findAll(pageable);
+        model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("totalHits", nyheter.getTotalPages());
+        model.addAttribute("page", page);
         return "admin-nyheter";
     }
     @GetMapping("/admin/start") public String adminStart(Model model){
@@ -131,7 +198,16 @@ public class AdminController {
     public void addAdminStartAttributes(Model model){
         Pageable pageable = PageRequest.of(0, 10);
         Page<Provider> providers = providerRepository.findAll(pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAll(pageable);
         model.addAttribute("providers", providers.getContent());
+        model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("user", returnCurrentUser());
+    }
+    public User returnCurrentUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails customUser = (CustomUserDetails) auth.getPrincipal();
+        User currentUser = userRepository.findByEmail(customUser.getUsername());
+        return currentUser;
     }
     @GetMapping("/admin/vardgivare") public String adminVardgivarePage(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 10);
@@ -145,7 +221,9 @@ public class AdminController {
     @GetMapping("/admin/redigera-annons/{id}") public String adminEditPost(@PathVariable long id){
         return "admin-redigera-annons";
     }
-    @GetMapping("/admin/redigera-nyhet/{id}") public String adminEditNews(@PathVariable long id){
+    @GetMapping("/admin/redigera-nyhet/{id}") public String adminEditNews(@PathVariable long id, Model model){
+        Nyhet nyhet = nyhetRepository.findById(id);
+        model.addAttribute("nyhet", nyhet);
         return "admin-redigera-nyhet";
     }
     @GetMapping("/admin/redigera-vardgivare/{id}") public String editProvider(@PathVariable long id, Model model){
@@ -238,12 +316,28 @@ public class AdminController {
         model.addAttribute("page", page);
         return "admin-vardgivare :: .tableSearch";
     }
+    @GetMapping("/admin/search_news")
+    public String updateArticlesNews(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page, @RequestParam("category") String category){
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContaining(searchInput, category, pageable);
+        model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("totalHits", nyheter.getTotalPages());
+        model.addAttribute("page", page);
+        return "admin-nyheter :: .tableSearch";
+    }
     @PostMapping("/admin/delete-provider")
     public String deleteProvider(Model model, HttpServletRequest request){
         long id = Long.parseLong(request.getParameter("id"));
         Provider provider = providerRepository.findById(id);
         providerRepository.delete(provider);
         return "redirect:/admin/vardgivare?page=0";
+    }
+    @PostMapping("/admin/delete-news")
+    public String deleteNews(Model model, HttpServletRequest request){
+        long id = Long.parseLong(request.getParameter("id"));
+        Nyhet nyhet = nyhetRepository.findById(id);
+        nyhetRepository.delete(nyhet);
+        return "redirect:/admin/nyheter?page=0";
     }
     public String uploadFileToServer(MultipartFile uploadedFile) throws IOException {
         Client client = new Client("eca459e5791d32ddb0f4", "78c7be5af84b70995435");

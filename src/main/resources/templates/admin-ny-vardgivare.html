@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/nyheter" class="nav-link">
+                        <a href="/admin/nyheter?page=0" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
@@ -90,10 +90,10 @@
                     <div class="mb-4 d-flex align-items-end">
                         <div>
                             <label class="form-label d-block" for="imgLogo">Ändra logotyp</label>
-                            <input class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
+                            <input onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
                         <div class="ms-4">
-                            <img style="max-height: 50px;" src="/img/logo-placeholder.png" alt="">
+                            <img style="max-height: 50px;" id="coverImg" src="/img/logo-placeholder.png" alt="">
                         </div>
                     </div>
                     <!-- Healthcare Provider -->
@@ -306,21 +306,21 @@
                     <h2 class="h6 mb-4">Bedömning</h2>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.grade, 'Godkänd verksamhet')} ? 'checked'" name="grade[]" value="Godkänd verksamhet" type="radio" id="approved-checkbox">
+                            <input class="form-check-input shadow-sm" name="grade[]" value="Godkänd verksamhet" type="radio" id="approved-checkbox">
                             <label class="form-label" for="approved-checkbox">Godkänd verksamhet</label>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.grade, 'Ej godkänd verksamhet')} ? 'checked'" name="grade[]" value="Ej godkänd verksamhet" type="radio" id="not-approved-checkbox">
+                            <input class="form-check-input shadow-sm" name="grade[]" value="Ej godkänd verksamhet" type="radio" id="not-approved-checkbox">
                             <label class="form-label" for="not-approved-checkbox">Ej godkänd verksamhet</label>
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.grade, 'Ej bedömd verksamhet')} ? 'checked'" name="grade[]" value="Ej bedömd verksamhet" type="radio" id="not-determined-checkbox">
+                            <input class="form-check-input shadow-sm" name="grade[]" value="Ej bedömd verksamhet" type="radio" id="not-determined-checkbox">
                             <label class="form-label" for="not-determined-checkbox">Ej bedömd verksamhet</label>
                         </div>
                     </div>
