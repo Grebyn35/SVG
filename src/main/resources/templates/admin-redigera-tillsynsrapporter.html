@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Vårdgivare - Admin - Sveriges Vårdgivare</title>
+
+    <meta name="author" content="Ensotech AB">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/css/theme.css">
+    <link rel="stylesheet" media="screen" href="/css/custom.css">
+</head>
+
+<body>
+
+    <div class="modal fade" id="editFileName" tabindex="-1" aria-labelledby="editFileName" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Redigera filnamn</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="file-name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Avbryt</button>
+                    <button type="button" class="btn btn-primary">Spara</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <main class="page-wrapper">
+        <div class="d-flex h-100">
+
+            <!-- Sidenav -->
+            <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
+                <div>
+                    <div class="px-5 mb-4">
+                        <a href="/">
+                            <img width="100" src="/img/logo.png" alt="Sveriges Vårdgivare">
+                        </a>
+                    </div>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a href="/admin/start" class="nav-link">
+                                <i class="bx bxs-home fs-lg me-2"></i>
+                                Start
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/vardgivare?page=0" class="nav-link active">
+                                <i class="bx bx-plus-medical fs-lg me-2"></i>
+                                Vårdgivare
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/nyheter?page=0" class="nav-link">
+                                <i class="bx bxs-news fs-lg me-2"></i>
+                                Nyheter
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/annonser?page=0" class="nav-link">
+                                <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+                                Annonser
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="border-top pt-4 mt-4">
+                    <a href="/logout" class="btn btn-outline-info shadow-sm w-100">
+                        <i class="bx bx-log-out fs-lg me-2"></i>
+                        Logga ut
+                    </a>
+                </div>
+            </aside>
+
+            <div class="w-100 h-100 px-3 px-sm-4 px-xxl-5 py-5 py-sm-5">
+                <!-- Breadcrumbs -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin/start"><i class="bx bxs-home fs-lg me-1"></i></a></li>
+                        <li class="breadcrumb-item"><a href="/admin/vardgivare">Vårdgivare</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Redigera tillsynsrapporter</li>
+                    </ol>
+                </nav>
+
+                <h1 class="h1">Redigera vårdgivare</h1>
+                <h2 class="h5 mb-5 text-info">Tillsynsrapporter</h2>
+
+                <form th:action="@{'/admin/redigera-tillsynsrapporter/' + ${provider.id}}" method="post" enctype="multipart/form-data">
+                    <div class="col-4 pe-4">
+                        <h3 class="h6 mb-4">Ny fil</h3>
+                        <div class="mb-4 input-group">
+                            <input class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
+                            <button class="btn btn-sm btn-primary shadow-primary" type="submit">
+                                <i class="bx bx-plus me-1 fs-xl"></i>
+                                Lägg till fil
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="mt-5 table" style="max-width: 500px;">
+                    <tbody>
+                        <tr class="row">
+                            <td class="col">namn-på-fil.pdf</td>
+                            <td class="col-auto">
+                                <div class="d-flex gap-2">
+                                    <button data-bs-toggle="modal" data-bs-target="#editFileName" class="btn btn-icon btn-sm btn-info">
+                                        <i class="bx bxs-edit"></i>
+                                    </button>
+                                    <button class="btn p-1 btn-icon btn-sm btn-danger">
+                                        <i class="bx bx-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+</body>
+</html>

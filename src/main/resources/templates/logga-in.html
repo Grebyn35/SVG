@@ -74,7 +74,6 @@
                 Logga in
             </h1>
             <form class="needs-validation" th:action="@{/login}" method="post">
-                <div th:if="${param.error}" class="mb-2">Fel e-post eller lösenord</div>
                 <div class="mb-3">
                     <input class="form-control shadow-sm" type="email" id="email" name="username" placeholder="E-post" required>
                     <div class="invalid-feedback">Var god skriv in din e-post.</div>
@@ -93,8 +92,9 @@
                     Logga in
                     <i class="bx bx-log-in ms-1 fs-lg"></i>
                 </button>
+                <div th:if="${param.error}" class="my-4 text-error text-center fs-sm">Fel e-post eller lösenord</div>
                 <p class="mt-4 mb-2 text-center text-muted">© 2023 Sveriges Vårdgivare</p>
-                <p class="text-center fs-sm text-muted">Byggt av <a class="text-decoration-none link-dark fw-bold" target="_blank" href="https://www.e-rekrytering.io/">Ensotech AB</a></p>
+                <p class="text-center fs-sm text-muted">Byggt av <a class="text-decoration-none link-dark fw-bold" target="_blank" href="https://www.ensotech.io/">Ensotech AB</a></p>
             </form>
         </div>
     </section>
