@@ -229,12 +229,12 @@
                         <div class="d-flex gap-1 fs-sm mt-3">
                             Tillståndspliktig verksamhet:
                             <!-- Permit: Yes -->
-                            <div th:if="${provider.grade == '[Godkänd verksamhet]'}" class="d-flex align-items-center">
+                            <div th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                                 <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
                                 <span class="text-success fw-bold">JA</span>
                             </div>
                             <!-- Permit: No -->
-                            <div th:if="${provider.grade != '[Godkänd verksamhet]'}" class="d-flex align-items-center">
+                            <div th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                                 <i class="bx bxs-x-circle fs-lg text-danger me-1"></i>
                                 <span class="text-danger fw-bold">NEJ</span>
                             </div>

@@ -207,13 +207,14 @@
                         LVM, SoL 7.1.1, SoL 7.1.2, SoL 4.1
                     </td>
                     <td class="d-none d-sm-table-cell col col-xxl-1 border-bottom-0">
-                        <div class="d-flex align-items-center">
+                        <div th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
+                            <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
                             <span class="text-success fw-bold">JA</span>
                         </div>
-                        <!-- <div class="d-flex align-items-center">
+                         <div th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                             <i class="bx bxs-x-circle fs-xl text-danger me-1"></i>
                             <span class="text-danger fw-bold">NEJ</span>
-                        </div> -->
+                        </div>
                     </td>
                     <td class="d-none d-md-table-cell col-3 border-bottom-0" th:text="${provider.remark}">
                     </td>

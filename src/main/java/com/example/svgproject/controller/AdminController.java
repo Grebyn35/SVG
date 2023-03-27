@@ -70,7 +70,7 @@ public class AdminController {
         model.addAttribute("providerObject", new Provider());
         return "admin-ny-vardgivare";
     }
-    @RequestMapping(value=("/admin/ny-vardgivare"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewUserPost(Model model, HttpServletRequest request, @RequestParam("coordinatorImage") MultipartFile coordinatorImage, @RequestParam("imgLogo") MultipartFile imgLogo, @RequestParam("logoQualityTale") MultipartFile logoQualityTale, @RequestParam("imgBrochure") MultipartFile imgBrochure, @RequestParam("imgExtraInfo") MultipartFile imgExtraInfo) throws IOException {
+    @RequestMapping(value=("/admin/ny-vardgivare"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewUserPost(Model model, HttpServletRequest request, @RequestParam("coordinatorImage") MultipartFile coordinatorImage, @RequestParam("imgLogo") MultipartFile imgLogo) throws IOException {
         Provider provider = new Provider();
         ArrayList<String> typeList = new ArrayList<>();
         ArrayList<String> otherSettingsList = new ArrayList<>();
@@ -130,18 +130,6 @@ public class AdminController {
         if(coordinatorImage.getSize()>10){
             String coordinatorImageSrc = uploadFileToServer(coordinatorImage);
             provider.setCoordinatorImage(coordinatorImageSrc);
-        }
-        if(logoQualityTale.getSize()>10){
-            String qualityTaleSrc = uploadFileToServer(logoQualityTale);
-            provider.setQualityTaleSrc(qualityTaleSrc);
-        }
-        if(imgBrochure.getSize()>10){
-            String brochureSrc = uploadFileToServer(imgBrochure);
-            provider.setBrochureSrc(brochureSrc);
-        }
-        if(imgExtraInfo.getSize()>10){
-            String extraInfoSrc = uploadFileToServer(imgExtraInfo);
-            provider.setExtraInfoSrc(extraInfoSrc);
         }
         providerRepository.save(provider);
         return "redirect:/admin/start";
@@ -260,7 +248,7 @@ public class AdminController {
         model.addAttribute("provider", provider);
         return "admin-redigera-vardgivare";
     }
-    @RequestMapping(value=("/admin/redigera-vardgivare/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editProviderPost(@PathVariable long id, Model model, @RequestParam("coordinatorImage") MultipartFile coordinatorImage, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo, @RequestParam("logoQualityTale") MultipartFile logoQualityTale, @RequestParam("imgBrochure") MultipartFile imgBrochure, @RequestParam("imgExtraInfo") MultipartFile imgExtraInfo) throws IOException {
+    @RequestMapping(value=("/admin/redigera-vardgivare/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editProviderPost(@PathVariable long id, Model model, @RequestParam("coordinatorImage") MultipartFile coordinatorImage, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo) throws IOException {
         Provider provider = providerRepository.findById(id);
         ArrayList<String> typeList = new ArrayList<>();
         ArrayList<String> otherSettingsList = new ArrayList<>();
@@ -320,18 +308,6 @@ public class AdminController {
         if(coordinatorImage.getSize()>10){
             String coordinatorImageSrc = uploadFileToServer(coordinatorImage);
             provider.setCoordinatorImage(coordinatorImageSrc);
-        }
-        if(logoQualityTale.getSize()>10){
-            String qualityTaleSrc = uploadFileToServer(logoQualityTale);
-            provider.setQualityTaleSrc(qualityTaleSrc);
-        }
-        if(imgBrochure.getSize()>10){
-            String brochureSrc = uploadFileToServer(imgBrochure);
-            provider.setBrochureSrc(brochureSrc);
-        }
-        if(imgExtraInfo.getSize()>10){
-            String extraInfoSrc = uploadFileToServer(imgExtraInfo);
-            provider.setExtraInfoSrc(extraInfoSrc);
         }
         providerRepository.save(provider);
         return "redirect:/admin/vardgivare?page=0";

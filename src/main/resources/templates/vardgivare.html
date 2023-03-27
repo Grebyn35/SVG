@@ -232,11 +232,11 @@
                   <div class="col-6">
                     <div class="d-flex align-items-center justify-content-end mb-2">
                       <span class="fw-semibold me-1">Tillstånd: </span>
-                      <div th:if="${provider.grade == '[Godkänd verksamhet]'}" class="d-flex align-items-center">
+                      <div th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                         <i class="bx bxs-check-circle fs-xl text-success me-1"></i>
                         <span class="text-success fw-bold">JA</span>
                       </div>
-                      <div th:if="${provider.grade != '[Godkänd verksamhet]'}" class="d-flex align-items-center">
+                      <div th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                         <i class="bx bxs-x-circle fs-xl text-danger me-1"></i>
                         <span class="text-danger fw-bold">NEJ</span>
                       </div>
