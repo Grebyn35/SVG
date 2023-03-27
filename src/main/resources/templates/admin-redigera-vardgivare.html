@@ -176,7 +176,7 @@
                     <h2 class="h6">Tillståndsbevis</h2>
                     <div class="mb-4">
                         <a class="btn btn-light border shadow-sm mb-4" href="/admin-redigera-ovriga-upplysningar"></a>
-                        <a class="fs-sm mt-2" href="">fil.pdf</a>
+                        <a class="fs-sm mt-2" th:href="'/admin/redigera-tillstandsbevis/' + ${provider.id}">fil.pdf</a>
                     </div>
 
                     <hr class="mb-4">
@@ -185,7 +185,7 @@
                     <h2 class="h6">Tillsynsrapporter</h2>
                     <div class="mb-4">
                         <a class="btn btn-light border shadow-sm mb-4" href="/admin-redigera-tillsynsrapporter"></a>
-                        <a class="fs-sm mt-2" href="">fil.pdf</a>
+                        <a class="fs-sm mt-2" th:href="'/admin/redigera-tillsynsrapporter/' + ${provider.id}">fil.pdf</a>
                     </div>
 
                     <hr class="mb-4">
@@ -194,7 +194,7 @@
                     <h2 class="h6">Kvalitetsberättelser</h2>
                     <div class="mb-4">
                         <a class="btn btn-light border shadow-sm mb-4" href="/admin-redigera-kvalitetsberattelser"></a>
-                        <a class="fs-sm mt-2" href="">fil.pdf</a>
+                        <a class="fs-sm mt-2" th:href="'/admin/redigera-kvalitetsberattelser/' + ${provider.id}">fil.pdf</a>
                     </div>
 
                     <hr class="mb-4">
@@ -203,7 +203,7 @@
                     <h2 class="h6">Dokument</h2>
                     <div class="mb-4">
                         <a class="btn btn-light border shadow-sm mb-4" href="/admin-redigera-dokument"></a>
-                        <a class="fs-sm mt-2" href="">fil.pdf</a>
+                        <a class="fs-sm mt-2" th:href="'/admin/redigera-dokument/' + ${provider.id}">fil.pdf</a>
                     </div>
 
                     <hr class="mb-4">

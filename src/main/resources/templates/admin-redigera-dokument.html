@@ -29,19 +29,20 @@
 
     <div class="modal fade" id="editFileName" tabindex="-1" aria-labelledby="editFileName" aria-hidden="true">
         <div class="modal-dialog">
-            <form class="modal-content">
+            <form class="modal-content" th:action="@{'/admin/redigera-dokument-namn'}" method="post">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">Redigera filnamn</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <input type="text" id="id" name="id" style="display: none">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="file-name">
+                        <input type="text" name="name" class="form-control" id="file-name" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Avbryt</button>
-                    <button type="button" class="btn btn-primary">Spara</button>
+                    <button type="submit" class="btn btn-primary">Spara</button>
                 </div>
             </form>
         </div>
@@ -110,7 +111,7 @@
                     <div class="col-4 pe-4">
                         <h3 class="h6 mb-4">Ny fil</h3>
                         <div class="mb-4 input-group">
-                            <input class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
+                            <input class="form-control shadow-sm" type="file" name="userFile" id="imgLogo">
                             <button class="btn btn-sm btn-primary shadow-primary" type="submit">
                                 <i class="bx bx-plus me-1 fs-xl"></i>
                                 Lägg till fil
@@ -121,11 +122,11 @@
 
                 <table class="mt-5 table" style="max-width: 500px;">
                     <tbody>
-                        <tr class="row">
-                            <td class="col">namn-på-fil.pdf</td>
+                        <tr class="row" th:each="userDoc : ${userDocs}">
+                            <td class="col" th:text="${userDoc.name}">namn-på-fil.pdf</td>
                             <td class="col-auto">
                                 <div class="d-flex gap-2">
-                                    <button data-bs-toggle="modal" data-bs-target="#editFileName" class="btn btn-icon btn-sm btn-info">
+                                    <button th:data-name="${userDoc.name}" th:data-id="${userDoc.id}" data-bs-toggle="modal" data-bs-target="#editFileName" class="btn btn-icon btn-sm btn-info">
                                         <i class="bx bxs-edit"></i>
                                     </button>
                                     <button class="btn p-1 btn-icon btn-sm btn-danger">
@@ -146,5 +147,16 @@
 
 <!-- Main Theme Script -->
 <script src="/js/theme.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+        $('#editFileName').on('show.bs.modal', function(e) {
+            let id = $(e.relatedTarget).data('id');
+            let name = $(e.relatedTarget).data('name');
+            document.getElementById("file-name").value = name
+            document.getElementById("id").value = id;
+
+        });
+    </script>
 </body>
 </html>

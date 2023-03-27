@@ -1,13 +1,7 @@
 package com.example.svgproject.controller;
 
-import com.example.svgproject.model.Nyhet;
-import com.example.svgproject.model.Post;
-import com.example.svgproject.model.Provider;
-import com.example.svgproject.model.User;
-import com.example.svgproject.repository.NyhetRepository;
-import com.example.svgproject.repository.PostRepository;
-import com.example.svgproject.repository.ProviderRepository;
-import com.example.svgproject.repository.UserRepository;
+import com.example.svgproject.model.*;
+import com.example.svgproject.repository.*;
 import com.example.svgproject.security.CustomUserDetails;
 import com.uploadcare.api.Client;
 import com.uploadcare.api.File;
@@ -48,6 +42,15 @@ public class AdminController {
 
     @Autowired
     PostRepository postRepository;
+
+    @Autowired
+    UserDocsRepository userDocsRepository;
+    @Autowired
+    UserQualityTalesRepository userQualityTalesRepository;
+    @Autowired
+    UserRegistryRepository userRegistryRepository;
+    @Autowired
+    UserReportsRepository userReportsRepository;
 
     @GetMapping("/admin/annonser") public String adminPosts(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 10);
@@ -382,5 +385,113 @@ public class AdminController {
             e.printStackTrace();
         }
         return null;
+    }
+    @GetMapping("/admin/redigera-dokument/{id}")
+    public String editDoc(Model model, HttpServletRequest request, @PathVariable long id){
+        Provider provider = providerRepository.findById(id);
+        ArrayList<UserDocs> userDocs = userDocsRepository.findAll();
+        model.addAttribute("userDocs", userDocs);
+        model.addAttribute("provider", provider);
+        return "admin-redigera-dokument";
+    }
+    @PostMapping("/admin/redigera-dokument-namn")
+    public String editDocName(Model model, HttpServletRequest request){
+        UserDocs userDocs = userDocsRepository.findById(Long.parseLong(request.getParameter("id")));
+        userDocs.setName(request.getParameter("name"));
+        userDocsRepository.save(userDocs);
+        return "redirect:/admin/redigera-dokument/" + userDocs.getProviderId();
+    }
+    @RequestMapping(value=("/admin/redigera-dokument/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editDocPost(@PathVariable long id, Model model, @RequestParam("userFile") MultipartFile userFile) throws IOException {
+        UserDocs userDocs = new UserDocs();
+        if(userFile.getSize()>10){
+            String logoSrc = uploadFileToServer(userFile);
+            userDocs.setName(userFile.getOriginalFilename());
+            userDocs.setSrc(logoSrc);
+            userDocs.setProviderId(id);
+            userDocs.setCreated(returnDateWithTime());
+            userDocsRepository.save(userDocs);
+        }
+        return "redirect:/admin/redigera-vardgivare/" + id;
+    }
+    @GetMapping("/admin/redigera-kvalitetsberattelser/{id}")
+    public String editKvalitetsberattelser(Model model, HttpServletRequest request, @PathVariable long id){
+        Provider provider = providerRepository.findById(id);
+        ArrayList<UserQualityTales> userQualityTales = userQualityTalesRepository.findAll();
+        model.addAttribute("userQualityTales", userQualityTales);
+        model.addAttribute("provider", provider);
+        return "admin-redigera-kvalitetsberattelser";
+    }
+    @PostMapping("/admin/redigera-kvalitetsberattelser-namn")
+    public String editKvalitetsberattelserName(Model model, HttpServletRequest request){
+        UserQualityTales userQualityTales = userQualityTalesRepository.findById(Long.parseLong(request.getParameter("id")));
+        userQualityTales.setName(request.getParameter("name"));
+        userQualityTalesRepository.save(userQualityTales);
+        return "redirect:/admin/redigera-kvalitetsberattelser/" + userQualityTales.getProviderId();
+    }
+    @RequestMapping(value=("/admin/redigera-kvalitetsberattelser/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editKvalitetsberattelserPost(@PathVariable long id, Model model, @RequestParam("userFile") MultipartFile userFile) throws IOException {
+        UserQualityTales userQualityTales = new UserQualityTales();
+        if(userFile.getSize()>10){
+            String logoSrc = uploadFileToServer(userFile);
+            userQualityTales.setName(userFile.getOriginalFilename());
+            userQualityTales.setSrc(logoSrc);
+            userQualityTales.setProviderId(id);
+            userQualityTales.setCreated(returnDateWithTime());
+            userQualityTalesRepository.save(userQualityTales);
+        }
+        return "redirect:/admin/redigera-vardgivare/" + id;
+    }
+    @GetMapping("/admin/redigera-tillstandsbevis/{id}")
+    public String editTillstandsbevis(Model model, HttpServletRequest request, @PathVariable long id){
+        Provider provider = providerRepository.findById(id);
+        ArrayList<UserRegistry> userRegistries = userRegistryRepository.findAll();
+        model.addAttribute("userRegistries", userRegistries);
+        model.addAttribute("provider", provider);
+        return "admin-redigera-tillstandsbevis";
+    }
+    @PostMapping("/admin/redigera-tillstandsbevis-namn")
+    public String editTillstandsbevisName(Model model, HttpServletRequest request){
+        UserRegistry userRegistry = userRegistryRepository.findById(Long.parseLong(request.getParameter("id")));
+        userRegistry.setName(request.getParameter("name"));
+        userRegistryRepository.save(userRegistry);
+        return "redirect:/admin/redigera-tillstandsbevis/" + userRegistry.getProviderId();
+    }
+    @RequestMapping(value=("/admin/redigera-tillstandsbevis/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editTillstandsbevisPost(@PathVariable long id, Model model, @RequestParam("userFile") MultipartFile userFile) throws IOException {
+        UserRegistry userRegistry = new UserRegistry();
+        if(userFile.getSize()>10){
+            String logoSrc = uploadFileToServer(userFile);
+            userRegistry.setName(userFile.getOriginalFilename());
+            userRegistry.setSrc(logoSrc);
+            userRegistry.setProviderId(id);
+            userRegistry.setCreated(returnDateWithTime());
+            userRegistryRepository.save(userRegistry);
+        }
+        return "redirect:/admin/redigera-vardgivare/" + id;
+    }
+    @GetMapping("/admin/redigera-tillsynsrapporter/{id}")
+    public String editTillsynsrapport(Model model, HttpServletRequest request, @PathVariable long id){
+        Provider provider = providerRepository.findById(id);
+        ArrayList<UserReports> userReports = userReportsRepository.findAll();
+        model.addAttribute("userReports", userReports);
+        model.addAttribute("provider", provider);
+        return "admin-redigera-tillsynsrapporter";
+    }
+    @PostMapping("/admin/redigera-tillsynsrapporter-namn")
+    public String editTillsynsrapportName(Model model, HttpServletRequest request){
+        UserReports userReports = userReportsRepository.findById(Long.parseLong(request.getParameter("id")));
+        userReports.setName(request.getParameter("name"));
+        userReportsRepository.save(userReports);
+        return "redirect:/admin/redigera-tillsynsrapporter/" + userReports.getProviderId();
+    }
+    @RequestMapping(value=("/admin/redigera-tillsynsrapporter/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editTillsynsrapportPost(@PathVariable long id, Model model, @RequestParam("userFile") MultipartFile userFile) throws IOException {
+        UserReports userReports = new UserReports();
+        if(userFile.getSize()>10){
+            String logoSrc = uploadFileToServer(userFile);
+            userReports.setName(userFile.getOriginalFilename());
+            userReports.setSrc(logoSrc);
+            userReports.setProviderId(id);
+            userReports.setCreated(returnDateWithTime());
+            userReportsRepository.save(userReports);
+        }
+        return "redirect:/admin/redigera-vardgivare/" + id;
     }
 }

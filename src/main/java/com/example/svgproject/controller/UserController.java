@@ -1,13 +1,7 @@
 package com.example.svgproject.controller;
 
-import com.example.svgproject.model.NewsLetter;
-import com.example.svgproject.model.Nyhet;
-import com.example.svgproject.model.Provider;
-import com.example.svgproject.model.User;
-import com.example.svgproject.repository.NewsLetterRepository;
-import com.example.svgproject.repository.NyhetRepository;
-import com.example.svgproject.repository.ProviderRepository;
-import com.example.svgproject.repository.UserRepository;
+import com.example.svgproject.model.*;
+import com.example.svgproject.repository.*;
 import com.example.svgproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -46,6 +41,15 @@ public class UserController {
 
     @Autowired
     NyhetRepository nyhetRepository;
+
+    @Autowired
+    UserDocsRepository userDocsRepository;
+    @Autowired
+    UserQualityTalesRepository userQualityTalesRepository;
+    @Autowired
+    UserRegistryRepository userRegistryRepository;
+    @Autowired
+    UserReportsRepository userReportsRepository;
 
     @Autowired
     NewsLetterRepository newsLetterRepository;
@@ -303,7 +307,16 @@ public class UserController {
     }
     @GetMapping("/vardgivare/{id}") public String userPageNew(@PathVariable long id, Model model){
         Provider provider = providerRepository.findById(id);
+        ArrayList<UserDocs> userDocs = userDocsRepository.findAll();
+        ArrayList<UserQualityTales> userQualityTales = userQualityTalesRepository.findAll();
+        ArrayList<UserRegistry> userRegistries = userRegistryRepository.findAll();
+        ArrayList<UserReports> userReports = userReportsRepository.findAll();
         model.addAttribute("provider", provider);
+
+        model.addAttribute("userDocs", userDocs);
+        model.addAttribute("userQualityTales", userQualityTales);
+        model.addAttribute("userRegistries", userRegistries);
+        model.addAttribute("userReports", userReports);
         return "vardgivare-template";
     }
     @GetMapping("vardgivare_search") public String vardgivareRedirect(){
