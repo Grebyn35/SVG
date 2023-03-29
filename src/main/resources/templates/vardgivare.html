@@ -157,67 +157,28 @@
     <div class="row">
       <div class="col-xl-9 col-lg-8 tableSearch">
 
-        <!-- Item (Sponsor) -->
-        <!--<div class="card border-info bg-faded-primary card-hover mb-4 shadow me-lg-5">
-          &lt;!&ndash; <div class="position-absolute" style="right: 0; bottom: 0; margin-bottom: -15px; margin-right: -15px; z-index: 100;">
+        <!-- OM SPONSRAT: border-info & bg-faded-primary -->
+        <div th:each="provider : ${providers}" th:classappend="${provider.website ? 'bg-faded-primary border-info' : ''}" class="card card-hover mb-4 shadow me-lg-5">
+
+          <!-- OM NÅGOT MÄRKVÄRDIGT: -->
+          <div th:if="${provider.remark != ''}" class="position-absolute" style="right: 0; bottom: 0; margin-bottom: -15px; margin-right: -15px; z-index: 100;">
             <i class="bx bxs-error-circle fs-1 text-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit adipisicing elit."></i>
-          </div> &ndash;&gt;
+          </div>
+          
           <div class="position-relative row g-0">
             <div class="col-md-3 d-flex align-items-center justify-content-center">
-              <img src="/img/logo-placeholder_2.webp" class="p-3 w-md-100" style="max-height: 100px; max-width: 250px; object-fit: contain;">
+              <img th:src="${provider.logoSrc}" class="p-3 w-md-100" style="max-height: 100px; max-width: 250px; object-fit: contain;">
             </div>
             <div class="col-md-9">
               <div class="card-body py-4">
                 <div class="d-flex align-items-center justify-content-between">
                   <h4 class="h5">
-                    <a class="stretched-link" th:href="'/nyheter/' + ${1}">Brinaxi Care AB</a>
+                    <a class="stretched-link" th:href="'/vardgivare/' + ${provider.id}" th:text="${provider.name}">Brinaxi Care AB</a>
                   </h4>
-                  <a href="" class="badge fs-sm text-dark fw-bold bg-primary shadow-primary text-decoration-none mb-3">Sponsrad</a>
-                </div>
-                <div class="row fs-sm">
-                  <div class="col-6">
-                    <div class="mb-2">
-                      <span class="fw-semibold">Typ: </span>
-                      <span>LSS</span>
-                    </div>
-                    <div>
-                      <span class="fw-semibold">Kvalitetsberättelser: </span>
-                      <span>LVM, SoL 7.1.1</span>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="d-flex align-items-center justify-content-end mb-2">
-                      <span class="fw-semibold me-1">Tillstånd: </span>
-                      <div class="d-flex align-items-center">
-                        <i class="bx bxs-check-circle fs-xl text-success me-1"></i>
-                        <span class="text-success fw-bold">JA</span>
-                      </div>
-                      <div class="d-flex align-items-center">
-                        <i class="bx bxs-x-circle fs-xl text-danger me-1"></i>
-                        <span class="text-danger fw-bold">NEJ</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>-->
 
-        <!-- Item -->
-        <div th:each="provider : ${providers}" class="card card-hover mb-4 shadow me-lg-5">
-          <div class="row g-0">
-            <div class="col-md-3 d-flex align-items-center justify-content-center">
-              <img th:src="${provider.logoSrc}" class="p-3" style="max-height: 100px; max-width: 250px; object-fit: contain;" alt="">
-            </div>
-            <div class="col-md-9">
-              <!-- <div class="position-absolute" style="right: 0; bottom: 0; margin-bottom: -15px; margin-right: -15px; z-index: 100;">
-                <i class="bx bxs-error-circle fs-1 text-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit adipisicing elit."></i>
-              </div> -->
-              <div class="card-body py-4">
-                <h4 class="h5">
-                  <a class="stretched-link" th:href="'/vardgivare/' + ${provider.id}" th:text="${provider.name}">Brinaxi Care AB</a>
-                </h4>
+                  <!-- OM SPONSRAT: -->
+                  <div class="badge fs-sm text-dark fw-bold bg-primary shadow-primary text-decoration-none mb-3">Sponsrad</div>
+                </div>
                 <div class="row fs-sm">
                   <div class="col-6">
                     <div class="mb-2">
@@ -232,11 +193,11 @@
                   <div class="col-6">
                     <div class="d-flex align-items-center justify-content-end mb-2">
                       <span class="fw-semibold me-1">Tillstånd: </span>
-                      <div th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
+                      <div class="d-flex align-items-center" th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}">
                         <i class="bx bxs-check-circle fs-xl text-success me-1"></i>
                         <span class="text-success fw-bold">JA</span>
                       </div>
-                      <div th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
+                      <div class="d-flex align-items-center" th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}">
                         <i class="bx bxs-x-circle fs-xl text-danger me-1"></i>
                         <span class="text-danger fw-bold">NEJ</span>
                       </div>
