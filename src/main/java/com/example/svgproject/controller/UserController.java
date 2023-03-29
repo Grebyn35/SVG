@@ -43,6 +43,9 @@ public class UserController {
     NyhetRepository nyhetRepository;
 
     @Autowired
+    PostRepository postRepository;
+
+    @Autowired
     UserDocsRepository userDocsRepository;
     @Autowired
     UserQualityTalesRepository userQualityTalesRepository;
@@ -61,10 +64,13 @@ public class UserController {
 
     @GetMapping("/") public String home(Model model){
         Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageablePosts = PageRequest.of(0, 10);
         Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContaining("", pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", 0);
+        Page<Post> posts = postRepository.findAllByStatusTrue(pageablePosts);
+        model.addAttribute("posts", posts);
         return "hem";
     }
     @GetMapping("/kontakt") public String contact(){
@@ -230,6 +236,7 @@ public class UserController {
     }
     @GetMapping("/nyheter") public String newsPage(@RequestParam("page") int page, @RequestParam("category") String category, Model model){
         Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageablePosts = PageRequest.of(0, 10);
         if(category.contentEquals("all")){
             category = "";
         }
@@ -238,6 +245,8 @@ public class UserController {
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
         model.addAttribute("category", category);
+        Page<Post> posts = postRepository.findAllByStatusTrue(pageablePosts);
+        model.addAttribute("posts", posts);
         return "nyheter";
     }
     @GetMapping("/search_news")
@@ -267,7 +276,10 @@ public class UserController {
     }
     @GetMapping("/vardgivare") public String userPage(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageablePosts = PageRequest.of(page, 10);
         Page<Provider> providers = providerRepository.findAll(pageable);
+        Page<Post> posts = postRepository.findAllByStatusTrue(pageablePosts);
+        model.addAttribute("posts", posts);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
@@ -281,10 +293,13 @@ public class UserController {
     @GetMapping("/search_vardgivare")
     public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
         Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageablePosts = PageRequest.of(page, 10);
         Page<Provider> providers = providerRepository.findAllByNameContainingAndTypeListContainingAndCountyContainingAndGradeContaining(searchInput, branchType, county, grade, pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
+        Page<Post> posts = postRepository.findAllByStatusTrue(pageablePosts);
+        model.addAttribute("posts", posts);
         return "vardgivare :: .tableSearch";
     }
     @PostMapping("/vardgivare_search")

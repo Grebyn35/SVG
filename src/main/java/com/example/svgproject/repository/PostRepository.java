@@ -12,4 +12,5 @@ public interface PostRepository extends CrudRepository<Post,Long> {
 
     Post findById(long id);
     Page<Post> findAll(Pageable pageable);
+    Page<Post> findAllByStatusTrue(Pageable pageable);
 }
