@@ -158,16 +158,17 @@
       <div class="col-xl-9 col-lg-8 tableSearch">
 
         <!-- OM SPONSRAT: border-info & bg-faded-primary -->
-        <div th:each="provider : ${providers}" th:classappend="${provider.website ? 'bg-faded-primary border-info' : ''}" class="card card-hover mb-4 shadow me-lg-5">
+        <div th:each="provider : ${providers}" th:classappend="${#strings.contains(provider.otherSettings, 'Betalande profil') ? 'bg-faded-primary border-info' : ''}" class="card card-hover mb-4 shadow me-lg-5">
 
           <!-- OM NÅGOT MÄRKVÄRDIGT: -->
-          <div th:if="${provider.remark != ''}" class="position-absolute" style="right: 0; bottom: 0; margin-bottom: -15px; margin-right: -15px; z-index: 100;">
-            <i class="bx bxs-error-circle fs-1 text-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit adipisicing elit."></i>
-          </div>
+          <!--<div th:if="${provider.remark != ''}" class="position-absolute" style="right: 0; bottom: 0; margin-bottom: -15px; margin-right: -15px; z-index: 100;">
+            <i class="bx bxs-error-circle fs-1 text-warning" data-bs-toggle="tooltip" data-bs-placement="top" th:title="${provider.remark}"></i>
+          </div>-->
           
           <div class="position-relative row g-0">
             <div class="col-md-3 d-flex align-items-center justify-content-center">
-              <img th:src="${provider.logoSrc}" class="p-3 w-md-100" style="max-height: 100px; max-width: 250px; object-fit: contain;">
+              <img th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" th:src="${provider.logoSrc}" class="p-3 w-md-100" style="max-height: 100px; max-width: 250px; object-fit: contain;">
+              <img th:if="${!#strings.contains(provider.otherSettings, 'Betalande profil')}" src="/images/bild_saknas.jpg" class="p-3 w-md-100" style="max-height: 100px; max-width: 250px; object-fit: contain;">
             </div>
             <div class="col-md-9">
               <div class="card-body py-4">
@@ -177,7 +178,7 @@
                   </h4>
 
                   <!-- OM SPONSRAT: -->
-                  <div class="badge fs-sm text-dark fw-bold bg-primary shadow-primary text-decoration-none mb-3">Sponsrad</div>
+                  <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="badge fs-sm text-dark fw-bold bg-primary shadow-primary text-decoration-none mb-3">Sponsrad</div>
                 </div>
                 <div class="row fs-sm">
                   <div class="col-6">

@@ -182,7 +182,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-4 card p-4 shadow fs-sm">
+                <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="mt-4 card p-4 shadow fs-sm">
                     <h3 class="h4 mb-4">Sökkriterier</h3>
                     <div>
                         <h4 class="h6">Verksamhetsuppgifter</h4>
@@ -221,7 +221,8 @@
             <div class="col-lg-4 order-first order-lg-last mb-4 mb-lg-0">
                 <div class="card overflow-hidden shadow mb-4">
                     <div class="p-5 bg-faded-primary align-items-center">
-                        <img class=" img-fluid" th:src="${provider.logoSrc}" alt="">
+                        <img th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="img-fluid" th:src="${provider.logoSrc}" alt="">
+                        <img th:if="${!#strings.contains(provider.otherSettings, 'Betalande profil')}" class="img-fluid" src="/images/bild_saknas.jpg" alt="">
                     </div>
                     <div class="card-body">
                         <h1 th:text="${provider.name}" class="h6 mb-0">Brinaxi Care AB</h1>
@@ -242,7 +243,7 @@
                     </div>
                 </div>
 
-                <div class="card overflow-hidden shadow my-4">
+                <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="card overflow-hidden shadow my-4">
                     <div class="card-body">
                         <h1 class="h6">Placeringsfrågan</h1>
                         <div class="d-flex align-items-center mb-4">
