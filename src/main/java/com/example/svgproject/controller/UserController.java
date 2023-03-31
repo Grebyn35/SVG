@@ -3,6 +3,14 @@ package com.example.svgproject.controller;
 import com.example.svgproject.model.*;
 import com.example.svgproject.repository.*;
 import com.example.svgproject.service.UserService;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -21,10 +29,12 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 
@@ -76,15 +86,44 @@ public class UserController {
     @GetMapping("/kontakt") public String contact(){
         return "kontakt";
     }
-    @PostMapping("/kontakt") public String contactPost(HttpServletRequest request, RedirectAttributes redirectAttributes){
+    @PostMapping("/kontakt") public String contactPost(HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
+        String token = request.getParameter("g-token");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String tel = request.getParameter("tel");
         String content = request.getParameter("content");
-        sendContactFormEmail(content, email, name, tel);
-        sendContactFormConfirmationEmail(email, name);
-        redirectAttributes.addFlashAttribute("notificationMsg", "contact");
+        if(captchaValidation(token)) {
+            sendContactFormEmail(content, email, name, tel);
+            sendContactFormConfirmationEmail(email, name);
+            redirectAttributes.addFlashAttribute("notificationMsg", "contact");
+        }
+        else{
+            redirectAttributes.addFlashAttribute("notificationMsg", "captchaFailed");
+            System.out.println("token invalid for contact form");
+        }
         return "redirect:/";
+    }
+    public boolean captchaValidation(String responseToken) throws IOException {
+        HttpPost post = new HttpPost("https://www.google.com/recaptcha/api/siteverify");
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("secret", "6Lfe5HghAAAAAK7CRNDwqDMmvwu2-8rzY8AwXJKR"));
+        urlParameters.add(new BasicNameValuePair("response", responseToken));
+
+        post.setEntity(new UrlEncodedFormEntity(urlParameters));
+
+        try (CloseableHttpClient httpClient = HttpClients.createDefault();
+             CloseableHttpResponse response = httpClient.execute(post)) {
+            String responseString = EntityUtils.toString(response.getEntity());
+            String succesString = responseString.split("\"success\": ")[1];
+            System.out.println(responseString);
+            String resultString = succesString.split(",")[0];
+            boolean result = Boolean.parseBoolean(resultString);
+            if(result) {
+                return true;
+            }
+            return false;
+        }
     }
     @PostMapping("/nyhetsbrev") public String newsLetterPost(HttpServletRequest request, RedirectAttributes redirectAttributes){
         String email = request.getParameter("email");
@@ -109,14 +148,21 @@ public class UserController {
         df.setTimeZone(TimeZone.getTimeZone("Europe/Stockholm"));
         return df.format(date);
     }
-    @PostMapping("/lista-foretag") public String listCmpPost(HttpServletRequest request, RedirectAttributes redirectAttributes){
+    @PostMapping("/lista-foretag") public String listCmpPost(HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
+        String token = request.getParameter("g-token");
         String listCmpName = request.getParameter("listCmpName");
         String listContactName = request.getParameter("listContactName");
         String listTel = request.getParameter("listTel");
         String listEmail = request.getParameter("listEmail");
-        sendListingEmail(listCmpName, listContactName, listTel, listEmail);
-        sendListingConfirmationEmail(listEmail, listContactName);
-        redirectAttributes.addFlashAttribute("notificationMsg", "listing");
+        if(captchaValidation(token)) {
+            sendListingEmail(listCmpName, listContactName, listTel, listEmail);
+            sendListingConfirmationEmail(listEmail, listContactName);
+            redirectAttributes.addFlashAttribute("notificationMsg", "listing");
+        }
+        else{
+            redirectAttributes.addFlashAttribute("notificationMsg", "captchaFailed");
+            System.out.println("token invalid for listing company");
+        }
         return "redirect:/";
     }
     public void sendListingEmail(String cmpName, String listContactName, String listTel, String listEmail){
@@ -218,12 +264,20 @@ public class UserController {
         return "skapa-konto";
     }
     @PostMapping("/skapa-konto")
-    public String createAccountPost(HttpServletRequest request, @Valid @ModelAttribute("userObject") User user){
-        user.setPassword(servDao.enCryptedPassword(user));
-        if(userRepository.findByEmail(request.getParameter("email"))==null){
-            userRepository.save(user);
+    public String createAccountPost(HttpServletRequest request, @Valid @ModelAttribute("userObject") User user, RedirectAttributes redirectAttributes) throws IOException {
+        String token = request.getParameter("g-token");
+        if(captchaValidation(token)) {
+            user.setPassword(servDao.enCryptedPassword(user));
+            if(userRepository.findByEmail(request.getParameter("email"))==null){
+                userRepository.save(user);
+            }
+            return "redirect:/login";
         }
-        return "redirect:/login";
+        else{
+            redirectAttributes.addFlashAttribute("notificationMsg", "captchaFailed");
+            System.out.println("token invalid for creating account");
+            return "redirect:/";
+        }
     }
     //Denna funkar inte?
     @GetMapping("/nyheter/{id}") public String newsTemplatePage(@PathVariable long id, Model model){

@@ -24,6 +24,17 @@
     <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
     <link rel="stylesheet" media="screen" href="/vendor/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" media="screen" href="/css/theme.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2SMSZHG7MH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-2SMSZHG7MH');
+    </script>
 </head>
 
 <body>
@@ -95,6 +106,7 @@
                         <textarea class="form-control shadow-sm" name="content" id="content" rows="6" required></textarea>
                         <div class="invalid-feedback">Var god skriv ditt meddelande till oss.</div>
                     </div>
+                    <input type="hidden" id="g-token" name="g-token">
                     <div class="col-12">
                         <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto shadow-primary">Skicka meddelande</button>
                     </div>
@@ -164,7 +176,13 @@
 <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
 <script src="/vendor/swiper/swiper-bundle.min.js"></script>
-
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lfe5HghAAAAAIEgRY0VeoqZ_8ML8UWMgLPKBfai', {action: 'submit'}).then(function(token) {
+            document.getElementById("g-token").value = token
+        });
+    });
+</script>
 <!-- Main Theme Script -->
 <script src="/js/theme.min.js"></script>
 

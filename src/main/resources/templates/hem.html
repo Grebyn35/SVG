@@ -414,6 +414,9 @@
 <script th:if="${notificationMsg=='newsLetter'}">
     alert("Tack för att du har prenumererat på vårt nyhetsbrev!")
 </script>
+<script th:if="${notificationMsg=='captchaFailed'}">
+    alert("Recaptcha validering misslyckades")
+</script>
 <script th:if="${notificationMsg=='newsLetterRemoved'}">
     alert("Du har nu blivit borttagen från vårt nyhetsbrev.")
 </script>
