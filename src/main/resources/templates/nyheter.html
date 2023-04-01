@@ -190,12 +190,12 @@
                         <!-- Advertising -->
                         <div class="offcanvas-body">
                             <div class="card border-0 bg-faded-primary">
-                                <div class="card-body" th:each="post : ${posts}">
-                                    <!--th:href=${post.link}-->
-                                    <div id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
-                                        <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
-                                    </div>
-                                </div>
+                            <div class="card-body">
+                                <!--th:href=${post.link}-->
+                                <a th:each="post : ${posts}" th:href="post.link" id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
+                                <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
+                                </a>
+                            </div>
                             </div>
                             <p class="mt-3 text-muted text-center">Vill du synas här? <a class="fw-bold text-decoration-none" href="/kontakt">Kontakta oss</a></p>
                         </div>
@@ -226,12 +226,12 @@
                 <div class="col-md-3 col-lg-2 offset-md-2 mb-3">
                     <h5 class="h6 mt-3 mt-md-0">Navigera</h5>
                     <ul class="h-100 fs-sm nav flex-md-column flex-sm-row flex-column gap-3 gap-md-2">
-                        <li class="nav-item"><a href="#" class="link-dark p-0">Vårdgivare</a></li>
-                        <li class="nav-item"><a href="#" class="link-dark p-0">Om oss</a></li>
-                        <li class="nav-item"><a href="#" class="link-dark p-0">Kvalitet</a></li>
-                        <li class="nav-item"><a href="#" class="link-dark p-0">Nyheter</a></li>
-                        <li class="nav-item"><a href="#" class="link-dark p-0">Kontakt</a></li>
-                        <li class="nav-item"><a href="#" class="link-dark p-0">Lista ditt företag</a></li>
+                        <li class="nav-item"><a href="/vardgivare" class="link-dark p-0">Vårdgivare</a></li>
+                        <li class="nav-item"><a href="/om-oss" class="link-dark p-0">Om oss</a></li>
+                        <li class="nav-item"><a href="/kvalitet" class="link-dark p-0">Kvalitet</a></li>
+                        <li class="nav-item"><a href="/nyheter" class="link-dark p-0">Nyheter</a></li>
+                        <li class="nav-item"><a href="/kontakt" class="link-dark p-0">Kontakt</a></li>
+                        <li class="nav-item"><a href="/lista-foretag" class="link-dark p-0">Lista ditt företag</a></li>
                     </ul>
                 </div>
                 <div class="d-none d-lg-block col-sm-6 col-md-3 mb-3">

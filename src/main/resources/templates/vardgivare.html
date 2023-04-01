@@ -168,7 +168,7 @@
           <div class="position-relative row g-0">
             <div class="col-md-3 d-flex align-items-center justify-content-center">
               <img th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" th:src="${provider.logoSrc}" class="p-3 w-md-100" style="max-height: 100px; max-width: 250px; object-fit: contain;">
-              <img th:if="${!#strings.contains(provider.otherSettings, 'Betalande profil')}" src="/images/bild_saknas.jpg" class="p-3 w-md-100" style="max-height: 100px; max-width: 250px; object-fit: contain;">
+              <img th:if="${!#strings.contains(provider.otherSettings, 'Betalande profil')}" src="/images/bild_saknas.png" class="p-3 w-md-100" style="max-height: 100px; max-width: 250px; object-fit: contain;">
             </div>
             <div class="col-md-9">
               <div class="card-body py-4">
@@ -186,10 +186,10 @@
                       <span class="fw-semibold">Typ: </span>
                       <span th:text="${provider.typeList}">LSS</span>
                     </div>
-                    <div>
-                      <span class="fw-semibold">Kvalitetsberättelser: </span>
-                      <span>LVM, SoL 7.1.1</span>
-                    </div>
+                    <a href="" class="link-info">
+                      Kvalitetsberättelser
+                      <i class="bx bx-right-arrow-alt ms-1"></i>
+                    </a>
                   </div>
                   <div class="col-6">
                     <div class="d-flex align-items-center justify-content-end mb-2">
@@ -259,11 +259,11 @@
           <!-- Advertising -->
           <div class="offcanvas-body">
             <div class="card border-0 bg-faded-primary">
-              <div class="card-body" th:each="post : ${posts}">
+              <div class="card-body">
                 <!--th:href=${post.link}-->
-                <div id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
+                <a th:each="post : ${posts}" th:href="post.link" id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
                   <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
-                </div>
+                </a>
               </div>
             </div>
             <p class="mt-3 text-muted text-center">Vill du synas här? <a class="fw-bold text-decoration-none" href="/kontakt">Kontakta oss</a></p>
