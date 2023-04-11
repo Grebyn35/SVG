@@ -12,4 +12,5 @@ public interface UserRegistryRepository extends CrudRepository<UserRegistry,Long
 
     UserRegistry findById(long id);
     ArrayList<UserRegistry> findAll();
+    ArrayList<UserRegistry> findAllByProviderId(long id);
 }

@@ -20,8 +20,11 @@ public class Provider implements Serializable {
     private String coordinatorImage;
     private String coordinatorName;
     private String information;
+    @Column(length=200000000,columnDefinition="LONGTEXT")
     private String orientation;
+    @Column(length=200000000,columnDefinition="LONGTEXT")
     private String contribution;
+    @Column(length=200000000,columnDefinition="LONGTEXT")
     private String methods;
     private String email;
     private String website;
@@ -43,4 +46,12 @@ public class Provider implements Serializable {
 
     @Column(length=200000000,columnDefinition="LONGTEXT")
     private String otherSettings;
+
+    private String coordinatorRole;
+    @Column(length=200000000,columnDefinition="LONGTEXT")
+    private String hasPermission;
+    @Column(length=200000000,columnDefinition="LONGTEXT")
+    private String noPermission;
+    @Column(length=200000000,columnDefinition="LONGTEXT")
+    private String cmpAdress;
 }

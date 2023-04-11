@@ -12,4 +12,5 @@ public interface UserReportsRepository extends CrudRepository<UserReports,Long> 
 
     UserReports findById(long id);
     ArrayList<UserReports> findAll();
+    ArrayList<UserReports> findAllByProviderId(long id);
 }

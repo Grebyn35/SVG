@@ -47,6 +47,26 @@
             </form>
         </div>
     </div>
+    <div class="modal fade" id="deleteFile" tabindex="-1" aria-labelledby="deleteFile" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content" th:action="@{'/admin/radera-tillstandsbevis'}" method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Radera fil</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="text" id="idDelete" name="id" style="display: none">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <p id="fileDelete">Radering av 'fil'</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Avbryt</button>
+                    <button type="submit" class="btn btn-primary">Radera</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <main class="page-wrapper">
         <div class="d-flex h-100">
@@ -111,7 +131,7 @@
                     <div class="col-4 pe-4">
                         <h3 class="h6 mb-4">Ny fil</h3>
                         <div class="mb-4 input-group">
-                            <input class="form-control shadow-sm" type="file" name="userFile" id="imgLogo">
+                            <input class="form-control shadow-sm" type="file" name="userFile" id="imgLogo" required>
                             <button class="btn btn-sm btn-primary shadow-primary" type="submit">
                                 <i class="bx bx-plus me-1 fs-xl"></i>
                                 Lägg till fil
@@ -129,7 +149,7 @@
                                     <button th:data-name="${userRegistry.name}" th:data-id="${userRegistry.id}" data-bs-toggle="modal" data-bs-target="#editFileName" class="btn btn-icon btn-sm btn-info">
                                         <i class="bx bxs-edit"></i>
                                     </button>
-                                    <button class="btn p-1 btn-icon btn-sm btn-danger">
+                                    <button th:data-name="${userRegistry.name}" th:data-id="${userRegistry.id}" data-bs-toggle="modal" data-bs-target="#deleteFile"  class="btn p-1 btn-icon btn-sm btn-danger">
                                         <i class="bx bx-trash"></i>
                                     </button>
                                 </div>
@@ -155,6 +175,13 @@
             let name = $(e.relatedTarget).data('name');
             document.getElementById("file-name").value = name
             document.getElementById("id").value = id;
+
+        });
+        $('#deleteFile').on('show.bs.modal', function(e) {
+            let id = $(e.relatedTarget).data('id');
+            let name = $(e.relatedTarget).data('name');
+            document.getElementById("fileDelete").textContent = "Radering av '" + name + "'"
+            document.getElementById("idDelete").value = id;
 
         });
     </script>

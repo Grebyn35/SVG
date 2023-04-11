@@ -12,4 +12,5 @@ public interface UserQualityTalesRepository extends CrudRepository<UserQualityTa
 
     UserQualityTales findById(long id);
     ArrayList<UserQualityTales> findAll();
+    ArrayList<UserQualityTales> findAllByProviderId(long id);
 }

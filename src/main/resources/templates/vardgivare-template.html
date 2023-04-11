@@ -84,7 +84,7 @@
         <div class="row">
             <div class="col-lg-8 pe-xl-5">
                 <!-- Image Slider -->
-                <div class="swiper swiper-nav-onhover" data-swiper-options='{
+                <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="swiper swiper-nav-onhover" data-swiper-options='{
               "spaceBetween": 20,
               "loop": true,
               "pagination": {
@@ -99,28 +99,10 @@
                     <div class="swiper-wrapper rounded-3">
 
                         <!-- Item -->
-                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
+                        <div th:each="slideshowDoc : ${slideshowDocs}" class="swiper-slide rounded-3 overflow-hidden shadow">
                             <div class="ratio ratio-16x9 bg-secondary">
                                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
-                                    <img style="object-fit: cover; object-position: center;" src="/img/hero_background_img.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item -->
-                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
-                            <div class="ratio ratio-16x9 bg-secondary">
-                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
-                                    <img style="object-fit: cover; object-position: center;" src="/img/hero_background_img.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item -->
-                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
-                            <div class="ratio ratio-16x9 bg-secondary">
-                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
-                                    <img style="object-fit: cover; object-position: center;" src="/img/hero_background_img.jpg" alt="">
+                                    <img style="object-fit: cover; object-position: center;" th:src="${slideshowDoc.src}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -233,11 +215,13 @@
                             <div th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                                 <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
                                 <span class="text-success fw-bold">JA</span>
+                                <span class="text-success fw-bold"></span>
                             </div>
                             <!-- Permit: No -->
                             <div th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                                 <i class="bx bxs-x-circle fs-lg text-danger me-1"></i>
                                 <span class="text-danger fw-bold">NEJ</span>
+                                <span class="text-danger fw-bold"></span>
                             </div>
                         </div>
                     </div>
@@ -245,7 +229,7 @@
 
                 <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="card overflow-hidden shadow my-4">
                     <div class="card-body">
-                        <h1 class="h6">Placeringsfrågan</h1>
+                        <h1 class="h6">Kontaktperson</h1>
                         <div class="d-flex align-items-center mb-4">
                             <img class="rounded-circle border shadow-sm" style="object-fit: cover; width: 50px; height: 50px;" th:src="${provider.coordinatorImage}" alt="">
                             <div class="ms-3 d-flex flex-column">

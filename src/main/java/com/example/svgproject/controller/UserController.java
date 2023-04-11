@@ -68,6 +68,9 @@ public class UserController {
     NewsLetterRepository newsLetterRepository;
 
     @Autowired
+    SlideshowDocsRepository slideshowDocsRepository;
+
+    @Autowired
     private JavaMailSender mailSender;
 
     static String recipentEmail = "elliot@ensotech.io";
@@ -376,10 +379,13 @@ public class UserController {
     }
     @GetMapping("/vardgivare/{id}") public String userPageNew(@PathVariable long id, Model model){
         Provider provider = providerRepository.findById(id);
-        ArrayList<UserDocs> userDocs = userDocsRepository.findAll();
-        ArrayList<UserQualityTales> userQualityTales = userQualityTalesRepository.findAll();
-        ArrayList<UserRegistry> userRegistries = userRegistryRepository.findAll();
-        ArrayList<UserReports> userReports = userReportsRepository.findAll();
+        ArrayList<UserDocs> userDocs = userDocsRepository.findAllByProviderId(provider.getId());
+        ArrayList<UserQualityTales> userQualityTales = userQualityTalesRepository.findAllByProviderId(provider.getId());
+        ArrayList<UserRegistry> userRegistries = userRegistryRepository.findAllByProviderId(provider.getId());
+        ArrayList<UserReports> userReports = userReportsRepository.findAllByProviderId(provider.getId());
+        ArrayList<SlideshowDocs> slideshowDocs = slideshowDocsRepository.findAllByProviderId(provider.getId());
+        System.out.println(slideshowDocs);
+        model.addAttribute("slideshowDocs", slideshowDocs);
         model.addAttribute("provider", provider);
 
         model.addAttribute("userDocs", userDocs);

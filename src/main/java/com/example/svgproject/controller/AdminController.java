@@ -44,6 +44,9 @@ public class AdminController {
     PostRepository postRepository;
 
     @Autowired
+    SlideshowDocsRepository slideshowDocsRepository;
+
+    @Autowired
     UserDocsRepository userDocsRepository;
     @Autowired
     UserQualityTalesRepository userQualityTalesRepository;
@@ -113,6 +116,11 @@ public class AdminController {
         provider.setEmail(request.getParameter("email"));
         provider.setTel(request.getParameter("tel"));
         provider.setWebsite(request.getParameter("website"));
+
+        provider.setCoordinatorRole(request.getParameter("coordinatorRole"));
+        provider.setHasPermission(request.getParameter("hasPermission"));
+        provider.setNoPermission(request.getParameter("noPermission"));
+        provider.setCmpAdress(request.getParameter("cmpAdress"));
 
         provider.setAbout(request.getParameter("about"));
         provider.setCoordinatorName(request.getParameter("coordinatorName"));
@@ -292,6 +300,11 @@ public class AdminController {
         provider.setTel(request.getParameter("tel"));
         provider.setWebsite(request.getParameter("website"));
 
+        provider.setCoordinatorRole(request.getParameter("coordinatorRole"));
+        provider.setHasPermission(request.getParameter("hasPermission"));
+        provider.setNoPermission(request.getParameter("noPermission"));
+        provider.setCmpAdress(request.getParameter("cmpAdress"));
+
         provider.setAbout(request.getParameter("about"));
         provider.setCoordinatorName(request.getParameter("coordinatorName"));
         provider.setRemark(request.getParameter("remark"));
@@ -365,10 +378,58 @@ public class AdminController {
     @GetMapping("/admin/redigera-dokument/{id}")
     public String editDoc(Model model, HttpServletRequest request, @PathVariable long id){
         Provider provider = providerRepository.findById(id);
-        ArrayList<UserDocs> userDocs = userDocsRepository.findAll();
+        ArrayList<UserDocs> userDocs = userDocsRepository.findAllByProviderId(provider.getId());
         model.addAttribute("userDocs", userDocs);
         model.addAttribute("provider", provider);
         return "admin-redigera-dokument";
+    }
+    @GetMapping("/admin/redigera-bildspel/{id}")
+    public String editSlideshow(Model model, HttpServletRequest request, @PathVariable long id){
+        Provider provider = providerRepository.findById(id);
+        ArrayList<SlideshowDocs> slideshowDocs = slideshowDocsRepository.findAllByProviderId(provider.getId());
+        model.addAttribute("slideshowDocs", slideshowDocs);
+        model.addAttribute("provider", provider);
+        return "admin-redigera-bildspel";
+    }
+    @PostMapping("/admin/radera-dokument")
+    public String deleteDoc(Model model, HttpServletRequest request){
+        long id = Long.parseLong(request.getParameter("id"));
+        UserDocs userDocs = userDocsRepository.findById(id);
+        long providerId = userDocs.getProviderId();
+        userDocsRepository.delete(userDocs);
+        return "redirect:/admin/redigera-dokument/" + providerId;
+    }
+    @PostMapping("/admin/radera-bildspel")
+    public String deleteSlideshow(Model model, HttpServletRequest request){
+        long id = Long.parseLong(request.getParameter("id"));
+        SlideshowDocs slideshowDocs = slideshowDocsRepository.findById(id);
+        long providerId = slideshowDocs.getProviderId();
+        slideshowDocsRepository.delete(slideshowDocs);
+        return "redirect:/admin/redigera-bildspel/" + providerId;
+    }
+    @PostMapping("/admin/radera-kvalitetsberattelser")
+    public String deleteQualitytales(Model model, HttpServletRequest request){
+        long id = Long.parseLong(request.getParameter("id"));
+        UserQualityTales userQualityTales = userQualityTalesRepository.findById(id);
+        long providerId = userQualityTales.getProviderId();
+        userQualityTalesRepository.delete(userQualityTales);
+        return "redirect:/admin/redigera-kvalitetsberattelser/" + providerId;
+    }
+    @PostMapping("/admin/radera-tillstandsbevis")
+    public String deleteTillstandsbevis(Model model, HttpServletRequest request){
+        long id = Long.parseLong(request.getParameter("id"));
+        UserRegistry userRegistry = userRegistryRepository.findById(id);
+        long providerId = userRegistry.getProviderId();
+        userRegistryRepository.delete(userRegistry);
+        return "redirect:/admin/redigera-tillstandsbevis/" + providerId;
+    }
+    @PostMapping("/admin/radera-tillsynsrapporter")
+    public String deleteTillsynsrapport(Model model, HttpServletRequest request){
+        long id = Long.parseLong(request.getParameter("id"));
+        UserReports userReports = userReportsRepository.findById(id);
+        long providerId = userReports.getProviderId();
+        userReportsRepository.delete(userReports);
+        return "redirect:/admin/redigera-tillsynsrapporter/" + providerId;
     }
     @PostMapping("/admin/redigera-dokument-namn")
     public String editDocName(Model model, HttpServletRequest request){
@@ -376,6 +437,13 @@ public class AdminController {
         userDocs.setName(request.getParameter("name"));
         userDocsRepository.save(userDocs);
         return "redirect:/admin/redigera-dokument/" + userDocs.getProviderId();
+    }
+    @PostMapping("/admin/redigera-bildspel-namn")
+    public String editSlideshowName(Model model, HttpServletRequest request){
+        SlideshowDocs slideshowDocs = slideshowDocsRepository.findById(Long.parseLong(request.getParameter("id")));
+        slideshowDocs.setName(request.getParameter("name"));
+        slideshowDocsRepository.save(slideshowDocs);
+        return "redirect:/admin/redigera-bildspel/" + slideshowDocs.getProviderId();
     }
     @RequestMapping(value=("/admin/redigera-dokument/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editDocPost(@PathVariable long id, Model model, @RequestParam("userFile") MultipartFile userFile) throws IOException {
         UserDocs userDocs = new UserDocs();
@@ -389,10 +457,22 @@ public class AdminController {
         }
         return "redirect:/admin/redigera-vardgivare/" + id;
     }
+    @RequestMapping(value=("/admin/redigera-bildspel/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editSlideshowPost(@PathVariable long id, Model model, @RequestParam("userFile") MultipartFile userFile) throws IOException {
+        SlideshowDocs slideshowDocs = new SlideshowDocs();
+        if(userFile.getSize()>10){
+            String logoSrc = uploadFileToServer(userFile);
+            slideshowDocs.setName(userFile.getOriginalFilename());
+            slideshowDocs.setSrc(logoSrc);
+            slideshowDocs.setProviderId(id);
+            slideshowDocs.setCreated(returnDateWithTime());
+            slideshowDocsRepository.save(slideshowDocs);
+        }
+        return "redirect:/admin/redigera-bildspel/" + id;
+    }
     @GetMapping("/admin/redigera-kvalitetsberattelser/{id}")
     public String editKvalitetsberattelser(Model model, HttpServletRequest request, @PathVariable long id){
         Provider provider = providerRepository.findById(id);
-        ArrayList<UserQualityTales> userQualityTales = userQualityTalesRepository.findAll();
+        ArrayList<UserQualityTales> userQualityTales = userQualityTalesRepository.findAllByProviderId(provider.getId());
         model.addAttribute("userQualityTales", userQualityTales);
         model.addAttribute("provider", provider);
         return "admin-redigera-kvalitetsberattelser";
@@ -419,7 +499,7 @@ public class AdminController {
     @GetMapping("/admin/redigera-tillstandsbevis/{id}")
     public String editTillstandsbevis(Model model, HttpServletRequest request, @PathVariable long id){
         Provider provider = providerRepository.findById(id);
-        ArrayList<UserRegistry> userRegistries = userRegistryRepository.findAll();
+        ArrayList<UserRegistry> userRegistries = userRegistryRepository.findAllByProviderId(provider.getId());
         model.addAttribute("userRegistries", userRegistries);
         model.addAttribute("provider", provider);
         return "admin-redigera-tillstandsbevis";
@@ -446,7 +526,7 @@ public class AdminController {
     @GetMapping("/admin/redigera-tillsynsrapporter/{id}")
     public String editTillsynsrapport(Model model, HttpServletRequest request, @PathVariable long id){
         Provider provider = providerRepository.findById(id);
-        ArrayList<UserReports> userReports = userReportsRepository.findAll();
+        ArrayList<UserReports> userReports = userReportsRepository.findAllByProviderId(provider.getId());
         model.addAttribute("userReports", userReports);
         model.addAttribute("provider", provider);
         return "admin-redigera-tillsynsrapporter";

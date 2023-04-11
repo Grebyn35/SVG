@@ -139,6 +139,11 @@
                         <label class="form-label d-block" for="email">E-post</label>
                         <input class="form-control shadow-sm" th:value="${provider.email}" type="text" name="email" id="email" placeholder="vårdgivare@domän.se">
                     </div>
+                    <!-- Adress -->
+                    <div class="mb-4">
+                        <label class="form-label d-block" for="email">Företagsadress</label>
+                        <input class="form-control shadow-sm" th:value="${provider.cmpAdress}" type="text" name="cmpAdress" id="cmpAdress" placeholder="vårdgivare@domän.se">
+                    </div>
                     <!-- Phone -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="phone">Telefon</label>
@@ -167,16 +172,19 @@
                     </div>
                     <!-- Coordinator Name -->
                     <div>
-                        <label class="form-label d-block" for="coordinatorName">Namn på placeringskordinator *</label>
+                        <label class="form-label d-block" for="coordinatorName">Namn på kontaktperson *</label>
                         <input class="form-control shadow-sm" th:value="${provider.coordinatorName}" type="text" name="coordinatorName" id="coordinatorName" placeholder="" required>
+                    </div>
+                    <div>
+                        <label class="form-label d-block" for="coordinatorRole">Verksamhets roll *</label>
+                        <input class="form-control shadow-sm" th:value="${provider.coordinatorRole}" type="text" name="coordinatorRole" id="coordinatorRole" placeholder="" required>
                     </div>
                 </div>
                 <div class="col-4 px-4">
                     <!-- Permit -->
                     <h2 class="h6">Tillståndsbevis</h2>
                     <div class="mb-4 d-flex flex-column">
-                        <a class="btn btn-sm btn-light border shadow-sm mb-4" href="/admin-redigera-ovriga-upplysningar">Redigera tillståndsbevis</a>
-                        <a class="fs-sm mt-2" th:href="'/admin/redigera-tillstandsbevis/' + ${provider.id}">fil.pdf</a>
+                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-tillstandsbevis/' + ${provider.id}">Redigera tillståndsbevis</a>
                     </div>
 
                     <hr class="mb-4">
@@ -184,8 +192,7 @@
                     <!-- Reports -->
                     <h2 class="h6">Tillsynsrapporter</h2>
                     <div class="mb-4 d-flex flex-column">
-                        <a class="btn btn-sm btn-light border shadow-sm mb-4" href="/admin-redigera-tillsynsrapporter">Redigera tillståndsbevis</a>
-                        <a class="fs-sm mt-2" th:href="'/admin/redigera-tillsynsrapporter/' + ${provider.id}">fil.pdf</a>
+                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-tillsynsrapporter/' + ${provider.id}">Redigera Tillsynsrapporter</a>
                     </div>
 
                     <hr class="mb-4">
@@ -193,8 +200,7 @@
                     <!-- Quality -->
                     <h2 class="h6">Kvalitetsberättelser</h2>
                     <div class="mb-4 d-flex flex-column">
-                        <a class="btn btn-sm btn-light border shadow-sm mb-4" href="/admin-redigera-kvalitetsberattelser">Redigera tillståndsbevis</a>
-                        <a class="fs-sm mt-2" th:href="'/admin/redigera-kvalitetsberattelser/' + ${provider.id}">fil.pdf</a>
+                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-kvalitetsberattelser/' + ${provider.id}">Redigera Kvalitetsberättelser</a>
                     </div>
 
                     <hr class="mb-4">
@@ -202,8 +208,14 @@
                     <!-- Documents -->
                     <h2 class="h6">Dokument</h2>
                     <div class="mb-4 d-flex flex-column">
-                        <a class="btn btn-sm btn-light border shadow-sm mb-4" href="/admin-redigera-dokument">Redigera tillståndsbevis</a>
-                        <a class="fs-sm mt-2" th:href="'/admin/redigera-dokument/' + ${provider.id}">fil.pdf</a>
+                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-dokument/' + ${provider.id}">Redigera Dokument</a>
+                    </div>
+                    <hr class="mb-4">
+
+                    <!-- Documents -->
+                    <h2 class="h6">Bildspel</h2>
+                    <div class="mb-4 d-flex flex-column">
+                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-bildspel/' + ${provider.id}">Redigera Bildspel</a>
                     </div>
 
                     <hr class="mb-4">
@@ -237,6 +249,17 @@
                         Metoder
                     </h2>
                     <textarea class="form-control shadow-sm" th:utext="${provider.methods}" name="methods" id="methods" cols="30" rows="6" placeholder=""></textarea>
+
+                    <!-- Methods -->
+                    <h2 class="h6">
+                        Om tillstånd saknas
+                    </h2>
+                    <textarea class="form-control shadow-sm" th:utext="${provider.noPermission}" name="noPermission" id="noPermission" cols="30" rows="6" placeholder=""></textarea>
+
+                    <h2 class="h6">
+                        Om tillstånd finns
+                    </h2>
+                    <textarea class="form-control shadow-sm" th:utext="${provider.hasPermission}" name="hasPermission" id="hasPermission" cols="30" rows="6" placeholder=""></textarea>
 
                 </div>
                 <div class="col-3 ps-4">

@@ -138,6 +138,11 @@
                         <label class="form-label d-block" for="email">E-post</label>
                         <input class="form-control shadow-sm" type="text" name="email" id="email" placeholder="vårdgivare@domän.se">
                     </div>
+                    <!-- Adress -->
+                    <div class="mb-4">
+                        <label class="form-label d-block" for="email">Företagsadress</label>
+                        <input class="form-control shadow-sm" type="text" name="cmpAdress" id="cmpAdress" placeholder="vårdgivare@domän.se">
+                    </div>
                     <!-- Phone -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="tel">Telefon</label>
@@ -167,8 +172,12 @@
                     </div>
                     <!-- Coordinator Name -->
                     <div>
-                        <label class="form-label d-block" for="coordinatorName">Namn på placeringskordinator *</label>
+                        <label class="form-label d-block" for="coordinatorName">Namn på kontaktperson *</label>
                         <input class="form-control shadow-sm" type="text" name="coordinatorName" id="coordinatorName" placeholder="" required>
+                    </div>
+                    <div>
+                        <label class="form-label d-block" for="coordinatorRole">Verksamhets roll *</label>
+                        <input class="form-control shadow-sm" type="text" name="coordinatorRole" id="coordinatorRole" placeholder="" required>
                     </div>
                 </div>
                 <div class="col-4 px-4">
@@ -202,6 +211,17 @@
                         Metoder
                     </h2>
                     <textarea class="form-control shadow-sm" name="methods" id="methods" cols="30" rows="6" placeholder=""></textarea>
+
+                    <!-- Methods -->
+                    <h2 class="h6">
+                        Om tillstånd saknas
+                    </h2>
+                    <textarea class="form-control shadow-sm" name="noPermission" id="noPermission" cols="30" rows="6" placeholder=""></textarea>
+
+                    <h2 class="h6">
+                        Om tillstånd finns
+                    </h2>
+                    <textarea class="form-control shadow-sm" name="hasPermission" id="hasPermission" cols="30" rows="6" placeholder=""></textarea>
 
 
                 </div>
