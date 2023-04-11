@@ -78,12 +78,14 @@ public class UserController {
     @GetMapping("/") public String home(Model model){
         Pageable pageable = PageRequest.of(0, 10);
         Pageable pageablePosts = PageRequest.of(0, 10);
-        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContaining("", pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingOrderByPublishedDesc("", pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", 0);
-        Page<Post> posts = postRepository.findAllByStatusTrue(pageablePosts);
+        Page<Post> posts = postRepository.findAllByStatusTrueOrderByPublishedDesc(pageablePosts);
+        ArrayList<Provider> promotedProviders = providerRepository.findAllByOtherSettingsContaining("Utvald vårdgivare");
         model.addAttribute("posts", posts);
+        model.addAttribute("promotedProviders", promotedProviders);
         return "hem";
     }
     @GetMapping("/kontakt") public String contact(){
@@ -286,7 +288,7 @@ public class UserController {
     @GetMapping("/nyheter/{id}") public String newsTemplatePage(@PathVariable long id, Model model){
         Nyhet nyhet = nyhetRepository.findById(id);
         Pageable pageable = PageRequest.of(0, 3);
-        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingAndIdNot(nyhet.getCategory(), id, pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingAndIdNotOrderByPublishedDesc(nyhet.getCategory(), id, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("nyhet", nyhet);
         return "nyheter-template";
@@ -297,12 +299,12 @@ public class UserController {
         if(category.contentEquals("all")){
             category = "";
         }
-        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContaining(category, pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingOrderByPublishedDesc(category, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
         model.addAttribute("category", category);
-        Page<Post> posts = postRepository.findAllByStatusTrue(pageablePosts);
+        Page<Post> posts = postRepository.findAllByStatusTrueOrderByPublishedDesc(pageablePosts);
         model.addAttribute("posts", posts);
         return "nyheter";
     }
@@ -312,7 +314,7 @@ public class UserController {
         if(category.contentEquals("all")){
             category = "";
         }
-        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContaining(searchInput, category, pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContainingOrderByPublishedDesc(searchInput, category, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
@@ -332,10 +334,10 @@ public class UserController {
         return "om-oss";
     }
     @GetMapping("/vardgivare") public String userPage(Model model, @RequestParam("page") int page){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, 5);
         Pageable pageablePosts = PageRequest.of(page, 10);
-        Page<Provider> providers = providerRepository.findAll(pageable);
-        Page<Post> posts = postRepository.findAllByStatusTrue(pageablePosts);
+        Page<Provider> providers = providerRepository.findAllByIdIsNotNullOrderByDateCreatedDesc(pageable);
+        Page<Post> posts = postRepository.findAllByStatusTrueOrderByPublishedDesc(pageablePosts);
         model.addAttribute("posts", posts);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
@@ -355,7 +357,7 @@ public class UserController {
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
-        Page<Post> posts = postRepository.findAllByStatusTrue(pageablePosts);
+        Page<Post> posts = postRepository.findAllByStatusTrueOrderByPublishedDesc(pageablePosts);
         model.addAttribute("posts", posts);
         return "vardgivare :: .tableSearch";
     }
@@ -384,7 +386,6 @@ public class UserController {
         ArrayList<UserRegistry> userRegistries = userRegistryRepository.findAllByProviderId(provider.getId());
         ArrayList<UserReports> userReports = userReportsRepository.findAllByProviderId(provider.getId());
         ArrayList<SlideshowDocs> slideshowDocs = slideshowDocsRepository.findAllByProviderId(provider.getId());
-        System.out.println(slideshowDocs);
         model.addAttribute("slideshowDocs", slideshowDocs);
         model.addAttribute("provider", provider);
 

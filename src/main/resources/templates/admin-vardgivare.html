@@ -187,11 +187,11 @@
                 <thead>
                 <tr class="row">
                     <th class="col-5 col-sm-4 col-md-3 col-xxl">Verksamhet</th>
-                    <th class="col col-xxl-1">Typ</th>
-                    <th class="col-5 col-sm-4 col-md-3 col-xxl">Kvalitetsberättelser</th>
-                    <th class="d-none d-sm-table-cell col col-xxl-1">Tillstånd</th>
-                    <th class="d-none d-md-table-cell col-3">Anmärkningsbart</th>
+                    <th class="col col-xxl-1">Typ/lagrum</th>
+                    <th class="d-none d-sm-table-cell col col-xxl-1">Tillståndspliktig verksamhet</th>
                     <th class="d-none d-xxl-table-cell col-2"></th>
+                    <th class="col col-xxl-1">Publicerad</th>
+                    <th class="col col-xxl-1">Redigerad</th>
                     <th class="col-auto" style="width: 32px;"></th>
                 </tr>
                 </thead>
@@ -200,11 +200,8 @@
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
                         <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${provider.id}" th:text="${provider.name}">Brinaxi Care AB</a>
                     </td>
-                    <td class="col col-xxl-1 border-bottom-0">
+                    <td class="col col-xxl-1 border-bottom-0" th:text="${provider.typeList}">
                         LSS
-                    </td>
-                    <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
-                        LVM, SoL 7.1.1, SoL 7.1.2, SoL 4.1
                     </td>
                     <td class="d-none d-sm-table-cell col col-xxl-1 border-bottom-0">
                         <div th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
@@ -216,10 +213,14 @@
                             <span class="text-danger fw-bold">NEJ</span>
                         </div>
                     </td>
-                    <td class="d-none d-md-table-cell col-3 border-bottom-0" th:text="${provider.remark}">
-                    </td>
                     <td class="d-none d-xxl-table-cell col-2 border-bottom-0 d-flex justify-content-end px-4">
                         <img th:src="${provider.logoSrc}" style="max-height: 25px;" alt="">
+                    </td>
+                    <td class="col col-xxl-1 border-bottom-0" th:text="${provider.dateCreated}">
+                        LSS
+                    </td>
+                    <td class="col col-xxl-1 border-bottom-0" th:text="${provider.edited}">
+                        LSS
                     </td>
                     <td class="position-relative col-auto ps-0 border-bottom-0" style="z-index: 1;">
                         <button class="btn btn-link p-0 fs-lg text-danger" data-bs-toggle="modal" th:data-providerid="${provider.id}" th:data-providername="${provider.name}" data-bs-target="#removeHealthcareProviderModal">

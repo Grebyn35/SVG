@@ -158,7 +158,7 @@
       <div class="col-xl-9 col-lg-8 tableSearch">
 
         <!-- OM SPONSRAT: border-info & bg-faded-primary -->
-        <div th:each="provider : ${providers}" th:classappend="${#strings.contains(provider.otherSettings, 'Betalande profil') ? 'bg-faded-primary border-info' : ''}" class="card card-hover mb-4 shadow me-lg-5">
+        <div th:each="provider : ${providers}" th:classappend="${#strings.contains(provider.otherSettings, 'Sponsrad') ? 'bg-faded-primary border-info' : ''}" class="card card-hover mb-4 shadow me-lg-5">
 
           <!-- OM NÅGOT MÄRKVÄRDIGT: -->
           <!--<div th:if="${provider.remark != ''}" class="position-absolute" style="right: 0; bottom: 0; margin-bottom: -15px; margin-right: -15px; z-index: 100;">
@@ -178,7 +178,7 @@
                   </h4>
 
                   <!-- OM SPONSRAT: -->
-                  <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="badge fs-sm text-dark fw-bold bg-primary shadow-primary text-decoration-none mb-3">Sponsrad</div>
+                  <div th:if="${#strings.contains(provider.otherSettings, 'Sponsrad')}" class="badge fs-sm text-dark fw-bold bg-primary shadow-primary text-decoration-none mb-3">Sponsrad</div>
                 </div>
                 <div class="row fs-sm">
                   <div class="col-6">
@@ -258,10 +258,9 @@
 
           <!-- Advertising -->
           <div class="offcanvas-body">
-            <div class="card border-0 bg-faded-primary">
+            <div class="card border-0 bg-faded-primary" th:each="post : ${posts}">
               <div class="card-body">
-                <!--th:href=${post.link}-->
-                <a th:each="post : ${posts}" th:href="post.link" id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
+                <a th:href="${post.link}" id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
                   <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
                 </a>
               </div>

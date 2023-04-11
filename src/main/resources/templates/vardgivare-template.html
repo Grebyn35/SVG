@@ -215,13 +215,13 @@
                             <div th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                                 <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
                                 <span class="text-success fw-bold">JA</span>
-                                <span class="text-success fw-bold"></span>
+                                <span class="text-success fw-bold"  th:text="${provider.noPermission}"></span>
                             </div>
                             <!-- Permit: No -->
                             <div th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                                 <i class="bx bxs-x-circle fs-lg text-danger me-1"></i>
                                 <span class="text-danger fw-bold">NEJ</span>
-                                <span class="text-danger fw-bold"></span>
+                                <span class="text-danger fw-bold" th:text="${provider.hasPermission}"></span>
                             </div>
                         </div>
                     </div>
@@ -234,7 +234,7 @@
                             <img class="rounded-circle border shadow-sm" style="object-fit: cover; width: 50px; height: 50px;" th:src="${provider.coordinatorImage}" alt="">
                             <div class="ms-3 d-flex flex-column">
                                 <span th:text="${provider.coordinatorName}" class="fw-bold">Namn Namnsson</span>
-                                <span class="fs-sm">Placeringskordinator</span>
+                                <span class="fs-sm" th:text="${provider.coordinatorRole}">Placeringskordinator</span>
                             </div>
                         </div>
                         <a class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" href="">
@@ -245,6 +245,14 @@
                             <i class="bx bx-envelope fs-lg"></i>
                             <span th:text="${provider.email}">namn@domän.se</span>
                         </a>
+                        <p th:if="${!#strings.contains(provider.otherSettings, 'Verksam i flera län')}" class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" >
+                            <i class="bx bx-envelope fs-lg"></i>
+                            <span th:text="${provider.county}">Verksamt i flera län</span>
+                        </p>
+                        <p th:if="${#strings.contains(provider.otherSettings, 'Verksam i flera län')}" class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" >
+                            <i class="bx bx-envelope fs-lg"></i>
+                            <span>Verksamt i flera län</span>
+                        </p>
                         <hr class="mb-3">
 
                         <a class="text-decoration-none fw-bold text-info d-flex align-items-center gap-1" th:target="_blank" th:href="${provider.website}">

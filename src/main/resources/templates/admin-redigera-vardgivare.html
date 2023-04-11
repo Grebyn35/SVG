@@ -327,6 +327,30 @@
                         </div>
                     </div>
 
+                    <!-- Sponsored Checkbox -->
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.otherSettings, 'Sponsrad')} ? 'checked'" name="otherSettings[]" value="Sponsrad" type="checkbox" id="sponsored-checkbox">
+                            <label class="form-label" for="sponsored-checkbox">Sponsrad</label>
+                        </div>
+                    </div>
+
+                    <!-- County Checkbox -->
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.otherSettings, 'Verksam i flera län')} ? 'checked'" name="otherSettings[]" value="Verksam i flera län" type="checkbox" id="county-checkbox">
+                            <label class="form-label" for="county-checkbox">Verksam i flera län</label>
+                        </div>
+                    </div>
+
+                    <!-- Selected Checkbox -->
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.otherSettings, 'Utvald vårdgivare')} ? 'checked'" name="otherSettings[]" value="Utvald vårdgivare" type="checkbox" id="promoted-checkbox">
+                            <label class="form-label" for="promoted-checkbox">Utvald vårdgivare</label>
+                        </div>
+                    </div>
+
                     <h2 class="h6 mb-4">Bedömning</h2>
                     <div class="mb-3">
                         <div class="form-check">

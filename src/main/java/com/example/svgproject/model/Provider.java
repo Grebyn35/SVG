@@ -30,6 +30,9 @@ public class Provider implements Serializable {
     private String website;
     private String grade;
 
+    private String dateCreated;
+    private String edited;
+
     @Column(length=200000000,columnDefinition="LONGTEXT")
     private String about;
 

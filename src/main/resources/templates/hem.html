@@ -205,7 +205,7 @@
             "prevEl": "#prev-brand",
             "nextEl": "#next-brand"
           },
-          "loop": true,
+          "loop": false,
           "pagination": {
             "el": ".swiper-pagination",
             "clickable": true
@@ -232,27 +232,16 @@
             <div class="swiper-wrapper">
 
                 <!-- Item -->
-                <div class="swiper-slide py-3">
+                <div class="swiper-slide py-3" th:each="promotedProvider : ${promotedProviders}">
                     <a class="card card-body card-hover shadow-sm px-4 border-0">
-                        <img src="/img/logo-placeholder.png" class="img-fluid" alt="Brand" style="height: 100px; object-fit: contain;">
-                    </a>
-                </div>
-                <!-- Item -->
-                <div class="swiper-slide py-3">
-                    <a class="card card-body card-hover shadow-sm px-2 border-0 mx-2">
-                        <img src="/img/logo-placeholder_2.webp" class="img-fluid" alt="Brand" style="height: 100px; object-fit: contain;">
-                    </a>
-                </div>
-                <!-- Item -->
-                <div class="swiper-slide py-3">
-                    <a class="card card-body card-hover shadow-sm px-2 border-0 mx-2">
-                        <img src="/img/logo-placeholder_3.webp" class="img-fluid" alt="Brand" style="height: 100px; object-fit: contain;">
+                        <img th:src="${promotedProvider.logoSrc}" class="img-fluid" alt="Brand" style="height: 100px; object-fit: contain;">
                     </a>
                 </div>
 
                 <!-- Pagination (bullets) -->
                 <div class="swiper-pagination position-relative pt-3 mt-4 d-md-none d-flex"></div>
             </div>
+        </div>
     </section>
 
     <!-- News Section -->
@@ -264,7 +253,7 @@
                     <!-- Item -->
                     <article class="card border-0 bg-transparent me-xl-5 mb-4 mb-sm-5" th:each="nyhet : ${nyheter}">
                         <div class="row g-0">
-                            <div class="col-sm-5 position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3" style="background-image: url(/img/hero_background_img.jpg); min-height: 10rem;"></div>
+                            <div class="col-sm-5 position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); min-height: 10rem;'"></div>
                             <div class="col-sm-7">
                                 <div class="card-body ps-0 ps-sm-4 pe-0 pt-4 py-sm-1">
                                     <a th:href="'/nyheter/' + ${nyhet.id}" class="badge fs-sm fw-bold bg-info mb-3" th:text="${nyhet.category}">Kategori</a>
@@ -327,13 +316,12 @@
 
                     <!-- Advertising -->
                     <div class="offcanvas-body">
-                        <div class="card border-0 bg-faded-primary">
-                        <div class="card-body">
-                            <!--th:href=${post.link}-->
-                            <a th:each="post : ${posts}" th:href="post.link" id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
-                            <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
-                            </a>
-                        </div>
+                        <div class="card border-0 bg-faded-primary" th:each="post : ${posts}">
+                            <div class="card-body">
+                                <a th:href="${post.link}" id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
+                                    <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
+                                </a>
+                            </div>
                         </div>
                         <p class="mt-3 text-muted text-center">Vill du synas här? <a class="fw-bold text-decoration-none" href="/kontakt">Kontakta oss</a></p>
                     </div>

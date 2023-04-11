@@ -57,7 +57,7 @@ public class AdminController {
 
     @GetMapping("/admin/annonser") public String adminPosts(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 10);
-        Page<Post> posts = postRepository.findAll(pageable);
+        Page<Post> posts = postRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         model.addAttribute("posts", posts.getContent());
         model.addAttribute("totalHits", posts.getTotalPages());
         model.addAttribute("page", page);
@@ -108,7 +108,7 @@ public class AdminController {
         provider.setGrade(gradeList.toString());
         provider.setTypeList(typeList.toString());
         provider.setOtherSettings(otherSettingsList.toString());
-        provider.setName(request.getParameter("name"));
+        provider.setDateCreated(returnDateWithTime());
 
         provider.setName(request.getParameter("name"));
         provider.setOrgNr(request.getParameter("orgNr"));
@@ -206,7 +206,7 @@ public class AdminController {
     }
     @GetMapping("/admin/nyheter") public String adminNews(@RequestParam("page") int page, Model model){
         Pageable pageable = PageRequest.of(page, 10);
-        Page<Nyhet> nyheter = nyhetRepository.findAll(pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
@@ -218,9 +218,9 @@ public class AdminController {
     }
     public void addAdminStartAttributes(Model model){
         Pageable pageable = PageRequest.of(0, 10);
-        Page<Provider> providers = providerRepository.findAll(pageable);
-        Page<Nyhet> nyheter = nyhetRepository.findAll(pageable);
-        Page<Post> posts = postRepository.findAll(pageable);
+        Page<Provider> providers = providerRepository.findAllByIdIsNotNullOrderByDateCreatedDesc(pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
+        Page<Post> posts = postRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("posts", posts.getContent());
@@ -234,7 +234,7 @@ public class AdminController {
     }
     @GetMapping("/admin/vardgivare") public String adminVardgivarePage(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 10);
-        Page<Provider> providers = providerRepository.findAll(pageable);
+        Page<Provider> providers = providerRepository.findAllByIdIsNotNullOrderByDateCreatedDesc(pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
@@ -291,7 +291,7 @@ public class AdminController {
         provider.setGrade(gradeList.toString());
         provider.setTypeList(typeList.toString());
         provider.setOtherSettings(otherSettingsList.toString());
-        provider.setName(request.getParameter("name"));
+        provider.setEdited(returnDateWithTime());
 
         provider.setName(request.getParameter("name"));
         provider.setOrgNr(request.getParameter("orgNr"));
@@ -337,7 +337,7 @@ public class AdminController {
     @GetMapping("/admin/search_news")
     public String updateArticlesNews(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page, @RequestParam("category") String category){
         Pageable pageable = PageRequest.of(page, 10);
-        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContaining(searchInput, category, pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContainingOrderByPublishedDesc(searchInput, category, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
