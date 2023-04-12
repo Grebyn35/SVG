@@ -76,7 +76,7 @@ public class UserController {
     static String recipentEmail = "elliot@ensotech.io";
 
     @GetMapping("/") public String home(Model model){
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(0, 5);
         Pageable pageablePosts = PageRequest.of(0, 10);
         Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingOrderByPublishedDesc("", pageable);
         model.addAttribute("nyheter", nyheter.getContent());
@@ -310,7 +310,7 @@ public class UserController {
     }
     @GetMapping("/search_news")
     public String updateArticlesNews(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page, @RequestParam("category") String category){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, 5);
         if(category.contentEquals("all")){
             category = "";
         }
@@ -319,6 +319,18 @@ public class UserController {
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
         return "nyheter :: .tableSearch";
+    }
+    @GetMapping("/search_news_home")
+    public String updateArticlesNewsHome(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page, @RequestParam("category") String category){
+        Pageable pageable = PageRequest.of(page, 5);
+        if(category.contentEquals("all")){
+            category = "";
+        }
+        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContainingOrderByPublishedDesc(searchInput, category, pageable);
+        model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("totalHits", nyheter.getTotalPages());
+        model.addAttribute("page", page);
+        return "hem :: .tableSearch";
     }
     @GetMapping("/om-oss") public String aboutUsPage(){
         return "om-oss";

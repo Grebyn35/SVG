@@ -211,7 +211,7 @@
         </div>
 
         <!-- Pagination -->
-        <nav aria-label="Page navigation example" th:if="${providers.size>9}">
+        <nav aria-label="Page navigation example" th:if="${providers.size>9 || page>0}">
           <ul class="pagination">
             <li class="page-item">
               <a th:if="${page>0}" style="cursor: pointer" th:onclick="searchResults([[${page-1}]])" class="page-link shadow-sm border">
@@ -219,10 +219,10 @@
               </a>
             </li>
             <li class="page-item">
-              <a style="cursor: pointer" th:if="${page>2}" th:onclick="searchResults([[${page-2}]])" th:text="${page-2}" class="page-link shadow-sm border">1</a>
+              <a style="cursor: pointer" th:if="${page>1}" th:onclick="searchResults([[${page-2}]])" th:text="${page-1}" class="page-link shadow-sm border">1</a>
             </li>
             <li class="page-item">
-              <a style="cursor: pointer" th:if="${page>1}" th:onclick="searchResults([[${page-1}]])" th:text="${page-1}" class="page-link shadow-sm border">2</a>
+              <a style="cursor: pointer" th:if="${page>0}" th:onclick="searchResults([[${page-1}]])" th:text="${page}" class="page-link shadow-sm border">2</a>
             </li>
             <li class="page-item active" aria-current="page">
                 <span class="page-link bg-info shadow-info" th:text="${page+1}">
