@@ -294,7 +294,7 @@ public class UserController {
         return "nyheter-template";
     }
     @GetMapping("/nyheter") public String newsPage(@RequestParam("page") int page, @RequestParam("category") String category, Model model){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, 5);
         Pageable pageablePosts = PageRequest.of(0, 10);
         if(category.contentEquals("all")){
             category = "";
