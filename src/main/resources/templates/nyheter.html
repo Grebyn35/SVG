@@ -102,7 +102,7 @@
                 </div>
 
                 <!-- Pagination -->
-                <nav aria-label="Page navigation example" th:if="${nyheter.size>5}">
+                <nav aria-label="Page navigation example" th:if="${nyheter.size>=5}">
                     <ul class="pagination">
                         <li class="page-item">
                             <a th:if="${page>0}" style="cursor: pointer" th:onclick="searchResults([[${page-1}]])" class="page-link shadow-sm border">
