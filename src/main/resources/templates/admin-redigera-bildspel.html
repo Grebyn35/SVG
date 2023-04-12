@@ -126,6 +126,7 @@
 
       <h1 class="h1">Redigera vårdgivare</h1>
       <h2 class="h5 mb-5 text-info">Bildspel</h2>
+      <button onclick="history.back()">Tillbaka</button>
 
       <form th:action="@{'/admin/redigera-bildspel/' + ${provider.id}}" method="post" enctype="multipart/form-data">
         <div class="col-4 pe-4">

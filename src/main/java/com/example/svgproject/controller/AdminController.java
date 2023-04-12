@@ -76,14 +76,30 @@ public class AdminController {
     @RequestMapping(value=("/admin/ny-vardgivare"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String adminNewUserPost(Model model, HttpServletRequest request, @RequestParam("coordinatorImage") MultipartFile coordinatorImage, @RequestParam("imgLogo") MultipartFile imgLogo) throws IOException {
         Provider provider = new Provider();
         ArrayList<String> typeList = new ArrayList<>();
+        ArrayList<String> countyList = new ArrayList<>();
         ArrayList<String> otherSettingsList = new ArrayList<>();
         ArrayList<String> gradeList = new ArrayList<>();
         String[] typeListValues = request.getParameterValues("typeList[]");
+        String[] countyListValues = request.getParameterValues("countyList[]");
         String[] otherSettingsValues = request.getParameterValues("otherSettings[]");
         String[] gradeValues = request.getParameterValues("grade[]");
+        if(request.getParameter("hidden")!= null && request.getParameter("hidden").contentEquals("Gömd")){
+            provider.setHidden(true);
+        }
+        else{
+            provider.setHidden(false);
+        }
         if(typeListValues != null){
             for(int i = 0; i<typeListValues.length;i++){
                 typeList.add(typeListValues[i]);
+            }
+        }
+        else{
+            typeList.add("[]");
+        }
+        if(countyListValues != null){
+            for(int i = 0; i<countyListValues.length;i++){
+                countyList.add(countyListValues[i]);
             }
         }
         else{
@@ -112,7 +128,7 @@ public class AdminController {
 
         provider.setName(request.getParameter("name"));
         provider.setOrgNr(request.getParameter("orgNr"));
-        provider.setCounty(request.getParameter("county"));
+        provider.setCounty(countyList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setEmail(request.getParameter("email"));
         provider.setTel(request.getParameter("tel"));
         provider.setWebsite(request.getParameter("website"));
@@ -160,6 +176,7 @@ public class AdminController {
         String[] status = request.getParameterValues("status[]");
         post.setLink(request.getParameter("link"));
         post.setContent(request.getParameter("content"));
+        post.setPage(request.getParameter("page"));
         post.setPublished(returnDateWithTime());
         post.setName(request.getParameter("name"));
         post.setEmail(request.getParameter("email"));
@@ -176,6 +193,7 @@ public class AdminController {
         String[] status = request.getParameterValues("status[]");
         post.setLink(request.getParameter("link"));
         post.setContent(request.getParameter("content"));
+        post.setPage(request.getParameter("page"));
         post.setName(request.getParameter("name"));
         post.setEmail(request.getParameter("email"));
         post.setStatus(Boolean.parseBoolean(status[0]));
@@ -259,14 +277,30 @@ public class AdminController {
     @RequestMapping(value=("/admin/redigera-vardgivare/{id}"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String editProviderPost(@PathVariable long id, Model model, @RequestParam("coordinatorImage") MultipartFile coordinatorImage, HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo) throws IOException {
         Provider provider = providerRepository.findById(id);
         ArrayList<String> typeList = new ArrayList<>();
+        ArrayList<String> countyList = new ArrayList<>();
         ArrayList<String> otherSettingsList = new ArrayList<>();
         ArrayList<String> gradeList = new ArrayList<>();
         String[] typeListValues = request.getParameterValues("typeList[]");
+        String[] countyListValues = request.getParameterValues("countyList[]");
         String[] otherSettingsValues = request.getParameterValues("otherSettings[]");
         String[] gradeValues = request.getParameterValues("grade[]");
+        if(request.getParameter("hidden")!= null && request.getParameter("hidden").contentEquals("Gömd")){
+            provider.setHidden(true);
+        }
+        else{
+            provider.setHidden(false);
+        }
         if(typeListValues != null){
             for(int i = 0; i<typeListValues.length;i++){
                 typeList.add(typeListValues[i]);
+            }
+        }
+        else{
+            typeList.add("[]");
+        }
+        if(countyListValues != null){
+            for(int i = 0; i<countyListValues.length;i++){
+                countyList.add(countyListValues[i]);
             }
         }
         else{
@@ -295,7 +329,7 @@ public class AdminController {
 
         provider.setName(request.getParameter("name"));
         provider.setOrgNr(request.getParameter("orgNr"));
-        provider.setCounty(request.getParameter("county"));
+        provider.setCounty(countyList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setEmail(request.getParameter("email"));
         provider.setTel(request.getParameter("tel"));
         provider.setWebsite(request.getParameter("website"));
@@ -328,7 +362,7 @@ public class AdminController {
     @GetMapping("/admin/search_vardgivare")
     public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
         Pageable pageable = PageRequest.of(page, 10);
-        Page<Provider> providers = providerRepository.findAllByNameContainingAndTypeListContainingAndCountyContainingAndGradeContaining(searchInput, branchType, county, grade, pageable);
+        Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContaining(searchInput, branchType, county, grade, pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);

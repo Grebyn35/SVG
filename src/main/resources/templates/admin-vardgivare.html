@@ -118,7 +118,7 @@
                     </a>
                 </div>
                 <hr class="mt-4">
-                <form class="row mt-4">
+                <div class="row mt-4">
                     <div class="col-md mb-4 mb-md-0">
                         <label class="form-label text-body fw-semibold" for="search_input">Sök</label>
                         <div class="position-relative d-flex justify-content-end align-items-center">
@@ -175,17 +175,13 @@
                             <option value="Västernorrland">Västernorrland</option>
                         </select>
                     </div>
-                    <div class="col-md-auto d-md-flex align-items-md-end">
-                        <a href="/" class="d-flex btn btn-primary shadow-primary p-0 w-100 w-md-auto" style="min-width: 44.4px !important; height: 44.4px;">
-                            <i class="fw-bold bx bx-search-alt fs-2 ms-1"></i>
-                        </a>
-                    </div>
-                </form>
+                </div>
             </div>
 
             <table class="table mt-4 mb-4 fs-sm tableSearch">
                 <thead>
                 <tr class="row">
+                    <th class="col-5 col-sm-4 col-md-3 col-xxl">Synlig</th>
                     <th class="col-5 col-sm-4 col-md-3 col-xxl">Verksamhet</th>
                     <th class="col col-xxl-1">Typ/lagrum</th>
                     <th class="d-none d-sm-table-cell col col-xxl-1">Tillståndspliktig verksamhet</th>
@@ -197,6 +193,13 @@
                 </thead>
                 <tbody>
                 <tr class="row position-relative d-flex align-items-center border-bottom" th:each="provider : ${providers}">
+                    //Byt ut 'Gömd' och 'Visas' till typ en röd eller grön icon
+                    <td class="col col-xxl-1 border-bottom-0" th:if="${provider.hidden}">
+                        <i class="bx bxs-x-circle fs-lg text-danger me-1"></i>
+                    </td>
+                    <td class="col col-xxl-1 border-bottom-0" th:if="${!provider.hidden}">
+                        <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
+                    </td>
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
                         <a class="link-dark fs-6 stretched-link" th:href="'/admin/redigera-vardgivare/' + ${provider.id}" th:text="${provider.name}">Brinaxi Care AB</a>
                     </td>

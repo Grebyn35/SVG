@@ -19,6 +19,7 @@ public class Provider implements Serializable {
     private String tel;
     private String coordinatorImage;
     private String coordinatorName;
+    @Column(length=200000000,columnDefinition="LONGTEXT")
     private String information;
     @Column(length=200000000,columnDefinition="LONGTEXT")
     private String orientation;
@@ -29,6 +30,8 @@ public class Provider implements Serializable {
     private String email;
     private String website;
     private String grade;
+
+    private boolean hidden;
 
     private String dateCreated;
     private String edited;

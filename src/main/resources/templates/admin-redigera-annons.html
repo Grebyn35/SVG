@@ -121,6 +121,15 @@
                         <label class="form-label d-block" for="email">E-post</label>
                         <input class="form-control shadow-sm" type="text" name="email" th:value="${post.email}" id="email" placeholder="vårdgivare@domän.se">
                     </div>
+                    <!-- Page -->
+                    <div class="mb-4">
+                        <label class="form-label d-block" for="page">Delsida</label>
+                        <select id="page" name="page" class="form-select shadow-sm" type="text">
+                            <option th:selected="${post.page=='Startsida'}" value="Startsida">Startsida</option>
+                            <option th:selected="${post.page=='Vårdgivare'}" value="Vårdgivare">Vårdgivare</option>
+                            <option th:selected="${post.page=='Nyheter'}" value="Nyheter">Nyheter</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-4 ps-4">
                     <h2 class="h6 mb-4">Status</h2>

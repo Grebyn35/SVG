@@ -92,8 +92,8 @@
                         <input class="form-control shadow-sm" type="file" onchange="document.getElementById('bigCover').src = window.URL.createObjectURL(this.files[0]); document.getElementById('smallCover').src = window.URL.createObjectURL(this.files[0]);" name="coverImg" id="coverImg">
                     </div>
                     <div class="d-flex align-items-center">
-                        <div id="bigCover" class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded" style="background-image: url(/img/placeholder_image.jpg); height: 10vw; width: 48vw;"></div>
-                        <div id="smallCover" class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" style="background-image: url(/img/placeholder_image.jpg); height: 10vw; width: 17vw;"></div>
+                        <div id="bigCover" class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); height: 10vw; width: 48vw;'"></div>
+                        <div id="smallCover" class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); height: 10vw; width: 17vw;'"></div>
                     </div>
                 </div>
 

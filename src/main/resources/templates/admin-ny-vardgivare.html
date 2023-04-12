@@ -109,29 +109,133 @@
                     <!-- County -->
                     <div class="mb-4">
                         <label class="form-label text-body fw-semibold" for="county">Län</label>
-                        <select id="county" name="county" class="form-select shadow-sm" type="text">
-                            <option value="Stockholm">Stockholm</option>
-                            <option value="Västerbotten">Västerbotten</option>
-                            <option value="Norrbotten">Norrbotten</option>
-                            <option value="Uppsala">Uppsala</option>
-                            <option value="Södermanland">Södermanland</option>
-                            <option value="Östergötland">Östergötland</option>
-                            <option value="Jönköping">Jönköping</option>
-                            <option value="Kronoberg">Kronoberg</option>
-                            <option value="Kalmar">Kalmar</option>
-                            <option value="Gotland">Gotland</option>
-                            <option value="Blekinge">Blekinge</option>
-                            <option value="Skåne">Skåne</option>
-                            <option value="Halland">Halland</option>
-                            <option value="Västra Götaland">Västra Götaland</option>
-                            <option value="Värmland">Värmland</option>
-                            <option value="Örebro">Örebro</option>
-                            <option value="Dalarna">Dalarna</option>
-                            <option value="Gävleborg">Gävleborg</option>
-                            <option value="Västmanland">Västmanland</option>
-                            <option value="Jämtland">Jämtland</option>
-                            <option value="Västernorrland">Västernorrland</option>
-                        </select>
+
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Stockholm" name="countyList[]" checked type="checkbox" id="stockholm-checkbox">
+                                <label class="form-label" for="stockholm-checkbox">Stockholm</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Västerbotten" name="countyList[]" type="checkbox" id="västerbotten-checkbox">
+                                <label class="form-label" for="västerbotten-checkbox">Västerbotten</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Norrbotten" name="countyList[]" type="checkbox" id="Norrbotten-checkbox">
+                                <label class="form-label" for="Norrbotten-checkbox">Norrbotten</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Uppsala" name="countyList[]" type="checkbox" id="Uppsala-checkbox">
+                                <label class="form-label" for="Uppsala-checkbox">Uppsala</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Södermanland" name="countyList[]" type="checkbox" id="Södermanland-checkbox">
+                                <label class="form-label" for="Södermanland-checkbox">Södermanland</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Östergötland" name="countyList[]" type="checkbox" id="Östergötland-checkbox">
+                                <label class="form-label" for="Östergötland-checkbox">Östergötland</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Jönköping" name="countyList[]" type="checkbox" id="Jönköping-checkbox">
+                                <label class="form-label" for="Jönköping-checkbox">Jönköping</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Kronoberg" name="countyList[]" type="checkbox" id="Kronoberg-checkbox">
+                                <label class="form-label" for="Kronoberg-checkbox">Kronoberg</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Kalmar" name="countyList[]" type="checkbox" id="Kalmar-checkbox">
+                                <label class="form-label" for="Kalmar-checkbox">Kalmar</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Gotland" name="countyList[]" type="checkbox" id="Gotland-checkbox">
+                                <label class="form-label" for="Gotland-checkbox">Gotland</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Blekinge" name="countyList[]" type="checkbox" id="Blekinge-checkbox">
+                                <label class="form-label" for="Blekinge-checkbox">Blekinge</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Skåne" name="countyList[]" type="checkbox" id="Skåne-checkbox">
+                                <label class="form-label" for="Skåne-checkbox">Skåne</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Halland" name="countyList[]" type="checkbox" id="Halland-checkbox">
+                                <label class="form-label" for="Halland-checkbox">Halland</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Västra Götaland" name="countyList[]" type="checkbox" id="Västra Götaland-checkbox">
+                                <label class="form-label" for="Västra Götaland-checkbox">Västra Götaland</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Värmland" name="countyList[]" type="checkbox" id="Värmland-checkbox">
+                                <label class="form-label" for="Värmland-checkbox">Värmland</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Örebro" name="countyList[]" type="checkbox" id="Örebro-checkbox">
+                                <label class="form-label" for="Örebro-checkbox">Örebro</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Dalarna" name="countyList[]" type="checkbox" id="Dalarna-checkbox">
+                                <label class="form-label" for="Dalarna-checkbox">Dalarna</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Gävleborg" name="countyList[]" type="checkbox" id="Gävleborg-checkbox">
+                                <label class="form-label" for="Gävleborg-checkbox">Gävleborg</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Västmanland" name="countyList[]" type="checkbox" id="Västmanland-checkbox">
+                                <label class="form-label" for="Västmanland-checkbox">Västmanland</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Jämtland" name="countyList[]" type="checkbox" id="Jämtland-checkbox">
+                                <label class="form-label" for="Jämtland-checkbox">Jämtland</label>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-sm" value="Västernorrland" name="countyList[]" type="checkbox" id="Västernorrland-checkbox">
+                                <label class="form-label" for="Västernorrland-checkbox">Västernorrland</label>
+                            </div>
+                        </div>
                     </div>
                     <!-- Email -->
                     <div class="mb-4">
@@ -274,6 +378,14 @@
                     <hr class="mb-4">
 
                     <h2 class="h6 mb-4">Övriga inställningar</h2>
+
+                    <!-- Hidden Checkbox -->
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" name="hidden" value="Gömd" type="checkbox" id="hidden-checkbox">
+                            <label class="form-label" for="hidden-checkbox">Gömd</label>
+                        </div>
+                    </div>
                     <!-- Paying Checkbox -->
                     <div class="mb-3">
                         <div class="form-check">
@@ -298,13 +410,6 @@
                         </div>
                     </div>
 
-                    <!-- County Checkbox -->
-                    <div class="mb-4">
-                        <div class="form-check">
-                            <input class="form-check-input shadow-sm" name="otherSettings[]" value="Verksam i flera län" type="checkbox" id="county-checkbox">
-                            <label class="form-label" for="county-checkbox">Verksam i flera län</label>
-                        </div>
-                    </div>
 
                     <!-- Selected Checkbox -->
                     <div class="mb-4">

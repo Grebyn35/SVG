@@ -260,7 +260,7 @@
           <div class="offcanvas-body">
             <div class="card border-0 bg-faded-primary" th:each="post : ${posts}">
               <div class="card-body">
-                <a th:href="${post.link}" id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
+                <a th:href="${post.link}" th:target="_blank" id="coverImg" th:style="'height: 200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
                   <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
                 </a>
               </div>
