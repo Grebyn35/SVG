@@ -181,7 +181,7 @@
             <table class="table mt-4 mb-4 fs-sm tableSearch">
                 <thead>
                 <tr class="row">
-                    <th class="col-5 col-sm-4 col-md-3 col-xxl">Synlig</th>
+                    <th class="col-auto">Synlig</th>
                     <th class="col-5 col-sm-4 col-md-3 col-xxl">Verksamhet</th>
                     <th class="col col-xxl-1">Typ/lagrum</th>
                     <th class="d-none d-sm-table-cell col col-xxl-1">Tillståndspliktig verksamhet</th>
@@ -193,11 +193,10 @@
                 </thead>
                 <tbody>
                 <tr class="row position-relative d-flex align-items-center border-bottom" th:each="provider : ${providers}">
-                    //Byt ut 'Gömd' och 'Visas' till typ en röd eller grön icon
-                    <td class="col col-xxl-1 border-bottom-0" th:if="${provider.hidden}">
+                    <td class="col-auto border-bottom-0" th:if="${provider.hidden}">
                         <i class="bx bxs-x-circle fs-lg text-danger me-1"></i>
                     </td>
-                    <td class="col col-xxl-1 border-bottom-0" th:if="${!provider.hidden}">
+                    <td class="col-auto border-bottom-0" th:if="${!provider.hidden}">
                         <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
                     </td>
                     <td class="col-5 col-sm-4 col-md-3 col-xxl border-bottom-0">
@@ -209,11 +208,9 @@
                     <td class="d-none d-sm-table-cell col col-xxl-1 border-bottom-0">
                         <div th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                             <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
-                            <span class="text-success fw-bold">JA</span>
                         </div>
                          <div th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
                             <i class="bx bxs-x-circle fs-xl text-danger me-1"></i>
-                            <span class="text-danger fw-bold">NEJ</span>
                         </div>
                     </td>
                     <td class="d-none d-xxl-table-cell col-2 border-bottom-0 d-flex justify-content-end px-4">

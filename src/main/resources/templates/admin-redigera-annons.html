@@ -93,7 +93,7 @@
                             <label class="form-label d-block" for="imgLogo">Ändra omslagsbild</label>
                             <input onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
-                        <div id="coverImg" class="bg-faded-primary rounded-3 ms-4 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2" style="width: 200px; height: 200px; background-image: url(/img/hero_background_img.jpg);">
+                        <div id="coverImg" class="bg-faded-primary rounded-3 ms-4 shadow-sm bg-size-contain bg-position-center d-flex align-items-end p-2" style="width: 200px; height: 200px; background-image: url(/img/hero_background_img.jpg); background-repeat:no-repeat">
                             <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
                         </div>
                     </div>

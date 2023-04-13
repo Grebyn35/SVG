@@ -138,12 +138,8 @@
 
     <!-- Related News -->
     <section class="py-5 mb-5 container" th:if="${nyheter.size>0}">
-        <div class="d-flex flex-sm-row flex-column align-items-center justify-content-between mb-4 pb-1 pb-md-3">
+        <div class="mb-4 pb-1 pb-md-3">
             <h2 class="h1 mb-sm-0">Relaterade Nyheter</h2>
-            <a href="/nyheter?page=0&category=all" class="d-none d-lg-inline-flex btn btn-lg btn-primary ms-4">
-                Alla nyheter
-                <i class="bx bx-right-arrow-alt ms-1 me-n1 lh-1 lead"></i>
-            </a>
         </div>
         <div class="row">
             <div class="col-lg-4 mb-5 mb-lg-0" th:each="nyhetRelated : ${nyheter}">
@@ -159,16 +155,19 @@
                         <h3 class="h5 mb-0">
                             <a class="stretched-link" th:href="'/nyheter/' + ${nyhetRelated.id}" th:text="${nyhetRelated.title}">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a>
                         </h3>
-                        <p class="mt-2" th:text="${nyhetRelated.content}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos exercitationem enim voluptate quibusdam culpa!</p>
+                        <div class="position-relative mt-2 overflow-hidden" style="max-height:80px">
+                            <div class="position-absolute h-100 w-100" style="z-index: 5; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,1) 100%); "></div>
+                            <p class="position-relative mb-0" th:text="${nyhetRelated.content}"></p>
+                        </div>
                     </div>
                 </article>
             </div>
         </div>
-        <div class="d-flex d-lg-none justify-content-center mt-0 mt-lg-5">
-            <button class="btn btn-lg shadow-primary btn-primary w-100 w-md-auto">
-                Visa mer
-                <i class="bx bx-right-arrow-alt ms-1 fs-lg"></i>
-            </button>
+        <div class="mt-lg-5">
+            <a href="/nyheter" class="btn btn-lg btn-primary w-100 w-md-auto">
+                <i class="bx bx-left-arrow-alt me-1 fs-lg"></i>
+                Alla nyheter
+            </a>
         </div>
     </section>
 

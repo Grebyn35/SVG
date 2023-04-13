@@ -126,11 +126,11 @@
 
                 <h1 class="h1">Redigera vårdgivare</h1>
                 <h2 class="h5 mb-5 text-info">Dokument</h2>
-                <button onclick="history.back()">Tillbaka</button>
+                <button class="btn btn-sm btn-light border mb-4" onclick="history.back()">Tillbaka</button>
 
                 <form th:action="@{'/admin/redigera-dokument/' + ${provider.id}}" method="post" enctype="multipart/form-data">
                     <div class="col-4 pe-4">
-                        <h3 class="h6 mb-4">Ny fil</h3>
+                        <h3 class="h6 mb-2">Ny fil</h3>
                         <div class="mb-4 input-group">
                             <input class="form-control shadow-sm" type="file" name="userFile" id="imgLogo" required>
                             <button class="btn btn-sm btn-primary shadow-primary" type="submit">
