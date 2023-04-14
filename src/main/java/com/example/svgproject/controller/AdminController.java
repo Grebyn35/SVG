@@ -121,9 +121,9 @@ public class AdminController {
         else{
             gradeList.add("[]");
         }
-        provider.setGrade(gradeList.toString());
-        provider.setTypeList(typeList.toString());
-        provider.setOtherSettings(otherSettingsList.toString());
+        provider.setGrade(gradeList.toString().replaceAll("\\[", "").replaceAll("]", ""));
+        provider.setTypeList(typeList.toString().replaceAll("\\[", "").replaceAll("]", ""));
+        provider.setOtherSettings(otherSettingsList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setDateCreated(returnDateWithTime());
 
         provider.setName(request.getParameter("name"));
@@ -322,9 +322,9 @@ public class AdminController {
         else{
             gradeList.add("[]");
         }
-        provider.setGrade(gradeList.toString());
-        provider.setTypeList(typeList.toString());
-        provider.setOtherSettings(otherSettingsList.toString());
+        provider.setGrade(gradeList.toString().replaceAll("\\[", "").replaceAll("]", ""));
+        provider.setTypeList(typeList.toString().replaceAll("\\[", "").replaceAll("]", ""));
+        provider.setOtherSettings(otherSettingsList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setEdited(returnDateWithTime());
 
         provider.setName(request.getParameter("name"));
