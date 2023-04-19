@@ -256,12 +256,14 @@
                             <div class="col-sm-5 position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); min-height: 10rem;'"></div>
                             <div class="col-sm-7">
                                 <div class="card-body ps-0 ps-sm-4 pe-0 pt-4 py-sm-1">
-                                    <a th:href="'/nyheter/' + ${nyhet.id}" class="badge fs-sm fw-bold bg-info mb-3" th:text="${nyhet.category}">Kategori</a>
+                                    <div class="fs-sm text-dark mb-2" th:text="${nyhet.published}">Oct 9, 2021</div>
                                     <h4 class="h5">
                                         <a class="stretched-link" th:href="'/nyheter/' + ${nyhet.id}" th:text="${nyhet.title}">Lorem Ipsum Dolor Sit Amet Consectetur?</a>
                                     </h4>
-                                    <p th:text="${nyhet.content}">Nunc aliquet scelerisque pellentesque imperdiet tortor elit, dictum. Tristique odio at dignissim viverra aliquet eleifend erat. Tellus, at arcu, egestas praesent.</p>
-                                    <div class="fs-sm text-dark me-3" th:text="${nyhet.published}">Oct 9, 2021</div>
+                                    <div class="position-relative mt-2 overflow-hidden" style="max-height:80px">
+                                        <div class="position-absolute h-100 w-100" style="z-index: 5; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,1) 100%); "></div>
+                                        <p class="position-relative mb-0" th:text="${nyhet.content}"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
