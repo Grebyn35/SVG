@@ -288,9 +288,12 @@ public class UserController {
     @GetMapping("/nyheter/{id}") public String newsTemplatePage(@PathVariable long id, Model model){
         Nyhet nyhet = nyhetRepository.findById(id);
         Pageable pageable = PageRequest.of(0, 3);
+        Pageable pageablePosts = PageRequest.of(0, 10);
         Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingAndIdNotOrderByPublishedDesc(nyhet.getCategory(), id, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("nyhet", nyhet);
+        Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Nyheter", pageablePosts);
+        model.addAttribute("posts", posts);
         return "nyheter-template";
     }
     @GetMapping("/nyheter") public String newsPage(@RequestParam("page") int page, @RequestParam("category") String category, Model model){
