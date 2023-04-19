@@ -86,8 +86,8 @@
                     <!-- Item -->
                     <article class="card border-0 bg-transparent me-xl-5 mb-4 mb-sm-5" th:each="nyhet : ${nyheter}">
                         <div class="row g-0">
-                            <div class="col-sm-5 position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); min-height: 10rem;'"></div>
-                            <div class="col-sm-7">
+                            <div class="col-sm-4 position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); min-height: 10rem;'"></div>
+                            <div class="col-sm-8">
                                 <div class="card-body ps-0 ps-sm-4 pe-0 pt-4 py-sm-1">
                                     <div class="fs-sm text-dark mb-2" th:text="${nyhet.published}">Oct 9, 2021</div>
                                     <h4 class="h5">
