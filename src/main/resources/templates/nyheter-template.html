@@ -139,11 +139,10 @@
             <div class="col-lg-4 mb-5 mb-lg-0" th:each="nyhetRelated : ${nyheter}">
                 <article class="card card-hover h-100 border-0 shadow-sm p-0">
                     <div class="position-relative">
-                        <img th:src="${nyhetRelated.coverImgSrc}" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
+                        <img th:if="${nyhetRelated.coverImgSrc != null}" th:src="${nyhetRelated.coverImgSrc}" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
                     </div>
                     <div class="card-body pb-4">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <a th:text="${nyhetRelated.category}" th:href="'/nyheter/' + ${nyhetRelated.id}" class="badge fs-sm fw-bold bg-info">Kategori</a>
                             <span th:text="${nyhetRelated.published}" class="fs-sm text-muted">2023-01-25</span>
                         </div>
                         <h3 class="h5 mb-0">
