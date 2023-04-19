@@ -85,12 +85,12 @@
             <h1 class="h1 mb-5">Ny vårdgivare</h1>
             <form class="row" th:action="@{'/admin/ny-vardgivare'}" method="post" enctype="multipart/form-data">
                 <div class="col-5 pe-4">
-                    <h2 class="h6 mb-4">Information & uppgifter</h2>
+                    <h2 class="h6 mb-3">Information & uppgifter</h2>
                     <!-- Edit Logo -->
                     <div class="mb-4 d-flex align-items-end">
                         <div>
                             <label class="form-label d-block" for="imgLogo">Ändra logotyp</label>
-                            <input onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
+                            <input onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control form-control-sm shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
                         <div class="ms-4">
                             <img style="max-height: 50px;" id="coverImg" src="/img/logo-placeholder.png" alt="">
@@ -99,12 +99,12 @@
                     <!-- Healthcare Provider -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="name">Namn på vårdgivare *</label>
-                        <input class="form-control shadow-sm" type="text" name="name" id="name" placeholder="Brinaxi Care" required>
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="name" id="name" placeholder="Brinaxi Care" required>
                     </div>
                     <!-- Organisation Number -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="orgNr">Org.nummer *</label>
-                        <input class="form-control shadow-sm" type="text" name="orgNr" id="orgNr" placeholder="" required>
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="orgNr" id="orgNr" placeholder="" required>
                     </div>
                     <!-- County -->
                     <div class="mb-4">
@@ -240,35 +240,35 @@
                     <!-- Email -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="email">E-post</label>
-                        <input class="form-control shadow-sm" type="text" name="email" id="email" placeholder="vårdgivare@domän.se">
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="email" id="email" placeholder="vårdgivare@domän.se">
                     </div>
                     <!-- Adress -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="email">Företagsadress</label>
-                        <input class="form-control shadow-sm" type="text" name="cmpAdress" id="cmpAdress" placeholder="vårdgivare@domän.se">
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="cmpAdress" id="cmpAdress" placeholder="vårdgivare@domän.se">
                     </div>
                     <!-- Phone -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="tel">Telefon</label>
-                        <input class="form-control shadow-sm" type="text" name="tel" id="tel" placeholder="">
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="tel" id="tel" placeholder="">
                     </div>
                     <!-- Website -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="website">Hemsida</label>
-                        <input class="form-control shadow-sm" type="text" name="website" id="website" placeholder="https://www.sverigesvardgivare.se/">
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="website" id="website" placeholder="https://www.sverigesvardgivare.se/">
                     </div>
                     <!-- Healthcare Provider Bio -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="about">Om vårdgivare</label>
-                        <textarea class="form-control shadow-sm" type="text" name="about" id="about" rows="8" placeholder="Skriv en beskrivning om vårdgivaren för besökare att läsa..."></textarea>
+                        <textarea class="form-control form-control-sm shadow-sm" type="text" name="about" id="about" rows="8" placeholder="Skriv en beskrivning om vårdgivaren för besökare att läsa..."></textarea>
                     </div>
-                    <hr class="mb-4">
-                    <h2 class="h6 mb-4">Placeringskordinator</h2>
+                    <hr class="mb-3">
+                    <h2 class="h6 mb-3">Placeringskordinator</h2>
                     <!-- Edit Logo -->
                     <div class="mb-4 d-flex align-items-end">
                         <div>
                             <label class="form-label d-block" for="coordinatorImage">Ändra bild</label>
-                            <input class="form-control shadow-sm" type="file" name="coordinatorImage" id="coordinatorImage">
+                            <input class="form-control form-control-sm shadow-sm" type="file" name="coordinatorImage" id="coordinatorImage">
                         </div>
                         <div class="ms-4">
                             <img style="max-height: 50px;" alt="">
@@ -277,117 +277,117 @@
                     <!-- Coordinator Name -->
                     <div>
                         <label class="form-label d-block" for="coordinatorName">Namn på kontaktperson *</label>
-                        <input class="form-control shadow-sm" type="text" name="coordinatorName" id="coordinatorName" placeholder="" required>
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="coordinatorName" id="coordinatorName" placeholder="" required>
                     </div>
                     <div>
                         <label class="form-label d-block" for="coordinatorRole">Verksamhets roll *</label>
-                        <input class="form-control shadow-sm" type="text" name="coordinatorRole" id="coordinatorRole" placeholder="" required>
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="coordinatorRole" id="coordinatorRole" placeholder="" required>
                     </div>
                 </div>
                 <div class="col-4 px-4">
 
                     <!-- Operation info -->
-                    <h2 class="h6">
+                    <h2 class="h6 mb-1">
                         Verksamhetsuppgifter
                     </h2>
-                    <textarea class="form-control shadow-sm" name="information" id="information" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control form-control-sm shadow-sm" name="information" id="information" cols="30" rows="6" placeholder=""></textarea>
 
-                    <hr class="mb-4">
+                    <hr class="mb-3">
 
                     <!-- Orientation -->
-                    <h2 class="h6">
+                    <h2 class="h6 mb-1">
                         Inriktning
                     </h2>
-                    <textarea class="form-control shadow-sm"  name="orientation" id="orientation" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control form-control-sm shadow-sm"  name="orientation" id="orientation" cols="30" rows="6" placeholder=""></textarea>
 
-                    <hr class="mb-4">
+                    <hr class="mb-3">
 
                     <!-- Contribution -->
-                    <h2 class="h6">
+                    <h2 class="h6 mb-1">
                         Insats/Lagrum
                     </h2>
-                    <textarea class="form-control shadow-sm" name="contribution" id="contribution" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control form-control-sm shadow-sm" name="contribution" id="contribution" cols="30" rows="6" placeholder=""></textarea>
                     
-                    <hr class="mb-4">
+                    <hr class="mb-3">
 
                      <!-- Methods -->
-                     <h2 class="h6">
+                     <h2 class="h6 mb-1">
                         Metoder
                     </h2>
-                    <textarea class="form-control shadow-sm" name="methods" id="methods" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control form-control-sm shadow-sm" name="methods" id="methods" cols="30" rows="6" placeholder=""></textarea>
 
                     <!-- Methods -->
-                    <h2 class="h6">
+                    <h2 class="h6 mb-1">
                         Om tillstånd saknas
                     </h2>
-                    <textarea class="form-control shadow-sm" name="noPermission" id="noPermission" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control form-control-sm shadow-sm" name="noPermission" id="noPermission" cols="30" rows="6" placeholder=""></textarea>
 
-                    <h2 class="h6">
+                    <h2 class="h6 mb-1">
                         Om tillstånd finns
                     </h2>
-                    <textarea class="form-control shadow-sm" name="hasPermission" id="hasPermission" cols="30" rows="6" placeholder=""></textarea>
+                    <textarea class="form-control form-control-sm shadow-sm" name="hasPermission" id="hasPermission" cols="30" rows="6" placeholder=""></textarea>
 
 
                 </div>
                 <div class="col-3 ps-4">
-                    <h2 class="h6 mb-4">Verksamhetstyp</h2>
+                    <h2 class="h6 mb-3">Verksamhetstyp</h2>
                     <!-- Paying Checkbox -->
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" value="LSS" name="typeList[]" type="checkbox" id="lss-checkbox">
                             <label class="form-label" for="lss-checkbox">LSS</label>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" value="HVB-hem" name="typeList[]" type="checkbox" id="hvb-checkbox">
                             <label class="form-label" for="hvb-checkbox">HVB-hem</label>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" value="Stödboende" name="typeList[]" type="checkbox" id="stodboende-checkbox">
                             <label class="form-label" for="stodboende-checkbox">Stödboende</label>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" value="Skyddat boende" name="typeList[]" type="checkbox" id="skyddat-checkbox">
                             <label class="form-label" for="skyddat-checkbox">Skyddat boende</label>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" value="Konsulentstödd familjehemsvård" name="typeList[]" type="checkbox" id="konsulentstodd-checkbox">
                             <label class="form-label" for="konsulentstodd-checkbox">Konsulentstödd familjehemsvård</label>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" value="Daglig verksamhet" name="typeList[]" type="checkbox" id="daglig-checkbox">
                             <label class="form-label" for="daglig-checkbox">Daglig verksamhet</label>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" value="Öppenvård" name="typeList[]" type="checkbox" id="oppenvard-checkbox">
                             <label class="form-label" for="oppenvard-checkbox">Öppenvård</label>
                         </div>
                     </div>
 
-                    <hr class="mb-4">
+                    <hr class="mb-3">
 
-                    <h2 class="h6 mb-4">Övriga inställningar</h2>
+                    <h2 class="h6 mb-3">Övriga inställningar</h2>
 
                     <!-- Hidden Checkbox -->
-                    <div class="mb-4">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" name="hidden" value="Gömd" type="checkbox" id="hidden-checkbox">
                             <label class="form-label" for="hidden-checkbox">Gömd</label>
                         </div>
                     </div>
                     <!-- Paying Checkbox -->
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" name="otherSettings[]" value="Betalande profil" type="checkbox" id="paying-checkbox">
                             <label class="form-label" for="paying-checkbox">Betalande profil</label>
@@ -395,7 +395,7 @@
                     </div>
 
                     <!-- Permit Checkbox -->
-                    <div class="mb-4">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" name="otherSettings[]" value="Tillstånd" type="checkbox" id="permit-checkbox">
                             <label class="form-label" for="permit-checkbox">Tillstånd</label>
@@ -403,7 +403,7 @@
                     </div>
 
                     <!-- Sponsored Checkbox -->
-                    <div class="mb-4">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm"  name="otherSettings[]" value="Sponsrad" type="checkbox" id="sponsored-checkbox">
                             <label class="form-label" for="sponsored-checkbox">Sponsrad</label>
@@ -412,36 +412,36 @@
 
 
                     <!-- Selected Checkbox -->
-                    <div class="mb-4">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" name="otherSettings[]" value="Utvald vårdgivare" type="checkbox" id="promoted-checkbox">
                             <label class="form-label" for="promoted-checkbox">Utvald vårdgivare</label>
                         </div>
                     </div>
 
-                    <h2 class="h6 mb-4">Bedömning</h2>
-                    <div class="mb-3">
+                    <h2 class="h6 mb-3">Bedömning</h2>
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" name="grade[]" value="Godkänd verksamhet" type="radio" id="approved-checkbox">
                             <label class="form-label" for="approved-checkbox">Godkänd verksamhet</label>
                         </div>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" name="grade[]" value="Ej godkänd verksamhet" type="radio" id="not-approved-checkbox">
                             <label class="form-label" for="not-approved-checkbox">Ej godkänd verksamhet</label>
                         </div>
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-1">
                         <div class="form-check">
                             <input class="form-check-input shadow-sm" name="grade[]" value="Ej bedömd verksamhet" type="radio" id="not-determined-checkbox">
                             <label class="form-label" for="not-determined-checkbox">Ej bedömd verksamhet</label>
                         </div>
                     </div>
 
-                    <hr class="mb-4">
+                    <hr class="mb-3">
 
                     <button class="btn btn-lg btn-primary shadow-primary" type="submit">
                         <i class="bx bx-plus me-1 fs-xl"></i>

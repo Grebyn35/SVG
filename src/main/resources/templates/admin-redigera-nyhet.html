@@ -88,24 +88,24 @@
                 <!-- Front Image -->
                 <div class="mb-4">
                     <div>
-                        <label class="form-label d-block" for="coverImg">Omslagsbild</label>
-                        <input class="form-control shadow-sm" type="file" onchange="document.getElementById('bigCover').src = window.URL.createObjectURL(this.files[0]); document.getElementById('smallCover').src = window.URL.createObjectURL(this.files[0]);" name="coverImg" id="coverImg">
+                        <label class="form-label d-block" for="coverImg">Omslagsbild <span class="fs-sm fw-normal">(ca 1000x500)</span></label>
+                        <input class="form-control form-control-sm shadow-sm" type="file" onchange="document.getElementById('bigCover').src = window.URL.createObjectURL(this.files[0]); document.getElementById('smallCover').src = window.URL.createObjectURL(this.files[0]);" name="coverImg" id="coverImg">
                     </div>
                     <div class="d-flex align-items-center">
-                        <div id="bigCover" class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); height: 10vw; width: 48vw;'"></div>
-                        <div id="smallCover" class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); height: 10vw; width: 17vw;'"></div>
+                        <div id="smallCover" class="d-none d-lg-block mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); height: 500px; width: 1000;'"></div>
+                        <div id="smallCover" class="d-block d-lg-none mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); height: 125px; width: 350px;'"></div>
                     </div>
                 </div>
 
-                <hr class="mb-4">
+                <hr class="mb-3">
 
                 <!-- Blog Title -->
                 <div class="mb-4">
                     <label class="form-label d-block" for="title">Titel *</label>
-                    <input class="form-control shadow-sm" th:value="${nyhet.title}" type="text" name="title" id="title" placeholder="Lorem ipsum, dolor sit amet consectetur adipisicing elit" required>
+                    <input class="form-control form-control-sm shadow-sm" th:value="${nyhet.title}" type="text" name="title" id="title" placeholder="Lorem ipsum, dolor sit amet consectetur adipisicing elit" required>
                 </div>
 
-                <hr class="mb-4">
+                <hr class="mb-3">
 
                 <!-- Category -->
                 <div class="mb-4">
@@ -121,15 +121,15 @@
                     </select>
                 </div>
 
-                <hr class="mb-4">
+                <hr class="mb-3">
 
                 <!-- Main Text -->
                 <div class="mb-4">
                     <label class="form-label d-block" for="content">Innehåll</label>
-                    <textarea class="form-control shadow-sm" th:utext="${nyhet.content}" type="text" name="content" id="content" rows="10" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt esse asperiores rerum quae harum dolorum accusantium unde minima eligendi excepturi! Doloribus harum ipsam deleniti incidunt tempore recusandae illo numquam!"></textarea>
+                    <textarea class="form-control form-control-sm shadow-sm" th:utext="${nyhet.content}" type="text" name="content" id="content" rows="10" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt esse asperiores rerum quae harum dolorum accusantium unde minima eligendi excepturi! Doloribus harum ipsam deleniti incidunt tempore recusandae illo numquam!"></textarea>
                 </div>
 
-                <hr class="mb-4">
+                <hr class="mb-3">
 
                 <button class="btn btn-lg btn-primary shadow-primary" type="submit">
                     <i class="bx bx-plus me-1 fs-xl"></i>

@@ -130,7 +130,7 @@
 
       <form th:action="@{'/admin/redigera-bildspel/' + ${provider.id}}" method="post" enctype="multipart/form-data">
         <div class="col-4 pe-4">
-          <h3 class="h6 mb-2">Ny fil</h3>
+          <h3 class="h6 mb-2">Ny fil <span class="fw-normal fs-sm">(ca 1000x600px)</span></h3>
           <div class="mb-4 input-group">
             <input class="form-control shadow-sm" type="file" name="userFile" id="imgLogo" required>
             <button class="btn btn-sm btn-primary shadow-primary" type="submit">
@@ -170,6 +170,12 @@
 <script src="/js/theme.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
 <script>
   $('#editFileName').on('show.bs.modal', function(e) {
     let id = $(e.relatedTarget).data('id');

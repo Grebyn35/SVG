@@ -86,12 +86,12 @@
             <h1 class="h1 mb-5">Ny annons</h1>
             <form class="row" th:action="@{'/admin/ny-annons'}" method="post" enctype="multipart/form-data">
                 <div class="col-5 pe-4">
-                    <h2 class="h6 mb-4">Annonsinnehåll</h2>
+                    <h2 class="h6 mb-3">Annonsinnehåll</h2>
                     <!-- Edit background image -->
                     <div class="mb-4 d-flex align-items-center">
                         <div>
-                            <label class="form-label d-block" for="imgLogo">Ändra omslagsbild</label>
-                            <input onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control shadow-sm" type="file" name="imgLogo" id="imgLogo">
+                            <label class="form-label d-block" for="imgLogo">Ändra omslagsbild <span class="fw-normal fs-sm">(ca 250x250px)</span></label>
+                            <input onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control form-control-sm shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
                         <div id="coverImg" class="bg-faded-primary rounded-3 ms-4 shadow-sm bg-size-contain bg-position-center d-flex align-items-end p-2" style="width: 200px; height: 200px; background-image: url(/img/hero_background_img.jpg); background-repeat:no-repeat">
                             <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
@@ -100,25 +100,25 @@
                     <!-- Ad link -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="link">Annonslänk</label>
-                        <input class="form-control shadow-sm" type="text" name="link" id="link" placeholder="https://www.sverigesvardgivare.se/">
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="link" id="link" placeholder="https://www.sverigesvardgivare.se/">
                     </div>
                     <!-- Ad text -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="content">Annonstext</label>
-                        <input class="form-control shadow-sm" type="text" name="content" id="content" maxlength="50" placeholder="Text för inlägget (max 50 bokstäver)">
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="content" id="content" maxlength="50" placeholder="Text för inlägget (max 50 bokstäver)">
                     </div>
-                    <hr class="mb-4">
+                    <hr class="mb-3">
                     <!-- Advertisers -->
-                    <h2 class="h6">Annonsör</h2>
+                    <h2 class="h6 mb-1">Annonsör</h2>
                     <!-- name -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="name">Namn *</label>
-                        <input class="form-control shadow-sm" type="text" name="name" id="name" placeholder="Brinaxi Care" required>
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="name" id="name" placeholder="Brinaxi Care" required>
                     </div>
                     <!-- Email -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="email">E-post</label>
-                        <input class="form-control shadow-sm" type="text" name="email" id="email" placeholder="vårdgivare@domän.se">
+                        <input class="form-control form-control-sm shadow-sm" type="text" name="email" id="email" placeholder="vårdgivare@domän.se">
                     </div>
                     <!-- Page -->
                     <div class="mb-4">
@@ -131,7 +131,7 @@
                     </div>
                 </div>
                 <div class="col-4 ps-4">
-                    <h2 class="h6 mb-4">Status</h2>
+                    <h2 class="h6 mb-3">Status</h2>
 
                     <!-- Status Radio -->
                     <div class="form-check">
@@ -147,7 +147,7 @@
                         </label>
                     </div>
 
-                    <hr class="mb-4">
+                    <hr class="mb-3">
 
                     <button class="btn btn-lg btn-primary shadow-primary" type="submit">
                         <i class="bx bx-plus me-1 fs-xl"></i>

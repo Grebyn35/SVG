@@ -276,6 +276,7 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <p th:if="${#lists.isEmpty(userRegistries)}" class="text-muted fs-sm">Vårdgivaren har inte laddat upp några tillståndsbevis.</p>
                             </div>
                         </div>
                     </div>
@@ -295,6 +296,7 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <p th:if="${#lists.isEmpty(userReports)}" class="text-muted fs-sm">Vårdgivaren har inte laddat upp några tillsynsrapporter.</p>
                             </div>
                         </div>
                     </div>
@@ -314,6 +316,7 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <p th:if="${#lists.isEmpty(userQualityTales)}" class="text-muted fs-sm">Vårdgivaren har inte laddat upp några dokument.</p>
                             </div>
                         </div>
                     </div>
@@ -333,6 +336,7 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <p th:if="${#lists.isEmpty(userDocs)}" class="text-muted fs-sm">Vårdgivaren har inte laddat upp några dokument.</p>
                             </div>
                         </div>
                     </div>
