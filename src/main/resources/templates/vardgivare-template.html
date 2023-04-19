@@ -211,17 +211,8 @@
                         <span class="text-dark" th:text="'Org.nr: ' + ${provider.orgNr}">Org.nr: xxx xxx xxx</span>
                         <div class="d-flex gap-1 fs-sm mt-3">
                             Tillståndspliktig verksamhet:
-                            <!-- Permit: Yes -->
-                            <div th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
-                                <i class="bx bxs-check-circle fs-lg text-success me-1"></i>
-                                <span class="text-success fw-bold">JA</span>
-                            </div>
-                            <!-- Permit: No -->
-                            <div th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="d-flex align-items-center">
-                                <i class="bx bxs-x-circle fs-lg text-danger me-1"></i>
-                                <span class="text-danger fw-bold">NEJ</span>
-                                <span class="text fw-bold" th:text="${provider.noPermission}"></span>
-                            </div>
+                            <span th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="fw-bold">Ja</span>
+                            <span th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="fw-bold">Nej</span>
                         </div>
                         <p th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}" class="mt-3 mb-0 px-1 fs-sm rounded-1 bg-faded-success text-success" th:text="${provider.hasPermission}"></p>
                         <p th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}" class="mt-3 mb-0 px-1 fs-sm rounded-1 bg-faded-danger text-danger" th:text="${provider.noPermission}"></p>
@@ -238,30 +229,30 @@
                                 <span class="fs-sm" th:text="${provider.coordinatorRole}">Placeringskordinator</span>
                             </div>
                         </div>
-                        <a class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" href="">
+                        <a class="text-decoration-none link-info d-flex align-items-center gap-1 mb-3" href="">
                             <i class="bx bx-phone fs-lg"></i>
                             <span th:text="${provider.tel}">070- 123 45 67</span>
                         </a>
-                        <a class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" href="">
+                        <a class="text-decoration-none link-info d-flex align-items-center gap-1 mb-3" href="">
                             <i class="bx bx-envelope fs-lg"></i>
                             <span th:text="${provider.email}">namn@domän.se</span>
                         </a>
                         <!--Denna ska innehålla en tooltip med alla län om den innehåller ett ','-->
-                        <p th:if="${#strings.contains(provider.county, ',')}" class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" >
-                            <i class="bx bx-envelope fs-lg"></i>
+                        <p th:if="${#strings.contains(provider.county, ',')}" class="text-info d-flex align-items-center gap-1 mb-3" >
+                            <i class="bx bx-map fs-lg"></i>
                             <span data-bs-toggle="tooltip" data-bs-placement="bottom" th:title="${provider.county}">Verksam i flera län</span>
                         </p>
                         <!--Denna ska INTE innehålla en tooltip med alla län om den innehåller ett ','-->
-                        <p th:if="${!#strings.contains(provider.county, ',')}" class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" >
-                            <i class="bx bx-envelope fs-lg"></i>
+                        <p th:if="${!#strings.contains(provider.county, ',')}" class="d-flex align-items-center gap-1 mb-3" >
+                            <i class="bx bx-map fs-lg"></i>
                             <span th:text="${provider.county}"></span>
                         </p>
                         <p class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" >
-                            <i class="bx bx-envelope fs-lg"></i>
-                            <span th:text="${provider.cmpAdress}">Verksamt i flera län</span>
+                            <i class="bx bx-building fs-lg"></i>
+                            <span th:text="${provider.cmpAdress}"></span>
                         </p>
                         <hr class="mb-3">
-                        <a class="text-decoration-none fw-bold text-info d-flex align-items-center gap-1" th:target="_blank" th:href="${provider.website}">
+                        <a class="text-decoration-none fw-bold link-info d-flex align-items-center gap-1" th:target="_blank" th:href="${provider.website}">
                             Besök hemsida
                             <i class="bx bx-right-arrow-alt fs-lg"></i>
                         </a>

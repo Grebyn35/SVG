@@ -66,11 +66,6 @@
         </div>
     </header>
 
-    <!-- Post image (parallax) -->
-    <div class="jarallax" data-jarallax data-speed="0.35" style="height: 20vw; min-height: 250px;">
-        <div class="jarallax-img" style="background-image: url(/img/hero_background_img.jpg);"></div>
-    </div>
-
     <!-- Breadcrumb -->
     <nav class="container" aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 pt-5">
@@ -87,8 +82,8 @@
 
     <!-- Post Content -->
     <section class="container mb-5 pt-4 pb-2 py-mg-4">
+        <img class="w-100 h-100 mb-4" style="max-height: 500px; object-fit: cover;" src="/img/hero_background_img.jpg" alt="">
         <div class="row">
-
             <!-- Main Content -->
             <div class="col-lg-8">
                 <h1 class="pb-3" th:text="${nyhet.title}">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
