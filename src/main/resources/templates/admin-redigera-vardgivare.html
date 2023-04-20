@@ -63,6 +63,12 @@
                             Annonser
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/admin/bilder?page=0" class="nav-link">
+                            <i class="bx bxs-image fs-lg me-2"></i>
+                            Bilder
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="border-top pt-4 mt-4">
@@ -289,7 +295,7 @@
                     <!-- Permit -->
                     <h2 class="h6 mb-1">Tillståndsbevis</h2>
                     <div class="mb-4 d-flex flex-column">
-                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-tillstandsbevis/' + ${provider.id}">Redigera tillståndsbevis</a>
+                        <a class="btn btn-sm btn-light border shadow-sm" th:href="'/admin/redigera-tillstandsbevis/' + ${provider.id}">Redigera tillståndsbevis</a>
                     </div>
 
                     <hr class="mb-3">
@@ -297,7 +303,7 @@
                     <!-- Reports -->
                     <h2 class="h6 mb-1">Tillsynsrapporter</h2>
                     <div class="mb-4 d-flex flex-column">
-                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-tillsynsrapporter/' + ${provider.id}">Redigera Tillsynsrapporter</a>
+                        <a class="btn btn-sm btn-light border shadow-sm" th:href="'/admin/redigera-tillsynsrapporter/' + ${provider.id}">Redigera Tillsynsrapporter</a>
                     </div>
 
                     <hr class="mb-3">
@@ -305,7 +311,7 @@
                     <!-- Quality -->
                     <h2 class="h6 mb-1">Kvalitetsberättelser</h2>
                     <div class="mb-4 d-flex flex-column">
-                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-kvalitetsberattelser/' + ${provider.id}">Redigera Kvalitetsberättelser</a>
+                        <a class="btn btn-sm btn-light border shadow-sm" th:href="'/admin/redigera-kvalitetsberattelser/' + ${provider.id}">Redigera Kvalitetsberättelser</a>
                     </div>
 
                     <hr class="mb-3">
@@ -313,14 +319,14 @@
                     <!-- Documents -->
                     <h2 class="h6 mb-1">Dokument</h2>
                     <div class="mb-4 d-flex flex-column">
-                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-dokument/' + ${provider.id}">Redigera Dokument</a>
+                        <a class="btn btn-sm btn-light border shadow-sm" th:href="'/admin/redigera-dokument/' + ${provider.id}">Redigera Dokument</a>
                     </div>
                     <hr class="mb-3">
 
                     <!-- Documents -->
                     <h2 class="h6 mb-1">Bildspel</h2>
                     <div class="mb-4 d-flex flex-column">
-                        <a class="btn btn-sm btn-light border shadow-sm mb-4" th:href="'/admin/redigera-bildspel/' + ${provider.id}">Redigera Bildspel</a>
+                        <a class="btn btn-sm btn-light border shadow-sm" th:href="'/admin/redigera-bildspel/' + ${provider.id}">Redigera Bildspel</a>
                     </div>
 
                     <hr class="mb-3">
@@ -460,6 +466,8 @@
                             <label class="form-label" for="promoted-checkbox">Utvald vårdgivare</label>
                         </div>
                     </div>
+
+                    <hr class="mb-3">
 
                     <h2 class="h6 mb-3">Bedömning</h2>
                     <div class="mb-1">

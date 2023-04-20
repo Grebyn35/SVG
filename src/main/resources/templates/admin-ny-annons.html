@@ -52,15 +52,21 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/nyheter?page=0" class="nav-link active">
+                        <a href="/admin/nyheter?page=0" class="nav-link">
                             <i class="bx bxs-news fs-lg me-2"></i>
                             Nyheter
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/annonser?page=0" class="nav-link">
+                        <a href="/admin/annonser?page=0" class="nav-link active">
                             <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
                             Annonser
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/bilder?page=0" class="nav-link">
+                            <i class="bx bxs-image fs-lg me-2"></i>
+                            Bilder
                         </a>
                     </li>
                 </ul>
@@ -93,7 +99,7 @@
                             <label class="form-label d-block" for="imgLogo">Ändra omslagsbild <span class="fw-normal fs-sm">(ca 250x250px)</span></label>
                             <input onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control form-control-sm shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
-                        <div id="coverImg" class="bg-faded-primary rounded-3 ms-4 shadow-sm bg-size-contain bg-position-center d-flex align-items-end p-2" style="width: 200px; height: 200px; background-image: url(/img/hero_background_img.jpg); background-repeat:no-repeat">
+                        <div id="coverImg" class="bg-faded-primary rounded-3 ms-4 shadow-sm bg-size-contain bg-position-center d-flex align-items-end p-2" style="width: 200px !important; height: 200px !important; background-image: url(/img/hero_background_img.jpg); background-repeat:no-repeat">
                             <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
                         </div>
                     </div>
