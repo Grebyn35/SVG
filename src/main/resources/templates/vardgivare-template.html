@@ -85,17 +85,20 @@
             <div class="col-lg-8 pe-xl-5">
                 <!-- Image Slider -->
                 <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="swiper swiper-nav-onhover" data-swiper-options='{
-              "spaceBetween": 20,
-              "loop": true,
-              "pagination": {
-                "el": ".swiper-pagination",
-                "clickable": true
-              },
-              "navigation": {
-                "prevEl": ".btn-prev",
-                "nextEl": ".btn-next"
-              }
-            }'>
+                    "loop": true,
+                    "autoplay": {
+                        "delay": 5000
+                    },
+                    "speed": 1000,
+                    "pagination": {
+                        "el": ".swiper-pagination",
+                        "clickable": true
+                    },
+                    "navigation": {
+                        "prevEl": ".btn-prev",
+                        "nextEl": ".btn-next"
+                    }
+                }'>
                     <div class="swiper-wrapper rounded-3">
 
                         <!-- Item -->
@@ -220,7 +223,7 @@
                 </div>
 
                 <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="card overflow-hidden shadow my-4">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column align-items-start">
                         <h1 class="h6">Kontaktperson</h1>
                         <div class="d-flex align-items-center mb-4">
                             <img class="rounded-circle border shadow-sm" style="object-fit: cover; width: 50px; height: 50px;" th:src="${provider.coordinatorImage}" alt="">
@@ -229,25 +232,27 @@
                                 <span class="fs-sm" th:text="${provider.coordinatorRole}">Placeringskordinator</span>
                             </div>
                         </div>
-                        <a class="text-decoration-none link-info d-flex align-items-center gap-1 mb-3" href="">
+
+                        <a class="text-decoration-none link-info d-flex align-items-center gap-1 mb-3" th:href="'tel:' + ${provider.tel}">
                             <i class="bx bx-phone fs-lg"></i>
                             <span th:text="${provider.tel}">070- 123 45 67</span>
                         </a>
-                        <a class="text-decoration-none link-info d-flex align-items-center gap-1 mb-3" href="">
+
+                        <a class="text-decoration-none link-info d-flex align-items-center gap-1 mb-3" th:href="'mailto:' + ${provider.email}">
                             <i class="bx bx-envelope fs-lg"></i>
                             <span th:text="${provider.email}">namn@domän.se</span>
                         </a>
-                        <!--Denna ska innehålla en tooltip med alla län om den innehåller ett ','-->
-                        <p th:if="${#strings.contains(provider.county, ',')}" class="text-info d-flex align-items-center gap-1 mb-3" >
+
+                        <p data-bs-toggle="tooltip" data-bs-placement="top" th:title="${provider.county}" th:if="${#strings.contains(provider.county, ',')}" class="link-info d-flex align-items-center gap-1 mb-3" style="cursor:default;">
                             <i class="bx bx-map fs-lg"></i>
-                            <span data-bs-toggle="tooltip" data-bs-placement="bottom" th:title="${provider.county}">Verksam i flera län</span>
+                            <span>Verksam i flera län</span>
                         </p>
-                        <!--Denna ska INTE innehålla en tooltip med alla län om den innehåller ett ','-->
+
                         <p th:if="${!#strings.contains(provider.county, ',')}" class="d-flex align-items-center gap-1 mb-3" >
                             <i class="bx bx-map fs-lg"></i>
                             <span th:text="${provider.county}"></span>
                         </p>
-                        <p class="text-decoration-none text-info d-flex align-items-center gap-1 mb-3" >
+                        <p class="d-flex align-items-center gap-1 mb-3">
                             <i class="bx bx-building fs-lg"></i>
                             <span th:text="${provider.cmpAdress}"></span>
                         </p>
@@ -276,7 +281,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <p th:if="${#lists.isEmpty(userRegistries)}" class="text-muted fs-sm">Vårdgivaren har inte laddat upp några tillståndsbevis.</p>
+                                <p th:if="${#lists.isEmpty(userRegistries)}" class="text-muted fs-sm mb-0">Vårdgivaren har inte laddat upp några tillståndsbevis.</p>
                             </div>
                         </div>
                     </div>
@@ -296,7 +301,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <p th:if="${#lists.isEmpty(userReports)}" class="text-muted fs-sm">Vårdgivaren har inte laddat upp några tillsynsrapporter.</p>
+                                <p th:if="${#lists.isEmpty(userReports)}" class="text-muted fs-sm mb-0">Vårdgivaren har inte laddat upp några tillsynsrapporter.</p>
                             </div>
                         </div>
                     </div>
@@ -316,7 +321,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <p th:if="${#lists.isEmpty(userQualityTales)}" class="text-muted fs-sm">Vårdgivaren har inte laddat upp några dokument.</p>
+                                <p th:if="${#lists.isEmpty(userQualityTales)}" class="text-muted fs-sm mb-0">Vårdgivaren har inte laddat upp några dokument.</p>
                             </div>
                         </div>
                     </div>
@@ -336,7 +341,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <p th:if="${#lists.isEmpty(userDocs)}" class="text-muted fs-sm">Vårdgivaren har inte laddat upp några dokument.</p>
+                                <p th:if="${#lists.isEmpty(userDocs)}" class="text-muted fs-sm mb-0">Vårdgivaren har inte laddat upp några dokument.</p>
                             </div>
                         </div>
                     </div>
