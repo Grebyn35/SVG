@@ -163,28 +163,16 @@
                             <h3 class="h5">Kategorier</h3>
                             <ul class="nav flex-column fs-sm">
                                 <li class="nav-item mb-1">
-                                    <a th:classappend="${category == ''} ? 'active'" href="/nyheter?page=0&category=all" class="nav-link py-1 px-0">Alla kategorier <span class="fw-normal opacity-60 ms-1">(48)</span></a>
+                                    <a th:classappend="${category == 'all'} ? 'active'" href="/nyheter?page=0&category=all" class="nav-link py-1 px-0">Alla</a>
                                 </li>
                                 <li class="nav-item mb-1">
-                                    <a th:classappend="${category == 'Apor'} ? 'active'" href="/nyheter?page=0&category=Apor" class="nav-link py-1 px-0">Apor <span class="fw-normal opacity-60 ms-1">(12)</span></a>
+                                    <a th:classappend="${category == 'v'} ? 'active'" href="/nyheter?page=0&category=v" class="nav-link py-1 px-0">Senaste veckan</a>
                                 </li>
                                 <li class="nav-item mb-1">
-                                    <a th:classappend="${category == 'Björnar'} ? 'active'" href="/nyheter?page=0&category=Björnar" class="nav-link py-1 px-0">Björnar <span class="fw-normal opacity-60 ms-1">(5)</span></a>
+                                    <a th:classappend="${category == 'm'} ? 'active'" href="/nyheter?page=0&category=m" class="nav-link py-1 px-0">Senaste månaden</a>
                                 </li>
                                 <li class="nav-item mb-1">
-                                    <a th:classappend="${category == 'Chinchillor'} ? 'active'" href="/nyheter?page=0&category=Chinchillor" class="nav-link py-1 px-0">Chinchillor <span class="fw-normal opacity-60 ms-1">(10)</span></a>
-                                </li>
-                                <li class="nav-item mb-1">
-                                    <a th:classappend="${category == 'Daggmaskar'} ? 'active'" href="/nyheter?page=0&category=Daggmaskar" class="nav-link py-1 px-0">Daggmaskar <span class="fw-normal opacity-60 ms-1">(9)</span></a>
-                                </li>
-                                <li class="nav-item mb-1">
-                                    <a th:classappend="${category == 'Elefanter'} ? 'active'" href="/nyheter?page=0&category=Elefanter" class="nav-link py-1 px-0">Elefanter <span class="fw-normal opacity-60 ms-1">(4)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a th:classappend="${category == 'Fladdermöss'} ? 'active'" href="/nyheter?page=0&category=Fladdermöss" class="nav-link py-1 px-0">Fladdermöss <span class="fw-normal opacity-60 ms-1">(3)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a th:classappend="${category == 'Övrigt'} ? 'active'" href="/nyheter?page=0&category=Övrigt" class="nav-link py-1 px-0">Övrigt <span class="fw-normal opacity-60 ms-1">(3)</span></a>
+                                    <a th:classappend="${category == 'y'} ? 'active'" href="/nyheter?page=0&category=y" class="nav-link py-1 px-0">Senaste året</a>
                                 </li>
                             </ul>
                         </div>

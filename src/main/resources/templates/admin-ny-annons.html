@@ -63,6 +63,12 @@
                             Annonser
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/admin/omslagsbilder" class="nav-link">
+                            <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+                            Omslagsbilder
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="border-top pt-4 mt-4">
@@ -93,8 +99,8 @@
                             <label class="form-label d-block" for="imgLogo">Ändra omslagsbild <span class="fw-normal fs-sm">(ca 250x250px)</span></label>
                             <input onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control form-control-sm shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
-                        <div id="coverImg" class="bg-faded-primary rounded-3 ms-4 shadow-sm bg-size-contain bg-position-center d-flex align-items-end p-2" style="width: 200px; height: 200px; background-image: url(/img/hero_background_img.jpg); background-repeat:no-repeat">
-                            <h4 class="text-white text-center h6" style="text-shadow: 1px 5px 5px #0000007a;">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
+                        <div class="ms-4">
+                            <img style="max-height: 50px;" id="coverImg" src="/img/logo-placeholder.png" alt="">
                         </div>
                     </div>
                     <!-- Ad link -->

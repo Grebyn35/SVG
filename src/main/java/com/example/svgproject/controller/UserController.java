@@ -27,15 +27,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
 
 
 @Controller
@@ -73,12 +69,23 @@ public class UserController {
     @Autowired
     private JavaMailSender mailSender;
 
+    @Autowired
+    CoverImageRepository coverImageRepository;
+
     static String recipentEmail = "elliot@ensotech.io";
 
     @GetMapping("/") public String home(Model model){
         Pageable pageable = PageRequest.of(0, 5);
         Pageable pageablePosts = PageRequest.of(0, 10);
-        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingOrderByPublishedDesc("", pageable);
+
+        CoverImage coverImage = coverImageRepository.findByPageName("startsida");
+        model.addAttribute("coverImage", coverImage);
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -3);
+        java.sql.Date timeInterval = new java.sql.Date(cal.getTimeInMillis());
+        Page<Nyhet> nyheter = nyhetRepository.findAllByDateCreatedAfterOrderByPublishedDesc(timeInterval, pageable);
+
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", 0);
@@ -88,7 +95,9 @@ public class UserController {
         model.addAttribute("promotedProviders", promotedProviders);
         return "hem";
     }
-    @GetMapping("/kontakt") public String contact(){
+    @GetMapping("/kontakt") public String contact(Model model){
+        CoverImage coverImage = coverImageRepository.findByPageName("kontakt");
+        model.addAttribute("coverImage", coverImage);
         return "kontakt";
     }
     @PostMapping("/kontakt") public String contactPost(HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
@@ -153,12 +162,13 @@ public class UserController {
         df.setTimeZone(TimeZone.getTimeZone("Europe/Stockholm"));
         return df.format(date);
     }
-    @PostMapping("/lista-foretag") public String listCmpPost(HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
+    @PostMapping("/lista-foretag") public String listCmpPost(HttpServletRequest request, RedirectAttributes redirectAttributes, Model model) throws IOException {
         String token = request.getParameter("g-token");
         String listCmpName = request.getParameter("listCmpName");
         String listContactName = request.getParameter("listContactName");
         String listTel = request.getParameter("listTel");
         String listEmail = request.getParameter("listEmail");
+
         if(captchaValidation(token)) {
             sendListingEmail(listCmpName, listContactName, listTel, listEmail);
             sendListingConfirmationEmail(listEmail, listContactName);
@@ -255,10 +265,14 @@ public class UserController {
     @GetMapping("/aterstall-losenord") public String resetPassword(){
         return "aterstall-losenord";
     }
-    @GetMapping("/kvalitet") public String qualityPage(){
+    @GetMapping("/kvalitet") public String qualityPage(Model model){
+        CoverImage coverImage = coverImageRepository.findByPageName("kvalitet");
+        model.addAttribute("coverImage", coverImage);
         return "kvalitet";
     }
-    @GetMapping("/lista-foretag") public String listCompanyPage(){
+    @GetMapping("/lista-foretag") public String listCompanyPage(Model model){
+        CoverImage coverImage = coverImageRepository.findByPageName("lista-foretag");
+        model.addAttribute("coverImage", coverImage);
         return "lista-foretag";
     }
     @GetMapping("/login") public String loginPage(){
@@ -289,7 +303,7 @@ public class UserController {
         Nyhet nyhet = nyhetRepository.findById(id);
         Pageable pageable = PageRequest.of(0, 3);
         Pageable pageablePosts = PageRequest.of(0, 10);
-        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingAndIdNotOrderByPublishedDesc(nyhet.getCategory(), id, pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("nyhet", nyhet);
         Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Nyheter", pageablePosts);
@@ -299,10 +313,21 @@ public class UserController {
     @GetMapping("/nyheter") public String newsPage(@RequestParam("page") int page, @RequestParam("category") String category, Model model){
         Pageable pageable = PageRequest.of(page, 5);
         Pageable pageablePosts = PageRequest.of(0, 10);
+        Calendar cal = Calendar.getInstance();
         if(category.contentEquals("all")){
-            category = "";
+            cal.add(Calendar.YEAR, -3);
         }
-        Page<Nyhet> nyheter = nyhetRepository.findAllByCategoryContainingOrderByPublishedDesc(category, pageable);
+        else if(category.contentEquals("v")){
+            cal.add(Calendar.DATE, -8);
+        }
+        else if(category.contentEquals("m")){
+            cal.add(Calendar.DATE, -32);
+        }
+        else if(category.contentEquals("y")){
+            cal.add(Calendar.DATE, -370);
+        }
+        java.sql.Date timeInterval = new java.sql.Date(cal.getTimeInMillis());
+        Page<Nyhet> nyheter = nyhetRepository.findAllByDateCreatedAfterOrderByPublishedDesc(timeInterval, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
@@ -314,10 +339,21 @@ public class UserController {
     @GetMapping("/search_news")
     public String updateArticlesNews(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page, @RequestParam("category") String category){
         Pageable pageable = PageRequest.of(page, 5);
+        Calendar cal = Calendar.getInstance();
         if(category.contentEquals("all")){
-            category = "";
+            cal.add(Calendar.YEAR, -3);
         }
-        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContainingOrderByPublishedDesc(searchInput, category, pageable);
+        else if(category.contentEquals("v")){
+            cal.add(Calendar.DATE, -8);
+        }
+        else if(category.contentEquals("m")){
+            cal.add(Calendar.DATE, -32);
+        }
+        else if(category.contentEquals("y")){
+            cal.add(Calendar.DATE, -370);
+        }
+        java.sql.Date timeInterval = new java.sql.Date(cal.getTimeInMillis());
+        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndDateCreatedAfterOrderByPublishedDesc(searchInput, timeInterval, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
@@ -326,16 +362,29 @@ public class UserController {
     @GetMapping("/search_news_home")
     public String updateArticlesNewsHome(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page, @RequestParam("category") String category){
         Pageable pageable = PageRequest.of(page, 5);
+        Calendar cal = Calendar.getInstance();
         if(category.contentEquals("all")){
-            category = "";
+            cal.add(Calendar.YEAR, -3);
         }
-        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContainingOrderByPublishedDesc(searchInput, category, pageable);
+        else if(category.contentEquals("v")){
+            cal.add(Calendar.DATE, -8);
+        }
+        else if(category.contentEquals("m")){
+            cal.add(Calendar.DATE, -32);
+        }
+        else if(category.contentEquals("y")){
+            cal.add(Calendar.DATE, -370);
+        }
+        java.sql.Date timeInterval = new java.sql.Date(cal.getTimeInMillis());
+        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndDateCreatedAfterOrderByPublishedDesc(searchInput, timeInterval, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
         return "hem :: .tableSearch";
     }
-    @GetMapping("/om-oss") public String aboutUsPage(){
+    @GetMapping("/om-oss") public String aboutUsPage(Model model){
+        CoverImage coverImage = coverImageRepository.findByPageName("om-oss");
+        model.addAttribute("coverImage", coverImage);
         return "om-oss";
     }
 

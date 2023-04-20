@@ -88,9 +88,6 @@
                 <img class="w-100 h-100 mb-4" style="max-height: 450px; object-fit: cover;" th:src="${nyhet.coverImgSrc}" alt="">
                 <h1 class="pb-3" th:text="${nyhet.title}">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
                 <div class="d-flex align-items-center flex-wrap text-muted mb-5">
-                    <div class="fs-xs border-end pe-3 me-3 mb-2">
-                        <a th:text="${nyhet.category}" href="/nyheter?page=0&category=all" class="badge fs-sm text-white fw-bold bg-info">Kategori</a>
-                    </div>
                     <div class="fs-sm mb-2" th:text="${nyhet.published}">
                         2023-01-26 10:17
                     </div>

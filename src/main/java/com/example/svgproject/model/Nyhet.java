@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 
 @Data
 @Entity
@@ -21,4 +22,5 @@ public class Nyhet implements Serializable {
 
     private String coverImgSrc;
     private String published;
+    private Date dateCreated;
 }

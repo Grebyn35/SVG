@@ -63,6 +63,12 @@
                             Annonser
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/admin/omslagsbilder" class="nav-link">
+                            <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+                            Omslagsbilder
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="border-top pt-4 mt-4">
@@ -92,8 +98,8 @@
                         <input class="form-control form-control-sm shadow-sm" type="file" onchange="document.getElementById('bigCover').src = window.URL.createObjectURL(this.files[0]); document.getElementById('smallCover').src = window.URL.createObjectURL(this.files[0]);" name="coverImg" id="coverImg">
                     </div>
                     <div class="d-flex align-items-center">
-                        <div id="smallCover" class="d-none d-lg-block mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); height: 500px; width: 1000;'"></div>
-                        <div id="smallCover" class="d-block d-lg-none mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" th:style="'background-image: url(' + ${nyhet.coverImgSrc} + '); height: 125px; width: 350px;'"></div>
+                        <img class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded" id="bigCover" th:src="${nyhet.coverImgSrc}" style="height: 500px; width: 1000px;">
+                        <img class="mt-4 bg-position-center bg-size-cover border shadow-sm rounded ms-4" id="smallCover" th:src="${nyhet.coverImgSrc}" style="height: 125px; width: 350px">
                     </div>
                 </div>
 
@@ -108,7 +114,7 @@
                 <hr class="mb-3">
 
                 <!-- Category -->
-                <div class="mb-4">
+                <!--<div class="mb-4">
                     <label class="form-label d-block" for="category">Kategori</label>
                     <select class="form-select shadow-sm" type="text" name="category" id="category" placeholder="vårdgivare@domän.se">
                         <option th:selected="${nyhet.category == 'Övrigt'}" value="Övrigt">Övrigt</option>
@@ -121,7 +127,7 @@
                     </select>
                 </div>
 
-                <hr class="mb-3">
+                <hr class="mb-3">-->
 
                 <!-- Main Text -->
                 <div class="mb-4">

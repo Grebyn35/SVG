@@ -80,7 +80,7 @@
 
     <section class="position-relative pt-4 pb-4" style="min-height: 93vh">
         <!-- Background -->
-        <div class="position-absolute top-0 start-0 h-100 w-50 bg-position-center bg-size-cover d-none d-xl-block" style="background-image: url(/img/hero_background_img.jpg);"></div>
+        <div class="position-absolute top-0 start-0 h-100 w-50 bg-position-center bg-size-cover d-none d-xl-block" th:style="'background-image:url(' + ${coverImage.src} + ');'"></div>
 
         <!-- Sign in form -->
         <div class="container d-flex flex-wrap justify-content-center justify-content-xl-end pb-4">

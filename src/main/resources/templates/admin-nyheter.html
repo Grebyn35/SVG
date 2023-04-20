@@ -86,6 +86,12 @@
                             Annonser
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/admin/omslagsbilder" class="nav-link">
+                            <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+                            Omslagsbilder
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="border-top pt-4 mt-4">
@@ -129,14 +135,10 @@
                     <div class="col-md mb-4 mb-md-0">
                         <label class="form-label text-body fw-semibold" for="category">Kategori</label>
                         <select onchange="searchResults(0)" class="form-select shadow-sm" type="text" name="category" id="category">
-                            <option selected value="">Alla</option>
-                            <option value="Apor">Apor</option>
-                            <option value="Björnar">Björnar</option>
-                            <option value="Chinchillor">Chinchillor</option>
-                            <option value="Daggmaskar">Daggmaskar</option>
-                            <option value="Elefanter">Elefanter</option>
-                            <option value="Fladdermöss">Fladdermöss</option>
-                            <option value="Övrigt">Övrigt</option>
+                            <option selected value="all">Alla</option>
+                            <option value="Senaste veckan">Senaste veckan</option>
+                            <option value="Senaste månaden">Senaste månaden</option>
+                            <option value="Senaste året">Senaste året</option>
                         </select>
                     </div>
                 </form>
@@ -146,7 +148,6 @@
                 <thead>
                 <tr class="row">
                     <th class="col-6 col-md-8">Nyhet</th>
-                    <th class="col">Kategori</th>
                     <th class="col">Publicerad</th>
                     <th class="col-auto" style="width: 32px;"></th>
                 </tr>
@@ -155,7 +156,6 @@
                 <tr class="row position-relative" th:each="nyhet : ${nyheter}">
                     <td class="col-6 col-md-8">
                         <a class="link-dark stretched-link" th:href="'/admin/redigera-nyhet/' + ${nyhet.id}" th:text="${nyhet.title}">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></td>
-                    <td class="col" th:text="${nyhet.category}">Kategori</td>
                     <td class="col" th:text="${nyhet.published}">2023-01-26</td>
                     <td class="position-relative col-auto ps-0 border-bottom-0" style="z-index: 1;">
                         <button class="btn btn-link p-0 fs-lg text-danger" th:data-newsid="${nyhet.id}" th:data-newstitle="${nyhet.title}" data-bs-toggle="modal" data-bs-target="#removeNewsModal">

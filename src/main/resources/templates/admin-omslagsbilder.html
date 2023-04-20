@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <title>Omslagsbilder - Admin - Sveriges Vårdgivare</title>
+
+  <meta name="author" content="Ensotech AB">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#6366f1">
+  <link rel="shortcut icon" href="/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#080032">
+  <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+  <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
+  <link rel="stylesheet" media="screen" href="/css/theme.css">
+  <link rel="stylesheet" media="screen" href="/css/custom.css">
+</head>
+
+<body>
+
+<!-- Remove Ad Modal -->
+<div class="modal fade" id="removeAdModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form th:action="'/admin/save-cover'" method="post" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ändra omslagsbild</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <input type="text" id="coverId" name="id" style="display: none">
+            <label class="form-label d-block" for="imgLogo">Ändra logotyp</label>
+            <input required onchange="document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control form-control-sm shadow-sm" type="file" name="imgLogo" id="imgLogo">
+          </div>
+          <div class="ms-4">
+            <img style="max-height: 50px;" id="coverImg" src="/img/logo-placeholder.png" alt="">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-light border" data-bs-dismiss="modal">Avbryt</button>
+          <button type="submit" class="btn btn-sm btn-danger">Ändra</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<main class="page-wrapper">
+  <div class="d-flex h-100">
+
+    <!-- Sidenav -->
+    <aside class="d-none d-lg-flex flex-column justify-content-between py-4 px-3 shadow-sm h-100 sticky-top" style="min-width:250px; max-height: 100vh;">
+      <div>
+        <div class="px-5 mb-4">
+          <a href="/">
+            <img width="100" src="/img/logo.png" alt="Sveriges Vårdgivare">
+          </a>
+        </div>
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a href="/admin/start" class="nav-link">
+              <i class="bx bxs-home fs-lg me-2"></i>
+              Start
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/vardgivare?page=0" class="nav-link">
+              <i class="bx bx-plus-medical fs-lg me-2"></i>
+              Vårdgivare
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/nyheter?page=0" class="nav-link">
+              <i class="bx bxs-news fs-lg me-2"></i>
+              Nyheter
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/annonser?page=0" class="nav-link">
+              <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+              Annonser
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/omslagsbilder" class="nav-link active">
+              <i class="bx bxs-message-rounded-error fs-lg me-2"></i>
+              Omslagsbilder
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="border-top pt-4 mt-4">
+        <a href="/logout" class="btn btn-outline-info shadow-sm w-100">
+          <i class="bx bx-log-out fs-lg me-2"></i>
+          Logga ut
+        </a>
+      </div>
+    </aside>
+
+    <div class="w-100 h-100 px-3 px-sm-4 px-xxl-5 py-5 py-sm-5">
+      <!-- Breadcrumbs -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin/start"><i class="bx bxs-home fs-lg me-1"></i></a></li>
+          <li class="breadcrumb-item active" aria-current="page">Omslagsbilder</li>
+        </ol>
+      </nav>
+
+      <h1 class="h1 mb-5">Omslagsbilder</h1>
+
+      <table class="table my-4 fs-sm">
+        <thead>
+        <tr class="row">
+          <th class="col">Delsida</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="row position-relative" th:each="coverImage : ${coverImages}">
+          <td class="col" th:data-coverid="${coverImage.id}" th:data-coversrc="${coverImage.src}" th:text="${coverImage.pageName}" data-bs-toggle="modal" data-bs-target="#removeAdModal">Brinaxi Care AB</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+
+<!-- Vendor Scripts -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Main Theme Script -->
+<script src="/js/theme.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+  $('#removeAdModal').on('show.bs.modal', function(e) {
+    let id = $(e.relatedTarget).data('coverid');
+    let src = $(e.relatedTarget).data('coversrc');
+    document.getElementById("coverImg").src = src
+    document.getElementById("coverId").value = id
+  });
+</script>
+</body>
+</html>

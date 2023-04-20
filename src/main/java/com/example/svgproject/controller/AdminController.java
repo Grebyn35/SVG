@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -42,6 +42,9 @@ public class AdminController {
 
     @Autowired
     PostRepository postRepository;
+
+    @Autowired
+    CoverImageRepository coverImageRepository;
 
     @Autowired
     SlideshowDocsRepository slideshowDocsRepository;
@@ -62,6 +65,12 @@ public class AdminController {
         model.addAttribute("totalHits", posts.getTotalPages());
         model.addAttribute("page", page);
         return "admin-annonser";
+    }
+    @GetMapping("/admin/omslagsbilder") public String adminPictures(Model model){
+        ArrayList<CoverImage> coverImages = coverImageRepository.findAll();
+        model.addAttribute("coverImages", coverImages);
+
+        return "admin-omslagsbilder";
     }
     @GetMapping("/admin/ny-annons") public String adminNewPost(){
         return "admin-ny-annons";
@@ -163,6 +172,13 @@ public class AdminController {
         nyhet.setTitle(request.getParameter("title"));
         nyhet.setCategory(request.getParameter("category"));
         nyhet.setContent(request.getParameter("content"));
+
+        Calendar cal = Calendar.getInstance();
+
+        cal.add(Calendar.DATE, -365);
+        java.sql.Date today = new java.sql.Date(cal.getTimeInMillis());
+        nyhet.setDateCreated(today);
+
         nyhet.setPublished(returnDateWithTime());
         if(coverImg.getSize()>10){
             String coverImgSrc = uploadFileToServer(coverImg);
@@ -371,7 +387,21 @@ public class AdminController {
     @GetMapping("/admin/search_news")
     public String updateArticlesNews(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page, @RequestParam("category") String category){
         Pageable pageable = PageRequest.of(page, 10);
-        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndCategoryContainingOrderByPublishedDesc(searchInput, category, pageable);
+        Calendar cal = Calendar.getInstance();
+        if(category.contentEquals("all")){
+            cal.add(Calendar.YEAR, -3);
+        }
+        else if(category.contentEquals("Senaste veckan")){
+            cal.add(Calendar.DATE, -8);
+        }
+        else if(category.contentEquals("Senaste månaden")){
+            cal.add(Calendar.DATE, -32);
+        }
+        else if(category.contentEquals("Senaste året")){
+            cal.add(Calendar.DATE, -370);
+        }
+        java.sql.Date timeInterval = new java.sql.Date(cal.getTimeInMillis());
+        Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndDateCreatedAfterOrderByPublishedDesc(searchInput, timeInterval, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
         model.addAttribute("page", page);
@@ -397,6 +427,13 @@ public class AdminController {
         Post post = postRepository.findById(id);
         postRepository.delete(post);
         return "redirect:/admin/annonser?page=0";
+    }
+    @RequestMapping(value=("/admin/save-cover"),headers=("content-type=multipart/*"),method=RequestMethod.POST) public String saveCover(HttpServletRequest request, @RequestParam("imgLogo") MultipartFile imgLogo) throws IOException {
+        long id = Long.parseLong(request.getParameter("id"));
+        CoverImage coverImage = coverImageRepository.findById(id);
+        coverImage.setSrc(uploadFileToServer(imgLogo));
+        coverImageRepository.save(coverImage);
+        return "redirect:/admin/omslagsbilder";
     }
     public String uploadFileToServer(MultipartFile uploadedFile) throws IOException {
         Client client = new Client("eca459e5791d32ddb0f4", "78c7be5af84b70995435");
