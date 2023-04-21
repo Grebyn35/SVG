@@ -237,7 +237,7 @@
 
                 <!-- Item -->
                 <div class="swiper-slide py-3" th:each="promotedProvider : ${promotedProviders}">
-                    <a th:href="'/vardgivare/'${promotedProvider.id}" class="card card-body card-hover shadow-sm px-4 border-0">
+                    <a th:href="'/vardgivare/' + ${promotedProvider.id}" class="card card-body card-hover shadow-sm px-4 border-0">
                         <img th:src="${promotedProvider.logoSrc}" class="img-fluid" alt="Brand" style="height: 100px; object-fit: contain;">
                     </a>
                 </div>

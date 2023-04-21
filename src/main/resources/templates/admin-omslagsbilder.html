@@ -138,7 +138,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script>
-  $('#removeAdModal').on('show.bs.modal', function(e) {
+  $('#changeImageModal').on('show.bs.modal', function(e) {
     let id = $(e.relatedTarget).data('coverid');
     let src = $(e.relatedTarget).data('coversrc');
     document.getElementById("coverImg").src = src
