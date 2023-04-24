@@ -76,7 +76,7 @@ public class UserController {
 
     @GetMapping("/") public String home(Model model){
         Pageable pageable = PageRequest.of(0, 5);
-        Pageable pageablePosts = PageRequest.of(0, 10);
+        Pageable pageablePosts = PageRequest.of(0, 20);
 
         CoverImage coverImage = coverImageRepository.findByPageName("startsida");
         model.addAttribute("coverImage", coverImage);
@@ -302,7 +302,7 @@ public class UserController {
     @GetMapping("/nyheter/{id}") public String newsTemplatePage(@PathVariable long id, Model model){
         Nyhet nyhet = nyhetRepository.findById(id);
         Pageable pageable = PageRequest.of(0, 3);
-        Pageable pageablePosts = PageRequest.of(0, 10);
+        Pageable pageablePosts = PageRequest.of(0, 20);
         Page<Nyhet> nyheter = nyhetRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("nyhet", nyhet);
@@ -312,7 +312,7 @@ public class UserController {
     }
     @GetMapping("/nyheter") public String newsPage(@RequestParam("page") int page, @RequestParam("category") String category, Model model){
         Pageable pageable = PageRequest.of(page, 5);
-        Pageable pageablePosts = PageRequest.of(0, 10);
+        Pageable pageablePosts = PageRequest.of(0, 20);
         Calendar cal = Calendar.getInstance();
         if(category.contentEquals("all")){
             cal.add(Calendar.YEAR, -3);
@@ -399,8 +399,8 @@ public class UserController {
     }
     @GetMapping("/vardgivare") public String userPage(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 5);
-        Pageable pageablePosts = PageRequest.of(page, 10);
-        Page<Provider> providers = providerRepository.findAllByIdIsNotNullAndHiddenIsFalseOrderByDateCreatedDesc(pageable);
+        Pageable pageablePosts = PageRequest.of(page, 20);
+        Page<Provider> providers = providerRepository.findAllByIdIsNotNullAndHiddenIsFalseOrderBySponsoredDescDateCreatedDesc(pageable);
         Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Vårdgivare", pageablePosts);
         model.addAttribute("posts", posts);
         model.addAttribute("providers", providers.getContent());
@@ -416,7 +416,7 @@ public class UserController {
     @GetMapping("/search_vardgivare")
     public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
         Pageable pageable = PageRequest.of(page, 10);
-        Pageable pageablePosts = PageRequest.of(page, 10);
+        Pageable pageablePosts = PageRequest.of(page, 20);
         Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContaining(searchInput, branchType, county, grade, pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());

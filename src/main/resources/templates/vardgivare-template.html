@@ -225,7 +225,7 @@
                 <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="card overflow-hidden shadow my-4">
                     <div class="card-body d-flex flex-column align-items-start">
                         <h1 class="h6">Kontaktperson</h1>
-                        <div class="d-flex align-items-center mb-4">
+                        <div class="d-flex align-items-center mb-4" th:if="${provider.coordinatorName != null}">
                             <img class="rounded-circle border shadow-sm" style="object-fit: cover; width: 50px; height: 50px;" th:src="${provider.coordinatorImage}" alt="">
                             <div class="ms-3 d-flex flex-column">
                                 <span th:text="${provider.coordinatorName}" class="fw-bold">Namn Namnsson</span>
@@ -349,6 +349,61 @@
             </div>
         </div>
 
+    </section>
+
+    <section class="pb-5 mb-lg-5 container">
+        <div class="row">
+            <div class="col-lg-4 mb-4" th:if="${#strings.contains(provider.grade, 'Godkänd verksamhet')}">
+                <div class="card shadow-sm border-0 bg-faded-success text-start">
+                    <div class="card-body">
+                        <div class="bg-success rounded-circle shadow-success d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
+                            <i class="bx bxs-like text-white" style="font-size: 60px;"></i>
+                        </div>
+                        <h4 class="card-title text-success h1">Nivå grön</h4>
+                        <p class="card-text text-dark">
+                            Verksamheten antas med <span class="text-success fst-italic fw-semibold pe-1">mycket stor sannolikhet </span>
+                            kunna efterfölja de lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar verksamheten.
+                            Verksamheten har även uppvisat transparens i sitt kvalitetsarbete genom att offentliggöra efterfrågade handlingar
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4" th:if="${#strings.contains(provider.grade, 'Ej bedömd verksamhet')}">
+                <div class="card shadow-sm border-0 bg-faded-warning text-start">
+                    <div class="card-body">
+                        <div class="bg-warning rounded-circle shadow-warning d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
+                            <i class="bx bxs-error text-white" style="font-size: 60px;"></i>
+                        </div>
+                        <h4 class="card-title text-warning h1">Nivå orange</h4>
+                        <p class="text-dark mb-0">
+                            Verksamheten <span class="text-warning fst-italic fw-semibold pe-1">har ej kunnat bedömas</span>
+                            och kan därmed inte erhålla någon bedömning. En orange bedömning kan även sättas i de fall en verksamhet
+                            inväntar en bedömning. Det exakta skälet till en orange bedömning går att utläsa på verksamhetens individuella informationssida.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4" th:if="${#strings.contains(provider.grade, 'Ej godkänd verksamhet')}">
+                <div class="card shadow-sm border-0 bg-faded-danger text-start">
+                    <div class="card-body">
+                        <div class="bg-danger rounded-circle shadow-danger d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
+                            <i class="bx bxs-error-alt text-white" style="font-size: 60px;"></i>
+                        </div>
+                        <h4 class="card-title text-danger h1">Nivå röd</h4>
+                        <p class="text-dark mb-0">
+                            Verksamheten antas med <span class="text-danger fst-italic fw-semibold pe-1">mycket stor sannolikhet inte</span> kunna efterfölja de
+                            lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar
+                            verksamheten. Verksamheten <span class="text-danger fst-italic fw-semibold pe-1">har valt </span> att inte medverka i
+                            utvärderingsprocessen och därmed inte heller lämnat ifrån sig begärda
+                            handlingar enligt SOSFS 2011:9 - Socialstyrelsens föreskrifter och allmänna råd
+                            om ledningssystem för systematiskt kvalitetsarbete. Då det av SOSFS 2011:9
+                            framgår att kvalitetsberättelsen bör hållas tillgänglig för den som önskar ta
+                            del av den leder ett nekande av detta per automatik till en röd bedömning.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer class="pt-4 pt-sm-5 bg-faded-primary">

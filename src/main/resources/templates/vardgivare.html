@@ -158,7 +158,7 @@
       <div class="col-xl-9 col-lg-8 tableSearch">
 
         <!-- OM SPONSRAT: border-info & bg-faded-primary -->
-        <div th:each="provider : ${providers}" th:classappend="${#strings.contains(provider.otherSettings, 'Sponsrad') ? 'bg-faded-primary border-info' : ''}" class="card card-hover mb-4 shadow me-lg-5">
+        <div th:each="provider : ${providers}" th:classappend="${provider.sponsored == true ? 'bg-faded-primary border-info' : ''}" class="card card-hover mb-4 shadow me-lg-5">
 
           <!-- OM NÅGOT MÄRKVÄRDIGT: -->
           <!--<div th:if="${provider.remark != ''}" class="position-absolute" style="right: 0; bottom: 0; margin-bottom: -15px; margin-right: -15px; z-index: 100;">
@@ -178,7 +178,7 @@
                   </h4>
 
                   <!-- OM SPONSRAT: -->
-                  <div th:if="${#strings.contains(provider.otherSettings, 'Sponsrad')}" class="badge fs-sm text-dark fw-bold bg-primary shadow-primary text-decoration-none mb-3">Sponsrad</div>
+                  <div th:if="${provider.sponsored == true}" class="badge fs-sm text-dark fw-bold bg-primary shadow-primary text-decoration-none mb-3">Sponsrad</div>
                 </div>
                 <div class="row fs-sm">
                   <div class="col-6">
@@ -193,14 +193,14 @@
                   </div>
                   <div class="col-6">
                     <div class="d-flex align-items-center justify-content-end mb-2">
-                      <span class="fw-semibold me-1">Tillstånd: </span>
+                      <span class="fw-semibold me-1">Tillståndspliktig: </span>
                       <div class="d-flex align-items-center" th:if="${#strings.contains(provider.otherSettings, 'Tillstånd')}">
                         <i class="bx bxs-check-circle fs-xl text-success me-1"></i>
-                        <span class="text-success fw-bold">JA</span>
+                        <span class="fw-bold">JA</span>
                       </div>
                       <div class="d-flex align-items-center" th:if="${!#strings.contains(provider.otherSettings, 'Tillstånd')}">
                         <i class="bx bxs-x-circle fs-xl text-danger me-1"></i>
-                        <span class="text-danger fw-bold">NEJ</span>
+                        <span class="fw-bold">NEJ</span>
                       </div>
                     </div>
                   </div>

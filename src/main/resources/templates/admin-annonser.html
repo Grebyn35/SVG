@@ -140,6 +140,7 @@
                 <tr class="row">
                     <th class="col">Annons</th>
                     <th class="col-3">Vårdgivare</th>
+                    <th class="col-3">Delsida</th>
                     <th class="col-2">Publicerad</th>
                     <th class="col-2">Status</th>
                     <th class="col-auto" style="width: 32px;"></th>
@@ -150,6 +151,7 @@
                     <td class="col">
                         <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${post.id}" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
                     <td class="col-3" th:text="${post.name}">Brinaxi Care AB</td>
+                    <td class="col-3" th:text="${post.page}">Brinaxi Care AB</td>
                     <td class="col-2" th:text="${post.published}">2023-02-13</td>
                     <td th:if="${post.status == true}" class="col-2 ">
                         <span class="badge bg-success border border-success shadow-sm">Aktiv</span>
