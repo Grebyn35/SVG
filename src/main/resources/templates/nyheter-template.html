@@ -23,6 +23,21 @@
     <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
     <link rel="stylesheet" media="screen" href="/vendor/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" media="screen" href="/css/theme.css">
+
+    <style>
+        .news-content {
+            width: 100%;
+            box-sizing: border-box;
+            border: 0px;
+            resize: none;
+        }
+        
+        textarea:focus {
+            outline: none;
+        }
+    </style>
+
+    
 </head>
 
 <body>
@@ -98,7 +113,7 @@
                 <img class="d-block d-md-none w-100 h-100 mb-3" style="max-height: 225px; object-fit: cover;" th:src="${nyhet.coverImgSrc}" alt="">
                 <div class="fs-sm mb-2" th:text="${nyhet.published}"></div>
                 <h1 class="h2" th:text="${nyhet.title}">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
-                <div th:text="${nyhet.content}"></div>
+                <textarea readonly id="news-content" class="news-content" th:utext="${nyhet.content}"></textarea>
             </div>
 
             <!-- Ads -->
@@ -219,6 +234,13 @@
         </div>
     </footer>
 </main>
+
+<script>
+    window.onload = function() {
+      const textarea = document.getElementById("news-content");
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    };
+  </script>
 
 <!-- Vendor Scripts -->
 <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

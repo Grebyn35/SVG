@@ -284,11 +284,11 @@
                     <!-- Coordinator Name -->
                     <div class="mb-4">
                         <label class="form-label d-block" for="coordinatorName">Namn på kontaktperson *</label>
-                        <input class="form-control form-control-sm shadow-sm" th:value="${provider.coordinatorName}" type="text" name="coordinatorName" id="coordinatorName" placeholder="" required>
+                        <input class="form-control form-control-sm shadow-sm" th:value="${provider.coordinatorName}" type="text" name="coordinatorName" id="coordinatorName" placeholder="">
                     </div>
                     <div>
                         <label class="form-label d-block" for="coordinatorRole">Verksamhets roll *</label>
-                        <input class="form-control form-control-sm shadow-sm" th:value="${provider.coordinatorRole}" type="text" name="coordinatorRole" id="coordinatorRole" placeholder="" required>
+                        <input class="form-control form-control-sm shadow-sm" th:value="${provider.coordinatorRole}" type="text" name="coordinatorRole" id="coordinatorRole" placeholder="">
                     </div>
                 </div>
                 <div class="col-4 px-4">
@@ -453,7 +453,7 @@
                     <!-- Sponsored Checkbox -->
                     <div class="mb-1">
                         <div class="form-check">
-                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.otherSettings, 'Sponsrad')} ? 'checked'" name="otherSettings[]" value="Sponsrad" type="checkbox" id="sponsored-checkbox">
+                            <input class="form-check-input shadow-sm" th:checked="${provider.sponsored == true} ? 'checked'" name="sponsored" value="true" type="checkbox" id="sponsored-checkbox">
                             <label class="form-label" for="sponsored-checkbox">Sponsrad</label>
                         </div>
                     </div>

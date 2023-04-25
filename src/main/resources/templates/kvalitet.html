@@ -101,13 +101,11 @@
                         verksamhets kvalitet.
                     </p>
                 </div>
-                <div class="col-lg-5 d-block d-lg-none">
-                    <img class="w-100" src="/img/om-oss-hero.png" style="max-height: 350px; object-fit: cover; object-position: center;" alt="">
+                <div class="col-lg-5 d-block">
+                    <img class="w-100" th:src="${coverImage.src}" style="max-height: 350px; object-fit: cover; object-position: center;" alt="">
                 </div>
             </div>
         </div>
-        <!-- Background -->
-        <div class="position-absolute top-0 end-0 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-lg-block" th:style="'background-image:url(' + ${coverImage.src} + '; width: 40%);'"></div>
     </section>
 
     <!-- Blog Section -->

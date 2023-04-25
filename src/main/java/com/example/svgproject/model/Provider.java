@@ -60,4 +60,5 @@ public class Provider implements Serializable {
     private String noPermission;
     @Column(length=200000000,columnDefinition="LONGTEXT")
     private String cmpAdress;
+    private boolean sponsored;
 }

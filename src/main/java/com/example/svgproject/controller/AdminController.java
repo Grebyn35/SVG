@@ -135,6 +135,12 @@ public class AdminController {
         provider.setOtherSettings(otherSettingsList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setDateCreated(returnDateWithTime());
 
+
+        try{
+            provider.setSponsored(Boolean.parseBoolean(request.getParameter("sponsored")));
+        }catch (Exception e){
+            provider.setSponsored(false);
+        }
         provider.setName(request.getParameter("name"));
         provider.setOrgNr(request.getParameter("orgNr"));
         provider.setCounty(countyList.toString().replaceAll("\\[", "").replaceAll("]", ""));
@@ -343,6 +349,11 @@ public class AdminController {
         provider.setOtherSettings(otherSettingsList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setEdited(returnDateWithTime());
 
+        try{
+            provider.setSponsored(Boolean.parseBoolean(request.getParameter("sponsored")));
+        }catch (Exception e){
+            provider.setSponsored(false);
+        }
         provider.setName(request.getParameter("name"));
         provider.setOrgNr(request.getParameter("orgNr"));
         provider.setCounty(countyList.toString().replaceAll("\\[", "").replaceAll("]", ""));
