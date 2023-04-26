@@ -184,25 +184,25 @@
                     <h3 class="h4 mb-4">Sökkriterier</h3>
                     <div th:if="${provider.information.length>0}">
                         <h4 class="h6">Verksamhetsuppgifter</h4>
-                        <textarea readonly id="information" class="news-content" th:utext="${provider.information}"></textarea>
+                        <textarea readonly id="information" class="text-content" th:utext="${provider.information}"></textarea>
 
                     </div>
                     <hr th:if="${provider.orientation.length>0}" class="my-4">
                     <div th:if="${provider.orientation.length>0}">
                         <h4 class="h6">Inriktning</h4>
-                        <textarea readonly id="orientation" class="news-content" th:utext="${provider.orientation}"></textarea>
+                        <textarea readonly id="orientation" class="text-content" th:utext="${provider.orientation}"></textarea>
 
                     </div>
                     <hr th:if="${provider.contribution.length>0}" class="my-4">
                     <div th:if="${provider.contribution.length>0}">
                         <h4 class="h6">Insats/Lagrum</h4>
-                        <textarea readonly id="contribution" class="news-content" th:utext="${provider.contribution}"></textarea>
+                        <textarea readonly id="contribution" class="text-content" th:utext="${provider.contribution}"></textarea>
 
                     </div>
                     <hr th:if="${provider.methods.length>0}" class="my-4">
                     <div th:if="${provider.methods.length>0}">
                         <h4 class="h6">Metoder</h4>
-                        <textarea readonly id="methods" class="news-content" th:utext="${provider.methods}"></textarea>
+                        <textarea readonly id="methods" class="text-content" th:utext="${provider.methods}"></textarea>
                     </div>
                 </div>
 
