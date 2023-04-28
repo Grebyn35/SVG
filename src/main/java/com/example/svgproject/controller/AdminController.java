@@ -384,7 +384,7 @@ public class AdminController {
             provider.setCoordinatorImage(coordinatorImageSrc);
         }
         providerRepository.save(provider);
-        return "redirect:/admin/vardgivare?page=0";
+        return "redirect:/admin/redigera-vardgivare/" + provider.getId();
     }
     @GetMapping("/admin/search_vardgivare")
     public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
