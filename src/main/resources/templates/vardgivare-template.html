@@ -24,6 +24,19 @@
     <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
     <link rel="stylesheet" media="screen" href="/vendor/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" media="screen" href="/css/theme.css">
+
+    <style>
+        .text-content {
+            width: 100%;
+            box-sizing: border-box;
+            border: 0px;
+            resize: none;
+        }
+        
+        .text-content:focus {
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -125,8 +138,7 @@
                     <div class="swiper-pagination"></div>
                 </div>
 
-                <!-- About -->
-                <div th:if="${provider.grade == '[Godkänd verksamhet]'}" class="mt-4 card bg-faded-success border-success p-4 shadow">
+                <div th:if="${provider.grade == 'Godkänd verksamhet'}" class="mt-4 card bg-faded-success p-4 shadow">
                     <div class="d-flex flex-column flex-sm-row align-items-start gap-3">
                         <div class="bg-success rounded-circle shadow-success d-flex justify-content-center align-items-center mb-4" style="min-height: 60px; min-width: 60px;">
                             <i class="bx bxs-like text-white" style="font-size: 35px;"></i>
@@ -138,7 +150,7 @@
                         </p>
                     </div>
                 </div>
-                <div th:if="${provider.grade == '[Ej bedömd verksamhet]'}" class="mt-4 card bg-faded-warning border-warning p-4 shadow">
+                <div th:if="${provider.grade == 'Ej godkänd verksamhet'}" class="mt-4 card bg-faded-warning p-4 shadow">
                     <div class="d-flex flex-column flex-sm-row align-items-start gap-3">
                         <div class="bg-warning rounded-circle shadow-warning d-flex justify-content-center align-items-center mb-4" style="min-height: 60px; min-width: 60px;">
                             <i class="bx bxs-error text-white" style="font-size: 35px;"></i>
@@ -150,7 +162,7 @@
                         </p>
                     </div>
                 </div>
-                <div th:if="${provider.grade == '[Ej godkänd verksamhet]'}" class="mt-4 card bg-faded-danger border-danger p-4 shadow">
+                <div th:if="${provider.grade == 'Ej bedömd verksamhet'}" class="mt-4 card bg-faded-danger p-4 shadow">
                     <div class="d-flex flex-column flex-sm-row align-items-start gap-3">
                         <div class="bg-danger rounded-circle shadow-danger d-flex justify-content-center align-items-center mb-4" style="min-height: 60px; min-width: 60px;">
                             <i class="bx bxs-error-alt text-white" style="font-size: 35px;"></i>
@@ -167,34 +179,30 @@
                         </p>
                     </div>
                 </div>
+
                 <div th:if="${#strings.contains(provider.otherSettings, 'Betalande profil')}" class="mt-4 card p-4 shadow fs-sm">
                     <h3 class="h4 mb-4">Sökkriterier</h3>
                     <div th:if="${provider.information.length>0}">
                         <h4 class="h6">Verksamhetsuppgifter</h4>
-                        <div th:text="${provider.information}">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!
-                        </div>
+                        <textarea readonly id="information" class="text-content" th:utext="${provider.information}"></textarea>
+
                     </div>
                     <hr th:if="${provider.orientation.length>0}" class="my-4">
                     <div th:if="${provider.orientation.length>0}">
                         <h4 class="h6">Inriktning</h4>
-                        <div th:text="${provider.orientation}">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!
-                        </div>
+                        <textarea readonly id="orientation" class="text-content" th:utext="${provider.orientation}"></textarea>
+
                     </div>
                     <hr th:if="${provider.contribution.length>0}" class="my-4">
                     <div th:if="${provider.contribution.length>0}">
                         <h4 class="h6">Insats/Lagrum</h4>
-                        <div th:text="${provider.contribution}">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!
-                        </div>
+                        <textarea readonly id="contribution" class="text-content" th:utext="${provider.contribution}"></textarea>
+
                     </div>
                     <hr th:if="${provider.methods.length>0}" class="my-4">
                     <div th:if="${provider.methods.length>0}">
                         <h4 class="h6">Metoder</h4>
-                        <div class="d-flex gap-3">
-                            <p th:text="${provider.methods}">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quis aliquam, quo pariatur fuga laborum quaerat. Quo natus eum optio voluptates. Nemo nulla quibusdam suscipit facere earum odit omnis cumque!</p>
-                        </div>
+                        <textarea readonly id="methods" class="text-content" th:utext="${provider.methods}"></textarea>
                     </div>
                 </div>
 
@@ -351,61 +359,6 @@
 
     </section>
 
-    <section class="pb-5 mb-lg-5 container">
-        <div class="row">
-            <div class="col-lg-4 mb-4" th:if="${#strings.contains(provider.grade, 'Godkänd verksamhet')}">
-                <div class="card shadow-sm border-0 bg-faded-success text-start">
-                    <div class="card-body">
-                        <div class="bg-success rounded-circle shadow-success d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
-                            <i class="bx bxs-like text-white" style="font-size: 60px;"></i>
-                        </div>
-                        <h4 class="card-title text-success h1">Nivå grön</h4>
-                        <p class="card-text text-dark">
-                            Verksamheten antas med <span class="text-success fst-italic fw-semibold pe-1">mycket stor sannolikhet </span>
-                            kunna efterfölja de lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar verksamheten.
-                            Verksamheten har även uppvisat transparens i sitt kvalitetsarbete genom att offentliggöra efterfrågade handlingar
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4" th:if="${#strings.contains(provider.grade, 'Ej bedömd verksamhet')}">
-                <div class="card shadow-sm border-0 bg-faded-warning text-start">
-                    <div class="card-body">
-                        <div class="bg-warning rounded-circle shadow-warning d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
-                            <i class="bx bxs-error text-white" style="font-size: 60px;"></i>
-                        </div>
-                        <h4 class="card-title text-warning h1">Nivå orange</h4>
-                        <p class="text-dark mb-0">
-                            Verksamheten <span class="text-warning fst-italic fw-semibold pe-1">har ej kunnat bedömas</span>
-                            och kan därmed inte erhålla någon bedömning. En orange bedömning kan även sättas i de fall en verksamhet
-                            inväntar en bedömning. Det exakta skälet till en orange bedömning går att utläsa på verksamhetens individuella informationssida.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4" th:if="${#strings.contains(provider.grade, 'Ej godkänd verksamhet')}">
-                <div class="card shadow-sm border-0 bg-faded-danger text-start">
-                    <div class="card-body">
-                        <div class="bg-danger rounded-circle shadow-danger d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
-                            <i class="bx bxs-error-alt text-white" style="font-size: 60px;"></i>
-                        </div>
-                        <h4 class="card-title text-danger h1">Nivå röd</h4>
-                        <p class="text-dark mb-0">
-                            Verksamheten antas med <span class="text-danger fst-italic fw-semibold pe-1">mycket stor sannolikhet inte</span> kunna efterfölja de
-                            lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar
-                            verksamheten. Verksamheten <span class="text-danger fst-italic fw-semibold pe-1">har valt </span> att inte medverka i
-                            utvärderingsprocessen och därmed inte heller lämnat ifrån sig begärda
-                            handlingar enligt SOSFS 2011:9 - Socialstyrelsens föreskrifter och allmänna råd
-                            om ledningssystem för systematiskt kvalitetsarbete. Då det av SOSFS 2011:9
-                            framgår att kvalitetsberättelsen bör hållas tillgänglig för den som önskar ta
-                            del av den leder ett nekande av detta per automatik till en röd bedömning.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer class="pt-4 pt-sm-5 bg-faded-primary">
         <div class="container">
             <div class="row">
@@ -462,6 +415,22 @@
         </div>
     </footer>
 </main>
+
+<script>
+    window.onload = function() {
+      const methods = document.getElementById("methods");
+      methods.style.height = `${methods.scrollHeight}px`;
+
+      const contribution = document.getElementById("contribution");
+      contribution.style.height = `${contribution.scrollHeight}px`;
+
+      const orientation = document.getElementById("orientation");
+      orientation.style.height = `${orientation.scrollHeight}px`;
+
+      const information = document.getElementById("information");
+      information.style.height = `${information.scrollHeight}px`;
+    };
+</script>
 
 <!-- Vendor Scripts -->
 <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

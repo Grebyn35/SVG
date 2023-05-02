@@ -207,9 +207,9 @@
           },
           "loop": true,
           "autoplay": {
-            "delay": 2500
+            "delay": 500
         },
-        "speed": 500,
+        "speed": 1250,
           "pagination": {
             "el": ".swiper-pagination",
             "clickable": true
@@ -237,13 +237,10 @@
 
                 <!-- Item -->
                 <div class="swiper-slide py-3" th:each="promotedProvider : ${promotedProviders}">
-                    <a th:href="'/vardgivare/' + ${promotedProvider.id}" class="card card-body card-hover shadow-sm px-4 border-0">
+                    <a th:href="'/vardgivare/' + ${promotedProvider.id}" class="card card-body card-hover shadow-sm px-4 border-0 mx-1">
                         <img th:src="${promotedProvider.logoSrc}" class="img-fluid" alt="Brand" style="height: 100px; object-fit: contain;">
                     </a>
                 </div>
-
-                <!-- Pagination (bullets) -->
-                <div class="swiper-pagination position-relative pt-3 mt-4 d-md-none d-flex"></div>
             </div>
         </div>
     </section>
@@ -315,7 +312,7 @@
 
                     <!-- Header -->
                     <div class="offcanvas-header border-bottom">
-                        <h3 class="offcanvas-title fs-lg">Sidebar</h3>
+                        <h3 class="offcanvas-title fs-lg">Annonser</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#blog-sidebar"></button>
                     </div>
 
@@ -404,6 +401,7 @@
 <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
 <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+
 <script th:if="${notificationMsg=='contact'}">
     alert("Formulär skickat!")
 </script>
@@ -414,7 +412,7 @@
     alert("Tack för att du har prenumererat på vårt nyhetsbrev!")
 </script>
 <script th:if="${notificationMsg=='captchaFailed'}">
-    alert("Recaptcha validering misslyckades")
+    alert("Recaptcha-validering misslyckades")
 </script>
 <script th:if="${notificationMsg=='newsLetterRemoved'}">
     alert("Du har nu blivit borttagen från vårt nyhetsbrev.")

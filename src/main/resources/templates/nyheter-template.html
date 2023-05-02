@@ -23,6 +23,21 @@
     <link rel="stylesheet" media="screen" href="/vendor/boxicons/css/boxicons.min.css"/>
     <link rel="stylesheet" media="screen" href="/vendor/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" media="screen" href="/css/theme.css">
+
+    <style>
+        .news-content {
+            width: 100%;
+            box-sizing: border-box;
+            border: 0px;
+            resize: none;
+        }
+
+        .news-content:focus {
+            outline: none;
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -73,7 +88,17 @@
                 <a href="/"><i class="bx bx-home-alt fs-lg me-1"></i>Hem</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="nyheter.html"><i class="bx bx-news fs-lg me-1"></i>Nyheter</a>
+                <a href="/nyheter?page=0&category=all"><i class="bx bx-news fs-lg me-1"></i>Nyheter</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <div class="d-none d-sm-block position-relative overflow-hidden" style="max-width: 200px; max-height: 22.4px;">
+                    <span class="position-absolute h-100 w-100" style="z-index: 5; background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,1) 100%);"></span>
+                    <nobr class="position-relative w-100 h-100" th:text="${nyhet.title}"></nobr>
+                </div>
+                <div class="d-block d-sm-none position-relative overflow-hidden" style="max-width: 100px; max-height: 22.4px;">
+                    <span class="position-absolute h-100 w-100" style="z-index: 5; background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,1) 100%);"></span>
+                    <nobr class="position-relative w-100 h-100" th:text="${nyhet.title}"></nobr>
+                </div>
             </li>
             <li class="breadcrumb-item active" aria-current="page" th:text="${nyhet.title}">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</li>
         </ol>
@@ -144,17 +169,17 @@
             <div class="col-lg-4 mb-5 mb-lg-0" th:each="nyhetRelated : ${nyheter}">
                 <article class="card card-hover h-100 border-0 shadow-sm p-0">
                     <div class="position-relative">
-                        <img th:if="${nyhetRelated.coverImgSrc != null}" th:src="${nyhetRelated.coverImgSrc}" class="card-img-top" style="max-height: 250px; object-fit: cover; object-position: center;" alt="Image">
+                        <img th:if="${nyhetRelated.coverImgSrc != null}" th:src="${nyhetRelated.coverImgSrc}" class="card-img-top" style="height: 200px; max-height: 200px; object-fit: cover; object-position: center;" alt="Image">
                     </div>
                     <div class="card-body pb-4">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <span th:text="${nyhetRelated.published}" class="fs-sm text-muted">2023-01-25</span>
+                            <span th:text="${nyhetRelated.published}" class="text-muted">2023-01-25</span>
                         </div>
                         <h3 class="h5 mb-0">
                             <a class="stretched-link" th:href="'/nyheter/' + ${nyhetRelated.id}" th:text="${nyhetRelated.title}">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a>
                         </h3>
                         <div class="position-relative mt-2 overflow-hidden" style="max-height:80px">
-                            <div class="position-absolute h-100 w-100" style="z-index: 5; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,1) 100%); "></div>
+                            <div class="position-absolute h-100 w-100" style="z-index: 5; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,1) 100%);"></div>
                             <p class="position-relative mb-0" th:text="${nyhetRelated.content}"></p>
                         </div>
                     </div>
@@ -225,6 +250,13 @@
         </div>
     </footer>
 </main>
+
+<script>
+    window.onload = function() {
+      const textarea = document.getElementById("news-content");
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    };
+  </script>
 
 <!-- Vendor Scripts -->
 <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -125,32 +125,34 @@
                 </div>
                 <hr class="mt-4">
                 <form class="mt-4">
-                    <div>
-                        <label class="form-label text-body fw-semibold" for="search_input">Sök</label>
-                        <div class="position-relative d-flex justify-content-end align-items-center">
-                            <input oninput="searchResults(0)" type="text" name="search_input" id="search_input" class="form-control shadow-sm position-relative pe-5" placeholder="Sök nyhet...">
-                            <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
+                    <div class="row mt-4">
+                        <div class="col-md mb-4 mb-md-0">
+                            <label class="form-label text-body fw-semibold" for="search_input">Sök</label>
+                            <div class="position-relative d-flex justify-content-end align-items-center">
+                                <input oninput="searchResults(0)" type="text" name="search_input" id="search_input" class="form-control shadow-sm position-relative pe-5" placeholder="Sök nyhet...">
+                                <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md mb-4 mb-md-0">
-                        <label class="form-label text-body fw-semibold" for="category">Kategori</label>
-                        <select onchange="searchResults(0)" class="form-select shadow-sm" type="text" name="category" id="category">
-                            <option selected value="all">Alla</option>
-                            <option value="Senaste veckan">Senaste veckan</option>
-                            <option value="Senaste månaden">Senaste månaden</option>
-                            <option value="Senaste året">Senaste året</option>
-                        </select>
+                        <div class="col-md mb-4 mb-md-0">
+                            <label class="form-label text-body fw-semibold" for="category">Kategori</label>
+                            <select onchange="searchResults(0)" class="form-select shadow-sm" type="text" name="category" id="category">
+                                <option selected value="all">Alla</option>
+                                <option value="Senaste veckan">Senaste veckan</option>
+                                <option value="Senaste månaden">Senaste månaden</option>
+                                <option value="Senaste året">Senaste året</option>
+                            </select>
+                        </div>
                     </div>
                 </form>
             </div>
-
-            <table class="table my-4 fs-sm tableSearch">
+m
+            <table class="table my-4 fs-s tableSearch">
                 <thead>
-                <tr class="row">
-                    <th class="col-6 col-md-8">Nyhet</th>
-                    <th class="col">Publicerad</th>
-                    <th class="col-auto" style="width: 32px;"></th>
-                </tr>
+                    <tr class="row">
+                        <th class="col-6 col-md-8">Nyhet</th>
+                        <th class="col">Publicerad</th>
+                        <th class="col-auto" style="width: 32px;"></th>
+                    </tr>
                 </thead>
                 <tbody>
                 <tr class="row position-relative" th:each="nyhet : ${nyheter}">

@@ -84,7 +84,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin/start"><i class="bx bxs-home fs-lg me-1"></i></a></li>
-                    <li class="breadcrumb-item"><a href="/admin/vardgivare">Annonser</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/annonser?page=0">Annonser</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Redigera annons</li>
                 </ol>
             </nav>
@@ -96,7 +96,7 @@
                     <!-- Edit background image -->
                     <div class="mb-4 d-flex align-items-center">
                         <div>
-                            <label class="form-label d-block" for="imgLogo">Ändra omslagsbild <span class="fw-normal fs-sm">(ca 250x250px)</span></label>
+                            <label class="form-label d-block" for="imgLogo">Ändra omslagsbild <span class="fw-normal fs-sm">(ca 250x300px)</span></label>
                             <input onchange="console.log(window.URL.createObjectURL(this.files[0])); document.getElementById('coverImg').src = window.URL.createObjectURL(this.files[0]);" class="form-control form-control-sm shadow-sm" type="file" name="imgLogo" id="imgLogo">
                         </div>
                         <div class="ms-4">
