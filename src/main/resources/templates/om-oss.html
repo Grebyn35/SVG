@@ -66,40 +66,32 @@
         </div>
     </header>
 
-    <!-- Page content -->
-    <section class="position-relative pb-5">
+    <section class="position-relative py-5">
 
-        <!-- Breadcrumb -->
-        <nav class="container" aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 pt-5">
-                <li class="breadcrumb-item">
-                    <a href="/"><i class="bx bx-home-alt fs-lg me-1"></i>Hem</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page"></i>Om oss</li>
-            </ol>
-        </nav>
-
-        <!-- Hero -->
-        <div class="container d-flex flex-wrap h-100 mt-4">
-            <div class="w-lg-50 pe-lg-4 mb-lg-5">
-                <h1 class="display-4 mb-3">Om oss</h1>
-                <p>
-                    Sveriges Vårdgivare är ett privat initiativ vars syfte är att via analys
-                    av allmänna handlingar, information och data, granska företag
-                    och organisationer verksamma inom vård och omsorgssektorn i
-                    syfte att kunna göra en bedömning av huruvida ett företag eller
-                    organisation med god sannolikhet, eller ej, följer de olika lagar,
-                    regler och förordningar som råder.
-                </p>
-                <p>
-                    Resultatet av granskningarna
-                    finns att tillgå på varje vårdgivares individuella profil.
-                </p>
-                <button class="btn btn-lg btn-primary mt-2">Boka konsultation</button>
+        <div class="container mt-4">
+            <div class="d-lg-flex align-items-center gap-4">
+                <div class="w-100">
+                    <h6 class="text-primary">Sveriges Vårdgivare</h6>
+                    <h1 class="mb-0">Kvalitet inom vård & omsorg</h1>
+                    <p>
+                        Kvalitet inom vård och omsorg kan beskrivas och mätas på en
+                        mängd olika sätt eftersom kvalitet som begrepp definieras och
+                        upplevs olika beroende på vem uttrycket används av och i vilket i
+                        sammanhang.
+                    </p>
+                    <p class="mb-0">
+                        En klient, brukare eller omsorgstagare kan uppleva kvalitet på ett
+                        helt annat sätt än hur tex en vårdgivare beskriver kvalitet eller hur
+                        tex Inspektionen för vård och Omsorg (IVO) bedömer en
+                        verksamhets kvalitet.
+                    </p>
+                    <button class="btn btn-primary mt-4">Boka konsultation</button>
+                </div>
+                <div class="w-100">
+                    <img class="w-100 rounded" th:src="${coverImage.src}" style="max-height: 375px; object-fit: cover; object-position: center;" alt="">
+                </div>
             </div>
         </div>
-        <!-- Background -->
-        <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-lg-block" th:style="'background-image:url(' + ${coverImage.src} + ');'"></div>
     </section>
 
     <!-- Blog Section -->
@@ -233,31 +225,26 @@
         </div>
     </section>
 
-    <section class="py-5 mt-lg-5 container">
-        <div class="row">
-            <div class="col-lg-6 mt-4 mt-lg-0 order-last order-lg-first">
-                <img src="/img/utvärdering-verksamheter.png" alt="">
-            </div>
-            <div class="col-lg-6">
-                <h2 class="h1 mt-xl-5">Utvärdering av verksamheter</h2>
-                <p>
-                    Vård- och omsorgsbranschen är stor och består
-                    av väldigt många olika typer av verksamheter.
-                    Målsättningen är att Sveriges Vårdgivare ska
-                    kunna erbjuda information om samtliga
-                    verksamheter som bedriver vård och omsorg.
-                </p>
-            </div>
+    <section class="py-5 container">
+        <div class="text-center mx-auto" style="max-width: 700px;">
+            <h2 class="h1">Utvärdering av verksamheter</h2>
+            <p>
+                Vård- och omsorgsbranschen är stor och består
+                av väldigt många olika typer av verksamheter.
+                Målsättningen är att Sveriges Vårdgivare ska
+                kunna erbjuda information om samtliga
+                verksamheter som bedriver vård och omsorg.
+            </p>
         </div>
-    </section>
-
-    <section class="py-5 my-md-5 container">
-        <div class="row">
-            <div class="col-md-6 pe-md-4">
-                <h2 class="h1 mt-md-5">Bedömningsprocessen</h2>
-                <div class="mb-4">
-                    <h5 class="mb-2">Fas 1 - Informationsinhämtning</h5>
-                    <p>
+        <div class="d-lg-flex align-items-center gap-4 mt-5">
+            <div class="w-100 h-100 mb-4 mb-lg-0">
+                <img class="w-100 h-100 rounded" th:src="${coverImage.src}" style="max-height: 375px; object-fit: cover; object-position: center;" alt="">
+            </div>
+            <div class="w-100">
+                <h3 class="h3">Bedömningsprocessen</h3>
+                <div class="mb-3">
+                    <h5 class="h6 mb-1">Fas 1 - Informationsinhämtning</h5>
+                    <p class="fs-sm">
                         I första fasen kontrollerar vi om verksamheten
                         bedriver en tillståndspliktig verksamhet inom SoL
                         eller LSS samt om den innehar tillstånd för detta
@@ -271,16 +258,16 @@
                         eller organisationer är skyldiga att upprätta
                     </p>
                 </div>
-                <div class="mb-4">
-                    <h5 class="mb-2">Fas 2 - Analys</h5>
-                    <p>
+                <div class="mb-3">
+                    <h5 class="h6 mb-1">Fas 2 - Analys</h5>
+                    <p class="fs-sm">
                         De dokument som erhålls granskas sedan utifrån
                         relevanta lagar, föreskrifter och förordning.
                     </p>
                 </div>
                 <div>
-                    <h5 class="mb-2">Fas 3 - Bedömning</h5>
-                    <p>
+                    <h5 class="h6 mb-1">Fas 3 - Bedömning</h5>
+                    <p class="fs-sm">
                         Vid avslutad genomgång av material och analys
                         erhåller verksamheten en bedömning som
                         klassificeras enligt följande system med tre olika
@@ -288,55 +275,54 @@
                     </p>
                 </div>
             </div>
-            <div class="col-xxl-5 offset-xxl-1 col-6 ps-md-4 d-none d-md-block">
-                <img style="max-height: 300px;" src="/img/bedömningsprocessen.png" alt="">
-            </div>
+            
         </div>
     </section>
 
+   
     <section class="pb-5 mb-lg-5 container">
         <div class="row">
-            <div class="col-lg-4 mb-4">
+            <div class="col-12 mb-4">
                 <div class="card shadow-sm border-0 bg-faded-success text-start">
                     <div class="card-body">
                         <div class="bg-success rounded-circle shadow-success d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
                             <i class="bx bxs-like text-white" style="font-size: 60px;"></i>
                         </div>
-                        <h4 class="card-title text-success h1">Nivå grön</h4>
+                        <h4 class="card-title h1">Nivå grön</h4>
                         <p class="card-text text-dark">
-                            Verksamheten antas med <span class="text-success fst-italic fw-semibold pe-1">mycket stor sannolikhet </span>
+                            Verksamheten antas med <strong>mycket stor sannolikhet</strong>
                             kunna efterfölja de lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar verksamheten.
                             Verksamheten har även uppvisat transparens i sitt kvalitetsarbete genom att offentliggöra efterfrågade handlingar
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 mb-4">
+            <div class="col-12 mb-4">
                 <div class="card shadow-sm border-0 bg-faded-warning text-start">
                     <div class="card-body">
                         <div class="bg-warning rounded-circle shadow-warning d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
                             <i class="bx bxs-error text-white" style="font-size: 60px;"></i>
                         </div>
-                        <h4 class="card-title text-warning h1">Nivå orange</h4>
+                        <h4 class="card-title h1">Nivå orange</h4>
                         <p class="text-dark mb-0">
-                            Verksamheten <span class="text-warning fst-italic fw-semibold pe-1">har ej kunnat bedömas</span>
+                            Verksamheten <strong>har ej kunnat bedömas</strong>
                             och kan därmed inte erhålla någon bedömning. En orange bedömning kan även sättas i de fall en verksamhet
                             inväntar en bedömning. Det exakta skälet till en orange bedömning går att utläsa på verksamhetens individuella informationssida.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 mb-4">
+            <div class="col-12 mb-4">
                 <div class="card shadow-sm border-0 bg-faded-danger text-start">
                     <div class="card-body">
                         <div class="bg-danger rounded-circle shadow-danger d-flex justify-content-center align-items-center mb-4" style="height: 100px; width: 100px;">
                             <i class="bx bxs-error-alt text-white" style="font-size: 60px;"></i>
                         </div>
-                        <h4 class="card-title text-danger h1">Nivå röd</h4>
+                        <h4 class="card-title h1">Nivå röd</h4>
                         <p class="text-dark mb-0">
-                            Verksamheten antas med <span class="text-danger fst-italic fw-semibold pe-1">mycket stor sannolikhet inte</span> kunna efterfölja de
+                            Verksamheten antas med <strong>mycket stor sannolikhet inte</strong> kunna efterfölja de
                             lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar
-                            verksamheten. Verksamheten <span class="text-danger fst-italic fw-semibold pe-1">har valt </span> att inte medverka i
+                            verksamheten. Verksamheten har valt att inte medverka i
                             utvärderingsprocessen och därmed inte heller lämnat ifrån sig begärda
                             handlingar enligt SOSFS 2011:9 - Socialstyrelsens föreskrifter och allmänna råd
                             om ledningssystem för systematiskt kvalitetsarbete. Då det av SOSFS 2011:9
