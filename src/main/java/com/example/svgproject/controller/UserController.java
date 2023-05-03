@@ -100,6 +100,12 @@ public class UserController {
         model.addAttribute("coverImage", coverImage);
         return "kontakt";
     }
+    @GetMapping("/test") public String test(Model model){
+        Pageable pageablePosts = PageRequest.of(0, 20);
+        Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Vårdgivare", pageablePosts);
+        model.addAttribute("posts", posts);
+        return "test";
+    }
     @PostMapping("/kontakt") public String contactPost(HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
         String token = request.getParameter("g-token");
         String name = request.getParameter("name");
