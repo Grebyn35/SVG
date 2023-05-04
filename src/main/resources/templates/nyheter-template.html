@@ -140,14 +140,10 @@
                             <!-- Additional required wrapper -->
                             <div class="swiper-wrapper">
                                 <!-- Slides -->
-                                <div class="swiper-slide" th:each="post : ${posts}">
-                                    <div class="card border-0 bg-faded-primary align-items-center">
-                                        <div class="card-body">
-                                            <a th:href="${post.link}" th:target="_blank"  th:style="'height: 200px !important; width:200px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
-                                                <h4 class="text-white text-center h6" th:text="${post.content}" style="text-shadow: 1px 5px 5px #0000007a;">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="swiper-slide d-flex justify-content-end" th:each="post : ${posts}">
+                                    <a th:href="${post.link}" th:target="_blank"  th:style="'height: 250px !important; width:300px; background:url('+ ${post.coverImgSrc} +');'" class="bg-faded-primary rounded-3 shadow-sm bg-size-cover bg-position-center d-flex align-items-end p-2">
+                                        <h4 class="text-white text-center h6 w-100" th:text="${post.content}" style="text-shadow: 1px 5px 5px #0000007a;">Lorem ipsum dolor sit amet consectetur adipisicing</h4>
+                                    </a>
                                 </div>
                             </div>
                         </div>
