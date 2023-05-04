@@ -145,12 +145,12 @@
   </div>
 
   <!-- Blog Section -->
-  <section class="container mb-2 mb-md-4 mb-lg-5 pb-4">
+  <section class="container tableSearch mb-2 mb-md-4 mb-lg-5 pb-4">
 
     <!-- Healthcare Providers + Sidebar -->
     <h3 class="h4 mb-4">Vi hittade <span class="text-info text-decoration-none fs-2" th:text="${providers.size}">3</span> vårdgivare med din sökning</h3>
     <div class="row">
-      <div class="col-xl-9 col-lg-8 tableSearch">
+      <div class="col-xl-9 col-lg-8">
 
         <!-- OM SPONSRAT: border-info & bg-faded-primary -->
         <div th:each="provider : ${providers}" th:classappend="${provider.sponsored == true ? 'bg-faded-primary border-info' : ''}" class="card card-hover mb-4 shadow me-lg-5">
