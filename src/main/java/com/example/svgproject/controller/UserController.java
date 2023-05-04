@@ -410,6 +410,7 @@ public class UserController {
         Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Vårdgivare", pageablePosts);
         model.addAttribute("posts", posts);
         model.addAttribute("providers", providers.getContent());
+        model.addAttribute("totalProviders", providers.getTotalElements());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
 
@@ -425,6 +426,7 @@ public class UserController {
         Pageable pageablePosts = PageRequest.of(page, 20);
         Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
         model.addAttribute("providers", providers.getContent());
+        model.addAttribute("totalProviders", providers.getTotalElements());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
         Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Vårdgivare", pageablePosts);
@@ -448,6 +450,7 @@ public class UserController {
         Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Vårdgivare", pageablePosts);
         model.addAttribute("posts", posts);
         model.addAttribute("providers", providers.getContent());
+        model.addAttribute("totalProviders", providers.getTotalElements());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", 0);
         return "vardgivare";
