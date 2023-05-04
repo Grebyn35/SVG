@@ -423,7 +423,7 @@ public class UserController {
     public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
         Pageable pageable = PageRequest.of(page, 10);
         Pageable pageablePosts = PageRequest.of(page, 20);
-        Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContaining(searchInput, branchType, county, grade, pageable);
+        Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
@@ -433,7 +433,8 @@ public class UserController {
     }
     @PostMapping("/vardgivare_search")
     public String searchProviderCustom(Model model, HttpServletRequest request){
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(0, 5);
+        Pageable pageablePosts = PageRequest.of(0, 20);
         String searchInput = request.getParameter("search_input");
         String branchType = request.getParameter("branchType");
         String county = request.getParameter("county");
@@ -443,7 +444,9 @@ public class UserController {
         model.addAttribute("branchType", branchType);
         model.addAttribute("county", county);
         model.addAttribute("grade", grade);
-        Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContaining(searchInput, branchType, county, grade, pageable);
+        Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
+        Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Vårdgivare", pageablePosts);
+        model.addAttribute("posts", posts);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", 0);

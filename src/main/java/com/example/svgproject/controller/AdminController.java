@@ -181,7 +181,6 @@ public class AdminController {
 
         Calendar cal = Calendar.getInstance();
 
-        cal.add(Calendar.DATE, -365);
         java.sql.Date today = new java.sql.Date(cal.getTimeInMillis());
         nyhet.setDateCreated(today);
 
@@ -389,7 +388,7 @@ public class AdminController {
     @GetMapping("/admin/search_vardgivare")
     public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
         Pageable pageable = PageRequest.of(page, 10);
-        Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContaining(searchInput, branchType, county, grade, pageable);
+        Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
