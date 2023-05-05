@@ -435,7 +435,7 @@ public class UserController {
     }
     @PostMapping("/vardgivare_search")
     public String searchProviderCustom(Model model, HttpServletRequest request){
-        Pageable pageable = PageRequest.of(0, 5);
+        Pageable pageable = PageRequest.of(0, 10);
         Pageable pageablePosts = PageRequest.of(0, 20);
         String searchInput = request.getParameter("search_input");
         String branchType = request.getParameter("branchType");
