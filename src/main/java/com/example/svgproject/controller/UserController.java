@@ -404,7 +404,7 @@ public class UserController {
         return "om-oss";
     }
     @GetMapping("/vardgivare") public String userPage(Model model, @RequestParam("page") int page){
-        Pageable pageable = PageRequest.of(page, 5);
+        Pageable pageable = PageRequest.of(page, 10);
         Pageable pageablePosts = PageRequest.of(page, 20);
         Page<Provider> providers = providerRepository.findAllByIdIsNotNullAndHiddenIsFalseOrderBySponsoredDescDateCreatedDesc(pageable);
         Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Vårdgivare", pageablePosts);
