@@ -102,7 +102,7 @@
             </div>
         </aside>
 
-        <div class="w-100 h-100 px-3 px-sm-4 px-xxl-5 py-5 py-sm-5">
+        <div class="w-100 h-100 px-3 px-sm-4 px-xxl-5 py-5 py-sm-5 tableSearch">
             <!-- Breadcrumbs -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -146,7 +146,7 @@
                 </form>
             </div>
 m
-            <table class="table my-4 fs-s tableSearch">
+            <table class="table my-4 fs-s">
                 <thead>
                     <tr class="row">
                         <th class="col-6 col-md-8">Nyhet</th>
@@ -170,7 +170,7 @@ m
             </table>
 
             <!-- Pagination -->
-            <nav aria-label="Page navigation example" th:if="${nyheter.size>9}">
+            <nav aria-label="Page navigation example" th:if="${nyheter.size>=5 || page>0}">
                 <ul class="pagination">
                     <li class="page-item">
                         <a th:if="${page>0}" style="cursor: pointer" th:onclick="searchResults([[${page-1}]])" class="page-link shadow-sm border">
@@ -178,16 +178,16 @@ m
                         </a>
                     </li>
                     <li class="page-item">
-                        <a style="cursor: pointer" th:if="${page>2}" th:onclick="searchResults([[${page-2}]])" th:text="${page-2}" class="page-link shadow-sm border">1</a>
+                        <a style="cursor: pointer" th:if="${page>1}" th:onclick="searchResults([[${page-2}]])" th:text="${page-1}" class="page-link shadow-sm border">1</a>
                     </li>
                     <li class="page-item">
-                        <a style="cursor: pointer" th:if="${page>1}" th:onclick="searchResults([[${page-1}]])" th:text="${page-1}" class="page-link shadow-sm border">2</a>
+                        <a style="cursor: pointer" th:if="${page>0}" th:onclick="searchResults([[${page-1}]])" th:text="${page}" class="page-link shadow-sm border">2</a>
                     </li>
                     <li class="page-item active" aria-current="page">
-                <span class="page-link bg-info shadow-info" th:text="${page+1}">
-                  3
-                  <span class="visually-hidden">(current)</span>
-                </span>
+                                <span class="page-link bg-info shadow-info" th:text="${page+1}">
+                                  3
+                                  <span class="visually-hidden">(current)</span>
+                                </span>
                     </li>
                     <li class="page-item">
                         <a th:if="${page+1<totalHits}" th:onclick="searchResults([[${page+1}]])" th:text="${page+2}" style="cursor: pointer" class="page-link shadow-sm border">4</a>
