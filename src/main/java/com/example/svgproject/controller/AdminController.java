@@ -394,6 +394,15 @@ public class AdminController {
         model.addAttribute("page", page);
         return "admin-vardgivare :: .tableSearch";
     }
+    @GetMapping("/admin/search_posts")
+    public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page){
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<Post> posts = postRepository.findAllByContentContainingOrderByPublishedDesc(searchInput, pageable);
+        model.addAttribute("posts", posts.getContent());
+        model.addAttribute("totalHits", posts.getTotalPages());
+        model.addAttribute("page", page);
+        return "admin-annonser :: .tableSearch";
+    }
     @GetMapping("/admin/search_news")
     public String updateArticlesNews(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("page") int page, @RequestParam("category") String category){
         Pageable pageable = PageRequest.of(page, 10);
