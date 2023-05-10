@@ -262,6 +262,9 @@ public class AdminController {
         Page<Post> posts = postRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("nyheter", nyheter.getContent());
+        model.addAttribute("providersTotalElements", providers.getTotalElements());
+        model.addAttribute("newsTotalElements", nyheter.getTotalElements());
+        model.addAttribute("postsTotalElements", posts.getTotalElements());
         model.addAttribute("posts", posts.getContent());
         model.addAttribute("user", returnCurrentUser());
     }
@@ -274,6 +277,7 @@ public class AdminController {
     @GetMapping("/admin/vardgivare") public String adminVardgivarePage(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 10);
         Page<Provider> providers = providerRepository.findAllByIdIsNotNullOrderByDateCreatedDesc(pageable);
+        System.out.println(providers.getTotalElements());
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
@@ -388,7 +392,7 @@ public class AdminController {
     @GetMapping("/admin/search_vardgivare")
     public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
         Pageable pageable = PageRequest.of(page, 10);
-        Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
+        Page<Provider> providers = providerRepository.findAllByNameContainingAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("page", page);
