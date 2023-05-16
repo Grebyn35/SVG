@@ -108,31 +108,15 @@
                 <!-- Blog Title -->
                 <div class="mb-4">
                     <label class="form-label d-block" for="title">Titel *</label>
-                    <input class="form-control form-control-sm shadow-sm" th:value="${nyhet.title}" type="text" name="title" id="title" placeholder="Lorem ipsum, dolor sit amet consectetur adipisicing elit" required>
+                    <input class="form-control form-control-sm shadow-sm" th:value="${nyhet.title}" type="text" name="title" id="title" required>
                 </div>
 
                 <hr class="mb-3">
 
-                <!-- Category -->
-                <!--<div class="mb-4">
-                    <label class="form-label d-block" for="category">Kategori</label>
-                    <select class="form-select shadow-sm" type="text" name="category" id="category" placeholder="vårdgivare@domän.se">
-                        <option th:selected="${nyhet.category == 'Övrigt'}" value="Övrigt">Övrigt</option>
-                        <option th:selected="${nyhet.category == 'Apor'}" value="Apor">Apor</option>
-                        <option th:selected="${nyhet.category == 'Björnar'}" value="Björnar">Björnar</option>
-                        <option th:selected="${nyhet.category == 'Chinchillor'}" value="Chinchillor">Chinchillor</option>
-                        <option th:selected="${nyhet.category == 'Daggmaskar'}" value="Daggmaskar">Daggmaskar</option>
-                        <option th:selected="${nyhet.category == 'Elefanter'}" value="Elefanter">Elefanter</option>
-                        <option th:selected="${nyhet.category == 'Fladdermöss'}" value="Fladdermöss">Fladdermöss</option>
-                    </select>
-                </div>
-
-                <hr class="mb-3">-->
-
                 <!-- Main Text -->
                 <div class="mb-4">
                     <label class="form-label d-block" for="content">Innehåll</label>
-                    <textarea class="form-control form-control-sm shadow-sm" th:utext="${nyhet.content}" type="text" name="content" id="content" rows="10" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt esse asperiores rerum quae harum dolorum accusantium unde minima eligendi excepturi! Doloribus harum ipsam deleniti incidunt tempore recusandae illo numquam!"></textarea>
+                    <textarea class="form-control form-control-sm shadow-sm" th:utext="${nyhet.content}" type="text" name="content" id="content" rows="10"></textarea>
                 </div>
 
                 <hr class="mb-3">

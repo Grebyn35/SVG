@@ -63,6 +63,7 @@ public class AdminController {
         Page<Post> posts = postRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         model.addAttribute("posts", posts.getContent());
         model.addAttribute("totalHits", posts.getTotalPages());
+        model.addAttribute("totalPosts", posts.getTotalElements());
         model.addAttribute("page", page);
         return "admin-annonser";
     }
@@ -248,6 +249,7 @@ public class AdminController {
         Page<Nyhet> nyheter = nyhetRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
+        model.addAttribute("totalNews", nyheter.getTotalElements());
         model.addAttribute("page", page);
         return "admin-nyheter";
     }
@@ -272,10 +274,11 @@ public class AdminController {
         return currentUser;
     }
     @GetMapping("/admin/vardgivare") public String adminVardgivarePage(Model model, @RequestParam("page") int page){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, 25);
         Page<Provider> providers = providerRepository.findAllByIdIsNotNullOrderByDateCreatedDesc(pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
+        model.addAttribute("totalProviders", providers.getTotalElements());
         model.addAttribute("page", page);
         return "admin-vardgivare";
     }
@@ -387,10 +390,11 @@ public class AdminController {
     }
     @GetMapping("/admin/search_vardgivare")
     public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, 25);
         Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
+        model.addAttribute("totalProviders", providers.getTotalElements());
         model.addAttribute("page", page);
         return "admin-vardgivare :: .tableSearch";
     }
@@ -414,6 +418,7 @@ public class AdminController {
         Page<Nyhet> nyheter = nyhetRepository.findAllByTitleContainingAndDateCreatedAfterOrderByPublishedDesc(searchInput, timeInterval, pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("totalHits", nyheter.getTotalPages());
+        model.addAttribute("totalNews", nyheter.getTotalElements());
         model.addAttribute("page", page);
         return "admin-nyheter :: .tableSearch";
     }

@@ -115,7 +115,7 @@
             <div class="card border-0 shadow-sm p-4 bg-faded-info">
                 <div class="d-flex justify-content-between align-items-center">
               <span class="fs-4 text-dark">
-                <strong class="text-info">9</strong>
+                <strong class="text-info" th:text="${totalPosts}">9</strong>
                 aktiva annonser
               </span>
                     <a href="/admin/ny-annons" class="btn btn-primary btn-sm">
@@ -134,73 +134,92 @@
                     </div>
                 </form>
             </div>
+            <div class="tableSearch">
+                <table class="table my-4 fs-sm">
+                    <thead>
+                    <tr class="row">
+                        <th class="col">Annons</th>
+                        <th class="col-3">Vårdgivare</th>
+                        <th class="col-3">Delsida</th>
+                        <th class="col-2">Publicerad</th>
+                        <th class="col-2">Status</th>
+                        <th class="col-auto" style="width: 32px;"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row position-relative" th:each="post : ${posts}">
+                        <td class="col">
+                            <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${post.id}" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
+                        <td class="col-3" th:text="${post.name}">Brinaxi Care AB</td>
+                        <td class="col-3" th:text="${post.page}">Brinaxi Care AB</td>
+                        <td class="col-2" th:text="${post.published}">2023-02-13</td>
+                        <td th:if="${post.status == true}" class="col-2 ">
+                            <span class="badge bg-success border border-success shadow-sm">Aktiv</span>
+                        </td>
+                        <td class="col-2 " th:if="${post.status == false}">
+                            <span class="badge bg-secondary border shadow-sm">Inaktiv</span>
+                        </td>
+                        <td class="position-relative col-auto ps-0" style="z-index: 1;">
+                            <button class="btn btn-link p-0 fs-lg text-danger" th:data-postid="${post.id}" th:data-postcontent="${post.content}" data-bs-toggle="modal" data-bs-target="#removeAdModal">
+                                <i class="bx bx-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
-            <table class="table my-4 fs-sm">
-                <thead>
-                <tr class="row">
-                    <th class="col">Annons</th>
-                    <th class="col-3">Vårdgivare</th>
-                    <th class="col-3">Delsida</th>
-                    <th class="col-2">Publicerad</th>
-                    <th class="col-2">Status</th>
-                    <th class="col-auto" style="width: 32px;"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="row position-relative" th:each="post : ${posts}">
-                    <td class="col">
-                        <a class="link-dark stretched-link" th:href="'/admin/redigera-annons/' + ${post.id}" th:text="${post.content}">Lorem ipsum dolor sit amet consectetur adipisicing</a></td>
-                    <td class="col-3" th:text="${post.name}">Brinaxi Care AB</td>
-                    <td class="col-3" th:text="${post.page}">Brinaxi Care AB</td>
-                    <td class="col-2" th:text="${post.published}">2023-02-13</td>
-                    <td th:if="${post.status == true}" class="col-2 ">
-                        <span class="badge bg-success border border-success shadow-sm">Aktiv</span>
-                    </td>
-                    <td class="col-2 " th:if="${post.status == false}">
-                        <span class="badge bg-secondary border shadow-sm">Inaktiv</span>
-                    </td>
-                    <td class="position-relative col-auto ps-0" style="z-index: 1;">
-                        <button class="btn btn-link p-0 fs-lg text-danger" th:data-postid="${post.id}" th:data-postcontent="${post.content}" data-bs-toggle="modal" data-bs-target="#removeAdModal">
-                            <i class="bx bx-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <!-- Pagination -->
-            <nav aria-label="Page navigation example" th:if="${posts.size>9}">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a th:if="${page>0}" style="cursor: pointer" th:onclick="searchResults([[${page-1}]])" class="page-link shadow-sm border">
-                            <i class="bx bx-chevron-left mx-n1"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a style="cursor: pointer" th:if="${page>2}" th:onclick="searchResults([[${page-2}]])" th:text="${page-2}" class="page-link shadow-sm border">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a style="cursor: pointer" th:if="${page>1}" th:onclick="searchResults([[${page-1}]])" th:text="${page-1}" class="page-link shadow-sm border">2</a>
-                    </li>
-                    <li class="page-item active" aria-current="page">
-                <span class="page-link bg-info shadow-info" th:text="${page+1}">
-                  3
-                  <span class="visually-hidden">(current)</span>
-                </span>
-                    </li>
-                    <li class="page-item">
-                        <a th:if="${page+1<totalHits}" th:onclick="searchResults([[${page+1}]])" th:text="${page+2}" style="cursor: pointer" class="page-link shadow-sm border">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a th:if="${page+2<totalHits-1}" th:onclick="searchResults([[${page+2}]])" th:text="${page+3}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
-                    </li>
-                    <li class="page-item">
-                        <a th:if="${page+1<totalHits}" th:onclick="searchResults([[${page+1}]])" style="cursor: pointer" class="page-link shadow-sm border">
-                            <i class="bx bx-chevron-right mx-n1"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                <!-- Pagination -->
+                <nav aria-label="Page navigation example" th:if="${posts.size>9}">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a th:if="${page>0}" style="cursor: pointer" th:onclick="searchResults([[${page-1}]])" class="page-link shadow-sm border">
+                                <i class="bx bx-chevron-left mx-n1"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a style="cursor: pointer" th:if="${page>2}" th:onclick="searchResults([[${page-2}]])" th:text="${page-2}" class="page-link shadow-sm border">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a style="cursor: pointer" th:if="${page>1}" th:onclick="searchResults([[${page-1}]])" th:text="${page-1}" class="page-link shadow-sm border">2</a>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                    <span class="page-link bg-info shadow-info" th:text="${page+1}">
+                      3
+                      <span class="visually-hidden">(current)</span>
+                    </span>
+                        </li>
+                        <li class="page-item">
+                            <a th:if="${page+1<totalHits}" th:onclick="searchResults([[${page+1}]])" th:text="${page+2}" style="cursor: pointer" class="page-link shadow-sm border">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a th:if="${page+2<totalHits-1}" th:onclick="searchResults([[${page+2}]])" th:text="${page+3}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a th:if="${page+3<totalHits-1}" th:onclick="searchResults([[${page+3}]])" th:text="${page+4}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a th:if="${page+4<totalHits-1}" th:onclick="searchResults([[${page+4}]])" th:text="${page+5}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a th:if="${page+5<totalHits-1}" th:onclick="searchResults([[${page+5}]])" th:text="${page+6}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a th:if="${page+6<totalHits-1}" th:onclick="searchResults([[${page+6}]])" th:text="${page+7}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a th:if="${page+7<totalHits-1}" th:onclick="searchResults([[${page+7}]])" th:text="${page+8}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a th:if="${page+8<totalHits-1}" th:onclick="searchResults([[${page+8}]])" th:text="${page+9}" style="cursor: pointer" class="page-link shadow-sm border">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a th:if="${page+1<totalHits}" th:onclick="searchResults([[${page+1}]])" style="cursor: pointer" class="page-link shadow-sm border">
+                                <i class="bx bx-chevron-right mx-n1"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </main>
