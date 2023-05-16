@@ -21,4 +21,5 @@ public interface ProviderRepository extends CrudRepository<Provider,Long> {
 
     Page<Provider> findAllByIdIsNotNullOrderByDateCreatedDesc(Pageable pageable);
     Page<Provider> findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(String searchInput, String branchType, String county, String grade, Pageable pageable);
+    Page<Provider> findAllByNameContainingAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(String searchInput, String branchType, String county, String grade, Pageable pageable);
 }

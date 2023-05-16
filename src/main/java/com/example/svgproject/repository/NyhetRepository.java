@@ -15,6 +15,8 @@ public interface NyhetRepository extends CrudRepository<Nyhet,Long> {
 
     Nyhet findById(long id);
     Page<Nyhet> findAllByIdIsNotNullOrderByPublishedDesc(Pageable pageable);
+
+    Page<Nyhet> findAllByIdIsNotNullAndIdNotOrderByPublishedDesc(long id, Pageable pageable);
     Page<Nyhet> findAllByDateCreatedAfterOrderByPublishedDesc(Date date, Pageable pageable);
     Page<Nyhet> findAllByCategoryContainingAndIdNotOrderByPublishedDesc(String category, long id, Pageable pageable);
     Page<Nyhet> findAllByTitleContainingAndDateCreatedAfterOrderByPublishedDesc(String searchInput, Date date, Pageable pageable);

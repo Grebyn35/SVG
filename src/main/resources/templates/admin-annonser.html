@@ -126,9 +126,9 @@
                 <hr class="mt-4">
                 <form class="row mt-4">
                     <div class="mb-4 mb-md-0" style="max-width: 400px">
-                        <label class="form-label text-body fw-semibold" for="">Sök</label>
+                        <label class="form-label text-body fw-semibold" for="search_input">Sök</label>
                         <div class="position-relative d-flex justify-content-end align-items-center">
-                            <input type="text" name="" id="" class="form-control shadow-sm position-relative pe-5" placeholder="Sök annons...">
+                            <input type="text" name="" id="search_input" class="form-control shadow-sm position-relative pe-5" oninput="searchResults(0)" placeholder="Sök annons...">
                             <i class="position-absolute bx bx-search-alt fs-4 me-2 pe-1"></i>
                         </div>
                     </div>
@@ -240,6 +240,13 @@
         document.getElementById("postId").value = id;
 
     });
+    function searchResults(page){
+        let search_input = document.getElementById("search_input").value
+        $.get("/admin/search_posts",
+            {"search_input": search_input, "page": page}).done(function (fragment) {
+            $(".tableSearch").replaceWith(fragment); // update snippet of page
+        })
+    }
 </script>
 </body>
 </html>

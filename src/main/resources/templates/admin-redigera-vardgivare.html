@@ -382,6 +382,74 @@
                     <!-- Paying Checkbox -->
                     <div class="mb-1">
                         <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Anordnare av personlig assistans, LSS 9.2 p')} ? 'checked'" value="Anordnare av personlig assistans, LSS 9.2 p" name="typeList[]" type="checkbox" id="anordnare-checkbox">
+                            <label class="form-label" for="anordnare-checkbox">Anordnare av personlig assistans, LSS 9.2 p</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Ledsagarservice, LSS 9.3 p')} ? 'checked'" value="Ledsagarservice, LSS 9.3 p" name="typeList[]" type="checkbox" id="ledsagarservice-checkbox">
+                            <label class="form-label" for="ledsagarservice-checkbox">Ledsagarservice, LSS 9.3 p</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Biträde av kontaktperson, LSS 9.4')} ? 'checked'" value="Biträde av kontaktperson, LSS 9.4 " name="typeList[]" type="checkbox" id="bitrade-checkbox">
+                            <label class="form-label" for="bitrade-checkbox">Biträde av kontaktperson, LSS 9.4 p</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Avlösarservice i hemmet, LSS 9.5 p')} ? 'checked'" value="Avlösarservice i hemmet, LSS 9.5 p" name="typeList[]" type="checkbox" id="avlosarservice-checkbox">
+                            <label class="form-label" for="avlosarservice-checkbox">Avlösarservice i hemmet, LSS 9.5 p</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Korttidsvistelse utanför hemmet, LSS 9.6 p')} ? 'checked'" value="Korttidsvistelse utanför hemmet, LSS 9.6 p" name="typeList[]" type="checkbox" id="korttidsvistelse-checkbox">
+                            <label class="form-label" for="korttidsvistelse-checkbox">Korttidsvistelse utanför hemmet, LSS 9.6 p</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Korttidstillsyn för skolungdom över 12 år, LSS 9.7 p')} ? 'checked'" value="Korttidstillsyn för skolungdom över 12 år, LSS 9.7 p" name="typeList[]" type="checkbox" id="korttidstillsyn-checkbox">
+                            <label class="form-label" for="korttidstillsyn-checkbox">Korttidstillsyn för skolungdom över 12 år, LSS 9.7 p</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Bostad med särskild service för barn och ungdomar och familjehem, LSS 9.8 p')} ? 'checked'" value="Bostad med särskild service för barn och ungdomar och familjehem, LSS 9.8 p" name="typeList[]" type="checkbox" id="oppenvard-checkbox">
+                            <label class="form-label" for="oppenvard-checkbox">Bostad med särskild service för barn och ungdomar och familjehem, LSS 9.8 p</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Boende med anpassningar eller särskild service för vuxna, LSS 9.9 p')} ? 'checked'" value="Boende med anpassningar eller särskild service för vuxna, LSS 9.9 p" name="typeList[]" type="checkbox" id="boende-checkbox">
+                            <label class="form-label" for="boende-checkbox">Boende med anpassningar eller särskild service för vuxna, LSS 9.9 p</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Daglig verksamhet för personer i yrkesverksam ålder, LSS 9.10 p')} ? 'checked'" value="Daglig verksamhet för personer i yrkesverksam ålder, LSS 9.10 p" name="typeList[]" type="checkbox" id="daglig-checkbox">
+                            <label class="form-label" for="daglig-checkbox">Daglig verksamhet för personer i yrkesverksam ålder, LSS 9.10 p</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" value="Stödboende eller hem för vård eller boende (HVB), SoL 7.1.1" name="typeList[]" type="checkbox" id="stodboende-checkbox">
+                            <label class="form-label" for="stodboende-checkbox">Stödboende eller hem för vård eller boende (HVB), SoL 7.1.1</label>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <div class="form-check">
+                            <input class="form-check-input shadow-sm" value="Konsulentstödd familjehemsvård, SoL 7.1.5" name="typeList[]" type="checkbox" id="konsultstodd-checkbox">
+                            <label class="form-label" for="konsultstodd-checkbox">Konsulentstödd familjehemsvård, SoL 7.1.5</label>
+                        </div>
+                    </div>
+
+                    <!--                     
+                    <div class="mb-1">
+                        <div class="form-check">
                             <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'LSS')} ? 'checked'" value="LSS" name="typeList[]" type="checkbox" id="lss-checkbox">
                             <label class="form-label" for="lss-checkbox">LSS</label>
                         </div>
@@ -421,7 +489,7 @@
                             <input class="form-check-input shadow-sm" th:checked="${#strings.contains(provider.typeList, 'Öppenvård')} ? 'checked'" value="Öppenvård" name="typeList[]" type="checkbox" id="oppenvard-checkbox">
                             <label class="form-label" for="oppenvard-checkbox">Öppenvård</label>
                         </div>
-                    </div>
+                    </div> -->
 
                     <hr class="mb-3">
 

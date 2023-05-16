@@ -309,7 +309,7 @@ public class UserController {
         Nyhet nyhet = nyhetRepository.findById(id);
         Pageable pageable = PageRequest.of(0, 3);
         Pageable pageablePosts = PageRequest.of(0, 20);
-        Page<Nyhet> nyheter = nyhetRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
+        Page<Nyhet> nyheter = nyhetRepository.findAllByIdIsNotNullAndIdNotOrderByPublishedDesc(nyhet.getId(), pageable);
         model.addAttribute("nyheter", nyheter.getContent());
         model.addAttribute("nyhet", nyhet);
         Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Nyheter", pageablePosts);
@@ -404,7 +404,7 @@ public class UserController {
         return "om-oss";
     }
     @GetMapping("/vardgivare") public String userPage(Model model, @RequestParam("page") int page){
-        Pageable pageable = PageRequest.of(page, 5);
+        Pageable pageable = PageRequest.of(page, 10);
         Pageable pageablePosts = PageRequest.of(page, 20);
         Page<Provider> providers = providerRepository.findAllByIdIsNotNullAndHiddenIsFalseOrderBySponsoredDescDateCreatedDesc(pageable);
         Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Vårdgivare", pageablePosts);
@@ -435,7 +435,7 @@ public class UserController {
     }
     @PostMapping("/vardgivare_search")
     public String searchProviderCustom(Model model, HttpServletRequest request){
-        Pageable pageable = PageRequest.of(0, 5);
+        Pageable pageable = PageRequest.of(0, 10);
         Pageable pageablePosts = PageRequest.of(0, 20);
         String searchInput = request.getParameter("search_input");
         String branchType = request.getParameter("branchType");
