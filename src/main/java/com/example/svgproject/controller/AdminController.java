@@ -134,6 +134,14 @@ public class AdminController {
         provider.setGrade(gradeList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setTypeList(typeList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setOtherSettings(otherSettingsList.toString().replaceAll("\\[", "").replaceAll("]", ""));
+
+        if(provider.getOtherSettings().contains("Betalande profil")){
+            provider.setPaying(true);
+        }
+        else{
+            provider.setPaying(false);
+        }
+
         provider.setDateCreated(returnDateWithTime());
 
 
@@ -259,7 +267,7 @@ public class AdminController {
     }
     public void addAdminStartAttributes(Model model){
         Pageable pageable = PageRequest.of(0, 10);
-        Page<Provider> providers = providerRepository.findAllByIdIsNotNullOrderByDateCreatedDesc(pageable);
+        Page<Provider> providers = providerRepository.findAllByIdIsNotNullOrderBySponsoredDescPayingDescDateCreatedDesc(pageable);
         Page<Nyhet> nyheter = nyhetRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         Page<Post> posts = postRepository.findAllByIdIsNotNullOrderByPublishedDesc(pageable);
         model.addAttribute("providers", providers.getContent());
@@ -278,7 +286,7 @@ public class AdminController {
     }
     @GetMapping("/admin/vardgivare") public String adminVardgivarePage(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 25);
-        Page<Provider> providers = providerRepository.findAllByIdIsNotNullOrderByDateCreatedDesc(pageable);
+        Page<Provider> providers = providerRepository.findAllByIdIsNotNullOrderBySponsoredDescPayingDescDateCreatedDesc(pageable);
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("totalProviders", providers.getTotalElements());
@@ -352,6 +360,12 @@ public class AdminController {
         provider.setGrade(gradeList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setTypeList(typeList.toString().replaceAll("\\[", "").replaceAll("]", ""));
         provider.setOtherSettings(otherSettingsList.toString().replaceAll("\\[", "").replaceAll("]", ""));
+        if(provider.getOtherSettings().contains("Betalande profil")){
+            provider.setPaying(true);
+        }
+        else{
+            provider.setPaying(false);
+        }
         provider.setEdited(returnDateWithTime());
 
         try{
@@ -392,9 +406,17 @@ public class AdminController {
         return "redirect:/admin/redigera-vardgivare/" + provider.getId();
     }
     @GetMapping("/admin/search_vardgivare")
-    public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
+    public String updateArticles(Model model, HttpServletRequest request, @RequestParam("search_input") String searchInput, @RequestParam("profile") String profile, @RequestParam("branch_type") String branchType, @RequestParam("grade") String grade, @RequestParam("page") int page, @RequestParam("county") String county){
         Pageable pageable = PageRequest.of(page, 25);
-        Page<Provider> providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingOrderBySponsoredDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
+        Page<Provider> providers;
+        if(profile.contentEquals("Betalande profil")){
+            System.out.println("sorting by paying");
+            providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingAndPayingIsTrueOrderBySponsoredDescPayingDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
+        }
+        else{
+            System.out.println("sorting by not paying");
+            providers = providerRepository.findAllByNameContainingAndHiddenIsFalseAndTypeListContainingAndCountyContainingAndGradeContainingAndPayingIsFalseOrderBySponsoredDescPayingDescDateCreatedDesc(searchInput, branchType, county, grade, pageable);
+        }
         model.addAttribute("providers", providers.getContent());
         model.addAttribute("totalHits", providers.getTotalPages());
         model.addAttribute("totalProviders", providers.getTotalElements());

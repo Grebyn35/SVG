@@ -53,6 +53,8 @@ public class Provider implements Serializable {
     @Column(length=200000000,columnDefinition="LONGTEXT")
     private String otherSettings;
 
+    private boolean paying;
+
     private String coordinatorRole;
     @Column(length=200000000,columnDefinition="LONGTEXT")
     private String hasPermission;

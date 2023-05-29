@@ -146,6 +146,13 @@
                         </select>
                     </div>
                     <div class="col-md mb-4 mb-md-0">
+                        <label class="form-label text-body fw-semibold" for="profile">Profiler</label>
+                        <select id="profile" onchange="searchResults(0)" class="form-select shadow-sm">
+                            <option value="Betalande profil">Betalande profil</option>
+                            <option value="Icke betalande profil">Icke betalande profil</option>
+                        </select>
+                    </div>
+                    <div class="col-md mb-4 mb-md-0">
                         <label class="form-label text-body fw-semibold" for="grade">Bedömning</label>
                         <select id="grade" onchange="searchResults(0)" class="form-select shadow-sm">
                             <option value="">Alla</option>
@@ -312,11 +319,12 @@
     });
     function searchResults(page){
         let search_input = document.getElementById("search_input").value
+        let profile = document.getElementById("profile").value
         let branch_type = document.getElementById("branch_type").value
         let grade = document.getElementById("grade").value
         let county = document.getElementById("county").value
         $.get("/admin/search_vardgivare",
-            {"search_input": search_input, "branch_type": branch_type, "grade": grade, "page": page, "county": county}).done(function (fragment) {
+            {"search_input": search_input, "branch_type": branch_type, "grade": grade, "profile": profile, "page": page, "county": county}).done(function (fragment) {
             $(".tableSearch").replaceWith(fragment); // update snippet of page
         })
     }
