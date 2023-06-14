@@ -79,10 +79,10 @@
 
     <section class="position-relative pt-4 pb-4" style="min-height: 93vh">
         <!-- Background -->
-        <div class="position-absolute top-0 start-0 h-100 w-50 bg-position-center bg-size-cover d-none d-xl-block" th:style="'background-image:url(' + ${coverImage.src} + ');'"></div>
+        <div class="position-absolute top-0 start-0 h-100 bg-position-center bg-size-cover d-none d-xl-block" th:style="'width: 40%; background-image:url(' + ${coverImage.src} + ');'"></div>
 
         <div class="container d-flex flex-wrap justify-content-center justify-content-xl-end pb-4">
-            <div class="w-100 align-self-end pt-1 pt-md-4 pb-lg-4 mt-4" style="max-width: 526px;">
+            <div class="w-100 align-self-end pt-1 pt-md-4 pb-lg-4 mt-4" style="max-width: 650px;">
                 <h2 class="display-6">Skriv till oss</h2>
                 <p class="fs-5">Vänligen fyll i formuläret nedan med dina uppgifter och ditt meddelande så återkommer vi till dig så snart som möjligt!</p>
                 <form class="row g-4" th:action="@{/kontakt}" method="post">

@@ -38,6 +38,119 @@
 </head>
 
 <body>
+    <div class="modal fade" id="modalVerksamhetsprofil" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title">Verksamhetsprofil</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="fw-bold">-Din verksamhets kvalitet - digitalt förmedlad</p>
+                    <p>
+                        Genom att komplettera verksamhetens befintliga vårdgivare profil med
+                        verksamhetsbeskrivning, bilder och logotyp kan du stärka ditt varumärke och ge korrekt
+                        information om verksamhetens kvalitetsarbete, inriktning och målgrupp när kommuner och
+                        privatpersoner utför sökningar i databasen. Du har även möjlighet att ladda upp
+                        informationsmaterial i PDF-format för att ge ännu mer detaljerad information om din
+                        verksamhet. Verksamheten syns även med logotyp i sökresultatet.
+                        USP:ar
+                    </p>
+                    <ul>
+                       <li class="mb-2">
+                            Skapa en egen professionell och engagerande verksamhetsbeskrivning som speglar
+                            verksamhetens kvalitet och värderingar.
+                       </li>
+                       <li class="mb-2">
+                            Stärk ditt varumärke genom att ladda upp din egen logotyp och bildmaterial.
+                        </li> 
+                        <li class="mb-2">
+                            Tilldela en kontaktperson för att snabbt och effektivt svara på frågor och för att ge en
+                            personlig och förtroendefull kontakt.
+                       </li> 
+                       <li class="mb-2">
+                            Ladda enkelt upp relevanta PDF-filer som ger en djupare inblick i din verksamheten.
+                        </li> 
+                        <li class="mb-2">
+                            Direktlänk till er hemsida.
+                       </li> 
+                       <li class="mb-2">
+                            Verksamhetens syns med logotyp vid slagningar i databasen.
+                        </li> 
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Stäng fönster</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalBannerannonsering" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Bannerannonsering</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="fw-bold">-Annonsera på startsidan, listsök och nyheter</p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur velit iure exercitationem error magnam laudantium esse, earum corporis fuga fugit sequi, ipsa eveniet enim.
+                </p>
+            </div>  
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Stäng fönster</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalUtvaldaVardgivare" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title">Utvalda Vårdgivare</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="fw-bold">-Lämna ett avtryck direkt på startsidan</p>
+                    <p>
+                        Som utvald vårdgivare blir din verksamhet och varumärke det första som möter
+                        webbplatsens besökare på startsidan.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Stäng fönster</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalSponsratListsok" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title">Sponsrat listsök</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="fw-bold">-Din verksamhets kvalitet - digitalt förmedlad</p>
+                    <p>
+                        Sponsrat listsök är en produkt du som vårdgivare kan köpa för att få fler relevanta
+                        besök till din verksamhetsprofil. Med sponsrat listsök syns din verksamhetsprofil högst upp i
+                        resultatlistan inom länet som din verksamhet är verksam i på Sveriges Vårdgivare under x
+                        antal dygn. Samtidigt visas din vanliga verksamhetsprofil på sin ordinarie plats i
+                        resultatlistan.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Stäng fönster</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      
 
 <main class="page-wrapper">
 
@@ -78,11 +191,9 @@
         </div>
     </header>
 
-    <section class="position-relative pt-4 pb-4" style="min-height: 93vh">
-        <!-- Background -->
+    <!-- <section class="position-relative pt-4 pb-4" style="min-height: 93vh">
         <div class="position-absolute top-0 start-0 h-100 w-50 bg-position-center bg-size-cover d-none d-xl-block" th:style="'background-image:url(' + ${coverImage.src} + ');'"></div>
 
-        <!-- Sign in form -->
         <div class="container d-flex flex-wrap justify-content-center justify-content-xl-end pb-4">
             <div class="w-100 align-self-end pt-1 pt-md-4 pb-lg-4 mt-4" style="max-width: 526px;">
                 <h2 class="h6 b-2 fw-bold text-info">Sveriges Vårdgivare</h2>
@@ -120,6 +231,149 @@
                         <i class="bx bx-check fs-xl ms-1"></i>
                     </button>
                 </form>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="py-5 container">
+        <h1 class="mb-4">Lista ditt företag</h1>
+        <div class="row">
+            <div class="col-lg-8 pe-xl-5">
+                <!-- Image Slider -->
+                <div class="swiper swiper-nav-onhover" data-swiper-options='{
+                    "loop": true,
+                    "autoplay": {
+                        "delay": 5000
+                    },
+                    "speed": 1000,
+                    "pagination": {
+                        "el": ".swiper-pagination",
+                        "clickable": true
+                    },
+                    "navigation": {
+                        "prevEl": ".btn-prev",
+                        "nextEl": ".btn-next"
+                    }
+                }'>
+                    <div class="swiper-wrapper rounded-3">
+
+                        <!-- Item -->
+                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
+                            <div class="ratio ratio-16x9 bg-secondary">
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
+                                    <img src="/img/placeholder_image.jpg" style="object-fit: cover; object-position: center;" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item -->
+                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
+                            <div class="ratio ratio-16x9 bg-secondary">
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
+                                    <img src="/img/placeholder_image.jpg" style="object-fit: cover; object-position: center;" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item -->
+                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
+                            <div class="ratio ratio-16x9 bg-secondary">
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
+                                    <img src="/img/placeholder_image.jpg" style="object-fit: cover; object-position: center;" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prev button -->
+                    <button type="button" class="btn btn-prev btn-icon btn-sm me-2">
+                        <i class="bx bx-chevron-left"></i>
+                    </button>
+
+                    <!-- Next button -->
+                    <button type="button" class="btn btn-next btn-icon btn-sm ms-2">
+                        <i class="bx bx-chevron-right"></i>
+                    </button>
+
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="mt-4">
+                    <h2 class="h3">Format och priser</h2>  
+                    <div class="position-relative d-flex align-items-center py-3 border-bottom gap-3">
+                        <img src="/img/placeholder_image.jpg" alt="" style="width: 80px; height: 50px;">
+                        <div>
+                            <h6 data-bs-toggle="modal" data-bs-target="#modalVerksamhetsprofil" style="cursor: pointer;" class="h6 text-decoration-none text-primary stretched-link mb-0">Verksamhetsprofil</h6>
+                            <p class="fw-bold mb-0">-Din verksamhets kvalitet - digitalt förmedlad</p>
+                        </div>
+                    </div>
+                    <div class="position-relative d-flex align-items-center py-3 border-bottom gap-3">
+                        <img src="/img/placeholder_image.jpg" alt="" style="width: 80px; height: 50px;">
+                        <div>
+                            <h6 data-bs-toggle="modal" data-bs-target="#modalUtvaldaVardgivare" style="cursor: pointer;" class="h6 text-decoration-none text-primary stretched-link mb-0">Utvalda vårdgivare</h6>
+                            <p class="fw-bold mb-0">-Lämna ett avtryck direkt på startsidan</p>
+                        </div>
+                    </div>
+                    <div class="position-relative d-flex align-items-center py-3 border-bottom gap-3">
+                        <img src="/img/placeholder_image.jpg" alt="" style="width: 80px; height: 50px;">
+                        <div>
+                            <h6 data-bs-toggle="modal" data-bs-target="#modalBannerannonsering" style="cursor: pointer;" class="h6 text-decoration-none text-primary stretched-link mb-0">Bannerannonsering</h6>
+                            <p class="fw-bold mb-0">-Annonsera på startsidan, listsök och nyheter</p>
+                        </div>
+                    </div>
+                    <div class="position-relative d-flex align-items-center py-3 border-bottom gap-3">
+                        <img src="/img/placeholder_image.jpg" alt="" style="width: 80px; height: 50px;">
+                        <div>
+                            <h6 data-bs-toggle="modal" data-bs-target="#modalSponsratListsok" style="cursor: pointer;" class="h6 text-decoration-none text-primary stretched-link mb-0">Sponsrat listsök</h6>
+                            <p class="fw-bold mb-0">-Uppnå en bättre placering vid sökning i databasen</p>
+                        </div>
+                    </div>
+                    <div class="position-relative d-flex align-items-center py-3 border-bottom gap-3">
+                        <img src="/img/placeholder_image.jpg" alt="" style="width: 80px; height: 50px;">
+                        <div>
+                            <h6 data-bs-toggle="modal" data-bs-target="modal" style="cursor: pointer;" class="h6 text-decoration-none text-primary stretched-link mb-0">Utfyllnad</h6>
+                            <p class="fw-bold mb-0">-Utfyllnad</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 order-first order-lg-last mb-4 mb-lg-0">
+                <div class="card overflow-hidden shadow mb-4">
+                    <div class="card-body">
+                        <h2 class="h3">Annonsering på Sveriges Vårdgivare</h2>
+                        <p class="mb-4">
+                            Sveriges vårdgivare arbetar för att stärka kvaliteten och regelefterlevnaden inom vård- och
+                            omsorgssektorn. Mot bakgrund av detta har vi skapat annonserings lösningar som hjälper
+                            verksamheter som med mycket stor sannolikhet antas kunna efterfölja de lagar, föreskrifter
+                            och förordningar för kvalitetsarbete som reglerar verksamheten att synas på vår plattform.
+                            Verksamheter som är under bedömning tillåts att ta del av vårt tjänsteutbud under en
+                            begränsad period. Verksamheter som med mycket stor sannolikhet inte antas kunna
+                            efterfölja de lagar, föreskrifter och förordningar för kvalitetsarbete som reglerar
+                            verksamheten tillåts inte att ta del av vårt tjänsteutbud.
+                        </p>
+                        <div class="d-flex align-items-center gap-1 mb-2">
+                            <i class="bx bx-check fs-4"></i>
+                            Helt kostnadsfritt
+                        </div>
+                        <div class="d-flex align-items-center gap-1 mb-2">
+                            <i class="bx bx-check fs-4"></i>
+                            Prisförslag
+                        </div>
+                        <div class="d-flex align-items-center gap-1 mb-2">
+                            <i class="bx bx-check fs-4"></i>
+                            Inga förbindelser
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <form action="">
+                            <label class="form-label fw-bold" for="chooseProduct">Välj produkt</label>
+                            <select id="chooseProduct" class="form-select mb-4">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <button class="btn btn-primary" type="submit">Skapa offertförfrågan</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -186,6 +440,17 @@
 <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
 <script src="/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js?render=6Lfe5HghAAAAAIEgRY0VeoqZ_8ML8UWMgLPKBfai"></script>
+
+<!-- Modal -->
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+    })
+</script>
+
 <script>
     grecaptcha.ready(function() {
         grecaptcha.execute('6Lfe5HghAAAAAIEgRY0VeoqZ_8ML8UWMgLPKBfai', {action: 'submit'}).then(function(token) {
