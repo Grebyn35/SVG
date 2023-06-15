@@ -281,6 +281,11 @@ public class UserController {
         model.addAttribute("coverImage", coverImage);
         return "lista-foretag";
     }
+    @GetMapping("/lista-foretag-formular") public String listCompanyFormulaPage(Model model){
+        CoverImage coverImage = coverImageRepository.findByPageName("lista-foretag");
+        model.addAttribute("coverImage", coverImage);
+        return "lista-företag-formulär";
+    }
     @GetMapping("/login") public String loginPage(){
         return "logga-in";
     }
