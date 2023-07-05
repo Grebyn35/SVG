@@ -100,12 +100,7 @@ public class UserController {
         model.addAttribute("coverImage", coverImage);
         return "kontakt";
     }
-    @GetMapping("/test") public String test(Model model){
-        Pageable pageablePosts = PageRequest.of(0, 20);
-        Page<Post> posts = postRepository.findAllByStatusTrueAndPageOrderByPublishedDesc("Vårdgivare", pageablePosts);
-        model.addAttribute("posts", posts);
-        return "test";
-    }
+
     @PostMapping("/kontakt") public String contactPost(HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
         String token = request.getParameter("g-token");
         String name = request.getParameter("name");
@@ -272,8 +267,10 @@ public class UserController {
         return "aterstall-losenord";
     }
     @GetMapping("/kvalitet") public String qualityPage(Model model){
-        CoverImage coverImage = coverImageRepository.findByPageName("kvalitet");
-        model.addAttribute("coverImage", coverImage);
+        CoverImage coverImage1 = coverImageRepository.findByPageName("kvalitet bild 1");
+        CoverImage coverImage2 = coverImageRepository.findByPageName("kvalitet bild 2");
+        model.addAttribute("coverImage1", coverImage1);
+        model.addAttribute("coverImage2", coverImage2);
         return "kvalitet";
     }
     @GetMapping("/lista-foretag") public String listCompanyPage(Model model){
@@ -394,20 +391,13 @@ public class UserController {
         return "hem :: .tableSearch";
     }
     @GetMapping("/om-oss") public String aboutUsPage(Model model){
-        CoverImage coverImage = coverImageRepository.findByPageName("om-oss");
-        model.addAttribute("coverImage", coverImage);
+        CoverImage coverImage1 = coverImageRepository.findByPageName("om-oss bild 1");
+        CoverImage coverImage2 = coverImageRepository.findByPageName("om-oss bild 2");
+        model.addAttribute("coverImage1", coverImage1);
+        model.addAttribute("coverImage2", coverImage2);
         return "om-oss";
     }
 
-    @GetMapping("/anvandarvillkor") public String anvandarVillkor(){
-        return "om-oss";
-    }
-    @GetMapping("/integritetspolicy") public String integrityPolicy(){
-        return "om-oss";
-    }
-    @GetMapping("/cookies") public String cookies(){
-        return "om-oss";
-    }
     @GetMapping("/vardgivare") public String userPage(Model model, @RequestParam("page") int page){
         Pageable pageable = PageRequest.of(page, 10);
         Pageable pageablePosts = PageRequest.of(page, 20);

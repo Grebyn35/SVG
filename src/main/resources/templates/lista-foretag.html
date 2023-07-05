@@ -241,7 +241,7 @@
             <div class="col-lg-8 pe-xl-5">
                 <!-- Image Slider -->
                 <div class="swiper swiper-nav-onhover" data-swiper-options='{
-                    "loop": true,
+                    "loop": false,
                     "autoplay": {
                         "delay": 5000
                     },
@@ -256,45 +256,15 @@
                     }
                 }'>
                     <div class="swiper-wrapper rounded-3">
-
                         <!-- Item -->
                         <div class="swiper-slide rounded-3 overflow-hidden shadow">
                             <div class="ratio ratio-16x9 bg-secondary">
                                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
-                                    <img src="/img/placeholder_image.jpg" style="object-fit: cover; object-position: center;" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Item -->
-                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
-                            <div class="ratio ratio-16x9 bg-secondary">
-                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
-                                    <img src="/img/placeholder_image.jpg" style="object-fit: cover; object-position: center;" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Item -->
-                        <div class="swiper-slide rounded-3 overflow-hidden shadow">
-                            <div class="ratio ratio-16x9 bg-secondary">
-                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-4">
-                                    <img src="/img/placeholder_image.jpg" style="object-fit: cover; object-position: center;" alt="">
+                                    <img th:src="${coverImage.src}" style="object-fit: cover; object-position: center;" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Prev button -->
-                    <button type="button" class="btn btn-prev btn-icon btn-sm me-2">
-                        <i class="bx bx-chevron-left"></i>
-                    </button>
-
-                    <!-- Next button -->
-                    <button type="button" class="btn btn-next btn-icon btn-sm ms-2">
-                        <i class="bx bx-chevron-right"></i>
-                    </button>
-
-                    <!-- Pagination -->
-                    <div class="swiper-pagination"></div>
                 </div>
                 <div class="mt-4">
                     <h2 class="h3">Format och priser</h2>  
@@ -421,11 +391,11 @@
                     <a class="link-info fw-medium" href="/admin/start">Admin</a>
                 </p>
                 <div class="d-flex text-dark gap-2 opacity-75 order-first order-md-last pb-4 pb-lg-2">
-                    <a class="link-dark" href="/anvandarvillkor">Användarvillkor</a>
+                    <a class="link-dark" href="https://ucarecdn.com/883a18cd-ead9-4738-8f0a-8af9ddb5ca2c/">Ansvarig utgivare</a>
                     <span>•</span>
-                    <a class="link-dark" href="/integritetspolicy">Integritetspolicy</a>
+                    <a class="link-dark" href="https://ucarecdn.com/59ebeed9-6f7b-4180-821b-91e65f4ec173/">Integritetspolicy</a>
                     <span>•</span>
-                    <a class="link-dark" href="/cookies">Cookies</a>
+                    <a class="link-dark" href="https://ucarecdn.com/fd7b9dee-a28b-40c3-91d3-21fbf990ecbe/">Cookies</a>
                 </div>
             </div>
         </div>
