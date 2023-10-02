@@ -3,6 +3,9 @@ package com.example.svgproject.controller;
 import com.example.svgproject.model.*;
 import com.example.svgproject.repository.*;
 import com.example.svgproject.service.UserService;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvException;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -28,6 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -99,6 +103,31 @@ public class UserController {
         CoverImage coverImage = coverImageRepository.findByPageName("kontakt");
         model.addAttribute("coverImage", coverImage);
         return "kontakt";
+    }
+    @GetMapping("/updateCountys12345") public String testaaa(Model model){
+        /*String csvFile = "C:\\Users\\Grebyn\\IdeaProjects\\SVG\\src\\main\\resources\\static\\providers.csv";
+
+        try (FileReader fileReader = new FileReader(csvFile)) {
+            CSVReader csvReader = new CSVReaderBuilder(fileReader)
+                    .withSkipLines(1) // Skip the header line
+                    .build();
+
+
+            List<String[]> records = csvReader.readAll();
+
+            for(int i = 0; i<records.size();i++){
+                System.out.println(i + "/" + records.size());
+                ArrayList<Provider> providers = providerRepository.findAllByOrgNr(records.get(i)[1]);
+                for(int c = 0; c<providers.size();c++){
+                    providers.get(c).setCounty(records.get(i)[2]);
+                }
+                providerRepository.saveAll(providers);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+        return "redirect:/";
     }
 
     @PostMapping("/kontakt") public String contactPost(HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {

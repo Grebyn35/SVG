@@ -17,6 +17,8 @@ public interface ProviderRepository extends CrudRepository<Provider,Long> {
     Provider findById(long id);
     //Must have @Param because of hibernate bugg
     ArrayList<Provider> findAllByOtherSettingsContaining(@Param("otherSettings")String otherSettings);
+
+    ArrayList<Provider> findAllByOrgNr(String orgNr);
     Page<Provider> findAllByIdIsNotNullAndHiddenIsFalseOrderBySponsoredDescPayingDescDateCreatedDesc(Pageable pageable);
 
     Page<Provider> findAllByIdIsNotNullOrderBySponsoredDescPayingDescDateCreatedDesc(Pageable pageable);
