@@ -81,48 +81,48 @@
         <!-- Background -->
         <div class="position-absolute top-0 start-0 h-100 bg-position-center bg-size-cover d-none d-xl-block" th:style="'width: 40%; background-image:url(' + ${coverImage.src} + ');'"></div>
 
-        <div class="container d-flex flex-wrap justify-content-center justify-content-xl-end pb-4">
-            <div class="w-100 align-self-end pt-1 pt-md-4 pb-lg-4 mt-4" style="max-width: 650px;">
+        <div class="container d-flex flex-wrap justify-content-center justify-content-xl-end">
+            <div class="w-100 align-self-end pt-1 pt-md-2 pb-lg-2" style="max-width: 650px;">
                 <h2 class="display-6">Skriv till oss</h2>
-                <p class="fs-5">Vänligen fyll i formuläret nedan med dina uppgifter och ditt meddelande så återkommer vi till dig så snart som möjligt!</p>
+                <p class="fs-5 mb-2">Vänligen fyll i formuläret nedan med dina uppgifter och ditt meddelande så återkommer vi till dig så snart som möjligt!</p>
                 <form class="row g-4" th:action="@{/kontakt}" method="post">
                     <div class="col-12">
                         <label for="fn" class="form-label fs-base">Namn *</label>
                         <input type="text" name="name" class="form-control shadow-sm" id="fn" required>
                         <div class="invalid-feedback">Var god skriv in ditt namn.</div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mt-2">
                         <label for="email" class="form-label fs-base">E-post *</label>
                         <input type="email" name="email" class="form-control shadow-sm" id="email" required>
                         <div class="invalid-feedback">Var god skriv in en giltig e-postadress.</div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mt-2">
                         <label for="tel" class="form-label fs-base">Telefon *</label>
                         <input type="text" name="tel" class="form-control shadow-sm" id="tel" required>
                         <div class="invalid-feedback">Var god skriv ditt telefonnummer.</div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mt-2">
                         <label for="content" class="form-label fs-base">Meddelande *</label>
                         <textarea class="form-control shadow-sm" name="content" id="content" rows="6" required></textarea>
                         <div class="invalid-feedback">Var god skriv ditt meddelande till oss.</div>
                     </div>
                     <input type="hidden" id="g-token" name="g-token">
-                    <div class="col-12">
+                    <div class="col-12 mt-2">
                         <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto shadow-primary">Skicka meddelande</button>
                     </div>
                 </form>
 
-                <div class="mt-5">
-                    <h2 class="mb-4">Kontakta oss</h2>
+                <div class="mt-3">
+                    <h2 class="mb-3">Kontakta oss</h2>
 
-                    <div class="d-flex align-items-center mb-4 fs-5">
+                    <div class="d-flex align-items-center mb-2 fs-5">
                         <i class="bx bx-time fs-2 text-primary"></i>
                         <div class="d-flex flex-column ms-2">
                             <span>Mån - Fre <span class="mx-2 opacity-25">|</span> 09:00 - 17:00</span>
                         </div>
                     </div>
 
-                    <div class="d-flex align-items-center mb-4 fs-5">
+                    <div class="d-flex align-items-center mb-2 fs-5">
                         <i class="bx bx-phone fs-2 text-primary"></i>
                         <div class="d-flex flex-column ms-2">
                             <span>+46 70 -123 45 67</span>
